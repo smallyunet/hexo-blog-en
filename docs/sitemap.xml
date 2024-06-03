@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://en.smallyu.net/categories/index.html</loc>
+    
+    <lastmod>2024-06-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/index.html</loc>
+    
+    <lastmod>2024-06-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/about/index.html</loc>
+    
+    <lastmod>2024-06-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/05/04/Small%20Tips%20for%20Cryptocurrency%20Investment/</loc>
+    
+    <lastmod>2024-06-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/06/03/PBFT%20in%20Blockchain%20Doesn't%20Require%20a%20Second%20Vote/</loc>
+    
+    <lastmod>2024-06-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/micro-blog/index.html</loc>
+    
+    <lastmod>2024-05-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://en.smallyu.net/</loc>
+    <lastmod>2024-06-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/BFT/</loc>
+    <lastmod>2024-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Crypto-Trading/</loc>
+    <lastmod>2024-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+</urlset>
