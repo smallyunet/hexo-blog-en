@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/2024/05/26/Key%20Points%20of%20Issuing%20Cryptocurrency/</loc>
+    
+    <lastmod>2024-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/05/30/Developer's%20Mindset/</loc>
+    
+    <lastmod>2024-06-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/categories/index.html</loc>
     
     <lastmod>2024-06-03</lastmod>
@@ -58,7 +76,7 @@
 
   <url>
     <loc>https://en.smallyu.net/</loc>
-    <lastmod>2024-06-03</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -66,14 +84,28 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/BFT/</loc>
-    <lastmod>2024-06-03</lastmod>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Crypto-Trading/</loc>
-    <lastmod>2024-06-03</lastmod>
+    <lastmod>2024-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Mindset/</loc>
+    <lastmod>2024-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
+    <lastmod>2024-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
