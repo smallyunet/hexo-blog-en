@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/2024/02/17/Recent%20Work%20in%20the%20Past%20Six%20Months/</loc>
+    
+    <lastmod>2024-06-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/03/13/What%20a%20Bull%20Market%20Means%20for%20the%20Average%20Person/</loc>
+    
+    <lastmod>2024-06-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/04/14/Why%20PoW%20is%20More%20Decentralized%20than%20PoS/</loc>
+    
+    <lastmod>2024-06-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2024/05/26/Key%20Points%20of%20Issuing%20Cryptocurrency/</loc>
     
     <lastmod>2024-06-04</lastmod>
@@ -76,36 +103,50 @@
 
   <url>
     <loc>https://en.smallyu.net/</loc>
-    <lastmod>2024-06-04</lastmod>
+    <lastmod>2024-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>https://en.smallyu.net/tags/Work/</loc>
+    <lastmod>2024-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/tags/BFT/</loc>
-    <lastmod>2024-06-04</lastmod>
+    <lastmod>2024-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Crypto-Trading/</loc>
-    <lastmod>2024-06-04</lastmod>
+    <lastmod>2024-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Mindset/</loc>
-    <lastmod>2024-06-04</lastmod>
+    <lastmod>2024-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
-    <lastmod>2024-06-04</lastmod>
+    <lastmod>2024-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Consensus-Mechanism/</loc>
+    <lastmod>2024-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
