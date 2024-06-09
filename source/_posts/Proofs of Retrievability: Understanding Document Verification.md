@@ -1,5 +1,5 @@
 ---
-title: Proofs of Retrievability 文件证明的含义
+title: 'Proofs of Retrievability: Understanding Document Verification'
 date: 2022-12-16 17:22:05
 tags: 文件证明
 ---
