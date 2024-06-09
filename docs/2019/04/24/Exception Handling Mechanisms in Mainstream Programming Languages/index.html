@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head><title>Exception Handling Mechanisms in Mainstream Programming Languages</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+}</script><div><div class="inner"><h1>Exception Handling Mechanisms in Mainstream Programming Languages</h1><div class="time">2019-04-24</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Languages/">Programming Languages</a></li></ul><p>When learning a programming language, it is important to start with its features rather than the language itself. Here, we attempt a simple, horizontal understanding of the exception and error handling mechanisms of various programming languages. The languages involved include C, C++, Go, Java, Scala, Kotlin, Ruby, Rust, JavaScript, PHP, Python, and Lisp.</p>
+<h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><p>The C language does not have an exception handling mechanism. When an error occurs, a global error code <code>errno</code> is set. C provides the <code>perror()</code> and <code>strerror()</code> functions to display the description related to <code>errno</code>. The <code>perror()</code> function can be called directly, with a string parameter, and outputs <code>parameter: error text</code>. The <code>strerror()</code> function takes a number (error code) as a parameter and returns a pointer to the corresponding error text.</p>
+<pre><code class="C">#include &lt;stdio.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+
+void main ()
+&#123;
+  // Opening a non-existent file will cause an error
+  fopen (&quot;unexist.txt&quot;, &quot;rb&quot;);
+
+  // 2
+  printf(&quot;%d\n&quot;, errno);
+
+  // No such file or directory
+  perror(&quot;&quot;);
+
+  // No such file or directory
+  printf(&quot;%s\n&quot;, strerror(errno));
+&#125;
+</code></pre>
+<h3 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h3><p>C++ supports exception handling mechanisms. C++ can throw or catch two types of content: int or char* types, which can be caught and thrown by the program. This differs from Java, which does not support directly throwing basic types:</p>
+<pre><code class="C++">#include &lt;iostream&gt;
+#include &lt;exception&gt;
+using namespace std;
+int main () &#123;
+    try
+    &#123;
+        throw &quot;error&quot;;
+    &#125;
+    catch(const char* msg)
+    &#123;
+        cout &lt;&lt; msg &lt;&lt; endl;
+    &#125;
+&#125; 
+
+// error
+</code></pre>
+<p>Another type is classes, which can be built-in standard exception classes or custom exception classes:</p>
+<pre><code class="C++">#include &lt;iostream&gt;
+#include &lt;exception&gt;
+using namespace std;
+int main () &#123;
+    try
+    &#123;
+        throw exception();
+    &#125;
+    catch(std::exception&amp; e)
+    &#123;
+        cout &lt;&lt; e.what() &lt;&lt; endl;
+    &#125;
+&#125; 
+
+// std::exception
+</code></pre>
+<h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><p>Go, as a non-OOP language, does not support try-catch syntax but still has similar throw and catch features. Go has three error-related keywords: <code>panic()</code>, <code>recover()</code>, and <code>defer</code>. <code>panic()</code> throws an exception, <code>recover()</code> catches the exception, and the <code>defer</code> keyword defines what will be executed last, similar to <code>finally</code>:</p>
+<pre><code class="Go">package main
+import &quot;fmt&quot;
+
+func main() &#123;
+  defer func() &#123;
+    err := recover()
+    fmt.Println(err)
+  &#125;()
+  panic(&quot;error&quot;)
+&#125;
+
+// error
+</code></pre>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p>Java, being a pure OOP language, only supports throwing and catching objects:</p>
+<pre><code class="Java">public class ErrorTest &#123;
+    public static void main(String[] args) &#123;
+        try &#123;
+            throw new Exception();
+        &#125; catch (Exception e) &#123;
+            System.out.println(e);
+        &#125;
+    &#125;
+&#125;
+
+// java.lang.Exception
+</code></pre>
+<h3 id="Scala"><a href="#Scala" class="headerlink" title="Scala"></a>Scala</h3><p>Scala and Java belong to the same category, supporting only throwing and catching objects. The syntax is slightly different from Java, but the concept is fundamentally the same:</p>
+<pre><code class="Scala">object ErrorTest &#123;
+  def main(args: Array[String]): Unit = &#123;
+    try &#123;
+      throw new Exception()
+    &#125; catch &#123;
+      case e: Exception =&gt; print(e)
+    &#125;
+  &#125;
+&#125;
+
+// java.lang.Exception
+</code></pre>
+<p>Moreover, Scala throws Java exceptions. Scala might not be considered an independent programming language but rather one that provides syntax sugar for Java. This point is worth deeper thinking and exploration.</p>
+<h3 id="Kotlin"><a href="#Kotlin" class="headerlink" title="Kotlin"></a>Kotlin</h3><p>Kotlin is similar to Scala in nature, also throwing Java exceptions by default:</p>
+<pre><code class="Kotlin">fun main(args: Array&lt;String&gt;) &#123;
+  try &#123;
+    throw Exception()
+  &#125; catch (e: Exception) &#123;
+    print(e)
+  &#125;
+&#125;
+
+// java.lang.Exception
+</code></pre>
+<h3 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h3><p>Ruby uses the <code>raise</code> and <code>rescue</code> keywords instead of <code>try</code> and <code>catch</code> to implement throwing and catching exceptions. Ruby also supports the try-catch keywords, but they are not discussed here as I haven’t figured out their usage yet.</p>
+<pre><code class="Ruby">begin
+  raise &quot;error&quot; 
+  rescue Exception =&gt; e
+    puts e
+end
+
+// error
+</code></pre>
+<h3 id="Rust"><a href="#Rust" class="headerlink" title="Rust"></a>Rust</h3><p>Rust does not have try-catch syntax or Go-like error handling functions. Instead, it uses <code>Option&lt;T&gt;</code> or the enhanced <code>Result&lt;T, E&gt;</code> for error handling. Rust’s pattern matching is similar to Scala’s:</p>
+<pre><code class="Rust">fn main() &#123;
+  match find() &#123;
+    None =&gt; println!(&quot;none&quot;),
+    Some(i) =&gt; println!(&quot;&#123;&#125;&quot;, i),
+  &#125;
+&#125;
+
+fn find() -&gt; Option&lt;usize&gt; &#123;
+  if 1 == 1 &#123;
+    return Some(1);
+  &#125;
+  None
+&#125;
+
+// 1
+</code></pre>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>Scripting languages do not enforce type constraints on variables, so exceptions cannot be distinguished by type. The content of the thrown error is relatively free:</p>
+<pre><code class="JavaScript">try &#123;
+  throw 1
+&#125; catch (e) &#123;
+  console.log(e)
+&#125;
+
+// 1
+
+try &#123;
+  throw new Error(&#39;&#39;)
+&#125; catch (e) &#123;
+  console.log(e)
+&#125;
+
+// Error
+</code></pre>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><p>PHP’s try-catch is similar to Java, with no special features:</p>
+<pre><code class="PHP">&lt;?php
+  try &#123;
+      throw new Exception(&quot;error&quot;);
+  &#125; catch (Exception $e) &#123;
+      echo $e-&gt;getMessage();
+  &#125;
+</code></pre>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>Python’s syntax shows the influence of Ruby. <code>raise</code> triggers an exception, and <code>except</code> catches it:</p>
+<pre><code class="Python">try:
+  raise
+except:
+  print(&quot;error&quot;)
+</code></pre>
+<h3 id="Lisp"><a href="#Lisp" class="headerlink" title="Lisp"></a>Lisp</h3><p>Lisp is generally more complex. The content of Lisp’s exception handling is temporarily left as an open question. The following is one of the situations in Common Lisp that triggers an error. <code>declare</code> declares the type of function parameters, and passing the wrong parameters will cause an error:</p>
+<pre><code class="Lisp">(defun df (a b)
+  (declare (double-float a b))
+  (* a b))
+  
+(df &quot;1&quot; 3)
+
+// *** - *: &quot;1&quot; is not a number
+</code></pre>
+<h3 id="Future-Discussion"><a href="#Future-Discussion" class="headerlink" title="Future Discussion"></a>Future Discussion</h3><p>Initially, I wanted to sort out most of the concepts related to exceptions and error handling in these languages. However, I found it quite difficult and also failed to distinguish between “exception” and “checked exception,” leading to potential deviations in intention, title, and content. This time, I’ll just mention “exception,” and discuss “checked exception” in future content.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160006603-1');</script></html>

@@ -1,0 +1,163 @@
+---
+title: (Part 1) Snowflake Ballad • Chen Yuan
+date: 2014-10-04 16:03:00
+tags: Novel
+---
+
+<style>
+h1 {
+    font-size: 32px;
+}
+div, p {
+    line-height: 1.1;
+}
+p {
+    text-indent: 2em;
+    font-size: 16px;
+}
+body.mobile p {
+    font-size: 30px;
+}
+</style>
+
+<br/>
+<p>Clothing fluttering, snow flying, a beauty in red, drunk in the setting sun.</p>
+<p>In the city garden, the peach blossoms are beautiful, moonlight and rain bring feelings that differ.</p>
+<br/>
+<br/>
+
+<p>"Beauty is fated to die young?"</p>
+<p>Master said, beauty is fated to die young. Master’s wife was beautiful, indeed fated to die young, she passed away the night of the action.</p>
+<br/>
+
+<p>"Destined by fate?"</p>
+<p>Rushed to the scene, it was already a mess. The sounds of battle were incessant, Master had no life left.</p>
+<br/>
+
+<p>"Beauty is fated to die young, destined by fate."</p>
+<p>Master’s wife left forever, leaving Master.</p>
+<p>Master left forever, leaving the mortal world.</p>
+<br/>
+<br/>
+
+<p>The cold wind was biting. Snowflakes, drifting aimlessly. The sky, dark and dull, the earth, desolate and bleak. Snowflakes, covering the eyes, obscuring the path ahead. The steps forward became heavier, the heart felt more lost. In the distance behind, was the village passed yesterday.</p>
+<p>……</p>
+<br/>
+
+<p>"Sir, come in and sit. Have a bowl of warm wine to warm yourself?"</p>
+<p>Looked around. Few guests, under the red lights, the small tavern seemed particularly warm. In the icy and snowy world, there was such a place? Mostly untrustworthy. But after days on the road, exhausted, a rest was good. Unconsciously reached for the sword behind, a large sword.</p>
+<br/>
+
+<p>"Sir, come, sit here."</p>
+<p>A gentle voice called from inside, gradually shifted the gaze to the person in front. From head to toe, dressed in red, loose robe, light silk, with jade ornaments jingling, dazzling, in such cold weather, such attire was indeed strange.</p>
+<p>Found a cozy corner to sit, unstrapped the scabbard from the waist. Remembered Master said, having a scabbard was convenient for travel, if it’s not easy to carry, then strap it on the back. Besides, people are treacherous, to prevent unforeseen events, as a swordsman, learning to hide is a required skill.</p>
+<br/>
+
+<p>"Is there only wine?"</p>
+<p>Casually placed the sword on the table, the beauty had already brought the wine.</p>
+<p>"Only wine, but it's all good wine."</p>
+<p>Placed the bowl, reached to pour the wine.</p>
+<p>White skin exposed, the red silk slipped, a fair wrist like frost and snow appeared. Looking up, a pure smile greeted, beautiful, really beautiful, as beautiful as an angel in a dream, the white and red face, mesmerizing. Every move, every smile, enchanted the soul.</p>
+<br/>
+
+<p>"Why are you looking at me... am I beautiful?" The smile grew brighter.</p>
+<p>"Miss... what is your name?"</p>
+<br/>
+<br/>
+
+<p>Vaguely remember, that was before leaving Master. Master, loved only one woman in his life, a woman who had to leave him early. That woman, was also very beautiful, as beautiful as the red-clothed girl in front, intoxicating.</p>
+<p>Master told the story of him and Master’s wife for the first time, the day before the action. Let's call her Master’s wife for now.</p>
+<p>Master said, he loved the wrong person.</p>
+<p>……</p>
+<br/>
+<br/>
+
+<p>The land is vast, the mountains and rivers charming, the night enchanting, autumn leaves wither;</p>
+<p>The land is vast, the mountains and rivers charming, the night enchanting, counting the waves;</p>
+<p>The land is vast, the mountains and rivers charming, the night enchanting, plucking flowers and roaming freely;</p>
+<p>The land is vast, the mountains and rivers charming, the ties of the world are hard to break, snowflakes drift alone.</p>
+<p>……</p>
+<br/>
+<br/>
+
+<p>"The song is melodious, lingering, with deep affection, that is a song 'Snowflake Ballad'."</p>
+<br/>
+
+<p>"That place has a beautiful name, called Peach Blossom Town. She said, she likes the peach blossoms in the town, likes the snowflakes drifting with the peach blossoms, so she named the town Peach Blossom Town. Is the name beautiful?"</p>
+<br/>
+
+<p>"Beautiful, beautiful... but Master, do peach trees bloom in winter?"</p>
+<p>"Who told you it’s winter!"</p>
+<p>"It only snows in winter... don’t the peach trees fear the cold?"</p>
+<p>"Who told you they were peach trees!"</p>
+<p>"Then what trees?"</p>
+<p>"Willows!"</p>
+<p>"Willow trees bloom with peach blossoms?"</p>
+<p>"They do!"</p>
+<p>"Oh..."</p>
+<br/>
+
+<p>"The first place Master met her, also had a beautiful name, called Moonlight Bridge. She said, she likes standing on that bridge in the moonlight to watch the snow, likes the ripples on the lake in the moonlight, so she called it Moonlight Bridge. Is the name beautiful?"</p>
+<br/>
+
+<p>"Beautiful, beautiful... but Master, does the moon shine when it snows?"</p>
+<p>"It does!"</p>
+<p>"Won’t the lake freeze?"</p>
+<p>"It won’t!"</p>
+<p>"Oh..."</p>
+<br/>
+
+<p>"She was as beautiful as a fairy. In the winter, silent and enchanting night, peach blossoms, snow-covered, her delicate figure matched the falling snowflakes. Under the bright moon, on the small bridge, a gentle song accompanied. How beautiful... isn’t it beautiful?"</p>
+<br/>
+
+<p>"Beautiful, beautiful, but Master..."</p>
+<p>"Shut up!"</p>
+<p>"Oh..."</p>
+<br/>
+
+<p>Clouds and mist shrouded the cold moonlight, snowflakes flying, in light silk, she wore only a single garment. Clothing fluttering, song flying, alone, in the snow, on the bridge, singing and dancing gracefully. Master was captivated by the scene, his heart flew to the ninth heaven.</p>
+<br/>
+
+<p>"If possible, would do anything for her."</p>
+<br/>
+
+<p>Drunken beauty, alluring, tender and beautiful, who wouldn’t want? Heroes have loved beauties since ancient times, let alone an unparalleled beauty. Master couldn’t help himself.</p>
+<br/>
+
+<p>"But later, something happened."</p>
+<br/>
+
+<p>Everything happened too quickly. In an instant, a mighty army surged like a tide. What happened? In short, both sides of the bridge were crowded with soldiers.</p>
+<br/>
+
+<p>No matter how Master called and pulled, she refused to leave Moonlight Bridge.</p>
+<p>Why? Master didn’t understand.</p>
+<p>Helpless, Master picked her up, wanting to escape, leave the bridge.</p>
+<p>Master said, he clearly remembered, she smiled slightly at him then. Perhaps in gratitude, or perhaps mockingly.</p>
+<p>Master said, surrounded by a large number of soldiers, how could he escape? Holding someone?</p>
+<p>Master said, so many people, impossible to escape.</p>
+<p>Master said, he held her.</p>
+<p>Master said, she didn’t say a word.</p>
+<p>Master said, really foolish.</p>
+<p>……</p>
+<br/>
+<br/>
+
+<p>"I should be the one to say it!"</p>
+<p>"Fine, then you say it..."</p>
+<p>"......"</p>
+<br/>
+
+<p>The wine in the bowl, clear and transparent. The reflection of the fire, a burning flame that never extinguishes. Beside, long-lost warmth. Was it the warmth of the red fire reflecting the red dress, or the red dress reflecting in the red wine bowl causing intoxication?</p>
+<br/>
+
+<p>"Sir, afraid my wine isn’t good?"</p>
+<p>Picked up the wine bowl, paused, slowly brought to the lips.</p>
+<p>Eyes wandered through the dark corridor, to the end of the tavern. Oil lamps flickered weakly. The bright areas were warmer, the dark areas darker. Suddenly noticed, the tavern was filled with young people, mostly travelers.</p>
+<p>On the road, must be cautious.</p>
+<br/>
+
+<p>"Miss, what is your name?"</p>
+<p>Holding the wine in hand, placed it near lips, still didn’t drink.</p>
+<p>Indeed, in such weather, only young people would be on the road. Though it’s a village, not many would come to the tavern in such weather. As for travelers, naturally they would be young and strong. Maybe because there were few people, the red-clothed lady as the owner had time to personally greet?</p>
+<p>One gulp, half the wine

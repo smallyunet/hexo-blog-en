@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en"><head><title>Basics of Scala Syntax</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+}</script><div><div class="inner"><h1>Basics of Scala Syntax</h1><div class="time">2018-12-17</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Language/">Programming Language</a></li></ul><p>The syntax of Scala is relatively complex. In the spirit of incremental software development, learning a programming language should start with finding an expressive way that one can master and then gradually build upon. Scala supports both object-oriented and functional programming, which is one reason for its complex syntax. Some tutorials are very comprehensive, but this comprehensiveness can make it difficult to distill the main points.</p>
+<p>The following content focuses on the simplest basic syntax, hoping that based on this content, one can try to write object-oriented style Scala code.</p>
+<h3 id="Statements"><a href="#Statements" class="headerlink" title="Statements"></a>Statements</h3><p>Scala allows statements to end without a <code>;</code>, similar to JavaScript.</p>
+<h3 id="Variable-Definition"><a href="#Variable-Definition" class="headerlink" title="Variable Definition"></a>Variable Definition</h3><p><code>val</code> defines immutable variables (constants), <code>var</code> defines mutable variables:</p>
+<pre><code class="Scala">val msg1 = &quot;Hello World&quot;
+var msg2 = &quot;Hello Wrold&quot;
+
+val msg3: String = &quot;Hello World&quot;
+</code></pre>
+<p>When defining variables, type declarations are on the right side of the variable and are optional; they can be omitted as the compiler will automatically infer the type. Basic types in Scala include:</p>
+<blockquote>
+<p>Byte, Short, Int, Long, Char, String, Float, Double, Boolean</p>
+</blockquote>
+<h3 id="Function-Definition"><a href="#Function-Definition" class="headerlink" title="Function Definition"></a>Function Definition</h3><p>Functions are methods. Below is an example of defining a function:</p>
+<pre><code class="Scala">def max(x: Int, y: Int): Int = &#123;
+  if (x &gt; y) &#123;
+    return x
+  &#125; else &#123; 
+    return y
+  &#125;
+&#125;
+</code></pre>
+<p>The significant differences from Java in method definitions are: first, using the <code>def</code> keyword to define functions; second, type declarations are on the right side of the variable; third, an <code>=</code> connects the function declaration and the function body.</p>
+<p>Note that function parameters must have explicitly defined types; the compiler cannot automatically infer parameter types. The return type is optional unless the function uses recursion. Additionally, the <code>return</code> keyword is also optional; if there is no explicit return statement, the program will return the last computed result.</p>
+<p>If the statement after <code>if</code> is a single statement, braces can be omitted. Therefore, the function can also be written like this:</p>
+<pre><code class="Scala">def max2(x: Int, y: Int) = if (x &gt; y) x else y
+</code></pre>
+<h3 id="Conditional-Structures"><a href="#Conditional-Structures" class="headerlink" title="Conditional Structures"></a>Conditional Structures</h3><p>The above example has already used an <code>if</code> statement. Scala’s <code>if</code> statement is not special, but compared to other languages, Scala uses pattern matching to replace the traditional <code>switch</code> structure:</p>
+<pre><code class="Scala">val a = 1
+
+a match &#123;
+  case 1 =&gt; println(1)
+  case 2 =&gt; println(2)
+  case _ =&gt;
+&#125;
+</code></pre>
+<p>The <code>_</code> wildcard matches all values and is used to capture the default case. In match expressions, cases never fall through to the next case, so no <code>break</code> or <code>return</code> is needed (if <code>_</code> is placed first, the program will not continue executing). However, be careful, if the program does not match any case, it will throw a <code>MatchError</code>.</p>
+<h3 id="Loop-Structures"><a href="#Loop-Structures" class="headerlink" title="Loop Structures"></a>Loop Structures</h3><p>The <code>while</code> loop is not the recommended style of code in Scala:</p>
+<pre><code class="Scala">var i = 0
+while (i &lt; 5) &#123;
+  println(i)
+  i += 1
+&#125;
+</code></pre>
+<p>This is a typical <code>while</code> loop. Compared to imperative languages, Scala does not have the <code>++</code> operator; one must use statements like <code>i += 1</code>.</p>
+<p>Mentioning <code>while</code> will inevitably bring up <code>for</code>. The <code>for</code> loop in Scala has some differences from imperative languages. In the following example, the program will print from 0 to 4:</p>
+<pre><code class="Scala">for (i &lt;- 0 until 5) &#123;
+  println(i)
+&#125;
+</code></pre>
+<p>Scala does not recommend <code>while</code> loops and prefers a functional programming style. The <code>foreach</code> method is one of them:</p>
+<pre><code class="Scala">&quot;abc&quot;.foreach(c =&gt; println(c))
+</code></pre>
+<p>The program will print the characters <code>a</code>, <code>b</code>, <code>c</code> each on a new line. If the function body has only one statement and one parameter, the code can be more concise:</p>
+<pre><code class="Scala">&quot;abc&quot;.foreach(println)
+</code></pre>
+<h3 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h3><p>Scala’s arrays are not implemented at the language level and can be used by instantiating the <code>Array</code> class. Correspondingly, array subscripts are represented using parentheses (i.e., method parameters):</p>
+<pre><code class="Scala">val greet  = new Array 
+
+greet(0) = &quot;a&quot;
+greet(1) = &quot;b&quot;
+greet(2) = &quot;c&quot;
+
+greet.foreach(println)
+</code></pre>
+<p>When instantiating objects, default parameters can be directly passed. Array is indeed just a regular class; the following way of writing does not involve any black magic, it just uses a case class, which will be mentioned later.</p>
+<pre><code class="Scala">val greet2 = Array(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+greet2.foreach(println)
+</code></pre>
+<h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><p>Classes are defined using the <code>class</code> keyword, and classes contain fields and methods, i.e., typical object-oriented features. Unlike Python, Scala still supports access control:</p>
+<pre><code class="Scala">class Accumulator &#123;
+  private var sum = 0
+  def add(b: Byte): Unit = &#123;
+    sum += b
+    println(sum)
+  &#125;
+&#125;
+</code></pre>
+<h3 id="Singleton-Objects"><a href="#Singleton-Objects" class="headerlink" title="Singleton Objects"></a>Singleton Objects</h3><p>Singleton objects are equivalent to static classes in Java and are defined using the <code>object</code> keyword instead of <code>class</code>. Singleton objects are shared by the program and can be called directly. Singleton objects can serve as the entry point of the program by defining the <code>main</code> method within the singleton object. The following program instantiates an object <code>a</code> from the previously defined <code>Accumulator</code> class and calls its <code>add</code> method, ultimately printing <code>1</code>:</p>
+<pre><code class="Scala">object Run &#123;
+  def main(args: Array[String]): Unit = &#123;
+    val a = new Accumulator
+    a.add(1)
+  &#125;
+&#125;
+</code></pre>
+<p>In the same source file, when a singleton object and a class have the same name, the singleton object is called the companion object of the class, and the class is the companion class of the singleton object. A class can access the private properties and methods of its companion object.</p>
+<h3 id="Constructors"><a href="#Constructors" class="headerlink" title="Constructors"></a>Constructors</h3><p>Scala’s rules for constructors are stricter than Java’s. Scala implements constructors through the concept of class parameters:</p>
+<pre><code class="Scala">class Accumulator(a: Int, b: Int)
+</code></pre>
+<p>If the class has no body, braces can be omitted. When instantiating this class, parameters need to be passed. In Java, overloaded constructors correspond to auxiliary constructors in Scala, which look like this:</p>
+<pre><code class="Scala">class Accumulator(a: Int, b: Int) &#123;
+  def this(c: Int) = this(c, 1)
+&#125;
+</code></pre>
+<p>This class now has two constructors:</p>
+<pre><code class="Scala">val a1 = new Accumulator(1)
+val a2 = new Accumulator(1, 2)
+</code></pre>
+<p>The strictness of Scala constructors lies in the fact that the second constructor can only leverage the first constructor or the superclass constructor.</p>
+<h3 id="Inheritance-and-Overriding"><a href="#Inheritance-and-Overriding" class="headerlink" title="Inheritance and Overriding"></a>Inheritance and Overriding</h3><p>Scala’s inheritance is not significantly different from Java’s, except that method overriding must use the <code>override</code> keyword:</p>
+<pre><code class="Scala">class A(a: Int) &#123;
+  def test = println(&quot;a&quot;)
+&#125;
+
+class B(b: Int) extends A(b) &#123;
+  override def test = println(&quot;b&quot;)
+&#125;
+</code></pre>
+<h3 id="Traits"><a href="#Traits" class="headerlink" title="Traits"></a>Traits</h3><p>Traits are similar to singleton objects, except for the keyword used during definition. Traits, like regular classes, can contain fields and methods. The significance of traits lies in supporting mixins and allowing multiple traits to be mixed in. This feature is often compared with multiple inheritance.</p>
+<pre><code class="Scala">trait A &#123;
+  def aMethod = println(&quot;A&quot;)
+&#125;
+
+trait B &#123;
+  def bMethod = println(&quot;B&quot;)
+&#125;
+
+class C extends A with B
+</code></pre>
+<p>This way, an instance of <code>C</code> can call <code>aMethod</code> and <code>bMethod</code>:</p>
+<pre><code class="Scala">val c = new C
+c.aMethod
+c.bMethod
+</code></pre>
+<h3 id="Case-Classes"><a href="#Case-Classes" class="headerlink" title="Case Classes"></a>Case Classes</h3><p>Case classes are defined by adding the <code>case</code> keyword before the <code>class</code>. This modifier allows the Scala compiler to automatically add some convenient settings to the class: 1. Instances can be created without the <code>new</code> keyword; 2. Parameters are automatically treated as class fields; 3. The class automatically has <code>toString</code>, <code>hashCode</code>, and <code>equals</code> methods:</p>
+<pre><code class="Scala">case class A(a: Int) &#123;
+  def aMethod = println(a)
+&#125;
+
+object Run &#123;
+  def main(args: Array[String]): Unit = &#123;
+    val a = A(1)
+    a.aMethod     // 1
+    println(a)    // A(1)
+    println(a.a)  // 1
+  &#125;
+&#125;
+</code></pre>
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><p>Compared to Java, Scala supports abstract classes but not interfaces. Abstract classes are defined using <code>abstract</code>, and interfaces are replaced by traits. Scala also supports generics, annotations, and other syntax.</p>
+<h3 id="Follow-Up"><a href="#Follow-Up" class="headerlink" title="Follow-Up"></a>Follow-Up</h3><p>The above content is not comprehensive and may not be sufficient. To use a programming language, in addition to mastering its basic syntax, one should also be familiar with its idiomatic usage, especially for multi-paradigm languages like Scala. This content will be continuously updated and improved, and other features of Scala will be discussed further.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160006603-1');</script></html>

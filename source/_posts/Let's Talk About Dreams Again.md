@@ -1,0 +1,67 @@
+---
+title: Let's Talk About Dreams Again
+date: 2019-10-26 13:44:35
+tags: Dreams
+---
+
+I had the title in mind for a long time, but I didn't know what to write. I couldn't set a "tone" for the content. Later, I realized there's no need to emphasize the 'tone.' Saying a few summarizing words at the beginning or end is good; lacking a theme makes the content seem vague, but it doesn't affect my "recording" of my life and doesn't hinder me from expressing my 'opinions' on different things at different times.
+
+### Work
+
+Recently, my boss resigned to start a business.
+
+The direct impact of my boss's resignation is that my recent workload is pitifully small. The previous project is nearing completion, the next project is progressing slowly, and with the boss's departure, no one knows how the department will develop next. As a result, I have a lot of free time, and I've started thinking about how to improve my skills. In my career, I once had two 'pursuits': not being limited to languages and not being limited to frameworks. This actually covers a lot.
+
+I really dislike 'interview-oriented' learning. A colleague once urged me to share our recent project experiences and gains so that we could have two projects to talk about in future interviews. Seeing my lack of interest, he continued, "I see you usually do some small demos, but you can't take those to interviews. I can tell you about our project, like PDF parsing, uploading and downloading, and some blockchain stuff..."
+
+There are many points to complain about in this.
+
+He always viewed me as an 'inexperienced graduate' like himself, but my understanding of Web development far exceeds his. From a 'person' perspective, I don't think his project experience can help me, especially with basic operations like IO streams and network flows. This colleague also urged me to summarize reusable code in projects, like PDF parsing. There might be many solutions online, but having one summarized and usable for future similar needs would be convenient. He even said his goal is to be proficient in his work.
+
+My goal has never been to become a skilled worker. Like brick movers never become contractors by moving fast and many bricks. This is why I don't want to leave my current company now. If I go to another company and work 996, even if my salary increases, it's just because I've put in more labor. Moving ten bricks a day for ten dollars, if I work overtime and move five more, I can earn fifteen dollars a day. I'm not at that stage yet; there's no need to focus solely on making money.
+
+Moreover, I believe a capable interviewer can distinguish a truly competent candidate. Fancy frameworks and impressive-sounding terms, microservices haven't become outdated, and now middle platforms are being hyped... Standards aren't truth either. 'Clean Code' isn't truth. Setting various rules helps managers turn employees into machines, but if employees believe in some 'religion,' I think it's equally inappropriate.
+
+### Entrepreneurship
+
+The boss resigned to start a business, naturally to make more money. He said, how much money would it take to retire? Annual expenses multiplied by 20, which means in 10 years, your money would be halved, not counting currency depreciation (can buying funds cope with currency depreciation?).
+
+Entrepreneurship is a term I hear often, but I haven't seen the real form of it. Around the same time, the aforementioned colleague, a 'new graduate' who had been with the company for three months, also resigned to start a business. I can understand the boss's entrepreneurship, based on years of insight and accumulation, having the ability and financial strength to try it. But this inexperienced colleague's move to start a business is a bit baffling. However, maybe he's not relying on his abilities but has a big shot willing to take him flying, which is understandable and has nothing to do with us.
+
+At the boss's farewell dinner, the most impressive content was when he said that as a middle manager, he would help employees negotiate with HR for higher pay when they joined. Now that he's starting a business, investing and hiring people, the feeling is different. Saving money is saving for himself. He questioned, "You draw a salary but do no work and leave on time. Is it really okay to leave on time?" I can't vividly recount the details, but that's the gist.
+
+From this statement, I don't agree. Being a middle manager or a boss, having different perspectives based on position is natural... but then? Different positions should have different viewpoints. If as a boss, you want employees to consider from your perspective, or as an employee, wanting the boss to consider from yours, isn't that unreasonable? Why bother, let the conflicts exist.
+
+Another issue is "leaving on time." Is it right or wrong? This also involves the conflict of interests between bosses and employees. On Zhihu, there's a clear explanation of ownership: the premise of ownership is being an owner, then comes the ship. As for overtime, distinguishing between 'striving' and 'exploitation' might improve the situation.
+
+### My Own Swordsman
+
+When I was a kid, I watched 'My Own Swordsman' for fun. Recently re-watching it, I realized I've changed.
+
+Previously, I thought Guo and Xiucai made a good couple, but now I think Guo is the daughter of a heroic figure and has brothers among the four divine constables, while Xiucai is a useless scholar, a fallen descendant of a county magistrate who never passes the exams. This is like a modern high-ranking police chief's daughter and the grandson of an unknown small county's mayor with no titles. Is this possible in reality? We hope and believe in the beauty of life and love, but reality doesn't allow it.
+
+Then there's Tong and Lao Bai. The more I watched, the more I didn't understand why Lao Bai chose Tong over Guo, his first love Zhan, or Wushuang, who waited for him for 12 years and 3 days. Maybe it's plot needs, or Tong being the daughter of a famous security bureau also played a part. Lao Bai doesn't lose out.
+
+Wushuang is the most pitiful, loving one after another but ending up with Xiao Liu. Wushuang is pure, virtuous, and beautiful, but neither Lao Bai nor Xiucai wanted her, and she didn't meet anyone suitable later. Maybe it's because she had no background and wandered the martial world alone. Especially in the fight over Xiucai with Guo, Guo had everything even without Xiucai, but Wushuang had nothing. Wushuang never seemed to integrate into the Tongfu Inn family.
+
+'My Own Swordsman' and real life differ in that the show portrays true emotions. Anger, jealousy, envy, resentment, making up, all genuinely, like when we were kids, daring to express real emotions, putting on a show. Yes, in real life, it's called 'drama,' not my words, but the full-screen malice in bullet comments.
+
+Watching TV now, I see more worldly views. A bit sentimental.
+
+### Honor of Kings
+
+Speaking of family, recently 'Honor of Kings' had an anniversary event with a Night Tour of the Canyon, lighting up the canyon with colorful lights everywhere: the crystal, jungle, dragon pit. Seeing this scene in the game suddenly reminded me of the Spring Festival. Now thinking about it, new clothes and good food aren't important, but the festive atmosphere is precious. Except for the Spring Festival, there's no other time to gather the whole family together.
+
+Sometimes I think, if an adult's only source of joy in life is games, then his life must be sad. Lao Liang once said about otaku, "You think staying at home is boring, but their hearts are fulfilled." As humans, if there's nothing to do at home, they will find ways to interact with others. This is true, and not true. Often said that pitiful people must have hateful aspects, correspondingly, I believe hateful people must also have pitiful aspects.
+
+### Drinking
+
+At the boss's farewell dinner, there was drinking, of course. I still couldn't get into the atmosphere and didn't even want to propose toasts. I hadn't had any 'relationships' with most people, which... doesn't seem inappropriate, especially since everyone was just playing along. Colleagues, what's there to talk about feelings.
+
+I'm quite unfamiliar with drinking etiquette at the table. But I still believe that the fundamental reason people cooperate is mutual benefit, not because they drank a few more glasses and became familiar. Our goal should be to create value, not to seek charity from others. There's a senior colleague who always tries to eat with the boss, that day he sat at the boss's table, but after a few words, he returned. I don't know if it's considered a failure to still be a minor player after more than 5 years, but I really don't want to fail.
+
+Drinking is so unpleasant, why do so many people like it since ancient times? Maybe like people laughing when happy, crying when sad, sometimes not happy, not sad, just feeling uneasy, life is dull and repetitive, needing alcohol to stimulate the tongue and body, giving some sensory feedback. "It's nothing, at least it proves we're still alive." Someone said, when parents meet an old acquaintance on the road, they like to chat endlessly, as a child, it's annoying, but growing up, I understand, it's their rare happy time. I somewhat get it.
+
+### Food and Love
+
+With age, I increasingly enjoy eating, discovering it as one of the few joyful things. As a child, I ignored fried potato strips, fried cabbage, scrambled eggs, white steamed buns, especially in 'My Own Swordsman,' every meal, Lao Bai's chicken leg, Da Zui's peanuts, mouth-watering. Why didn't I notice these before, my mom

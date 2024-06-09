@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><title>Signs of Poor Work Performance</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+}</script><div><div class="inner"><h1>Signs of Poor Work Performance</h1><div class="time">2019-07-25</div><ul class="tags"><li><span>#</span><a href="/tags/Work/">Work</a></li></ul><p>It’s around midnight, the time I should be sleeping, but suddenly I feel like writing something.</p>
+<ul>
+<li><p><strong>Complaints</strong> </p>
+<p>Constantly complaining about everything, showing dissatisfaction on their face and voicing it out, afraid that others might not know they have an opinion. :)</p>
+</li>
+<li><p><strong>Inability to Handle Work Pressure</strong></p>
+<p>Complaints often stem from the work itself. A slightly heavier workload leads to complaints: there’s too much work, I’m so annoyed, I can’t finish, I can’t keep up, I don’t have time. In reality, it’s just a normal workload, no need for overtime, and everyone enjoys slacking off once in a while. :)</p>
+</li>
+<li><p><strong>Emotional</strong></p>
+<p>When colleagues raise questions, the common response is to ignore them, and if things get slightly serious, they confront each other. The most surprising reason for anger could be “he doesn’t respect my work”. It’s just a job, what achievements can labor have? :)</p>
+</li>
+<li><p><strong>Self-Centered</strong></p>
+<p>Cooperation and division of labor in normal work feel like asking the government for help; it needs to be at the right time, convenient, when they have time, and when they’re in a good mood. Otherwise, you might see an unpleasant face. I once thought everyone was equal. :)</p>
+</li>
+<li><p><strong>Your Fault, Not Mine</strong></p>
+<p>Waiting for someone to solve the problem: it’s your fault, not mine. This issue needs you to fix it, not me. If there’s something, find you instead of me; if you can solve it, don’t let me get involved. :)</p>
+</li>
+<li><p><strong>Lack of Professional Skills</strong></p>
+<ul>
+<li><p><strong>Poor Modularization Ability</strong></p>
+<p>Function components, module abstraction. A front-end engineer who doesn’t understand backend architecture isn’t a good coder. Due to a lack of understanding of the entire project structure, the reuse ability is too poor, leading to large workloads when requirements change, which causes the first point. :)</p>
+</li>
+<li><p><strong>Lack of Programming Skills</strong></p>
+<p>Can write code but can’t program. Lacks basic computer knowledge, appears blind and powerless when encountering functionality, and due to their own limitations, the difficulty of work increases, leading to longer working hours and larger workloads, causing the first point. :)</p>
+</li>
+<li><p><strong>Lack of Self-Awareness</strong></p>
+<p>What can you do, what can’t you do? :)</p>
+</li>
+<li><p><strong>Giant in Thought</strong></p>
+<p>A giant in thought but a dwarf in action. Even if they know they have shortcomings and verbally express or take action to change, the effect is minimal. Generally, the reason for this phenomenon is that they haven’t thought it through. :)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Blindly Competitive</strong></p>
+<p>Refuses others’ help, hoping others will be more friendly and cooperative in line with their abilities. Cares more about “completing” tasks by themselves rather than “completing tasks”.</p>
+</li>
+<li><p><strong>Unclear Goals</strong></p>
+<p>What is the purpose of work? If it’s so painful, why not change industries? :)</p>
+</li>
+<li><p><strong>…</strong></p>
+</li>
+</ul>
+<p>I have no malice, just describing some objective phenomena. I pity those who lack ability and feel helpless when facing tasks beyond their capability, but I also feel uncomfortable. Working with such people might be a nightmare. I try to avoid points I dislike and warn myself not to become like that. Improve myself, then I can have the qualification to dislike others. It’s around 1:05 AM, I need to sleep.</p>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>Nearly a month has passed, and I seem to start understanding some behaviors and phenomena.</p>
+<p>Here’s the thing, recently, I tried to use C# to develop a simple desktop application. My idea was simple: customize a few shortcut keys to replace multiple backspaces. For example, the global hotkey <code>Ctrl-5</code> would act like pressing the backspace key five times, and <code>Ctrl-6</code> would act like pressing it six times.</p>
+<p>This idea came from my daily typing process. Due to the fast typing speed of both hands, which is like multi-threaded disordered execution, there often appeared misplaced letters in Pinyin, and with quick hands pressing the space key, a long string of incorrect words would appear on the screen. Pressing the backspace key multiple times each time is quite unpleasant, especially when the smooth flow of thoughts is interrupted. It feels like the backspace key not only affects the smooth typing but also brings a sense of having to take responsibility for previous small mistakes with a certain resentment.</p>
+<p>Initially, I thought it would be simple: just register a set of global keys with the system and simulate keyboard input. However, during the actual development process, I encountered many difficulties. At first, I couldn’t even distinguish between Window and Form in WPF. The tutorials I found on Google mentioned various methods to register shortcuts, but few were truly usable. For simulating keystrokes, I had to rely on search engines because the methods like <code>Keys.send()</code> mentioned in official documents didn’t work (maybe the event level was too low).</p>
+<p>After being able to achieve basic shortcut registration and keystroke simulation, I encountered new problems. The shortcuts were based on <code>Ctrl</code>, and pressing the shortcut would execute the program, simulating <code>Backspace</code>. However, the Ctrl key was still pressed down, and the system would interpret it as <code>Ctrl-Backspace</code>, which was not the desired effect. Then I switched Ctrl to Alt and finally determined that the Shift key combined with Backspace had no conflicts. But a new problem arose: the program-simulated keystrokes triggered at most twice, so the actual effect was at most two backspaces, no matter how many times I looped or changed the nInPints parameter.</p>
+<p>So, I’m not saying developing such a thing is difficult, just that I encountered some problems I’m not good at solving. During that process, I experienced emotions like “I’m so annoyed”, “This is so hard”, “It’s really troublesome”, “It’s not that simple”.</p>
+<p>Perhaps, we should have more understanding.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160006603-1');</script></html>

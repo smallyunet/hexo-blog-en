@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><title>Pebbling Game</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+}</script><div><div class="inner"><h1>Pebbling Game</h1><div class="time">2023-05-18</div><ul class="tags"><li><span>#</span><a href="/tags/Documentation/">Documentation</a></li></ul><p>This is an online web game: <a href="https://smallyunet.github.io/pebbling-game/" target="_blank">Pebbling Game</a>. You can view this embedded web page:</p>
+<div>
+<iframe src="https://smallyunet.github.io/pebbling-game/" width="900px" height="580px" frameborder="0" scrolling="yes" style="border: 5px double #e4e4e4;"> </iframe>
+</div>
+
+<p>To intuitively demonstrate the rules of the Pebbling Game, GPT-4 created this online game page after dozens of adjustments.</p>
+<p>The rules of the game are:</p>
+<ol>
+<li>Click on the circle of a node to place a pebble in it.</li>
+<li>A node can only have a pebble placed in it if all nodes pointing to it already have pebbles.</li>
+<li>The goal of the game is to place a pebble in node 0.</li>
+<li>Pebbles can be removed from any node at any time.</li>
+</ol>
+<p>If you directly click on node 0, you will see two red flashing circles indicating that nodes 1 and 2 have not yet had pebbles placed in them, so node 0 cannot have a pebble placed in it.</p>
+<p>Node 7 has no incoming nodes, so a pebble can be placed directly in it. Clicking on node 7, you will see a solid black circle appear in the node. At this point, if you try to place a pebble in node 3, it will indicate failure because node 6 is still empty. Nodes 6 and 7 are the incoming nodes for node 3.</p>
+<p>So, with these game rules, the question is: What is the minimum number of pebbles needed?</p>
+<p>If there are enough pebbles, there are a total of 10 nodes in this diagram, and if you have 10 pebbles, you can simply fill the nodes in order without needing to remove any pebbles.</p>
+<p>If pebbles are limited, seeking the solution with the least number of pebbles, this diagram should require at least 5 pebbles.</p>
+<p>The characteristic of the Pebbling Game is that there is always a minimum value. If the number of pebbles is less than this value, the game cannot be completed because the final node depends on lower-level nodes, which in turn depend on even lower-level nodes. If a pebble is removed from an intermediate node, you have to start placing pebbles from the lowest level again.</p>
+<p>The Pebbling Game has enlightening significance for the data structure of Hard-to-pebble graphs. Understanding the rules of the game helps in understanding how blockchain proves the size of disk space.</p>
+<h3 id="Proof-of-Space"><a href="#Proof-of-Space" class="headerlink" title="Proof of Space"></a>Proof of Space</h3><p>Hard-to-pebble graphs are a type of DAG combined with a Merkle tree. The characteristic is that a certain amount of storage space is required to complete the computation of the top node. Just like in the game where you cannot complete it without enough pebbles, you cannot complete the challenge without enough storage space.</p>
+<p>Due to the variety of graphs, there is no universal optimal solution for the number of pebbles required. It can only be calculated for a specific type of graph to determine the space complexity.</p>
+<p>In blockchain scenarios, the requirement is to occupy large space and verify quickly. The graph structure of the Stack Expander Graph is widely used in Proof of Space. During the verification phase, you only need to verify certain nodes in the graph according to the characteristics of the Merkle tree to confirm the integrity of the graph. At the same time, you can estimate the amount of disk space occupied based on the depth of the graph.</p>
+<p>If you need to verify both the size of the space and the duration of space occupation, you can add a time proof on top of the space proof. For example, Chia uses a Delay Verifiable Function, first verifying the space proof, then after some time, using the VDF to verify that enough time has indeed passed, and then verifying the space proof again, achieving the effect of Proof of Space-Time.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160006603-1');</script></html>

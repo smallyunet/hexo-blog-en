@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"><head><title>Getting One Piece Update Information with Python</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+}</script><div><div class="inner"><h1>Getting One Piece Update Information with Python</h1><div class="time">2018-12-02</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Language/">Programming Language</a></li></ul><p>December 2nd, sunny, One Piece is on hiatus.</p>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>As a dedicated otaku, I must watch One Piece and Fairy Tail every week. Both of these anime are available on iQIYI and are VIP content. Every weekend, I look for anime resources on YouTube or other websites. The problem is that these resource websites are often not updated in a timely manner, and I frequently need to Google “anime name + latest episode number,” such as “One Piece 864.”</p>
+<p>Remembering the exact latest episode number of an anime each week is not something a normal otaku would do, especially for two series. This means that every time before searching for resources, I need to go to iQIYI, search for One Piece, see the latest episode number, close the page, and then go to Google to search. The same steps are needed for Fairy Tail.</p>
+<p>Moreover, seeing the latest episode number on iQIYI does not tell me if the show is on hiatus. I still need to find the “update time” tag on the complicated PC page to check the update status. As for the mobile page or app, there is no way to check the update status.</p>
+<p>Another way to get the latest episode number is to search the anime name directly on Baidu, which shows the latest episodes in reverse order on the homepage (Baidu is better than Google in this regard), but it still does not indicate whether the updates are normal. Furthermore, my browser defaults to Google, so searching on Baidu requires typing “baidu,” pressing TAB to switch to the Baidu search engine, entering the search content, and hitting enter. This process is equally cumbersome.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Write a simple Python script to fetch information from the iQIYI page so I can directly access the program to know the anime update status. First, import the necessary packages:</p>
+<pre><code class="python">import urllib.request
+from bs4 import BeautifulSoup
+from wsgiref.simple_server import make_server
+
+# One Piece page URL
+url = &quot;http://www.iqiyi.com/a_19rrhb3xvl.html?vfm=2008_aldbd&quot;
+</code></pre>
+<p><code>urllib</code> is used to send HTTP requests and receive page data; <code>bs4</code> (BeautifulSoup) is used to parse the page and easily retrieve content; <code>wsgiref</code> is used to set up an HTTP server to provide web services. The URL is a global variable storing the link to the One Piece page.</p>
+<pre><code class="python"># Get data from the page
+def reciveData(url):
+    # Fetch page content
+    response = urllib.request.urlopen(url)
+    html = response.read()
+    # Parser
+    soup = BeautifulSoup(html, &quot;html.parser&quot;, from_encoding=&quot;utf-8&quot;)
+    # Update time
+    p = soup.find(&#39;p&#39;, class_=&quot;episodeIntro-update&quot;)
+    # Latest episode number
+    i = soup.find(&#39;i&#39;, class_=&quot;title-update-num&quot;)
+    return p, i
+</code></pre>
+<p>These lines of code send a request and retrieve information from the page. Here, the update time and the latest episode number are obtained. Next, create an HTTP server to output the content to the page:</p>
+<pre><code class="python"># Server environment handler function
+def application(environ, start_response):
+    # Get data
+    p, i = reciveData(url)
+    # Construct the page content
+    start_response(&#39;200 OK&#39;, [(&#39;Content-Type&#39;, &#39;text/html&#39;)])
+    content = (&#39;&lt;h3&gt;One Piece&lt;/h3&gt;&#39;
+               + &#39;msg: &#39; + p.contents[2].get_text().strip() 
+               + &#39;&lt;br&gt;&#39;
+               + &#39;num: &#39; + i.get_text())
+    return [bytes(content, encoding=&quot;utf-8&quot;)]
+</code></pre>
+<p>Finally, start a local server, and visit port 8010 to see the page. You can deploy the program to a server and then directly access it:</p>
+<pre><code class="python"># Start the server
+httpd = make_server(&#39;&#39;, 8010, application) 
+httpd.serve_forever()
+</code></pre>
+<p>The result is shown as follows:</p>
+<p><img src="/preview.png" alt="preview"></p>
+<h3 id="Expansion"><a href="#Expansion" class="headerlink" title="Expansion"></a>Expansion</h3><p>Based on this idea, the program can be expanded. One approach is to get comprehensive anime update information from various websites and provide the service proactively; another is to offer customized anime update information based on user input; or combine both to offer a comprehensive, bookmarkable, and customizable service. Although this idea is somewhat pointless.</p>
+<h3 id="Correction"><a href="#Correction" class="headerlink" title="Correction"></a>Correction</h3><p>There was a simple mistake in the previous code. The program only makes a network request the first time it runs, and since the web service remains running, the returned page content is always the initial data. Solving this problem is easy: encapsulate the network request operation in a function and call that function in the application function. (The code has been corrected. To keep it concise, the Fairy Tail part of the code and console log output have been removed.)</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160006603-1');</script></html>

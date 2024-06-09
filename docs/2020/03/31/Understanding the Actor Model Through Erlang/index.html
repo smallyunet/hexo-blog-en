@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><title>Understanding the Actor Model Through Erlang</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+}</script><div><div class="inner"><h1>Understanding the Actor Model Through Erlang</h1><div class="time">2020-03-31</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Languages/">Programming Languages</a></li></ul><p>The Actor Model is a broad concept that was proposed in the last century. It views an actor as a whole, which can be an atomic variable, an entity, or a thread. Actors communicate with each other, and each actor has its own state. Upon receiving messages from other actors, it can change its state or perform other actions. When discussing the Actor Model, examples such as Erlang, Elixir, or Akka are often cited as they all implement the Actor Model to some extent.</p>
+<p>Front-end MVVM frameworks like React and Vue have their own data flow management frameworks, such as Redux and Vuex. These frameworks include concepts like Action, Reducer, and State, which can sometimes be confusing. As front-end development becomes more complex, some elements may be borrowed from the back-end, like TypeScript’s type system. I am curious if there is a conceptual similarity between actions in these front-end frameworks and the Actor Model in the back-end.</p>
+<p>In essence, actions are simple, and the underlying code is also simple. In a reducer, different operation types are judged using switch, and different methods are called. The simplest form is a method action that changes the value of the global variable state. The Redux documentation states that its design is derived from the Flux architecture. The origin of the Flux architecture is unclear, but it is unlikely to be inspired by the Actor Model.</p>
+<pre><code class="JavaScript">let state = null
+function action(val) &#123;
+  state = val
+&#125;
+</code></pre>
+<p>Erlang is an old programming language and is a typical language inspired by the Actor Model. Understanding concepts in isolation can be abstract, so starting with a specific, concrete language might help explore these theories. For example, learning FP through Haskell is much more effective than through Java. Elixir is a language based on the Erlang VM, and its relationship with Erlang is similar to that of Scala and Java, making Erlang’s syntax relatively simple and clean.</p>
+<h3 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h3><p>Erlang code blocks end with <code>.</code>. A code block can be a single line or multiple lines, where <code>.</code> functions similarly to <code>&#125;</code>, as Erlang does not have <code>&#123;</code>. Statements within the code block end with <code>,</code>, indicating the end of a statement, akin to <code>;</code> in some languages.</p>
+<p>Erlang defines a program file as a module, and the module can be loaded in the command line using <code>c(test).</code>. The module name must match the file name:</p>
+<pre><code class="Erlang">-module(test).
+</code></pre>
+<p>The header of the file needs to define the functions exported by the program, which are the module’s entry points:</p>
+<pre><code class="Erlang">-export([start/0, ping/3, pong/0]).
+</code></pre>
+<p>Here, three functions are exported. Brackets indicate an array, and the numbers <code>/0</code> and <code>/3</code> indicate the number of parameters for each function. The start function serves as the main entry point of the program, responsible for starting the entire program. The ping function sends messages, and the pong function receives messages and responds.</p>
+<p>Erlang has a concept of <code>process</code>, which is neither a thread nor a computer-level process; it is just a <code>process</code>. We will start two processes: one for ping and one for pong, simulating message transmission and interaction. This can be likened to starting two threads, one for production and one for consumption.</p>
+<pre><code class="Erlang">ping(0, Pong_PID, StartTime) -&gt; 
+    Pong_PID ! &#123;finished, StartTime&#125;;
+</code></pre>
+<p>This is the first part of the ping function, a branch that accepts three parameters. If the first parameter is 0, the statements within this function will be executed. The second parameter, <code>Pong_PID</code>, refers to the process containing pong, and the third parameter is the program’s start time, used to record the program’s runtime. The function body has a single statement: <code>!</code> sends a message, meaning the data <code>&#123;finished, StartTime&#125;</code> is sent to the process with ID <code>Pong_PID</code>, where finished is an <code>Atom</code> that acts as an identifier sent to pong. An Atom is one of Erlang’s data types, akin to an undeclared constant.</p>
+<pre><code class="Erlang">ping(N, Pong_PID, StartTime) -&gt; 
+    Pong_PID ! &#123;ping, self()&#125;,
+    receive
+        pong -&gt; 
+            io:format(&quot;~w~n&quot;, [N])
+    end,
+    ping(N - 1, Pong_PID, StartTime).
+</code></pre>
+<p>This is the second part of the ping function. If the first parameter received by the function is not 0, the statements within this function will be executed. This part of the function sends the data <code>&#123;ping, self()&#125;</code> to pong upon receiving the request, where the identifier is <code>ping</code> instead of <code>finished</code>. The second parameter, <code>self()</code>, returns the current process’s ID, which is passed to pong for pong to reply to the message. Pong will selectively use the second parameter.</p>
+<p>After sending the data to pong, there is a <code>receive ... end</code> code block that blocks the current program’s execution until the current process receives data. This block performs a simple pattern matching, where <code>pong</code> is an Atom variable. If the pong identifier is received, the statement after <code>-&gt;</code> will be executed. <code>io:format</code> is a simple formatted output that prints the value of N to the screen.</p>
+<p>After receive ends, ping calls itself recursively until N is 0, meaning the interaction between ping and pong continues N times, and the number of interactions is printed by <code>io:format</code>. These are the two branches of the ping function. The pong function is similar to the ping function:</p>
+<pre><code class="Erlang">pong() -&gt;
+    receive
+        &#123;finished, StartTime&#125; -&gt; 
+            io:format(&quot;The End&quot;);
+            io:format(&quot;~w~n&quot;, [erlang:timestamp()]);
+            io:format(&quot;~w~n&quot;, [StartTime]);
+        &#123;ping, Ping_PID&#125; -&gt;
+            Ping_PID ! pong,
+            pong()
+    end.
+</code></pre>
+<p>The pong function does not have branches in terms of parameters, but there are two matches within the receive block. If the finished identifier is received, the start and end times are printed, and the program ends. If the ping identifier is received, a pong response is sent to Ping_PID, which is the ping process, and then pong calls itself. This means pong first sends a message and then waits for a reply. If no reply is received, it waits indefinitely.</p>
+<pre><code class="Erlang">start() -&gt;
+    Pong_PID = spawn(test, pong, []),
+    spawn(test, ping, [10, Pong_PID, erlang:timestamp()]).
+</code></pre>
+<p>Finally, the start function is the program’s entry function, spawning two processes that run independently. When the first parameter passed to ping is 10, the interaction between ping and pong continues 10 times.</p>
+<h3 id="Interaction-Speed"><a href="#Interaction-Speed" class="headerlink" title="Interaction Speed"></a>Interaction Speed</h3><p>I once heard a so-called “expert” say that to improve computer speed, we should focus on CPU utilization because actors are fast. Why are they fast? Because an actor is a whole that runs on a single core, eliminating the need for inter-core communication. The accuracy of this statement may be debatable, but I am curious if actors are truly fast, which led me to test the speed of actors.</p>
+<p>It must be noted that I am well aware this testing method is unreliable.</p>
+<p>In the Erlang program, two processes communicate with each other, testing communication times of different magnitudes and recording the program’s execution time. For comparison, two threads are started in Java, using thread sleep and wake-up for inter-thread communication. Similarly, two goroutines communicate in Go. As for Akka, which also represents the Actor model, a test program was also written. The table below shows the test results, with the number of times ranging from 1 to 100 million, and the time unit is milliseconds.</p>
+<table>
+<thead>
+<tr>
+<th>Number of Times</th>
+<th align="right">Erlang</th>
+<th align="right">Java</th>
+<th align="right">Go</th>
+<th align="right">Akka</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td>10</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td>100</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">17</td>
+</tr>
+<tr>
+<td>1,000</td>
+<td align="right">26</td>
+<td align="right">30</td>
+<td align="right">4</td>
+<td align="right">83</td>
+</tr>
+<tr>
+<td>10,000</td>
+<td align="right">610</td>
+<td align="right">168</td>
+<td align="right">42</td>
+<td align="right">225</td>
+</tr>
+<tr>
+<td>100,000</td>
+<td align="right">2,783</td>
+<td align="right">1,295</td>
+<td align="right">404</td>
+<td align="right">674</td>
+</tr>
+<tr>
+<td>1,000,000</td>
+<td align="right">27,085</td>
+<td align="right">11,300</td>
+<td align="right">4489</td>
+<td align="right">3515</td>
+</tr>
+<tr>
+<td>10,000,000</td>
+<td align="right">273,912</td>
+<td align="right">107,673</td>
+<td align="right">40335</td>
+<td align="right">29368</td>
+</tr>
+<tr>
+<td>100,000,000</td>
+<td align="right">2,851,680</td>
+<td align="right">1,092,879</td>
+<td align="right">482196</td>
+<td align="right">300228</td>
+</tr>
+</tbody></table>
+<p>Initially, I tried rendering this data using Echarts for better comparison, but the resulting line chart was not user-friendly.</p>
+<p>Overall, Erlang is the slowest, possibly due to its age and lack of optimization. Elixir might perform better. Comparatively, Java is faster than Erlang, and Go is faster than Java, which seems expected. Java’s time consumption is one-third of Erlang’s, and Go’s is half of Java’s.</p>
+<p>The most surprising finding is that Akka’s actor speed is faster than Go’s goroutines. Before 1,000 interactions, Akka is slower than Erlang. At the 10K scale, it surpasses Erlang, at 100K, it surpasses Java, and at 1M, it surpasses</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160006603-1');</script></html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en"><head><title>Saving Paths in Dijkstra's Algorithm</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+}</script><div><div class="inner"><h1>Saving Paths in Dijkstra's Algorithm</h1><div class="time">2021-09-18</div><ul class="tags"><li><span>#</span><a href="/tags/Algorithm/">Algorithm</a></li></ul><p>In the Layer 2 of blockchain, there is an expansion scheme called State Channels, which requires finding the nearest routing nodes.</p>
+<h3 id="Dijkstra’s-Algorithm-Concept"><a href="#Dijkstra’s-Algorithm-Concept" class="headerlink" title="Dijkstra’s Algorithm Concept"></a>Dijkstra’s Algorithm Concept</h3><p>Dijkstra’s algorithm can solve the single-source shortest path problem, but it only outputs the shortest distance from one point to other points. For example, in a graph like this, with the starting point at A, we want to know the shortest distance to point D:</p>
+<img src="g1.png" style="width:50%;" />
+
+<p>Dijkstra’s algorithm is essentially a combination of dynamic programming and greedy algorithms. To find the shortest path, you traverse all the points, updating the shortest distance records at each point until all points are visited. The initial state set is:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p>At this point, we are at point A, in the unstarted state, with a distance of 0 to itself and unknown distances to the other points.</p>
+<p>Starting from point A, we find that A can reach points B and C with distances of 4 and 2 respectively, so we update the state set to:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>4</td>
+<td>[2]</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p>Brackets indicate the shortest distance in the current round. The shortest distance to point C is less than to point B, so the next step is to point C:</p>
+<img src="g2.png" style="width:50%;" />
+
+<p>After reaching point C, we find that C can reach points A, B, and D. Realizing that point A has already been visited and will not be revisited, we need another set to record the visited points to avoid repetition. Define <code>prev = []</code>, and since points A and C have been visited, add these points to the set, <code>prev = [A, C]</code>.</p>
+<p>At this step, the distance to point B changes from 4 to 3, as <code>A -&gt; C -&gt; B</code> is shorter than <code>A -&gt; B</code>, so update the state set and also the distance to point D:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>4</td>
+<td>[2]</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>[3]</td>
+<td></td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>In this round, the distance to point B is less than the distance to point D, so choose 3 and move to point B:</p>
+<img src="g3.png" style="width:50%;" />
+
+<p>At this point, <code>prev = [A, C, B]</code>, and the state set updates to:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>4</td>
+<td>[2]</td>
+<td>-</td>
+</tr>
+<tr>
+<td></td>
+<td>[3]</td>
+<td></td>
+<td>5</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>[5]</td>
+</tr>
+</tbody></table>
+<p>With only one choice left, point D, which has not been visited:</p>
+<img src="g4.png" style="width:50%;" />
+
+<p><code>prev = [A, C, B, D]</code>, and all points are traversed. The final result is:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<p>Now we know that the shortest distance from point A to point D is 5.</p>
+<h3 id="Shortest-Path-Tracking"><a href="#Shortest-Path-Tracking" class="headerlink" title="Shortest Path Tracking"></a>Shortest Path Tracking</h3><p>After the algorithm finishes, we can get the shortest distance data from point A to other points. But if we want the specific path, like the shortest path from point A to point D, how do we handle it?</p>
+<h4 id="Forward-Greedy-Algorithm"><a href="#Forward-Greedy-Algorithm" class="headerlink" title="Forward Greedy Algorithm"></a>Forward Greedy Algorithm</h4><p>We can determine that the shortest path from A to D is <code>A -&gt; C -&gt; D</code>, and the above <code>prev</code> set is <code>A, C, B, D</code>. Since going directly from C to D is shorter than <code>C -&gt; B -&gt; D</code>, B is discarded in the path.</p>
+<p>Based on this observation, can we discard certain points at the right time to get the correct path on top of <code>prev</code>? For example, from B to D, there are 4 situations:</p>
+<ul>
+<li>B can reach D</li>
+<li>B cannot reach D</li>
+<li>Going through B to reach D is the shortest path in the state set</li>
+<li>Going through B to reach D is not the shortest path in the state set</li>
+</ul>
+<p>In these 4 cases, only if <code>B can reach D</code> and <code>going through B to reach D is the shortest path in the state set</code> will B be retained in the path. Otherwise, B should be removed.</p>
+<p>Every time a point is chosen in the brackets, it is added to the path, and if it does not meet the above conditions, it is removed from the path. Even with other disruptive points, the program can handle it, for example:</p>
+<img src="g5.png" style="width:50%;" />
+
+<p>After selecting point B, we find B does not meet the condition. The path <code>path = [A, C, B]</code> reverts to <code>path = [A, C]</code>. If the smallest point in the next round is E, <code>path = [A, C, E]</code>, but if E does not meet the condition, <code>path = [A, C]</code>. Until the smallest point selected is the target point D, the program ends.</p>
+<p>Or similarly, this approach can handle cases where E will not be included in the path:</p>
+<img src="g6.png" style="width:50%;" />
+
+<p>Does this method have problems? Yes, it cannot handle cases like:</p>
+<img src="g7.png" style="width:50%;" />
+
+<p>If the shortest path is <code>[A, E, C, D]</code>, E does not meet the condition to be included in the path. E cannot directly reach D, but must be included in the path. Removing the <code>can directly reach D</code> condition? Then E in the previous diagram would also be included in the path.</p>
+<p>Whether a point needs to directly reach the target point depends on whether it is the penultimate point in the final path. This condition cannot be determined in an unknown graph; who can tell which point is the penultimate point in the final path?</p>
+<p>The forward greedy algorithm tries to record the smallest and final path points at each step, but it is difficult because it is impossible to determine if a point is in the final path.</p>
+<h4 id="Reverse-Greedy-Algorithm"><a href="#Reverse-Greedy-Algorithm" class="headerlink" title="Reverse Greedy Algorithm"></a>Reverse Greedy Algorithm</h4><p>When point D is chosen in the brackets as the smallest distance point, the shortest distance from A to D is determined. Knowing where this step came from, the source point is the penultimate point in the shortest path. By backtracking layer by layer to the starting point, the entire path emerges.</p>
+<img src="g4.png" style="width:50%;" />
+
+<p>After reaching point D, knowing it came from point C and not point B, and at point C, knowing it came from point A and not point B, the entire path becomes clear.</p>
+<p>How do we know at point D that it came from point C and not point B? The sequence of smallest distance points is <code>[A, C, B, D]</code>, which is not helpful.</p>
+<p>This seems simple. In DFS or tree traversal, multiple paths are entered and returned to correct the path. In DFS, maintaining the shortest distance can also achieve the goal. Is <code>maintaining distance state in DFS</code> &#x3D;&#x3D; <code>Dijkstra algorithm</code>? Clearly not.</p>
+<p><strong>Recursion vs Tail Recursion</strong></p>
+<p>Dijkstra is suitable to be written as a loop:</p>
+<pre><code>for &#123;
+
+&#125;
+</code></pre>
+<p>More suitable to be written as tail recursion:</p>
+<pre><code>func recursion() &#123;
+    
+    recursion()
+&#125;
+</code></pre>
+<p>In short, the program will be a one-way loop. Suitable for writing in recursive form?</p>
+<pre><code>func recursion() &#123;
+    for &#123;
+        recursion()
+    &#125;
+&#125;
+</code></pre>
+<p>When encountering branches, use a for loop to “simultaneously” enter multiple paths to find the most suitable one. For example, at point C, the for loop enters the paths <code>C -&gt; B -&gt; D</code> and <code>C -&gt; D</code>, retaining only one path each cycle and terminating recursion once the most suitable one is found.</p>
+<p>Is there a problem with this writing? The issue is determining where to branch. At point C? Why C? Why not point B? If at point B, the path will include B. Why not point A? If at point A, should branching continue at point C? Every point branching would cause massive redundancy… Why can trees be traversed simultaneously? Because tree nodes do not cross.</p>
+<h4 id="Second-Dynamic-Programming"><a href="#Second-Dynamic-Programming" class="headerlink" title="Second Dynamic Programming"></a>Second Dynamic Programming</h4><p>The first dynamic programming refers to the maintenance of distance data by the algorithm itself. The second dynamic programming can maintain a path data state:</p>
+<pre><code>pathList = &#123;
+    A: [],
+    B: [],
+    C: [],
+    D: []
+&#125;
+</code></pre>
+<p>The path state saves the shortest path from the source point to each point at the current stage. Initially, since point A can already reach points B and C:</p>
+<img src="g1.png" style="width:50%;" />
+
+<pre><code>pathList = &#123;
+    A: [A],
+    B: [A, B],
+    C: [A, C],
+    D: []
+&#125;
+</code></pre>
+<p>Choose and reach point C, since C can reach B and <code>A -&gt; C -&gt; B</code> is shorter than <code>A -&gt; B</code>, update the path state data <code>pathList[C].push(B)</code>. Point D can also be reached, so update the path state. (Updating the path state data occurs before entering the next point, even before selecting the next node. Think about why.)</p>
+<img src="g2.png" style="width:50%;" />
+
+<pre><code>pathList = &#123;
+    A: [A],
+    B: [A, C, B],
+    C: [A, C],
+    D: [A, C, D]
+&#125;
+</code></pre>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-160006603-1');</script></html>

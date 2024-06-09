@@ -1,0 +1,65 @@
+---
+title: Rational Understanding of Blockchain
+date: 2019-11-05 13:53:58
+tags: Blockchain
+---
+
+I once thought blockchain was a revolutionary and disruptive technology, alongside artificial intelligence and big data as the forefront of internet technology. However, true intelligence in AI is still a dream, and big data cannot achieve precise analysis like in the Avengers. Recently, the leader’s speech about blockchain was inspiring, but haven’t the past trends like IoT and Internet+ also ended without much impact?
+
+### Public Blockchains Cannot Escape Currency
+
+Some believe that just as nuclear reactions initially aimed to build nuclear bombs but now serve as a source of power, blockchain initially supported Bitcoin but can now be applied in other fields. In other words, they see nuclear reactions and blockchain as equivalent.
+
+```
+Nuclear Reaction -> Nuclear Bomb
+Blockchain -> Bitcoin
+```
+
+However, upon closer examination, how can we compare these almost completely different things? If you've read a few books on blockchain, you'll find that the content isn't particularly new, and the ideas don't quite qualify as revolutionary or innovative. Bitcoin has been around for about 10 years and hasn't overcome technical challenges, just different mechanisms combined. It should be considered on the same level as P2P or some video game. The value of Bitcoin lies in electronic transactions, not the currency itself.
+
+```
+Nuclear Reaction -> Nuclear Energy -> Big Explosion
+Blockchain -> Bitcoin -> Electronic Transactions
+```
+
+Because of nuclear reactions, we get nuclear energy, which can cause big explosions. Because of blockchain, we get Bitcoin, which enables electronic transactions. So, in this sense, nuclear energy is inseparable from nuclear reactions, and Bitcoin is inseparable from blockchain.
+
+So, can blockchain be applied independently of Bitcoin? Or are blockchain and Bitcoin essentially one entity? Just like nuclear reactions produce nuclear energy, it's the energy that's valuable, not the reaction. Blockchain produces Bitcoin, which operates on blockchain to offer anonymity, immutability, and traceability. It's Bitcoin that's valuable, not blockchain.
+
+A few days ago, the Guangzhou government issued detailed guidelines ([Implementation Details](http://www.gz.gov.cn/gzswjk/2.3.6.3/201910/7beb40281dde4fa2beee0da2b16aa6dc.shtml)) for subsidizing blockchain enterprises, clearly stating "non-currency" public chain projects. This policy indicates that while the state does not allow issuing currency, a non-currency public chain is the ideal scenario for blockchain, though generally, ideals are hard to achieve.
+
+Bitcoin addresses trust issues in transactions, fundamentally concerned with data storage. In a transaction, if either the sender or receiver keeps the record, disputes can arise if either party lies or makes a mistake. Traditionally, a third party like a bank or legal firm resolves such issues. But if one doesn't trust these centralized institutions, Bitcoin’s solution is to let everyone in the world keep the record, making it nearly impossible to alter without global consensus.
+
+Without rewards, people won’t voluntarily keep records. So, how does a distributed ledger system maintain itself?
+
+### Bitcoin is Not Truly Decentralized
+
+Some think that distributed ledgers and databases are already decentralized, but this is not the final form of decentralization. For instance, Bitcoin’s program development, maintenance, and upgrades are still centralized. The data is globally shared, but the program’s rules, development, and releases are controlled by a centralized body. To trust the program, it's open-sourced, but upgrading it presents challenges like ensuring backward compatibility or ensuring everyone updates.
+
+Furthermore, Bitcoin’s data redundancy is a significant issue. Every node needs to backup all data, including unrelated historical data. If a single node doesn't retain all data, the reliability of distributed data can't be ensured. But if all data is kept, it’s a massive waste of resources. A centralized system can solve this with just one data copy, so why multiply it billions of times?
+
+We can envision scenarios sacrificing the concept of decentralization:
+
+1. **Global Shared Database**: A single global database that only stores data, with distributed programs solving consensus. It’s highly secure with strict write rules requiring global consensus or other mechanisms for data entry. Anyone can query data, and historical data can’t be modified. Consensus programs determine which data to write, ensuring minimal data redundancy.
+
+2. **Split Data Storage**: Each node keeps only half the data, split into historical and current. One person stores new data, another stores old data. New data nodes handle broadcasts and write data, while old data nodes store data, updating when new data overflows. The system randomly pairs new and old nodes, balancing distribution. Security remains high with random node pairing.
+
+3. **Data Splitting and Redundancy**: Nodes keep only parts of data, split according to certain rules and stored in different nodes. This reduces redundancy while saving space. Further, data could self-verify, with nodes storing varying data sizes. Users query data across the network, assembling it from nodes. This mixes node data, necessitating a self-verification mechanism.
+
+### Digital Currency and Blockchain are Unrelated
+
+Some discussions on blockchain applications link to central bank digital currency research, even notable exchange directors giving blockchain-themed talks mixing Bitcoin and Libra stories. Many ignore the conceptual differences, which are trivial yet crucial. The central bank’s digital currency plans may use blockchain, but it's not essential. For the state, blockchain’s significance lies in “centralization in the name of decentralization,” aiming to unify and regulate the internet. Without blockchain, the state can still achieve its goals, using blockchain as a tool for convenience.
+
+In the past, blockchain referred to the technology supporting Bitcoin. In the future, blockchain will be almost synonymous with consortium chains.
+
+Huawei's blockchain whitepaper objectively views blockchain as a supplement to the internet, inseparable from traditional databases and TCP, playing a unique role in specific scenarios. For the state, blockchain offers transparent data, preventing manipulation. For businesses, it facilitates checks and balances, with multiple companies sharing data, and blockchain as the key. Without blockchain, data sharing might be unclear, but with Bitcoin’s decade-long stability, it's a promising technology driving innovation and application.
+
+In the future, blockchain development will split into foundational and application layers. Foundational development requires higher technical skills, while application development will be akin to current web development. Blockchain application providers and SDKs will emerge, enabling developers to store data and conduct transactions on the blockchain, similar to current database APIs and payment interfaces.
+
+### In Conclusion
+
+Blockchain will be widely integrated into our networks but is not enough to change the world. (Don't laugh)
+
+### Update
+
+I stumbled upon the distributed network [ZeroNet](https://github.com/HelloZeroNet/ZeroNet), a project released in 2015 that meets almost all my expectations for a blockchain storage system, with complete functionalities for blogs, forums, emails, and file sharing. However, it hasn't solved any of the issues I anticipated, validating some of my thoughts. The difference is that I hoped to connect a distributed network to the public internet, while ZeroNet created an autonomous network system, with .bit domains only as URI suffixes, limiting wider adoption. Additionally, P2P file systems are hard to regulate, leading to GWF’s blacklist. Although specific, ZeroNet and IPFS indicate that blockchain is best suited for financial fields or restricted internet domains.
