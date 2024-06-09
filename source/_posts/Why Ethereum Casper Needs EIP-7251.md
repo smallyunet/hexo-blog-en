@@ -18,7 +18,7 @@ The reason lies in the fact that Ethereum Casper is an improvement on BFT, not o
 
 Let's first look at how Vitalik describes Ethereum Casper, emphasizing its improvements over BFT:
 
-![Vitalik's description of Ethereum Casper](1.png)
+<img src="1.png" />
 
 Now, let's look at the specific process of Ethereum Casper: nodes stake assets to become validators, and then a node is randomly selected to produce a block through VRF. After the block is produced, all validators vote on the validity of the block. These votes are first submitted to the committee members, who aggregate the votes and then synchronize among themselves. Committee members are randomly elected at intervals.
 

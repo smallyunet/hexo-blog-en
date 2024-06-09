@@ -7,7 +7,8 @@
 <p>Why is Ethereum facing this dilemma? Isn’t PoS a consensus mechanism that can scale to large networks?</p>
 <p>The reason lies in the fact that Ethereum Casper is an improvement on BFT, not on PoS.</p>
 <p>Let’s first look at how Vitalik describes Ethereum Casper, emphasizing its improvements over BFT:</p>
-<p><img src="/1.png" alt="Vitalik&#39;s description of Ethereum Casper"></p>
+<img src="1.png" />
+
 <p>Now, let’s look at the specific process of Ethereum Casper: nodes stake assets to become validators, and then a node is randomly selected to produce a block through VRF. After the block is produced, all validators vote on the validity of the block. These votes are first submitted to the committee members, who aggregate the votes and then synchronize among themselves. Committee members are randomly elected at intervals.</p>
 <p>For those familiar with BFT but not with Ethereum Casper, learning that only blocks receiving 2&#x2F;3 of the votes can be marked as final may trigger sensitivity to the 2&#x2F;3 number. This is because 2&#x2F;3 is the voting ratio emphasized by BFT to ensure 3f+1 fault tolerance.</p>
 <p>BFT’s voting mechanism ensures that forks do not occur in the network. Ethereum adopts this advantage of BFT, making handling fork scenarios relatively easy by judging the block with the highest vote rate as the main block. If validators vote for two blocks simultaneously, they are penalized, which is why Ethereum is the only PoS chain with a slashing mechanism. Combined with the checkpoint mechanism, Ethereum can handle very complex fork situations, identifying the main chain even if the network forks into a tree structure.</p>

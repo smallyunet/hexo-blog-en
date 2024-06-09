@@ -1,3 +1,5 @@
+https://en.smallyu.net/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/
+https://en.smallyu.net/2022/12/16/Proofs%20of%20Retrievability:%20Understanding%20Document%20Verification/
 https://en.smallyu.net/2018/11/01/PHP%207,%20Making%20Code%20More%20Elegant%20(Translation)/
 https://en.smallyu.net/2019/11/20/A%20Brief%20Analysis%20of%20the%20Blockchain%20Technology%20Behind%20Libra/
 https://en.smallyu.net/2020/05/16/Why%20Do%20Constructors%20Have%20No%20Return%20Value?/
@@ -62,7 +64,6 @@ https://en.smallyu.net/2014/02/13/Unreasonable%20Plot%20Points%20in%20Maupassant
 https://en.smallyu.net/2019/03/03/If%20You%20Could%20Start%20Over,%20How%20Would%20You%20Live/
 https://en.smallyu.net/2021/04/11/Hey,%20Long%20Time%20No%20See/
 https://en.smallyu.net/2019/06/30/What%20It%20Feels%20Like%20to%20Graduate%20from%20University/
-https://en.smallyu.net/2022/12/16/Proofs%20of%20Retrievability:%20Understanding%20Document%20Verification/
 https://en.smallyu.net/2021/11/24/The%20Curse%20of%20Knowledge/
 https://en.smallyu.net/2023/05/29/Pointing%20the%20Way%20for%20the%20Blockchain%20Revolution/
 https://en.smallyu.net/2023/03/15/Why%20Trading%20Cryptocurrencies%20is%20Not%20a%20Good%20Idea/
@@ -70,7 +71,6 @@ https://en.smallyu.net/2021/04/18/Why%20Using%20Blockchain%20for%20Digital%20Cur
 https://en.smallyu.net/2018/11/28/Why%20People%20Prefer%20Saying%20%22Yes%22%20Instead%20of%20%22Correct%22/
 https://en.smallyu.net/2021/11/25/Chinglish/
 https://en.smallyu.net/2021/10/02/You%20are.../
-https://en.smallyu.net/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/
 https://en.smallyu.net/2023/03/30/Don't%20Underestimate%20ChatGPT/
 https://en.smallyu.net/2021/05/06/Speechless/
 https://en.smallyu.net/2023/02/22/A%20Mechanism%20for%20Generating%20Random%20Numbers%20on%20the%20Blockchain/
