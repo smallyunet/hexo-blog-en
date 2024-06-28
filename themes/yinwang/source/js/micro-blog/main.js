@@ -70,7 +70,7 @@ var getContent = (year) => {
     });
     let id = res.length;
     res.map((i) => {
-      let date = new Date(i.created_at).format("yyyy年MM月dd日 hh时mm分");
+      let date = new Date(i.created_at).format("MM-dd-yyyy hh:mm");
       let item = `<li class="list-group-item">`;
       item += `<div class="date">${date}`;
       item += `<a href="#${year}-${id}" name=${year}-${id}>#${id}</a>`;
