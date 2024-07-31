@@ -99,9 +99,9 @@ Given the lack of time while working, I believe there are many things to do in t
 - Reviewing Go language and other programming languages, as recent work has made me neglect this area
 - Improving my English; I bought the physical book “rework” a year ago, but my vocabulary is limited, and the book’s language is harder than ordinary technical documentation, so I still can’t understand it
 - Only when one has free time can they pursue interests, such as:
-- Watching the hundreds of channels I subscribed to on YouTube but never watched
-- Understanding Cardano’s PoS evolution over three iterations and what changes occurred, as there is a lot of material but I’ve been too lazy to read it
-- Clarifying the differences between PoW and PoS, why PoS is considered a Shitcoin by Bitcoiners. I understand the superficial differences, but I feel I’m missing something essential
-- Learning more about Bitcoin technology, as BTC is the only king
-- Investigating other small coins, like how Peercoin is still raising funds for listing fees after ten years
-- And more…
+  - Watching the hundreds of channels I subscribed to on YouTube but never watched
+  - Understanding Cardano’s PoS evolution over three iterations and what changes occurred, as there is a lot of material but I’ve been too lazy to read it
+  - Clarifying the differences between PoW and PoS, why PoS is considered a Shitcoin by Bitcoiners. I understand the superficial differences, but I feel I’m missing something essential
+  - Learning more about Bitcoin technology, as BTC is the only king
+  - Investigating other small coins, like how Peercoin is still raising funds for listing fees after ten years
+  - And more…
