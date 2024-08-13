@@ -105,7 +105,7 @@ println!(&quot;&#123;&#125;, &#123;&#125;&quot;, r1, r2);
 </code></pre>
 <h3 id=""><a href="#" class="headerlink" title="?"></a>?</h3><p>There’s no more content.</p>
 <p>Recently, I watched an exciting TV show “Silicon Valley.” The writers put the main characters in many difficult situations, making them seem like their misfortunes were self-inflicted. The writers also left many cliffhangers, making the plot so intense that I felt like sending them hate mail. Putting aside the plot, the geeks portrayed in the show are really cool! Of course, ordinary people can’t participate in such high-level battles.</p>
-</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-160006603-1');</script></html>
+gtag('config', 'G-2615E2THFJ');</script></html>

@@ -108,7 +108,7 @@ arr.hasOwnProperty(&#39;a&#39;)   // true
 <li><p>Why is the value of <code>typeof []</code> in JavaScript <code>&quot;object&quot;</code>, meaning that the type of an array is an object, but the properties of an object are processed, while an array is not?</p>
 </li>
 </ol>
-</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-160006603-1');</script></html>
+gtag('config', 'G-2615E2THFJ');</script></html>

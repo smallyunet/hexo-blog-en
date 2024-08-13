@@ -42,7 +42,7 @@ int main()
 <p>If it refers to the function name, the constructor has no return value. As in the code above, it’s clear that <code>new Test(1)</code> is assigned to <code>Test* test</code>.</p>
 <p>Why don’t constructors have return values? Because when a constructor executes, it tells the compiler how much space to allocate in memory, initializes member variables, determines the address of <code>this</code>, and after doing these things, it doesn’t allow the user to customize the return type? Because the return value of the constructor is always and must be itself, it’s not transparent to the user (why does the compiler “presumptuously” do this)?</p>
 <p>Why don’t constructors have return values? I don’t know the answer to this question, nor am I very interested in knowing. But this question has given me great inspiration and a lot of shock. The phrase “new member function” is really a novel idea. We take too many things for granted, as a matter of course, thinking it should be that way, but rarely ask why it is that way, and rarely seriously think about and understand many things.</p>
-</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-160006603-1');</script></html>
+gtag('config', 'G-2615E2THFJ');</script></html>

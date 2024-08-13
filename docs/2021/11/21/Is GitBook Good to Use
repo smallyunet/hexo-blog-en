@@ -48,7 +48,7 @@ gub.smallyu.net.	300	IN	A	172.67.146.253
 <p>Who would have thought GitBook’s product wouldn’t delete domain records even after the user deleted the Workspace and deactivated the account?</p>
 <p>The lesson here is to shift from a user mindset to a developer mindset. Influenced by the concepts of “official” and “authoritative,” we often doubt our methods and errors first when using platforms, rarely questioning the platform itself. Even if it’s clearly a platform issue, we don’t prioritize contacting platform support. This point can be expanded into many topics for future discussion.</p>
 <h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><p>I now use the Rust team’s <code>mdbook</code>. GitBook feels outdated and not well-maintained. docsify, though suitable for project documentation, lacks the stylistic focus on text and inter-page links like a book. While mdbook’s style isn’t trendy, it’s functional, fast, and practical.</p>
-</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-160006603-1');</script></html>
+gtag('config', 'G-2615E2THFJ');</script></html>

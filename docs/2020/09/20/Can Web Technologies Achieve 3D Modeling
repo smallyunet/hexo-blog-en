@@ -40,7 +40,7 @@ Gradient Line = TorusKnotGeometry + ShaderMaterial
 <img src="blender.png" class="no-shadow" width="100%">
 
 <p>Returning to the expected effect, the image comes from a big-screen UI <a href="https://www.zcool.com.cn/work/ZMjg2NTA1Njg=.html">design demonstration</a>. The original effect is not actually 3D; the tools used are PS and AI. So, can web technologies achieve this under the premise of needing only 2D effects? If code is used to create various graphics, it still boils down to 3D modeling issues. The simplest way is to take a background image and overlay text on it. Where does the background image come from?</p>
-</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-160006603-1');</script></html>
+gtag('config', 'G-2615E2THFJ');</script></html>

@@ -112,7 +112,7 @@ if (res.get(&quot;data&quot;) != null) &#123;
 <img src="17.png" style="box-shadow: 0 0 0 #fff; margin-left: 0;" />
 
 <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Although Haskell’s Monad is quite famous, it actually involves three concepts: <code>Functors</code>, <code>Applicatives</code>, and <code>Monads</code>. Perhaps Monad has more extensive applications. In data processing, FP is not superior to OOP; the logic is similar, only the writing style differs. Facing the same problem with different thinking and expressions corresponds to different programming ideas and paradigms. There are many intricate theories in the world waiting for us to explore.</p>
-</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-160006603-1"></script><script>window.dataLayer = window.dataLayer || [];
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'UA-160006603-1');</script></html>
+gtag('config', 'G-2615E2THFJ');</script></html>
