@@ -1,3 +1,4 @@
+https://en.smallyu.net/2024/08/22/How%20PoS%20Blockchains%20Handle%20Forks/
 https://en.smallyu.net/2024/08/18/Interactive%20Immersive%20Theater/
 https://en.smallyu.net/2024/08/04/Recalling%20My%20Experience%20Attending%20Training%20Classes%20in%20University/
 https://en.smallyu.net/2024/07/28/Quit%20My%20Job/
@@ -19,8 +20,8 @@ https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in%20Haskell?/
 https://en.smallyu.net/2022/07/24/Why%20Pay%20Attention%20to%20Programming%20Concepts/
 https://en.smallyu.net/2021/10/29/A%20Consensus%20Mechanism%20Based%20on%20%22Egocentrism%22/
 https://en.smallyu.net/2019/07/06/A%20Simplified%20Version%20of%20Scala/
-https://en.smallyu.net/2019/03/15/Basic%20Syntax%20of%20Go%20Language/
 https://en.smallyu.net/2020/05/03/About%20Human%20Abilities,%20Experiences,%20and.../
+https://en.smallyu.net/2019/03/15/Basic%20Syntax%20of%20Go%20Language/
 https://en.smallyu.net/2019/05/18/Does%20JavaScript%20Have%20Associative%20Arrays?/
 https://en.smallyu.net/2022/12/14/Example%20and%20Explanation%20of%20S-PDP%20File%20Proof/
 https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/
@@ -144,15 +145,15 @@ https://en.smallyu.net/tags/Consensus-Mechanism/
 https://en.smallyu.net/tags/MEV/
 https://en.smallyu.net/tags/Mission/
 https://en.smallyu.net/tags/Programming-Languages/
-https://en.smallyu.net/tags/Programming-Language/
 https://en.smallyu.net/tags/Learning/
 https://en.smallyu.net/tags/Design/
+https://en.smallyu.net/tags/Programming-Language/
 https://en.smallyu.net/tags/Dreams/
 https://en.smallyu.net/tags/Blockchain-Revolution/
 https://en.smallyu.net/tags/Interview-Questions/
 https://en.smallyu.net/tags/Life/
-https://en.smallyu.net/tags/Brave-Stories/
 https://en.smallyu.net/tags/Plan/
+https://en.smallyu.net/tags/Brave-Stories/
 https://en.smallyu.net/tags/Mindset/
 https://en.smallyu.net/tags/Job/
 https://en.smallyu.net/tags/Job-Search/
@@ -162,8 +163,8 @@ https://en.smallyu.net/tags/Perspective/
 https://en.smallyu.net/tags/Public-Chains/
 https://en.smallyu.net/tags/Consortium-Chains/
 https://en.smallyu.net/tags/Remote-Work/
-https://en.smallyu.net/tags/Cryptocurrency/
 https://en.smallyu.net/tags/Tools/
+https://en.smallyu.net/tags/Cryptocurrency/
 https://en.smallyu.net/tags/Proof-of-Storage/
 https://en.smallyu.net/tags/Hero-s-Story/
 https://en.smallyu.net/tags/Job-Hunting/
@@ -189,6 +190,6 @@ https://en.smallyu.net/tags/Consortium-Chain/
 https://en.smallyu.net/tags/Encryption/
 https://en.smallyu.net/tags/design/
 https://en.smallyu.net/tags/Ethereum/
-https://en.smallyu.net/tags/Cryptocurrency-Trading/
 https://en.smallyu.net/tags/Scripted-Murder-Mysteries/
+https://en.smallyu.net/tags/Cryptocurrency-Trading/
 https://en.smallyu.net/tags/Script-Murder/
