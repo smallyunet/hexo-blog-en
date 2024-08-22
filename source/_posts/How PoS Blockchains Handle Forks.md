@@ -17,7 +17,7 @@ PoW-based chains include BTC, BCH, BSV, LTC, DOGE, ZEC, and others. PoW uses the
 
 PoS-based chains include ETH, BNB, TRON, DOT, TON, ADA, AVAX, NEO, and others. Almost all current smart contract platform chains use PoS consensus.
 
-PBFT-based chains include ATOM, SOL, TON, ONT, etc. Among them, Cosmos is the most well-known, Solana shows potential to surpass Ethereum, and The Open Network has also developed well this year.
+PBFT-based chains include ATOM, SOL, TON, ONT, APT, SUI, etc. Among them, Cosmos is the most well-known, Solana shows potential to surpass Ethereum, and The Open Network has also developed well this year.
 
 You might find it strange to classify SOL under PBFT. Isn’t SOL based on PoH consensus? Doesn’t SOL have staking features, such as earning rewards through staking in the Solflare wallet? TON also has staking and rewards, right?
 
