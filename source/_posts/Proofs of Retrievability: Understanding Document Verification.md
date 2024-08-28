@@ -1,7 +1,7 @@
 ---
 title: 'Proofs of Retrievability: Understanding Document Verification'
 date: 2022-12-16 17:22:05
-tags: 文件证明
+tags: File Proof
 ---
 
 PORs (Proofs of Retrievability) and PDP were published in the same year, 2007. The paper is titled "PORs: Proofs of Retrievability for Large Files," with Ari Juels as the first author.

@@ -3,7 +3,6 @@ title: Recent Job Search Records (June)
 date: 2023-06-29 02:00:00
 draft_date: 2023-06-06 18:37:50
 tags:
-- Work
 - Job Hunting
 ---
 

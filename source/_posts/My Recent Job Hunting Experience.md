@@ -1,7 +1,6 @@
 ---
 title: My Recent Job Hunting Experience
 tags: 
-- Job
 - Job Hunting
 date: 2021-07-03 23:46:05
 released_date: 2021-06-21 21:47:00

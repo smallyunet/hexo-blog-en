@@ -2,8 +2,7 @@
 title: Didn't Find a Job
 date: 2023-06-24 02:43:45
 tags:
-- Job
-- Job Search
+- Job Hunting
 ---
 
 The blockchain hasn't had much excitement in the past year or two. Since ETH dropped from 3400 to 1200, which coincided with the Fed's most aggressive rate hikes, the market has been in a tepid state. Later, events like Luna's collapse and FTX's bankruptcy occurred.
