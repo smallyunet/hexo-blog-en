@@ -8,6 +8,7 @@ html(lang=config.language)
     meta(http-equiv="content-type", content="text/html; charset=utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=0.5")
     
+    link(rel='icon' type='image/svg+xml' href=root+'favicon.svg')
     link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
     link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
     link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
@@ -16,7 +17,7 @@ html(lang=config.language)
     link(rel='stylesheet', href=root+"css/highlight/xcode.min.css")
     link(rel='stylesheet', href=root+"css/bootstrap/bootstrap-tooltips.css")
 
-    if is_home() || page.type=='micro-blog' || page.type=='404'
+    if is_home() || is_tag() || page.type=='home' || page.type=='tags' || page.type=='micro-blog' || page.type=='404'
       link(rel='stylesheet', href=root+"css/bootstrap/bootstrap.min.css")
       link(rel='stylesheet', href=root+"css/bootstrap/bootstrap-theme.min.css")
       link(rel='stylesheet', href=root+"css/home.css")
@@ -26,12 +27,8 @@ html(lang=config.language)
     script(src=root+"js/jquery.min.js")
 
   body
-    script.
-      if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
-        document.body.classList.add('mobile')
-      }
-    if is_home() || page.type=='micro-blog' || page.type=="404"
-      nav.navbar.navbar-default(style={opacity:".9"}, role="navigation")
+    if is_home() || is_tag() || page.type=='home' || page.type=='tags' || page.type=='micro-blog' || page.type=="404"
+      nav.navbar.navbar-default.navbar-fixed-top(style={opacity:".9"}, role="navigation")
         div.container-fluid
           div.navbar-header
             button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#navbar-bs")
@@ -48,13 +45,24 @@ html(lang=config.language)
             ul.nav.navbar-nav.navbar-right
               each url, label in theme.menu
                 li(class=(
-                      (url == '' && is_home()) || (url == 'micro-blog' && page.type=='micro-blog')
-                      ? 'active' : ''
-                    )
-                  )
+                    ((url == '' && is_home()) || 
+                    (page.type == 'micro-blog' && url == 'micro-blog') || 
+                    (page.type == 'tags' && url == 'tags') || 
+                    (page.type == 'home' && url == 'ri'))
+                    ? 'active' : ''
+                  ))
                   - var href = url.startsWith('http') ? url : root + url
                   a(href=href, target=theme.header.blank ? "_blank" : "_self")= label
     
+    script.
+      if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+        document.body.classList.add('mobile')
+        var navbar = document.querySelector('nav.navbar');
+        if (navbar) {
+          navbar.classList.remove('navbar-fixed-top');
+        }
+      }
+
     if body
       div!= body
     else
