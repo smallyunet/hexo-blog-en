@@ -4,69 +4,71 @@ date: 2024-08-28 02:15:14
 tags: Dollar-Cost Averaging Strategy
 ---
 
-> Over time and with a deeper understanding of the market, dollar-cost averaging (DCA) strategies, especially investment portfolios, can undergo significant changes. That's why I've marked the title with (Part 1). If there are any changes in the DCA strategy, there might be a (Part 2), (Part 3), etc. I will also explain the reasons for any changes.
+> As time goes by and my understanding of the market deepens, the dollar-cost averaging (DCA) strategy, especially the investment portfolio, may undergo significant changes. This is why I labeled this as Part One in the title. If the DCA strategy changes, there may be Part Two, Part Three, and so on. Of course, I will also explain the reasons for any changes.
 
-This year, I've started to focus more on investment topics, and I have lost some money due to reckless operations.
+This year, I've been focusing more on investment topics, partly because I've lost some money through reckless trading.
 
-Recently, I've been influenced by Xiaolai Li's ideas. The theory behind the DCA strategy is quite exciting. You can delve deeper into it through the following resources:
-- ["Dollar-Cost Averaging Changes Your Life"](https://ri.firesbox.com/#/) — Xiaolai Li, all content about DCA is in this book.
-- [Dollar-Cost Averaging Changes Your Life: Live Online Course](https://youtu.be/tmRQImBk6NA?si=Cl7Fwiq2WcfM28P2) — YouTube video, Xiaolai Li's own interpretation.
+Recently, I've been heavily influenced by Li Xiaolai's ideas. The theory behind the DCA strategy is quite exciting. You can delve deeper into the topic through the following resources:
+- “[The DCA Strategy that Changes Your Fate](https://ri.firesbox.com/#/)” by Li Xiaolai — everything about DCA is covered in this book.
+- [The DCA Strategy that Changes Your Fate: Public Class Live](https://youtu.be/tmRQImBk6NA?si=Cl7Fwiq2WcfM28P2) — a YouTube video where Li Xiaolai himself interprets the theory.
 
-Apart from DCA, here are a few other investment-related references:
-- ["The Self-Cultivation of Leeks"](https://github.com/xiaolai/the-self-cultivation-of-leeks) — Xiaolai Li
+Besides DCA, here are a few other investment references:
+- “[The Self-Cultivation of Leeks](https://github.com/xiaolai/the-self-cultivation-of-leeks)” by Li Xiaolai
 - [Chandler Guo's YouTube Channel](https://www.youtube.com/@ChandlerGuoChannel)
 
-I want to practice DCA as an investment method, and there are a few questions involved:
-1. Should I join Xiaolai Li's investment practice group? Not necessary, especially for those with self-control.
-2. Should I buy [BOX](https://b.watch/)? Rumor has it that you must read Li's books and listen to the lessons, but never buy the coin.
-3. How to implement DCA? Binance’s built-in DCA function is sufficient with zero fees (remember to occasionally transfer to a wallet).
-4. What is the frequency of DCA? Daily, because the price changes so quickly that if the frequency is too low, the cycle becomes too long.
-5. What is the duration of the DCA period? Currently, I've planned to use one year's worth of funds for DCA.
-6. What are the DCA targets?
+I want to practice the DCA investment method, which involves addressing several questions:
+1. Should I join Li Xiaolai's investment practice group? Not necessary, especially for those with self-discipline.
+2. Should I buy [BOX](https://b.watch/)? Rumor has it that Li's books must be read, his classes can be attended, but you should never buy the coins.
+3. What method should be used for DCA? Binance's DCA feature is sufficient, with zero fees (remember to occasionally withdraw to a wallet).
+4. What is the frequency of DCA? Daily, because prices fluctuate rapidly. If the frequency is too low, the cycle becomes too long.
+5. What is the duration of the DCA? I have currently planned to DCA for one year.
+6. What are the targets for DCA?
 
-The assets and their allocation ratios I currently choose are:
+I did not blindly follow the selection and proportion of targets in Li Xiaolai's BOX. Initially, Li Xiaolai's BOX had a high proportion of EOS, which proved to be a failure, so EOS is no longer included in the BOX. Currently, the latest situation is that BTC accounts for 92% of the BOX's composition. Additionally, XIN has always been a component of BOX, showing that personal biases can influence decisions, as most of us probably don't even know what XIN is, while Li Xiaolai has consistently chosen this coin for years.
 
-| Asset | Ratio | Tag | Risk | Supply Cap |
-|:--:|:--:|:--:|:--:|:--:|
-| BTC | 50% | PoW, UTXO | Low | ✅ |
-| ETH | 10% | Smart Contract Platform | Medium | ❌ |
-| LTC | 5% | PoW, UTXO | High | ✅ |
-| DOGE | 5% | PoW, UTXO | High | ❌ |
-| BCH | 5% | PoW, UTXO | High | ✅ |
-| ADA | 5% | PoS, UTXO | High | ✅ |
-| SOL | 5% | Smart Contract Platform | High | ❌ |
-| FIL | 5% | PoSt | Very High | ❌ |
-| TON | 5% | Smart Contract Platform | Very High | ❌ |
-| XEC | 3% | PoW, UTXO | Very High | ✅ |
-| DASH | 2% | PoW, UTXO | Very High | ✅ |
+The targets and allocation proportions I chose are:
 
-Initially, Xiaolai Li's BOX gave a high percentage to EOS, but it turned out that EOS failed, so now EOS is no longer part of the BOX components. The latest situation is that BTC accounts for 92% of BOX. Moreover, BOX has always included XIN, showing that everyone is subject to bias. Most of us probably don't know what XIN is, but Li Xiaolai has consistently chosen this coin over the years.
+| No. | Target | Proportion | Tag | Risk | Max Supply |
+|:---:|:------:|:----------:|:---:|:----:|:----------:|
+| 1   | BTC    | 50%        | PoW, UTXO | Low | ✅        |
+| 2   | ETH    | 10%        | Smart Contract Platform | Medium | ❌ |
+| 3   | LTC    | 5%         | PoW, UTXO | High | ✅        |
+| 4   | DOGE   | 5%         | PoW, UTXO | High | ❌        |
+| 5   | BCH    | 5%         | PoW, UTXO | High | ✅        |
+| 6   | ADA    | 5%         | PoS, UTXO | High | ✅        |
+| 7   | SOL    | 5%         | Smart Contract Platform | High | ❌ |
+| 8   | FIL    | 5%         | PoSt | Very High | ❌       |
+| 9   | TON    | 5%         | Smart Contract Platform | Very High | ❌ |
+| 10  | XEC    | 3%         | PoW, UTXO | Very High | ✅    |
+| 11  | DASH   | 2%         | PoW, UTXO | Very High | ✅    |
 
-In my DCA portfolio, BTC is undoubtedly in the lead, accounting for 50% of the portfolio. In addition, the five PoW coins account for a total of 20%. All PoW coins have a supply cap.
+You can view this collection of coins in this public [Watchlist](https://coinmarketcap.com/watchlist/66d339a5c316be09d04b7b16/), which links to the CoinMarketCap website. You'll notice that nearly all of the coins have a market cap ranking within the top 100, following the fourth principle from “[Some Small Tips for Crypto Investing](/2024/05/04/炒币投资的小-tips/)”.
 
-Due to the saying "Bitcoin is gold, Litecoin is silver," LTC has always been relatively strong. DOGE and LTC are like brothers in arms, using the same mining algorithm; [mining pools](https://www.litecoinpool.org/) often mine both coins simultaneously. Therefore, the prices of LTC and DOGE can't be simply estimated like BTC's "shutdown price for miners." Moreover, DOGE, as a memecoin leader, has a long history and is liked by Elon Musk, so it's hard to let go. That's why LTC and DOGE must be included together.
+In my DCA portfolio, BTC is always the top choice, making up 50% of the total allocation. Additionally, five PoW coins make up 20% of the portfolio, meaning PoW coins collectively account for 70%. Most PoW coins have a capped supply.
 
-BCH was a workaround solution during the era of high BTC transaction fees (2017). Has the Blocksize War really ended? BCH represents the big block solution, so it should be included. BTC has moved away from the purpose of "electronic cash" and has become a "store of value." I believe this debate is far from over. Later, BCH forked into BSV. Why not include BSV? The BSV ecosystem is small, and some projects within it are active but ignorant (like Note). The founder of BSV is still wanted by the court, among other reasons.
+Due to the saying "Bitcoin is gold, Litecoin is silver," LTC has been relatively strong. DOGE and LTC are like close allies, sharing the same mining algorithm. The [mining pool](https://www.litecoinpool.org/) mines both of these coins simultaneously, so the prices of LTC and DOGE cannot be simply estimated like the "shutdown price" of BTC miners. Moreover, DOGE is the leader among memecoins, has a long history, and is favored by Elon Musk, making it hard to ignore. Thus, LTC and DOGE are included together.
 
-DASH and XEC are the most arbitrary choices, so obscure that many people haven't heard of them, and they are also the highest-risk assets. XEC is chosen because the BCH [node](https://github.com/bitcoin-cash-node/bitcoin-cash-node) code is forked from XEC's code, suggesting that XEC has good technical capabilities. DASH is a fork of LTC and is more of a filler. Many old wallets, like Unstoppable, list PoW coins, and DASH is among them. Binance's mining pool supports few coins, and DASH is one of them, so DASH is chosen as a high-risk "electronic cash" alternative.
+BCH emerged as a workaround for high transaction fees during the Bitcoin Cash era (2017). Has the Blocksize War truly ended? BCH represents the large block faction, so it is included here. BTC has moved away from its "electronic cash" purpose to become a "store of value." I believe the debate on this issue is not entirely over. BCH later forked into BSV, so why isn't BSV included? BSV's ecosystem is small, and it includes some active but uninformed projects (like Note). Additionally, BSV's founder is wanted by the authorities, among other reasons.
 
-Then there is ADA, which has strong academic capabilities and uses a pure PoS consensus with a UTXO model, serving as a PoS counterpart to BTC. ADA is also constantly updated technologically, and if PoS wins one day, ADA is a must-watch, so I expect a better future for ADA.
+DASH and XEC are the least justifiable choices, being so obscure that many people have never heard of them, and they are also the highest risk. XEC is included because the [node code](https://github.com/bitcoin-cash-node/bitcoin-cash-node) of BCH is forked from XEC's code, which suggests that XEC has decent technical capabilities. DASH is a fork of LTC and was more of a filler choice because many old wallets, like Unstoppable, primarily support PoW coins, and DASH is among them. Additionally, Binance's mining pool service supports only a few coins, including DASH, so DASH is included as a high-risk alternative for "electronic cash."
 
-FIL falls into the category of distributed storage. In computer science, there are two main directions: distributed computing and distributed storage. ETH claims to be the "world computer," taking on the role of distributed computing, while FIL is the leader in storage. I remember libp2p was developed by Filecoin, and many blockchains, like ETH, use p2p modules directly from libp2p. The widely used IPFS was also developed by the Filecoin lab. Therefore, FIL has strong R&D capabilities, and it may have a breakthrough in the future.
+Then there’s ADA, which has strong academic credentials and a pure PoS consensus model using the UTXO model, making it an alternative to BTC in the PoS consensus space. Moreover, ADA's technology is continuously updated, and if PoS wins out one day, ADA is undoubtedly a key player. Therefore, I anticipate a better future for ADA.
 
-Finally, there are smart contract platforms. I don't particularly like smart contracts; many people equate smart contracts with blockchain or believe that only blockchains supporting smart contracts are true blockchains. In terms of hoarding coins, coins are just fuel for smart contract platforms, without supply caps, so why hoard them? ETH, SOL, and TON all support smart contracts and are currently very popular, so some allocation is appropriate.
+FIL, on the other hand, falls under the category of distributed storage. Computer science has two major directions: distributed computing and distributed storage. ETH claims to be the "World Computer" and takes on the role of distributed computing, while FIL is the leader in the storage space. It’s worth noting that libp2p was developed by Filecoin, and many blockchains like ETH use the p2p module directly from libp2p. Additionally, the widely used IPFS was developed by Filecoin Labs. Thus, FIL has strong research and development capabilities, and there might be a day when it achieves significant breakthroughs.
 
-Reasons why some popular coins are not included:
+Finally, we have the smart contract platforms. Honestly, I don't like smart contracts much; many people equate smart contracts with blockchain or think that only blockchains that support smart contracts are true blockchains. When it comes to holding coins, coins on smart contract platforms are merely [fuel](/micro-blog/#2024-31) without a capped supply, so why bother hoarding them? However, smart contract platforms are popular, have many users, and their prices remain high. ETH, SOL, and TON all support smart contracts and are currently highly watched, so I allocated some proportion to them.
 
-| Coin | Reason Not Chosen |
-|:--:|:--:|
-| BNB | Platform coin, not a blockchain |
-| DOT | No supply cap, high APR |
-| ATOM | No supply cap, high APR |
-| AVAX | No supply cap, no obvious advantages seen |
-| APT, SUI | BFT consensus type |
-| All ERC-20 tokens | Not a blockchain |
-| All Memecoins | No long-term value |
-| Inscriptions, Runes | BTC transaction fees are too high |
+Additionally, here are the reasons some popular coins were not included:
+
+| Coin | Reason for Exclusion |
+|:----:|:-------------------:|
+| BNB  | It's a platform token, not a chain. |
+| DOT  | No max supply, high APR. |
+| ATOM | No max supply, high APR. |
+| AVAX | No max supply, no obvious advantages. |
+| APT, SUI | BFT consensus type. |
+| All ERC-20 tokens | Not chains. |
+| All Memecoins | No long-term value. |
+| Inscriptions, Runes | BTC transaction fees are too high. |
 
 Wish myself good luck!
