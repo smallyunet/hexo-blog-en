@@ -6,7 +6,7 @@
   <link href="https://en.smallyu.net/atom.xml" rel="self"/>
   <link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
   <link href="https://en.smallyu.net/"/>
-  <updated>2024-08-30T06:46:51.467Z</updated>
+  <updated>2024-09-11T12:59:58.727Z</updated>
   <id>https://en.smallyu.net/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Why You Shouldn&#39;t Pursue Smart Contract or DeFi Development</title>
+    <link href="https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn&#39;t%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/"/>
+    <id>https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn&#39;t%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/</id>
+    <published>2024-09-11T12:51:35.000Z</published>
+    <updated>2024-09-11T12:59:58.727Z</updated>
+    
+    <content type="html"><![CDATA[<p>Currently, when the job market mentions “contract development,” it generally refers to “EVM contract development on Ethereum.” However, in reality, Ethereum is not the only blockchain. There are potentially hundreds of blockchains, and Ethereum is not the only one with smart contracts. Solana has SVM, Polkadot uses Wasm, Cosmos achieves smart contract functionality through its parallel chains, and there are many other implementations.</p><p>So, do you see the issue? If a programmer claims to be a “contract developer,” they are confining themselves to a narrow direction. Solidity is a scripting language created by the Ethereum team, and “contract development” means entrusting your career to this immature scripting language. At the very least, we should be “programmers,” not just “Solidity programmers,” right?</p><p>A programmer can do some contract development work when needed, but a contract developer can only develop contracts. How high is the learning curve for Solidity itself? Generally, you can start writing in about half a week.</p><p>Then there’s DeFi development, as most people doing contract development are learning DeFi development. The problem here is that, whether it’s Centralized Finance or Decentralized Finance, the core is still “finance,” and “decentralized” is just an adjective modifying finance.</p><p>What is “finance”? It’s an entirely different field from being a “programmer.” The world’s elites are engaged in finance on Wall Street, so can a programmer, who has switched careers, truly grasp finance? Aren’t current DeFi projects all related to leverage, staking, and lending? Wasn’t Luna’s collapse caused by excessive leverage? How many capital firms were involved behind Luna? Can the average person fully understand the reasons behind Luna’s collapse? Probably not, and even professional financial analysts might struggle to get clear answers after long analysis.</p><p>In other words, professional finance experts are not necessarily programmers, and programmers are almost never professional finance experts. The financial industry is deep; it’s not something you can grasp just by learning to code and picking up Solidity, and certainly not something a programmer aspiring to DeFi can easily master.</p><p>Furthermore, even if a programmer understands DeFi, what can they do with that knowledge? They can end up working for the big capital players, implementing whatever business logic is assigned to them. Is there room for creativity? Are you going to design your own financial logic? That’s laughable. The ones who have control over vast amounts of capital are never programmers, and programmers never have control over vast amounts of capital.</p><p>What I mean is, if a programmer wants to understand finance deeply and express unique insights into the entire financial industry, it’s… almost impossible. It’s extremely difficult, and anyone capable of doing that won’t be a programmer. However, if you just want to understand a particular technical field and share some opinions, it’s still possible. At least you won’t need to own (or manage assets for others) a vast amount of capital.</p><p>What if a programmer who understands finance starts their own financial company? Are you sure?</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Currently, when the job market mentions “contract development,” it generally refers to “EVM contract development on Ethereum.” However,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Programmers" scheme="https://en.smallyu.net/tags/Programmers/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Recent Job Search Record</title>
+    <link href="https://en.smallyu.net/2024/09/11/Recent%20Job%20Search%20Record/"/>
+    <id>https://en.smallyu.net/2024/09/11/Recent%20Job%20Search%20Record/</id>
+    <published>2024-09-11T09:00:00.000Z</published>
+    <updated>2024-09-11T12:59:22.776Z</updated>
+    
+    <content type="html"><![CDATA[<p>The Web3 industry is mostly made up of startups and entrepreneurial teams, so there’s little point in documenting so-called interview experiences. Unlike large internet companies, these startups haven’t yet developed standardized processes for selecting employees. I also hope my target companies can be more pragmatic. If I can pass an interview by cramming for two days, but fail if I don’t, then what’s the point of the interview? Moreover, passing or failing the interview doesn’t really mean anything; it’s not like a standardized exam where scores are compared—it’s just a mismatch of intentions between the two parties. So I don’t plan to document specific interview questions, only the companies I interviewed with and my brief impressions.</p><ul><li><a href="https://lumoz.org/">Lumoz</a></li></ul><p>They work on a Baas platform and claim to have collaborated with Merlin Chain. I declined the second interview after the first.</p><p>On one hand, I dislike Baas platforms—the term itself sounds outdated, and it’s a B2B business, which generally isn’t profitable. The work mainly involves deploying some L2 networks, which is pretty boring and has nothing to do with the Computer Layer mentioned on their website.</p><p>On the other hand, I think Merlin Chain is a scam, so any platform collaborating with such a project can’t be that great either. Merlin Chain used Ethereum’s code to make a BTC L2. Isn’t that absurd? Moreover, it’s run by Chinese people, and the project is filled with “Chinese wisdom.”</p><ul><li><a href="https://rss3.io/">RSS3</a></li></ul><p>RSS3 is an OP L2 network currently aiming to improve the TPS of its execution layer client, with two optimization directions: parallel EVM and database optimization.</p><p>I remember that L2’s TPS used to be limited by the specific size of each transaction on L1. After blobs were introduced, I’m not sure if the TPS bottleneck for L2 is now at the DA level.</p><ul><li><a href="https://web3.bitget.com/en/">Bitget Wallet</a></li></ul><p>Bitget Wallet’s user growth department places a lot of emphasis on Web2 skills, including middleware usage and programming language details.</p><ul><li><a href="https://www.nubit.org/">Nubit</a></li></ul><p>A Bitcoin L2 project. The HR interview included some written tests, mainly basic questions like “How does Bitcoin’s 21M cap come about?” Whoever made this test must really love blockchain and “gets” it. I quite like that vibe.</p><p>During the technical interview, I learned more about the project. It’s not actually a Bitcoin L2 but rather a Bitcoin DA. They built a chain using Cosmos and used Bitcoin’s block height as a data index, marking when DA data is uploaded to the chain.</p><p>If other chains use this chain as a DA layer to upload data, an index is needed to find their own DA data, and Bitcoin’s block height serves as the index. So this project is merely riding the Bitcoin wave and doesn’t really have much to do with Bitcoin.</p><ul><li><a href="https://baike.baidu.com/item/%E4%BA%A6%E6%9D%A5%E4%BA%91/23681499">Elastos</a></li></ul><p>If you can call it an interview. It was very hasty, just a 10-minute phone chat. The task was for a 3-month project related to Bitcoin, setting up a Bitcoin node, and developing some middleware. The project timeline was 1 month for research, 1 month for development, and 1 month for delivery. After the project ends, the team disbands. Unfortunately, I forgot to ask what the specific project entailed.</p><p>I want to mention my feeling about projects with such defined timeframes. There are two scenarios: either the initiator is very capable, with extensive project management and development experience, and the project itself isn’t very technical or challenging, allowing them to control the timeline precisely. The second scenario is that the initiator wants to make quick money but lacks both technical skills and funds, and is ignorant of the project’s difficulty or how to form a long-term team. Given that the project timeline includes research, it’s clear this company falls into the latter category.</p><ul><li><a href="https://group.hashkey.com/en">HashKey Group</a></li></ul><p>This was one of the better interview experiences. The interviewer seemed quite experienced, asking questions as they came to mind, at least keeping the conversation on the same wavelength, rather than coming off as rigid.</p><p>They were hiring for an exchange wallet, so the candidate needed to understand various blockchains, especially the ins and outs of sending and receiving transactions. Concerns about forks, rollbacks, and backend development (like middleware and database issues) were also raised.</p><p>From both <a href="/2023/06/29/%E6%9C%80%E8%BF%91%E6%89%BE%E5%B7%A5%E4%BD%9C%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%886%E6%9C%88%E4%BB%BD%EF%BC%89/">last year’s</a> and this year’s interview experiences, I’ve concluded that for exchange wallet departments, the “ideal candidate” is someone who is a “Web2 backend developer with blockchain knowledge.” This means someone with Web2 backend experience who also understands basic blockchain concepts and knows how to handle transactions.</p><p>Web2 backend development typically involves familiarity with middleware and databases, like Kafka and Redis. Interview questions might include designing and implementing a message queue or solving distributed transaction problems in MySQL—classic Web2 development issues.</p><p>Of course, I know almost nothing about Web2, so I always struggle when asked about it in interviews. Later, I just started admitting I didn’t know. If I hadn’t been in the blockchain industry, I might have delved deeper into those technologies. I remember right after graduation, I was even translating and learning some <a href="https://github.com/smallyunet/advanced-java">classic technical topics</a>.</p><p>Another good point about this interview was that the interviewer didn’t ask, “What is Go’s GMP scheduling mechanism?” I’ve been asked this many, many times and still have no interest in looking up the answer. You can search “Golang GMP” on Google or YouTube and see how many of the results are in Chinese. Who’s actually interested in this question?</p><ul><li><a href="https://www.matchain.io/">Matchain</a></li></ul><p>The HR was nice and cute, saying the project is a Cosmos-based chain with a testnet and many users, preparing to launch the mainnet.</p><p>The interviewer was pretty bad, constantly asking about L2 details. I said I didn’t know, yet they kept asking until I was speechless. They didn’t ask about anything else. I later learned they are using an opBNB L2, so it’s a BNB ecosystem project.</p><ul><li><a href="https://www.zhipin.com/gongsi/9f4beb0fb87ed3bf1nJz2t60Fw~~.html">TokenInsight</a></li></ul><p>The interview experience was decent (regardless of the result or if we were a good match). The interviewer asked questions impromptu, similar to the interviewer from HashKey Group, speaking slowly, thinking as they asked.</p><p>This company is working on a custodial wallet. They mainly asked basic blockchain concepts.</p><p>They gave a written test with a “simple” Leetcode question, asking to choose between merging sorted linked lists and reversing a linked list. I haven’t paid much attention to such topics lately or practiced coding problems, so I probably wrote the wrong code during the interview.</p><p>Interestingly, I wrote a detailed analysis of these two problems <a href="https://gub.smallyu.net/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%93%E9%A2%98/Linked%20list/%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.html">years ago</a>.</p><p>That analysis is part of a chapter in “<a href="https://gub.smallyu.net/%E5%B0%81%E9%9D%A2.html">Ground-Up Blockchain</a>,” a book I started writing, the source code for which is here: <a href="https://github.com/smallyunet/ground-up-blockchain">smallyunet&#x2F;ground-up-blockchain</a>. The project has been abandoned for a long time.</p><ul><li><a href="https://www.gate.io/">Gate.io</a> (Spot Trading Department)</li></ul><p>A casual chat. I expected the “Exchange + Golang” role to involve a lot of Go technical details, but they only asked general, high-level questions like “What practical uses does blockchain have in real life?” I suspect the interviewer had already made up their mind to pass on me before the interview even started.</p><ul><li><a href="https://www.gate.io/">Gate.io</a> (Gate Chain Department)</li></ul><p>From the HR’s perspective, the project is a Layer 2 chain that mimics opBNB with some optimizations, and they’re also mimicking TIA in the DA area.</p><p>The technical interview was quite interesting, but I’m too lazy to go into detail :P</p><p>One interesting thing was that before the interview, the HR repeatedly advised me to prepare, review some stuff over the next couple of days. This sudden “kindness” made me a bit suspicious. I wasn’t sure what the motive was—perhaps the HR had a commission incentive?</p><p>I’ve never understood what to prepare for before an interview. Your actual work is always on your mind, and cramming for non-work-related tasks over two days won’t yield results. In short, what you know, you know; what you don’t know, you can’t learn in two or three days. So what exactly is there to prepare for?</p><p>As for employers, they should be looking at a candidate’s work experience over the past few years, not just whether they’ve crammed for two or three days.</p><h3 id="Phase-Summary"><a href="#Phase-Summary" class="headerlink" title="Phase Summary"></a>Phase Summary</h3><p>I haven’t found a job yet, and the job search isn’t over, but since this has been going on for quite some time, I think it’s necessary to wrap up this blog post for now and start a new one later. As for documenting interview experiences, it seems I’ve always recorded every <a href="/tags/%E6%89%BE%E5%B7%A5%E4%BD%9C/">job search</a> since I started working, and I’ll probably continue to do so.</p><p>This phase of the record roughly spans from July 20 to September 15.</p><p>Around July 20, I started thinking about quitting and began my first interview. September 15 is the day I officially resigned. I haven’t been sending out many resumes for the past two weeks because I haven’t fully left my current job and haven’t wanted to start a full-on job search yet.</p><p>How’s the job market this year? Well, it’s definitely not better than last year. It feels like there are even fewer job openings this year. How should one feel about this? Probably a mix of no regrets about the past, slight anxiety about the future’s uncertainty, and a blind sense of optimism about what’s ahead.</p><p>By the way, the entire cryptocurrency industry is valued at around $2 trillion. Can we find a $3000 job to sustain ourselves in this industry? Will the world give us that chance?</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;The Web3 industry is mostly made up of startups and entrepreneurial teams, so there’s little point in documenting so-called interview</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Job Hunting" scheme="https://en.smallyu.net/tags/Job-Hunting/"/>
+    
+  </entry>
   
   <entry>
     <title>What is the Meaning of Writing a Blog?</title>
@@ -1531,9 +1581,9 @@ li:nth-child(even) {
     
     
     
-    <category term="Learning" scheme="https://en.smallyu.net/tags/Learning/"/>
-    
     <category term="Programming Languages" scheme="https://en.smallyu.net/tags/Programming-Languages/"/>
+    
+    <category term="Learning" scheme="https://en.smallyu.net/tags/Learning/"/>
     
   </entry>
   
@@ -2544,9 +2594,9 @@ li:nth-child(even) {
     
     
     
-    <category term="Work" scheme="https://en.smallyu.net/tags/Work/"/>
-    
     <category term="Blockchain" scheme="https://en.smallyu.net/tags/Blockchain/"/>
+    
+    <category term="Work" scheme="https://en.smallyu.net/tags/Work/"/>
     
   </entry>
   

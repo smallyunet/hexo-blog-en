@@ -124,7 +124,7 @@ div.word-count {
     font-size: 85%;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 860px) {
     div.word-count {
         display: none;
     }
@@ -270,6 +270,7 @@ div.word-count {
     border-left: .25em solid #dfe2e5;
     margin-block-start: 1em;
     margin-block-end: 1em;
+    font-size: 90%;
 }
 
 .mobile .micro-blog blockquote {
