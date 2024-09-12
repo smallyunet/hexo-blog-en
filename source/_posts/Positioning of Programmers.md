@@ -1,7 +1,9 @@
 ---
 title: Positioning of Programmers
 date: 2020-01-11 18:19:45
-tags: Work
+tags: 
+- Programmer
+- Work
 ---
 
 One terrifying thing is when programmers no longer focus on code, software, systems, and architecture, but rather on products, operations, and sales. Their outlook shifts from improving code quality, iterating better software, and making better engineering to enhancing documentation output and team morale.

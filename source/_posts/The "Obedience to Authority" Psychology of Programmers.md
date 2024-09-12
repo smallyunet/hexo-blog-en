@@ -1,7 +1,7 @@
 ---
 title: The "Obedience to Authority" Psychology of Programmers
 tags:
-  - Programmers
+  - Programmer
   - Psychology
 date: 2023-07-30 22:35:34
 draft_date: 2023-07-30 19:49:23

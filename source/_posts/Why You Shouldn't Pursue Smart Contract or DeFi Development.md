@@ -1,7 +1,7 @@
 ---
 title: Why You Shouldn't Pursue Smart Contract or DeFi Development
 date: 2024-09-11 20:51:35
-tags: Programmers
+tags: Programmer
 ---
 
 Currently, when the job market mentions "contract development," it generally refers to "EVM contract development on Ethereum." However, in reality, Ethereum is not the only blockchain. There are potentially hundreds of blockchains, and Ethereum is not the only one with smart contracts. Solana has SVM, Polkadot uses Wasm, Cosmos achieves smart contract functionality through its parallel chains, and there are many other implementations.

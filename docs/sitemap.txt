@@ -1,4 +1,7 @@
 https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn't%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/
+https://en.smallyu.net/2024/09/12/Why%20You%20Shouldn't%20Engage%20in%20Secondary%20Development%20of%20Ethereum/
+https://en.smallyu.net/2020/01/11/Positioning%20of%20Programmers/
+https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/
 https://en.smallyu.net/2024/09/11/Recent%20Job%20Search%20Record/
 https://en.smallyu.net/2024/08/28/My%20Cryptocurrency%20Dollar-Cost%20Averaging%20Strategy%20(Part%201)/
 https://en.smallyu.net/2024/08/30/What%20is%20the%20Meaning%20of%20Writing%20a%20Blog/
@@ -65,7 +68,6 @@ https://en.smallyu.net/2022/05/25/Mental%20Attitudes%20in%20Interpersonal%20Comm
 https://en.smallyu.net/2022/05/02/Records%20of%20Psychological%20Treatment/
 https://en.smallyu.net/2019/02/12/Born%20Human,%20But%20Want%20to%20Become%20a%20God/
 https://en.smallyu.net/2021/06/24/%22I%22%20am...%20(Series)/
-https://en.smallyu.net/2020/01/11/Positioning%20of%20Programmers/
 https://en.smallyu.net/2019/03/14/Why%20I%20Want%20to%20%22Travel%20Thousands%20of%20Miles%22/
 https://en.smallyu.net/2022/04/21/How%20to%20Deal%20with%20Misunderstandings/
 https://en.smallyu.net/2019/03/27/Design%20Flaws%20in%20Elevator%20Floor%20Display%20Screens/
@@ -119,7 +121,6 @@ https://en.smallyu.net/2023/07/01/Understanding%20Blockchain%20Consensus%20Mecha
 https://en.smallyu.net/2023/07/08/Response%20to%20Ideas%20on%20Layer%202%20Project%20Entrepreneurship/
 https://en.smallyu.net/2023/07/12/How%20to%20Distinguish%20Between%20Public%20Chains%20and%20Consortium%20Chains/
 https://en.smallyu.net/2023/07/12/Blockchain%20Technology%20Interview%20Questions/
-https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/
 https://en.smallyu.net/2023/10/03/Pirates/
 https://en.smallyu.net/2023/10/04/Why%20Bitcoin%20Doesn't%20Use%20Probabilistic%20Encryption%20Functions/
 https://en.smallyu.net/2023/10/10/How%20to%20Work%20Remotely%20in%20a%20Healthy%20Way/
@@ -180,7 +181,6 @@ https://en.smallyu.net/tags/Layer2/
 https://en.smallyu.net/tags/Entrepreneurship/
 https://en.smallyu.net/tags/Algorithm/
 https://en.smallyu.net/tags/Crypto-Trading/
-https://en.smallyu.net/tags/Programmers/
 https://en.smallyu.net/tags/Psychology/
 https://en.smallyu.net/tags/Opinions/
 https://en.smallyu.net/tags/Mathematics/
@@ -195,3 +195,4 @@ https://en.smallyu.net/tags/Ethereum/
 https://en.smallyu.net/tags/Scripted-Murder-Mysteries/
 https://en.smallyu.net/tags/Cryptocurrency-Trading/
 https://en.smallyu.net/tags/Script-Murder/
+https://en.smallyu.net/tags/Programmer/
