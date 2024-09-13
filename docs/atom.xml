@@ -1606,9 +1606,9 @@ li:nth-child(even) {
     
     
     
-    <category term="Programming Languages" scheme="https://en.smallyu.net/tags/Programming-Languages/"/>
-    
     <category term="Learning" scheme="https://en.smallyu.net/tags/Learning/"/>
+    
+    <category term="Programming Languages" scheme="https://en.smallyu.net/tags/Programming-Languages/"/>
     
   </entry>
   
