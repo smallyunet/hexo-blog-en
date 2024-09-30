@@ -39,8 +39,11 @@ The targets and allocation proportions I chose are:
 | 7   | SOL    | 5%         | Smart Contract Platform | High | ❌ |
 | 8   | FIL    | 5%         | PoSt | Very High | ❌       |
 | 9   | TON    | 5%         | Smart Contract Platform | Very High | ❌ |
-| 10  | XEC    | 3%         | PoW, UTXO | Very High | ✅    |
-| 11  | DASH   | 2%         | PoW, UTXO | Very High | ✅    |
+|~~10~~|~~XEC~~|~~3%~~|~~PoW, UTXO~~|~~Very High~~|~~✅~~|
+|~~11~~|~~DASH~~|~~2%~~|~~PoW, UTXO~~|~~Very High~~|~~✅~~|
+|10|XMR|5%|PoW, UTXO|Very High|❌|
+
+(Updated on 2024.09.26)
 
 You can view this collection of coins in this public [Watchlist](https://coinmarketcap.com/watchlist/66d339a5c316be09d04b7b16/), which links to the CoinMarketCap website. You'll notice that nearly all of the coins have a market cap ranking within the top 100, following the fourth principle from “[Some Small Tips for Crypto Investing](/2024/05/04/炒币投资的小-tips/)”.
 
@@ -72,3 +75,18 @@ Additionally, here are the reasons some popular coins were not included:
 | Inscriptions, Runes | BTC transaction fees are too high. |
 
 Wish myself good luck!
+
+### Update (2024.09.26)
+
+XEC and DASH have been removed from the original portfolio. In the previous selection, XEC and DASH were already two assets with insufficient reasons for inclusion, and their total market cap rankings were around 100 or even lower, with poor community engagement.
+
+|||||||
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|~~10~~|~~XEC~~|~~3%~~|~~PoW, UTXO~~|~~Very High~~|~~✅~~|
+|~~11~~|~~DASH~~|~~2%~~|~~PoW, UTXO~~|~~Very High~~|~~✅~~|
+
+More importantly, XMR is now used to replace the combined 5% allocation that was previously held by them. XMR is one of the [main currencies](https://x.com/DarkDotFail/status/1765104459913330820) used on the dark web, which only accepts BTC and XMR. XMR has strong privacy protection features. In the dark web's application domain, XMR, XEC, and DASH are frequently [discussed together](https://x.com/Altcoinbuzznews/status/1746989440373784958) as three comparable cryptocurrencies. If we were to choose one from these three, XMR would be the first choice.
+
+|||||||
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|10|XMR|5%|PoW, UTXO|Very High|❌|
