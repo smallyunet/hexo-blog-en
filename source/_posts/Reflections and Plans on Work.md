@@ -24,7 +24,7 @@ Based on my job search and interview experiences over the past two years, most i
 
 I blindly speculate that those working in blockchain development haven’t become interviewers yet, or, more likely, the ones sitting in the interviewer’s seat got there due to historical or other reasons. The blockchain industry hasn’t yet developed a full pipeline of talent before the bear market eliminated many people.
 
-(So far, the most challenging question I’ve encountered was "Why does PBFT need a second round of voting?" I was asked this two or three times last year. Interestingly, the interviewers who asked this question gave different answers. I later realized this is a complex and controversial issue that isn’t as superficial as it seems. I even wrote an article titled "[PBFT in Blockchain Does Not Need a Second Round of Voting](/2024/06/03/区块链中的PBFT不需要第二次投票/)" to describe my understanding of the issue.)
+(So far, the most challenging question I’ve encountered was "Why does PBFT need a second round of voting?" I was asked this two or three times last year. Interestingly, the interviewers who asked this question gave different answers. I later realized this is a complex and controversial issue that isn’t as superficial as it seems. I even wrote an article titled "[PBFT in Blockchain Does Not Need a Second Round of Voting](/2024/06/03/PBFT%20in%20Blockchain%20Doesn't%20Require%20a%20Second%20Vote/)" to describe my understanding of the issue.)
 
 I am uncertain about my career direction—actually, everyone should feel uncertain. Blockchain has only existed for about ten years, and it’s been just five or six years since the 2017 explosion of altcoins, which is not long enough for an industry to develop a complete career system.
 
