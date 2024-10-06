@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/2024/10/06/Recent%20Solo%20Travel/</loc>
+    
+    <lastmod>2024-10-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2024/10/04/Reflections%20and%20Plans%20on%20Work/</loc>
     
     <lastmod>2024-10-06</lastmod>
@@ -38,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/micro-blog/index.html</loc>
+    <loc>https://en.smallyu.net/tags/index.html</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -47,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/index.html</loc>
+    <loc>https://en.smallyu.net/micro-blog/index.html</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -83,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn't%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/</loc>
+    <loc>https://en.smallyu.net/2021/10/02/You%20are.../</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -92,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/10/02/You%20are.../</loc>
+    <loc>https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn't%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -137,15 +146,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/07/20/Why%20Scripted%20Murder%20Mysteries%20Need%20Genre%20Classification/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2024/04/14/Why%20PoW%20is%20More%20Decentralized%20than%20PoS/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -156,6 +156,15 @@
   
   <url>
     <loc>https://en.smallyu.net/2021/04/18/Why%20Using%20Blockchain%20for%20Digital%20Currency%20is%20a%20Political%20Issue/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2021/07/20/Why%20Scripted%20Murder%20Mysteries%20Need%20Genre%20Classification/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -218,7 +227,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/09/29/Where%20Consortium%20Chains%20Fall%20Short%20Compared%20to%20Public%20Chains/</loc>
+    <loc>https://en.smallyu.net/2024/08/30/What%20is%20the%20Meaning%20of%20Writing%20a%20Blog/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -227,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/08/30/What%20is%20the%20Meaning%20of%20Writing%20a%20Blog/</loc>
+    <loc>https://en.smallyu.net/2021/09/29/Where%20Consortium%20Chains%20Fall%20Short%20Compared%20to%20Public%20Chains/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -371,15 +380,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/12/30/This-year-2022/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2023/12/31/This-year-2023/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -390,6 +390,15 @@
   
   <url>
     <loc>https://en.smallyu.net/2021/12/31/This-year/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2022/12/30/This-year-2022/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -425,15 +434,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2023/06/04/The%20Company%20Disbanded/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -444,6 +444,15 @@
   
   <url>
     <loc>https://en.smallyu.net/2018/12/04/The%20Concept%20of%20PDL/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -479,15 +488,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/07/23/Reflections%20on%20Two%20Years%20of%20Work/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2023/07/08/Response%20to%20Ideas%20on%20Layer%202%20Project%20Entrepreneurship/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -497,7 +497,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/02/17/Recent%20Work%20in%20the%20Past%20Six%20Months/</loc>
+    <loc>https://en.smallyu.net/2021/07/23/Reflections%20on%20Two%20Years%20of%20Work/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -524,7 +524,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/09/11/Recent%20Job%20Search%20Record/</loc>
+    <loc>https://en.smallyu.net/2024/02/17/Recent%20Work%20in%20the%20Past%20Six%20Months/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -534,6 +534,15 @@
   
   <url>
     <loc>https://en.smallyu.net/2023/06/29/Recent%20Job%20Search%20Records%20(June)/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/09/11/Recent%20Job%20Search%20Record/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -623,7 +632,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/05/18/Pebbling-Game/</loc>
+    <loc>https://en.smallyu.net/2018/11/01/PHP%207,%20Making%20Code%20More%20Elegant%20(Translation)/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -632,7 +641,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2018/11/01/PHP%207,%20Making%20Code%20More%20Elegant%20(Translation)/</loc>
+    <loc>https://en.smallyu.net/2023/05/18/Pebbling-Game/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -659,6 +668,33 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/2023/01/18/On%20Ethereum%20Private%20Key%20Collision/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/06/03/PBFT%20in%20Blockchain%20Doesn't%20Require%20a%20Second%20Vote/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2019/08/19/Overview%20of%20Basic%20Rust%20Syntax/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2022/11/15/Observations%20on%20the%20Blockchain%20Industry/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -677,52 +713,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/01/18/On%20Ethereum%20Private%20Key%20Collision/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2022/08/27/One%20Year%20Work%20Review/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2019/08/19/Overview%20of%20Basic%20Rust%20Syntax/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2024/06/03/PBFT%20in%20Blockchain%20Doesn't%20Require%20a%20Second%20Vote/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2021/07/03/My%20Recent%20Job%20Hunting%20Experience/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2022/02/01/New%20Year's%20Eve/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -740,7 +731,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/09/19/Let's%20Talk%20About%20Dreams/</loc>
+    <loc>https://en.smallyu.net/2022/02/01/New%20Year's%20Eve/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -749,7 +740,16 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/05/17/Limitations%20of%20PDP%20Proof%20of%20Storage/</loc>
+    <loc>https://en.smallyu.net/2021/07/03/My%20Recent%20Job%20Hunting%20Experience/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2019/09/19/Let's%20Talk%20About%20Dreams/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -785,7 +785,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/12/03/My%20Cryptocurrency%20Trading%20Bot/</loc>
+    <loc>https://en.smallyu.net/2023/05/17/Limitations%20of%20PDP%20Proof%20of%20Storage/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -794,7 +794,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2018/10/31/Java%2011%20Tutorial%20(Translation)/</loc>
+    <loc>https://en.smallyu.net/2022/12/03/My%20Cryptocurrency%20Trading%20Bot/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -812,7 +812,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/05/26/Key%20Points%20of%20Issuing%20Cryptocurrency/</loc>
+    <loc>https://en.smallyu.net/2018/10/31/Java%2011%20Tutorial%20(Translation)/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -830,25 +830,16 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/2024/05/26/Key%20Points%20of%20Issuing%20Cryptocurrency/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2021/11/21/Is%20GitBook%20Good%20to%20Use?/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2023/07/12/How%20to%20Distinguish%20Between%20Public%20Chains%20and%20Consortium%20Chains/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2021/04/23/I%20Don't%20Insult%20People%20on%20My%20Blog/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -866,7 +857,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/03/03/If%20You%20Could%20Start%20Over,%20How%20Would%20You%20Live/</loc>
+    <loc>https://en.smallyu.net/2023/07/12/How%20to%20Distinguish%20Between%20Public%20Chains%20and%20Consortium%20Chains/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -876,6 +867,24 @@
   
   <url>
     <loc>https://en.smallyu.net/2019/12/15/I%20Personally%20Wrote%20Unmaintainable%20Code/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2019/03/03/If%20You%20Could%20Start%20Over,%20How%20Would%20You%20Live/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2021/04/23/I%20Don't%20Insult%20People%20on%20My%20Blog/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -911,7 +920,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/05/06/Half-Year%20Work%20Review/</loc>
+    <loc>https://en.smallyu.net/2021/04/11/Hey,%20Long%20Time%20No%20See/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -920,7 +929,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/04/11/Hey,%20Long%20Time%20No%20See/</loc>
+    <loc>https://en.smallyu.net/2023/05/06/Half-Year%20Work%20Review/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -947,15 +956,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2020/08/09/Giving%20Blockchain%20a%20Definition/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -965,7 +965,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/09/28/Enjoy%20Your%20Life/</loc>
+    <loc>https://en.smallyu.net/2020/08/09/Giving%20Blockchain%20a%20Definition/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -975,6 +975,15 @@
   
   <url>
     <loc>https://en.smallyu.net/2023/03/30/Don't%20Underestimate%20ChatGPT/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2021/09/28/Enjoy%20Your%20Life/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1010,6 +1019,15 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/2022/12/20/Differences%20Between%20Proof%20of%20Storage_Space_Replication/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2024/05/30/Developer's%20Mindset/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -1020,15 +1038,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2023/06/24/Didn't%20Find%20a%20Job/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2022/12/20/Differences%20Between%20Proof%20of%20Storage_Space_Replication/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1091,7 +1100,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/02/12/Born%20Human,%20But%20Want%20to%20Become%20a%20God/</loc>
+    <loc>https://en.smallyu.net/2021/02/11/Blog%20Theme%20Sharing%20Plan%20(Draft)/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1100,7 +1109,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/02/11/Blog%20Theme%20Sharing%20Plan%20(Draft)/</loc>
+    <loc>https://en.smallyu.net/2019/02/12/Born%20Human,%20But%20Want%20to%20Become%20a%20God/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1127,15 +1136,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2018/12/17/Basics%20of%20Scala%20Syntax/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2019/01/06/Beijing,%20Beijing/</loc>
     
     <lastmod>2024-09-13</lastmod>
@@ -1145,25 +1145,16 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/2018/12/17/Basics%20of%20Scala%20Syntax/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2020/03/21/An%20Interactive%20Method%20for%20Side%20Navigation%20Bar/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2023/03/26/A%20Pension%20Calculator/</loc>
-    
-    <lastmod>2024-09-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2021/11/12/A%20Person%20I%20Don't%20Quite%20Like/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1182,6 +1173,24 @@
   
   <url>
     <loc>https://en.smallyu.net/2020/05/03/About%20Human%20Abilities,%20Experiences,%20and.../</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2023/03/26/A%20Pension%20Calculator/</loc>
+    
+    <lastmod>2024-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2021/11/12/A%20Person%20I%20Don't%20Quite%20Like/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1262,7 +1271,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2014/06/20/%22The%20First%20Legend%22/</loc>
+    <loc>https://en.smallyu.net/2014/10/04/(Part%201)%20Snowflake%20Ballad%20%E2%80%A2%20Chen%20Yuan/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1271,7 +1280,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2014/10/04/(Part%201)%20Snowflake%20Ballad%20%E2%80%A2%20Chen%20Yuan/</loc>
+    <loc>https://en.smallyu.net/2014/06/20/%22The%20First%20Legend%22/</loc>
     
     <lastmod>2024-09-13</lastmod>
     
@@ -1319,14 +1328,14 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Novel/</loc>
+    <loc>https://en.smallyu.net/tags/Internship/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Internship/</loc>
+    <loc>https://en.smallyu.net/tags/Novel/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1340,13 +1349,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Consensus-Mechanism/</loc>
-    <lastmod>2024-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/MEV/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -1354,7 +1356,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Mission/</loc>
+    <loc>https://en.smallyu.net/tags/Consensus-Mechanism/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1369,6 +1371,13 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Learning/</loc>
+    <lastmod>2024-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Mission/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1410,13 +1419,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Life/</loc>
-    <lastmod>2024-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/Plan/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -1424,7 +1426,21 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/tags/Life/</loc>
+    <lastmod>2024-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/tags/Brave-Stories/</loc>
+    <lastmod>2024-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/File-Proof/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1445,13 +1461,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/File-Proof/</loc>
-    <lastmod>2024-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/ChatGPT/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -1460,6 +1469,13 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Perspective/</loc>
+    <lastmod>2024-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Remote-Work/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1480,28 +1496,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Remote-Work/</loc>
-    <lastmod>2024-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/Tools/</loc>
-    <lastmod>2024-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
-    <lastmod>2024-10-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Proof-of-Storage/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1516,6 +1511,20 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Dollar-Cost-Averaging-Strategy/</loc>
+    <lastmod>2024-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Proof-of-Storage/</loc>
+    <lastmod>2024-10-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
     <lastmod>2024-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
