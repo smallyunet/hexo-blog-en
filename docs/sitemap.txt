@@ -1,3 +1,5 @@
+https://en.smallyu.net/2024/07/28/Quit%20My%20Job/
+https://en.smallyu.net/2024/10/06/Recent%20Solo%20Travel/
 https://en.smallyu.net/2025/01/28/Suppose%20We%20Launch%20an%20Ethereum%20PoS%20Network%20Called%20Oiia%20Network/
 https://en.smallyu.net/2025/01/10/The%20Best%20Way%20to%20Issue%20a%20Cryptocurrency/
 https://en.smallyu.net/2025/01/05/All%20BFT%20Consensus%20Blockchains%20Are%20Centralized/
@@ -6,7 +8,6 @@ https://en.smallyu.net/2024/12/16/Predictions%20for%20the%20Blockchain%20Industr
 https://en.smallyu.net/2024/11/18/The%20Economic%20Challenges%20of%20Restaking%20Projects/
 https://en.smallyu.net/2024/10/15/Understanding%20the%20Technical%20Architecture%20of%20Any%20Blockchain%20Project/
 https://en.smallyu.net/2024/10/12/Interview%20Record%20for%20October/
-https://en.smallyu.net/2024/10/06/Recent%20Solo%20Travel/
 https://en.smallyu.net/2024/10/04/Reflections%20and%20Plans%20on%20Work/
 https://en.smallyu.net/2024/08/28/My%20Cryptocurrency%20Dollar-Cost%20Averaging%20Strategy%20(Part%201)/
 https://en.smallyu.net/2024/09/16/The%20Truth%20About%20Resigning%20Without%20a%20Job%20Lined%20Up/
@@ -74,7 +75,6 @@ https://en.smallyu.net/2020/01/11/Positioning%20of%20Programmers/
 https://en.smallyu.net/2022/03/11/Problems%20in%20the%20Previous%20Company%20(2)/
 https://en.smallyu.net/2021/08/31/Problems%20in%20the%20Previous%20Company/
 https://en.smallyu.net/2022/12/16/Proofs%20of%20Retrievability:%20Understanding%20Document%20Verification/
-https://en.smallyu.net/2024/07/28/Quit%20My%20Job/
 https://en.smallyu.net/2021/11/23/Random%20Thoughts/
 https://en.smallyu.net/2018/11/01/PHP%207,%20Making%20Code%20More%20Elegant%20(Translation)/
 https://en.smallyu.net/2023/05/18/Pebbling-Game/

@@ -6,7 +6,7 @@ tags:
 - Dreams
 ---
 
-A few days ago, I officially submitted my resignation. After a period of transition, I will be able to leave the job that has caused me the most pain since I started working. In last year's story of courage, I set the tone for myself as a [pirate](/2023/10/03/海贼/), because pirates are patient. They can be released from Impel Down and still be righteous heroes, or they can work as laborers on an evil pirate ship while still holding onto their dreams. So even though the idea of quitting formed and was presented within a week, this pain has been long-standing...
+A few days ago, I officially submitted my resignation. After a period of transition, I will be able to leave the job that has caused me the most pain since I started working. In last year's story of courage, I set the tone for myself as a [pirate](/2023/10/03/Pirates/), because pirates are patient. They can be released from Impel Down and still be righteous heroes, or they can work as laborers on an evil pirate ship while still holding onto their dreams. So even though the idea of quitting formed and was presented within a week, this pain has been long-standing...
 
 I thought this was the pain that adults should endure to make money, until one day I suddenly didn't want to continue. Who would turn down money, especially so much money? But imagine, what kind of job would you rather give up earning money than continue to endure? There isn't a single reason that leads to such a result, but I can't write down all the reasons; I can only choose some respectable ones to mention.
 

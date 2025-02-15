@@ -37,7 +37,7 @@ The night scenery was really photogenic:
 
 This accidental shot of a cruise ship turned out really nice, with the reflection of lights and water blending with the distant night scene:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="6.mp4" type="video/mp4">
 </video>
 
@@ -89,7 +89,7 @@ The entrance features some European-style buildings, great for girls taking phot
 
 The Porcelain House has ornate decor, and the place was packed with people. Forget about whether you needed a ticket to enter—there were so many people that it was impossible to go inside:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="16.mp4" type="video/mp4">
 </video>
 
@@ -105,7 +105,7 @@ The final stop in Tianjin was Jinwan Plaza:
 
 It was quite lively with lots of people:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="19.mp4" type="video/mp4">
 </video>
 
@@ -135,7 +135,7 @@ Snapped a candid photo of a girl in Hanfu—her outfit was really beautiful:
 
 There was a lake with many koi fish. The scene depicted a group of small monks gazing at a scholar, which seemed to be part of a story, but I didn’t pay much attention:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="24.mp4" type="video/mp4">
 </video>
 
@@ -143,25 +143,25 @@ At nightfall, the street lights turned on and various performances began. That�
 
 First, I saw a girl dancing on the street:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="25.mp4" type="video/mp4">
 </video>
 
 Meanwhile, there was an interactive performance next door, featuring a matchmaking event:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="26.mp4" type="video/mp4">
 </video>
 
 Further down the street, a stall performed some magic tricks:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="27.mp4" type="video/mp4">
 </video>
 
 There was even a street-side movie showing *A Chinese Odyssey*:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="28.mp4" type="video/mp4">
 </video>
 
@@ -171,7 +171,7 @@ At night, the scholar statue looked even better:
 
 Some street acrobatics:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="30.mp4" type="video/mp4">
 </video>
 
@@ -183,13 +183,13 @@ Photo:
 
 Video:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="32.mp4" type="video/mp4">
 </video>
 
 A more complete video:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="33.mp4" type="video/mp4">
 </video>
 
@@ -197,19 +197,19 @@ Absolutely beautiful! It's called the Waterborne Tang Dynasty Night City, with w
 
 Being surrounded by such beautiful scenery:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="34.mp4" type="video/mp4">
 </video>
 
 The color-changing tree and dancing girl:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="35.mp4" type="video/mp4">
 </video>
 
 A flute performance:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="36.mp4" type="video/mp4">
 </video>
 
@@ -221,7 +221,7 @@ Photo:
 
 Video:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="38.mp4" type="video/mp4">
 </video>
 
@@ -233,19 +233,19 @@ There were many small street performances too.
 
 The most spectacular finale at Hetou Old Street was the Iron Firework Show. Just the viewing platform alone was worth the anticipation. Unlike the enclosed space in the square, here you could see the entire night view of the street:
 
-<video controls width="60%">
+<video controls width="60%" preload="metadata">
   <source src="40.mp4" type="video/mp4">
 </video>
 
 An impressive opening, with music that got the crowd pumped:
 
-<video controls width="60%">
+<video controls width="60%" preload="metadata">
   <source src="41.mp4" type="video/mp4">
 </video>
 
 This section combined all elements—iron fireworks, fire cubes, and water flyboarding:
 
-<video controls width="60%">
+<video controls width="60%" preload="metadata">
   <source src="42.mp4" type="video/mp4">
 </video>
 
@@ -253,13 +253,13 @@ After the Iron Firework Show, there was a Phoenix Flying performance:
 
 Short version:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="43.mp4" type="video/mp4">
 </video>
 
 Full version:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="44.mp4" type="video/mp4">
 </video>
 
@@ -287,7 +287,7 @@ Tang Paradise Night City is overrated. It’s got a big reputation, but there’
 
 This small performance was so crowded, with layers of people:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="48.mp4" type="video/mp4">
 </video>
 
@@ -305,7 +305,7 @@ Finally, the sky turned dark, and I thought the lights would look better at nigh
 
 The one-way path leading to the exit:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="52.mp4" type="video/mp4">
 </video>
 
@@ -319,7 +319,7 @@ Tang Paradise is the best place to visit in Xi'an, far better than the Night Cit
 
 Upon entering, you’re greeted with a welcoming performance, and you can follow the parade:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="54.mp4" type="video/mp4">
 </video>
 
@@ -329,7 +329,7 @@ The parade marches to Ziyun Tower's North Square, where the *Dream Back to the T
 
 After the show, there’s an accompanying musical fountain performance:
 
-<video controls width="60%">
+<video controls width="60%" preload="metadata">
   <source src="55.mp4" type="video/mp4">
 </video>
 
@@ -337,37 +337,37 @@ This entire set of performances lasts nearly an hour, keeping you busy right aft
 
 Still at the North Square, if the timing is right, you can catch the *Splendid China* performance, which is more like a variety show, featuring everything from fountains, dance, and lion dances. It lasts about an hour:
 
-<video controls width="60%">
+<video controls width="60%" preload="metadata">
   <source src="56.mp4" type="video/mp4">
 </video>
 
 Afterward, you can see smaller performances elsewhere in the park, like this music show:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="57.mp4" type="video/mp4">
 </video>
 
 And a performance about the Tea God story:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="58.mp4" type="video/mp4">
 </video>
 
 At the Chang’an Wharf, there was a girl dancing:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="59.mp4" type="video/mp4">
 </video>
 
 In the Noble Ladies' Hall, there was a beautiful "unmovable doll" performance, much better than the ones in the Night City:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="60.mp4" type="video/mp4">
 </video>
 
 Right after the "unmovable doll" performance, there was a poetry duel featuring Li Bai:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="61.mp4" type="video/mp4">
 </video>
 
@@ -377,25 +377,25 @@ For *The Dream of the Tang Dynasty*, you board a boat that takes you to the midd
 
 This video captures the overall setting:
 
-<video controls width="60%">
+<video controls width="60%" preload="metadata">
   <source src="62.mp4" type="video/mp4">
 </video>
 
 The show features 3D water projections:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="63.mp4" type="video/mp4">
 </video>
 
 And dancers on the stairs:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="64.mp4" type="video/mp4">
 </video>
 
 Here’s a clip near the end of the show:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="65.mp4" type="video/mp4">
 </video>
 
@@ -431,13 +431,13 @@ After leaving the Drum Tower, I headed to Yongxing Lane:
 
 Yongxing Lane had a viral bowl-smashing liquor spot:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="73.mp4" type="video/mp4">
 </video>
 
 Although it’s also a commercial street, it was quite lively, and there was even a puppet show:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="74.mp4" type="video/mp4">
 </video>
 
@@ -463,7 +463,7 @@ I had initially planned to visit many other places, intending to stop by some of
 
 Finally, one of my favorite moments was Li Bai reciting poetry on the boat:
 
-<video controls width="40%">
+<video controls width="40%" preload="metadata">
   <source src="78.mp4" type="video/mp4">
 </video>
 
