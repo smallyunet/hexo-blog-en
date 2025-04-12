@@ -1,6 +1,6 @@
 ---
 title: Don't Underestimate ChatGPT
-tags: ChatGPT
+tags: AI
 date: 2023-03-30 17:09:36
 draft_date: 2023-03-30 10:32:51
 ---

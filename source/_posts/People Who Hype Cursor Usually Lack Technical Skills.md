@@ -18,15 +18,15 @@ Now back to the models themselves. o1 is the best model so far—at least from m
 
 For example, when calling a smart contract, the original command was:
 
-===
+```
 cast call requestPrice(string) "BTC" —-rpc-url=http://eth:8545
-===
+```
 
 Later, I needed to call another function that takes one more argument, so I copied the code and changed it to:
 
-===
+```
 cast call requestPrice(string) "BTC" "USD" —-rpc-url=http://eth:8545
-===
+```
 
 Did you notice the issue right away? Actually, 4o did give a correct analysis, just not precise—it listed three possible causes. But o1 got it right straight away.
 
@@ -44,6 +44,6 @@ This leads to a difference: people who use GoLand tend to focus more on code log
 
 As for code autocompletion, GoLand with the Copilot plugin handles everyday needs just fine. Most of the time, what needs completing is something like a log statement. For more complex, logic-heavy code, I’m hesitant to rely on AI.
 
-Maybe the reason some people recommend Cursor to me is they assume I don’t know how to use AI, or think I don’t know how to use Cursor (?). That’s odd. I tried ChatGPT back in 2023 when it first blew up and even wrote [Don’t Underestimate ChatGPT](/2023/03/30/不要小瞧-ChatGPT/). Nowadays, I use ChatGPT all the time—both for work and in life.
+Maybe the reason some people recommend Cursor to me is they assume I don’t know how to use AI, or think I don’t know how to use Cursor (?). That’s odd. I tried ChatGPT back in 2023 when it first blew up and even wrote [Don’t Underestimate ChatGPT](/2023/03/30/Don't%20Underestimate%20ChatGPT/). Nowadays, I use ChatGPT all the time—both for work and in life.
 
 All in all, my point is: it’s totally fine to like Cursor or to use Cursor. Just don’t hype Cursor too much.
