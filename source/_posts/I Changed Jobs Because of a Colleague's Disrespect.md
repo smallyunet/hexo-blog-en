@@ -35,4 +35,27 @@ Looking at the team’s future, everything depends on the Leader’s judgment—
 
 All in all, from various angles, there were plenty of reasons to change jobs. So to sum up, now was the right time.
 
-(Note: The reasons for switching jobs have nothing to do with my evaluation of the project or the industry. I had doubts about the project just three days after joining—details are in “[The Economic Dilemma of Restaking Projects](/2024/11/18/Restaking项目的经济难题/)”. Even now, as an internal developer, I still haven’t found an answer. But that didn’t stop me from wanting to keep working on the project and hoping it would succeed. In fact, we insiders want it to succeed even more than outsiders do because our interests are directly tied to it. So I want to reiterate: changing jobs had nothing to do with the project’s merits—it was purely about the work environment.)
+(Note: The reasons for switching jobs have nothing to do with my evaluation of the project or the industry. I had doubts about the project just three days after joining—details are in “[The Economic Dilemma of Restaking Projects](/2024/11/18/The%20Economic%20Challenges%20of%20Restaking%20Projects/)”. Even now, as an internal developer, I still haven’t found an answer. But that didn’t stop me from wanting to keep working on the project and hoping it would succeed. In fact, we insiders want it to succeed even more than outsiders do because our interests are directly tied to it. So I want to reiterate: changing jobs had nothing to do with the project’s merits—it was purely about the work environment.)
+
+### Supplement (2025.04.20)
+
+Disrespecting others really is a habit. During the handover after I resigned, he wanted me to spend a day doing something. I agreed and said I was available over the weekend.
+
+- On Saturday morning, I asked whether we should do it that day or Sunday. I suggested Saturday, and he said Sunday.
+- On Sunday at 9 AM, I asked what time we would start. He replied around noon, saying, “I have an idea. Let’s go over it later during a meeting.”
+- I followed up by asking, “By ‘later,’ do you mean in the evening?” (He read the message.)
+- I didn’t get any response for three hours.
+
+Just looking at this exchange, I really couldn’t figure out what he meant. What exactly did he want me to do, and when? I had already cleared out a whole day for this, but he acted all indifferent. Did he expect me to sit in front of the computer all day waiting for his reply, on standby? I don’t get it. Did he think I should accommodate his schedule? I had already resigned.
+
+It’s either a lack of respect or a basic lack of professional etiquette. How can something as simple as scheduling a meeting be handled so poorly? I don’t get it...
+
+Thinking back, I’ve actually noticed issues with his schedule ever since I joined the company. For instance, during almost every morning meeting, he was “out somewhere,” or simply didn’t attend. He frequently skipped morning meetings and was basically unavailable during the morning hours. Also, between noon and 3 PM, he was usually offline for a nap. Then from 5 PM onward, he would go out to play sports, and was always unavailable between 5 and 7 PM.
+
+His most active hours were from 10 PM to midnight. Starting at 10, messages would start popping up in the group, and sometimes he would even call me at midnight to talk about code issues.
+
+When I first joined, I was already working a normal 8-hour day. But come evening, just as I was ready to log off around 9 or 10 PM, he’d get online and start being active, pushing work forward. As a newcomer, I had no choice but to go along for a few days. This resulted in a pretty high frequency and intensity of overtime during my early days, all because I had to adjust to his schedule.
+
+Later, due to changes in my work responsibilities, I didn’t collaborate with him as much, so I started ignoring his messages. Anything sent after 10 PM, I just wouldn’t look at.
+
+From what I’ve described, it should be clear that working with someone like this is really frustrating. Our schedules were completely out of sync—when I reached out, he wasn’t around; when he reached out, I didn’t want to reply. It made work difficult to move forward. The bigger issue is that the team seemed to allow this kind of behavior by default. So where does the real problem in the team come from?
