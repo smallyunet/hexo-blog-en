@@ -35,6 +35,14 @@ Found out during the HR interview that the exchange is Coinstone. I felt I had a
 
 But honestly, I don’t think the interviewer was very technically competent. If someone like that were to be my superior, I don’t think I’d be very happy. So even if I get an offer, I might have to think twice. If I don’t get one, that’s fine too.
 
+(Added on April 22, 2025) Just remembered and wanted to briefly add some of the conversation details from back then:
+
+I said the principle behind mnemonic phrases is that there’s a predefined word list, and a few words are selected from this list as the mnemonic. The other person said that’s not how it works—a mnemonic is essentially a seed, and this seed can be expanded into a tree structure, with each node in the tree representing a public/private key pair.
+
+I said the current standard for wallets is BIP-39. He said that’s incorrect—the standard for wallets is BIP-44.
+
+He asked me: when the `grep` command on a server matches data, how many records does it display? Assuming there’s only one match. (This question led me to conclude that "the other person is not very technically competent.")
+
 <!--
 
 - April 11th, Unknown Project, Wallet Development
