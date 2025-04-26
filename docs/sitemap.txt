@@ -1,3 +1,6 @@
+https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in-Haskell/
+https://en.smallyu.net/2025/04/27/Looking%20Back%20on%20My%20Past%20Failed%20Career%20Experiences/
+https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/
 https://en.smallyu.net/2025/04/11/Interview%20Experience%20in%20April%202025/
 https://en.smallyu.net/2025/04/22/%22Guess%202-3%20of%20the%20Average%22%20Game%20Demo/
 https://en.smallyu.net/2025/04/13/I%20Changed%20Jobs%20Because%20of%20a%20Colleague's%20Disrespect/
@@ -44,7 +47,6 @@ https://en.smallyu.net/2021/09/29/Where%20Consortium%20Chains%20Fall%20Short%20C
 https://en.smallyu.net/2019/06/30/What%20It%20Feels%20Like%20to%20Graduate%20from%20University/
 https://en.smallyu.net/2024/03/13/What%20a%20Bull%20Market%20Means%20for%20the%20Average%20Person/
 https://en.smallyu.net/2019/12/21/What%20is%20Rust's%20Ownership?/
-https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in%20Haskell?/
 https://en.smallyu.net/2023/07/01/Understanding%20Blockchain%20Consensus%20Mechanisms/
 https://en.smallyu.net/2022/06/19/Understanding%20Web%203.0/
 https://en.smallyu.net/2020/03/31/Understanding%20the%20Actor%20Model%20Through%20Erlang/
@@ -119,7 +121,6 @@ https://en.smallyu.net/2021/04/11/Hey,%20Long%20Time%20No%20See/
 https://en.smallyu.net/2023/05/06/Half-Year%20Work%20Review/
 https://en.smallyu.net/2023/03/11/How%20Much%20Does%20It%20Cost%20to%20Eat%20a%20Meal%20in%20Beijing/
 https://en.smallyu.net/2019/04/24/Exception%20Handling%20Mechanisms%20in%20Mainstream%20Programming%20Languages/
-https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/
 https://en.smallyu.net/2020/08/09/Giving%20Blockchain%20a%20Definition/
 https://en.smallyu.net/2021/09/28/Enjoy%20Your%20Life/
 https://en.smallyu.net/2022/12/14/Example%20and%20Explanation%20of%20S-PDP%20File%20Proof/

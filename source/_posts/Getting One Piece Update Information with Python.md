@@ -72,7 +72,7 @@ httpd.serve_forever()
 
 The result is shown as follows:
 
-![preview](preview.png)
+<img src="preview.png" width="30%">
 
 ### Expansion
 
