@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><title>Using Scala to Reimplement Java: A Shallow Practice</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Using Scala to Reimplement Java: A Shallow Practice</h1><div class="time">2018-12-14</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Languages/">Programming Languages</a></li></ul><h3 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h3><p>I wanted to implement a Markdown parser using Java, and I have currently completed the parsing of multi-level headings. Essentially, it involves using regular expressions to match and replace the corresponding content. The program is relatively simple at this stage, and the main process is as follows:</p>
+<p><img src="/mainProcess.png" alt="main process"></p>
+<h3 id="Reimplementation"><a href="#Reimplementation" class="headerlink" title="Reimplementation"></a>Reimplementation</h3><p>Following the same process, I used Scala to implement this functionality, and I will continue to develop it using Scala. First, let’s read the file content. For IO operations, I referred to the “Scala Cookbook,” and it can be done in a single line of code:</p>
+<pre><code class="scala">var srcLines = Source.fromFile(srcFile).getLines().toList
+</code></pre>
+<p>Compared to verbose Java, Scala is indeed more concise. This is the method I previously used to read files in Java:</p>
+<pre><code class="java">/**
+  * Read file content
+  *
+  * @param src File path to read
+  * @return File content
+  */
+private static String readFile(String src) throws IOException &#123;
+    StringBuffer content = new StringBuffer();
+    InputStream is = null;
+    BufferedReader reader = null;
+
+    is = new FileInputStream(src);
+    reader = new BufferedReader(new InputStreamReader(is));
+
+    String line = reader.readLine();
+    while (line != null) &#123;
+        content.append(line);
+        content.append(&quot;\n&quot;);
+        line = reader.readLine();
+    &#125;
+
+    if (reader != null) &#123;
+        reader.close();
+    &#125;
+    if (is != null) &#123;
+        is.close();
+    &#125;
+    return content.toString();
+&#125;
+</code></pre>
+<p>The reason for converting the string to list operations in the Scala version is that there are differences between Scala and Java in using regex matching and replacement APIs. Java uses the Matcher object for iteration, which has methods for finding and replacing:</p>
+<p><img src="/replaceProcess.png" alt="replace process"></p>
+<p>In contrast, Scala’s Regex object has methods like findAllMatchIn and replaceAllIn, but the find method’s object is only for searching, and the replace method cannot locate the matched content. Therefore, in Scala, the file is read into a list, and the text content is traversed with indexes as follows:</p>
+<pre><code class="scala">List.range(0, srcLines.size).foreach(index =&gt; &#123;
+  srcLines = srcLines.updated(index, regexReplace)
+&#125;)
+</code></pre>
+<p>Whether or not there are matches, the loop performs an updated operation on the list, updating the original content to the content after regex replacement. This approach may be slightly inadequate, and I will continue to monitor and rectify performance issues. It can be seen that the programming philosophy of Scala differs somewhat from the typical OOP in Java.</p>
+<p>Finally, regarding file writing, the SDK does not provide a specialized operation object, so you can use the PrintWriter from JDK:</p>
+<pre><code class="scala">val pw = new PrintWriter(new File(outFile))
+pw.write(outString)
+pw.close()
+</code></pre>
+<h3 id="Future-Work"><a href="#Future-Work" class="headerlink" title="Future Work"></a>Future Work</h3><p>“Scala is a language that grows with developers,” and I will use it to complete my graduation project.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

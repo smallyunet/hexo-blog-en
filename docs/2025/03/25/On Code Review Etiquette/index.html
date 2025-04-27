@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><title>On Code Review Etiquette</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>On Code Review Etiquette</h1><div class="time">2025-03-25</div><ul class="tags"><li><span>#</span><a href="/tags/Programmer/">Programmer</a></li></ul><p>Previously, I recommended two blog posts by Yin Wang:</p>
+<ul>
+<li>“<a href="https://www.yinwang.org/blog-cn/2015/03/03/how-to-respect-a-programmer">How to Respect a Programmer</a>”</li>
+<li>“<a href="https://www.yinwang.org/blog-cn/2015/03/11/git-etiquette">Git Etiquette</a>”</li>
+</ul>
+<p>Due to a lack of standardized practices in my past work experiences, I didn’t have a proper understanding of Code Review. Recently, triggered by a colleague’s emotional remarks on this topic, I started to pay more attention to the issue of Code Review.</p>
+<h3 id="Basic-Etiquette-Don’t-Use-FYI"><a href="#Basic-Etiquette-Don’t-Use-FYI" class="headerlink" title="Basic Etiquette: Don’t Use FYI"></a>Basic Etiquette: Don’t Use FYI</h3><p>Google’s published Code Review guidelines, “<a href="https://google.github.io/eng-practices/review/reviewer/standard.html">The Standard of Code Review</a>,” are extremely instructive and comprehensive. Even the process-related issues I currently encounter can be addressed by following this guideline. Of course, this requires that all team members have first agreed upon and understood this guideline, instead of assuming everyone in the company already knows and follows it.</p>
+<p>The guideline (TSCR) already covers process issues and etiquette, so I won’t repeat them here. What caught my attention is a small section: “<a href="https://google.github.io/eng-practices/review/reviewer/comments.html#label-comment-severity">Label comment severity</a>,” which talks about categorizing the importance of comments in Code Review, using prefixes so the author can clearly understand which comments must be addressed and which are optional.</p>
+<p>Other than mandatory comments (which don’t require a prefix), Google’s guideline lists three types of prefixes — all from the reviewer’s perspective and none of them block approval or merging:</p>
+<ul>
+<li><code>Nit</code> (Nitpick): You should change it, but I can accept it if you don’t.</li>
+<li><code>Optional</code>: Just a suggestion, feel free to decide.</li>
+<li><code>FYI</code> (For Your Information): No changes required for this PR, but I find this point interesting — something you can look into later.</li>
+</ul>
+<p>Every time I see “For Your Information,” I instinctively translate it into a common phrase from traditional Chinese culture: “It’s for your own good.”</p>
+<p>Anyone who grew up in Chinese society — even without harsh parenting — likely understands the weight of this phrase.</p>
+<p>For your own good, you must study hard<br>For your own good, you can’t play games<br>For your own good, you must take the civil service exam<br>For your own good, you should get married early<br>For your own good, you have to have children<br>…</p>
+<p>Sometimes, parents use “for your own good” as an excuse to satisfy their desire to control. Other times, they may sincerely mean well but offer poor advice due to limited vision.</p>
+<p>In short, “for your own good” carries a very negative connotation in Chinese. Bringing such language into the workplace is even more absurd. Although “For Your Information” isn’t literally “for your own good,” to avoid misunderstanding, it’s best to avoid this phrasing altogether.</p>
+<p>So, the basic etiquette of Code Review is: don’t use FYI.</p>
+<h3 id="Why-“For-Your-Own-Good”-Is-Often-Wrong"><a href="#Why-“For-Your-Own-Good”-Is-Often-Wrong" class="headerlink" title="Why “For Your Own Good” Is Often Wrong"></a>Why “For Your Own Good” Is Often Wrong</h3><h4 id="Conclusion-First"><a href="#Conclusion-First" class="headerlink" title="Conclusion First"></a>Conclusion First</h4><p>Because no one can truly understand another person.</p>
+<p>Do parents truly understand their children? Do married couples really know what their partner is thinking? Do police investigators fully grasp the minds of the suspects they question? Can psychology experts guess why their girlfriend is mad in the morning? And most importantly — do you really understand yourself?</p>
+<p>So we can draw a conclusion that has nothing to do with technology: out of courtesy, we should avoid telling others “it’s for your own good.”</p>
+<h4 id="A-Concrete-Example"><a href="#A-Concrete-Example" class="headerlink" title="A Concrete Example"></a>A Concrete Example</h4><p>In a recent project, I submitted code that implemented a simple event bus. Both the event’s Publish and Subscribe functions used RW locks to ensure thread-safe map access:</p>
+<pre><code class="Go">func (eb *EventBus) Publish(event Event) &#123;
+    eb.mu.RLock()
+    defer eb.mu.RUnlock()
+    if ch, exists := eb.channels[event]; exists &#123;
+        ch &lt;- event
+    &#125;
+&#125;
+</code></pre>
+<p>The Code Review suggestion I received was to use <code>sync.Map</code> instead:</p>
+<pre><code class="Go">func (eb *EventBus) Publish(event Event) &#123;
+    if ch, ok := eb.channels.Load(event); ok &#123;
+        // Note: Type assertion needed here
+        ch.(chan Event) &lt;- event
+    &#125;
+&#125;
+</code></pre>
+<p>At most, this was a Nit-level comment. I wasn’t particularly concerned, and it was easy to deal with.</p>
+<p>The real issue was that I heard something along the lines of “for your own good” — essentially, “for your own good, you need to understand the difference between RW locks, mutexes, and sync.Map, and then choose the best implementation for the event bus scenario and be able to explain it logically to others.”</p>
+<p>From a technical growth perspective, I personally don’t mind this kind of issue. But this kind of thing feels like textbook answers often used in job interviews. As interviews have evolved in recent years, more and more people have grown tired of such rigid, textbook-style questioning.</p>
+<p>Of course, people who obsess over these low-level technical differences likely have a deep passion for technology — and that’s not a bad thing. We should respect all genuine effort and seriousness about technology. But tech has many different dimensions.</p>
+<h4 id="My-Interests"><a href="#My-Interests" class="headerlink" title="My Interests"></a>My Interests</h4><p>Am I someone who has technical passion? Maybe — sometimes. Otherwise, I wouldn’t have quit Fusionist without a backup job, giving up a salary higher than my current one (even including tokens). Whether it’s tech or anything else, all of us want to chase things we find interesting.</p>
+<p>From my past experiences, here are some tech topics I care about and enjoy exploring just out of curiosity:</p>
+<ul>
+<li><p>What’s the fundamental difference between PoW and PoS? Is PoW better than PoS?</p>
+<ul>
+<li>“<a href="/2024/04/14/Why%20PoW%20is%20More%20Decentralized%20than%20PoS/">Why PoW Is More Decentralized than PoS</a>”</li>
+</ul>
+</li>
+<li><p>How does Ethereum’s PoS differ from Cardano’s PoS?</p>
+<ul>
+<li>Why is Cardano’s PoS considered purer? Why is Ethereum’s PoS more decentralized?</li>
+</ul>
+</li>
+<li><p>What are the pros and cons of PBFT? How can PBFT be optimized?</p>
+<ul>
+<li>“<a href="/2025/01/05/All%20BFT%20Consensus%20Blockchains%20Are%20Centralized/">All BFT Consensus Blockchains Are Centralized</a>”</li>
+<li>“<a href="/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/">Why Ethereum Casper Needs EIP-7251</a>”</li>
+<li>“<a href="/2024/06/03/PBFT%20in%20Blockchain%20Doesn't%20Require%20a%20Second%20Vote/">PBFT in Blockchain Doesn’t Need a Second Round of Voting</a>”</li>
+</ul>
+</li>
+<li><p>How do different types of blockchains handle forks?</p>
+<ul>
+<li>“<a href="/2023/07/01/Understanding%20Blockchain%20Consensus%20Mechanisms/">Understanding Blockchain Consensus Mechanisms</a>”</li>
+<li>“<a href="/2024/08/22/How%20PoS%20Blockchains%20Handle%20Forks/">How PoS Blockchains Handle Forks</a>”</li>
+</ul>
+</li>
+<li><p>What are some interesting potential applications of blockchain?</p>
+<ul>
+<li>“<a href="/2023/05/18/Pebbling-Game/">Pebbling Game</a>”</li>
+<li>“<a href="/2023/02/22/A%20Mechanism%20for%20Generating%20Random%20Numbers%20on%20the%20Blockchain/">A Mechanism for Generating Random Numbers on Blockchain</a>”</li>
+<li>“<a href="/2022/12/27/%22Designing%20a%20'Guess%202_3%20of%20the%20Average'%20dApp%20Game%22/">2&#x2F;3 Average Guessing dApp Game Design</a>”</li>
+</ul>
+</li>
+</ul>
+<p>Are these topics useful? Not really. No interviewer ever asked about them, and they’re rarely useful at work. I just explore them for fun. The answers to these questions aren’t readily available online, not even ChatGPT can give precise answers. Only after studying, reading papers, and combining with personal experience can one form a technical opinion — whether right or wrong.</p>
+<p>So maybe out of mental inertia, I rarely care about overly basic programming questions. Everyone’s different — you can’t force someone to care about something just because of an FYI.</p>
+<h4 id="FYI-Be-a-Good-Writer"><a href="#FYI-Be-a-Good-Writer" class="headerlink" title="FYI: Be a Good Writer"></a>FYI: Be a Good Writer</h4><p>(Yes, I just said don’t use FYI, and here I go again.)</p>
+<p>There’s a memorable chapter in the book “<a href="https://www.joecotellese.com/posts/rework-book-summary/">Rework</a>” titled “Hire great writers.” The point was not about publishing articles or writing reports at work — but that good writers often have a clear and logical way of expressing problems, which is very helpful at work.</p>
+<p>Back to tech — today, writing technical articles is quite common. If someone has a strong understanding of lock usage, they could write a solid piece explaining different types of locks and the best use cases. Share it on various platforms, gain thousands of followers, and if the insights keep coming, maybe even publish a book or open source it as a free e-book… FYI… don’t take it too seriously.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

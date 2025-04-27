@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><title>0.5 Month Internship Review</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>0.5 Month Internship Review</h1><div class="time">2019-01-25</div><ul class="tags"><li><span>#</span><a href="/tags/Internship/">Internship</a></li></ul><p>0.5 months, 2 weeks, handled a total of 2 work orders.</p>
+<h3 id="Work-Order-1"><a href="#Work-Order-1" class="headerlink" title="Work Order 1"></a>Work Order 1</h3><p>The content of the first work order was relatively simple. The requirement was to change the existing behavior where a certain field being empty did not allow duplicate entries, to allow duplicates. The solution was also simple: skip duplicate checks when the field is empty. The primary focus at the beginning was to familiarize myself with the development process.</p>
+<ol>
+<li>Confirm the requirement and create a work order in the OA system;</li>
+<li>Create a new branch and start development;</li>
+<li>Self-test;</li>
+<li>Code review;</li>
+<li>Submit for testing;</li>
+<li>Receive the test report and request deployment;</li>
+<li>Complete deployment and merge the code into the baseline.</li>
+</ol>
+<p>In fact, communication incurs certain costs, and more complex requirements may have higher communication costs.</p>
+<h3 id="Work-Order-2"><a href="#Work-Order-2" class="headerlink" title="Work Order 2"></a>Work Order 2</h3><p>The second work order was to fix platform vulnerabilities, including one SQL injection vulnerability and one reflected XSS attack vulnerability. The solution approach was also conventional.</p>
+<p>The first issue corrected after the code review, and also my first lesson, was that if-else statements should not be nested too deeply in the program. Fixing the SQL injection vulnerability required checking multiple parameters. Initially, I did it like this:</p>
+<pre><code class="Java">if (param1) &#123;
+
+&#125; else if (param2) &#123;
+
+&#125; else &#123;
+
+&#125;
+</code></pre>
+<p>This approach is terrible! Moreover, it is clearly not recommended by coding standards. After my mentor’s reminder, I changed the code to a more extensible approach:</p>
+<pre><code class="Java">Map&lt;String, String&gt; paramMap = new ConcurrentHashMap&lt;&gt;();
+map.put(param1);
+map.put(param2);
+if (map) &#123;&#125;
+</code></pre>
+<p>At first glance, there seems to be no problem, but this code has a lurking bug. The second lesson I learned is that ConcurrentHashMap does not allow null values! Compared to HashMap, it has a significant NPE risk because the parameters passed here come from the page (or should we validate for null when passing parameters?). Production environment code cannot afford mistakes.</p>
+<p>The third lesson is about configuration files. The configuration file of the program should achieve the effect that without these lines of configuration, the program should behave like an offline version, with the changes or additions dependent on this configuration file. Of course, this also requires that the program handles the absence of configurations appropriately. Naturally, I did not consider in advance that if the configuration is missing, a direct NPE would occur.</p>
+<p>The fourth lesson is about over-engineering. The program went live the night before, and I received an exception report at 8 AM the next day. After starting work, I immediately rolled back. The exception was caused by me modifying parts of the code outside the requirements. There were two identical methods, one above had parameter validation added, and although it wasn’t specified in the requirement, I went ahead and added parameter validation to the method below as well. Then, NPE occurred. Since it was outside the requirement, self-testing didn’t catch it, code review didn’t catch it, and testing didn’t catch it, but it emerged after going live.</p>
+<p>Rolling back the program caused a loss roughly equating to the online system having exceptions for one night, with the involved personnel having to go through the work order process again to fix the bug. Just for two lines of code.</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ol>
+<li>Be responsible for the code, from requirement to deployment.</li>
+<li>Actively handle other matters, respond quickly, communicate smoothly, and stay focused.</li>
+</ol>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

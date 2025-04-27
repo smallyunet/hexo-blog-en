@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="en"><head><title>Overview of Basic Rust Syntax</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Overview of Basic Rust Syntax</h1><div class="time">2019-08-19</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Language/">Programming Language</a></li></ul><p>Rust is a language with complexity and application scenarios comparable to C++. Let’s learn it together!</p>
+<p>Recently, I’ve been pondering what kind of content this type of article represents. A programming language tutorial? The content is not comprehensive enough; an evaluation of the language? Not quite; study notes? If so, that’s definitely not my intention. I tend to think this is an exploratory process, whether for myself or for others. I hope to show that, look, there’s nothing mysterious about a new programming language, it’s so simple! Some programmers spend their entire lives using a particular language as a prefix to their job title, “Java Programmer” or “Backend Developer.” We should break out of this loop.</p>
+<h3 id="Statements"><a href="#Statements" class="headerlink" title="Statements"></a>Statements</h3><p>Rust statements must end with a <code>;</code>.</p>
+<h3 id="Constants-and-Variables"><a href="#Constants-and-Variables" class="headerlink" title="Constants and Variables"></a>Constants and Variables</h3><p>Rust uses <code>let</code> to define constants and <code>let mut</code> to define variables. This way of writing may seem a bit strange:</p>
+<pre><code class="Rust">fn main() &#123;
+  let x = 1;
+  println!(&quot;&#123;&#125;&quot;, x);
+
+  let mut y = 2;
+  println!(&quot;&#123;&#125;&quot;, y);
+
+  y = 3;
+  println!(&quot;&#123;&#125;&quot;, y);
+&#125;
+</code></pre>
+<p>Unlike other languages, Rust allows multiple declarations of the same constant within the same scope. This means that although constants in Rust cannot be reassigned, the same constant name can be defined multiple times. We can understand the difference between constants and variables at the system level, but the writing style can be a bit confusing. If I assign a value to the same symbol multiple times, isn’t that symbol a variable?</p>
+<pre><code class="Rust">fn main() &#123;
+  let x = 1;
+  println!(&quot;&#123;&#125;&quot;, x);
+
+  let x = 2;
+  println!(&quot;&#123;&#125;&quot;, x);
+&#125;
+</code></pre>
+<p>Another somewhat strange aspect is that Rust variables cannot be redeclared. We cannot speculate on the intentions of the language designers; this is clearly not allowed to enable redefinition. Perhaps, there are only constants in Rust, and the <code>mut</code> keyword provides an interface for constants to be assigned multiple times. Without <code>mut</code>, a constant is just a constant; with <code>mut</code>, the constant gets an “entry” to acquire new values. As for the issue of variable redeclaration, why need a bicycle?</p>
+<pre><code class="Rust">fn main() &#123;
+  let mut x = 1;
+  let mut x = 2;
+&#125;
+// warning: variable does not need to be mutable
+</code></pre>
+<h3 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h3><p>The conditional part of Rust does not require parentheses, similar to the Go language. Who came first?</p>
+<pre><code class="Rust">fn main() &#123;
+  let number = 2;
+  if number == 1 &#123;
+    println!(&quot;1&quot;)
+  &#125; else if number == 2 &#123;
+    println!(&quot;2&quot;)
+  &#125; else &#123;
+    println!(&quot;3&quot;)
+  &#125;
+&#125;
+</code></pre>
+<p>Since the <code>if</code> statement itself is an expression, it can also be nested into assignment statements to achieve a function similar to the ternary operator in other languages. (Rust is a strongly typed language, so assignment types must be consistent.)</p>
+<pre><code class="Rust">fn main() &#123;
+  let number = if true &#123;
+    3
+  &#125; else &#123;
+    4
+  &#125;;
+  println!(&quot;&#123;&#125;&quot;, number);
+&#125;
+</code></pre>
+<p>Compared to the concise and multifunctional <code>for</code> loop of the Go language, Rust supports multiple types of loops:</p>
+<pre><code class="Rust">fn main() &#123;
+  loop &#123;
+    // ...
+  &#125;
+
+  while true &#123;
+    // ...
+  &#125;
+
+  let a = [1, 2, 3];
+  for item in a.iter() &#123;
+    println!(&quot;&#123;&#125;&quot;, item);
+  &#125;
+&#125;
+</code></pre>
+<h3 id="Functions-and-Value-Passing"><a href="#Functions-and-Value-Passing" class="headerlink" title="Functions and Value Passing"></a>Functions and Value Passing</h3><p>Rust seems to have no distinction between pass by value and pass by reference, because everything in Rust is passed by reference, or categorized as constant passing and variable passing. Comparing the creation of strings in Java, strings in Rust can also be created using the “object declaration” method:</p>
+<pre><code class="Rust">fn main() &#123;
+  // Constant passing
+  let a = String::from(&quot;a&quot;);
+  testa(&amp;a);
+
+  // Variable passing
+  let mut b = String::from(&quot;b&quot;);
+  testb(&amp;mut b);
+  println!(&quot;&#123;&#125;&quot;, b);
+&#125;
+
+fn testa(a: &amp;String) &#123;
+  println!(&quot;&#123;&#125;&quot;, a);
+&#125;
+
+fn testb(b: &amp;mut String) &#123;
+  b.push_str(&quot; b&quot;);
+&#125;
+</code></pre>
+<p>Functions can also have return values, and in Rust, the return type is defined with <code>-&gt;</code>. By default, the value of the last line of the function is used as the return value, or you can use <code>return</code> to end the function early. Note that the expression used as the return value on the last line should not end with a semicolon…</p>
+<pre><code class="Rust">fn main() &#123;
+  let mut a = test();
+  println!(&quot;&#123;&#125;&quot;, a);
+
+  a = test2();
+  println!(&quot;&#123;&#125;&quot;, a);
+&#125;
+
+fn test() -&gt; u32 &#123;
+  1
+&#125;
+
+fn test2() -&gt; u32 &#123;
+  return 2;
+&#125;
+</code></pre>
+<h3 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h3><p>The basic usage of structures is quite conventional, without the <code>new</code> keyword; you can use it directly by “instantiating” it:</p>
+<pre><code class="Rust">struct Foo &#123;
+  a: String,
+  b: i32
+&#125;
+
+fn main() &#123;
+  let t = Foo &#123;
+    a: String::from(&quot;a&quot;),
+    b: 1,
+  &#125;;
+
+  println!(&quot;&#123;&#125;, &#123;&#125;&quot;, t.a, t.b);
+&#125;
+</code></pre>
+<p>You can also add methods to structures:</p>
+<pre><code class="Rust">struct Foo &#123;
+  a: String,
+  b: i32
+&#125;
+
+impl Foo &#123;
+  fn test(&amp;self) -&gt; i32 &#123;
+    self.b + 1
+  &#125;
+&#125;
+
+fn main() &#123;
+  let t = Foo &#123;
+    a: String::from(&quot;a&quot;),
+    b: 1,
+  &#125;;
+
+  println!(&quot;&#123;&#125;, &#123;&#125;, &#123;&#125;&quot;, t.a, t.b, t.test());
+&#125;
+
+// a, 1, 2
+</code></pre>
+<h3 id="Lists-and-Pattern-Matching"><a href="#Lists-and-Pattern-Matching" class="headerlink" title="Lists and Pattern Matching"></a>Lists and Pattern Matching</h3><p>The following example creates a vector containing three elements, then assigns the 0th element to the constant <code>one</code>. It then uses pattern matching to check if the 0th element of the list equals the value of <code>one</code>. If they are equal, it outputs the string “one”; otherwise, it outputs “none.” In Rust’s pattern matching, <code>Some()</code> and <code>None</code> are built-in keywords:</p>
+<pre><code class="Rust">fn main() &#123;
+  let v = vec![1, 2, 3];
+
+  let one = &amp;v[0];
+  println!(&quot;&#123;&#125;&quot;, one);
+
+  match v.get(0) &#123;
+    Some(one) =&gt; println!(&quot;one&quot;),
+    Some(2) =&gt; println!(&quot;two&quot;),
+    None =&gt; println!(&quot;none&quot;),
+  &#125;
+&#125;
+</code></pre>
+<h3 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h3><p>The <code>panic</code> function is used to throw exceptions:</p>
+<pre><code class="Rust">fn main() &#123;
+  panic!(&quot;new Exception&quot;);
+&#125;
+// thread &#39;main&#39; panicked at &#39;new Exception&#39;, test.rs:4:3
+// note: Run with `RUST_BACKTRACE=1` environment variable to display a backtrace.
+</code></pre>
+<p>For error handling, Rust provides two shorthand methods for conveniently handling error information. The <code>unwrap()</code> function automatically throws a <code>panic</code>. If <code>unwrap()</code> is not used, the program skips the code where <code>panic</code> occurred. This is somewhat opposite to Java’s exception handling logic because if an exception is not handled in Java, the program cannot continue running. In Rust, if <code>unwrap()</code> is used to handle a <code>panic</code>, the program will stop executing and print the error message.</p>
+<pre><code class="Rust">use std::fs::File;
+
+fn main() &#123;
+  let f = File::open(&quot;hello.txt&quot;);
+  println!(&quot;a&quot;);
+
+  let f2 = File::open(&quot;hello.txt&quot;).unwrap();
+  println!(&quot;b&quot;);
+&#125;
+
+// a
+// thread &#39;main&#39; panicked at &#39;called `Result::unwrap()` on an `Err` value: Os &#123; code: 2, kind: NotFound, message: &quot;The system cannot find the file specified.&quot; &#125;&#39;, src\libcore\result.rs:999:5
+// ...
+</code></pre>
+<p>Another shorthand method is <code>expect()</code>, which can be used to replace <code>unwrap()</code>. The difference between <code>expect()</code> and <code>unwrap()</code> is that <code>unwrap()</code> uses the system’s built-in <code>panic</code> information, while <code>expect()</code> can pass a parameter as the <code>panic</code> error message. That’s all.</p>
+<pre><code class="Rust">use std::fs::File;
+
+fn main() &#123;
+    let f = File::open(&quot;hello.txt&quot;).expect(&quot;Failed to open hello.txt&quot;);
+&#125;
+
+// thread &#39;main&#39; panicked at &#39;Failed to open hello.txt: ...
+// ...
+</code></pre>
+<h3 id="Lambda-Expressions"><a href="#Lambda-Expressions" class="headerlink" title="Lambda Expressions"></a>Lambda Expressions</h3><p>Lambda expressions in Rust use <code>|</code> as parameter delimiters, replacing <code>()</code>. Besides that, Lambdas function the same as in other languages:</p>
+<pre><code class="Rust">fn main() &#123;
+  let test = |num| &#123;
+    num == 1
+  &#125;;
+
+  println!(&quot;&#123;&#125;, &#123;&#125;&quot;, test(1), test(2));
+&#125;
+// true, false
+</code></pre>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><p>Rust’s language features go far beyond this, especially Rust’s unique memory management mechanism, and the concept of “ownership,” which makes it hard for Rust beginners to get started, require us to keep moving forward.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>
