@@ -35,7 +35,7 @@ You might not know Onchain, but you can't be unaware of NEO, ONT, and projects l
 
 Once you learn about NEO, you inevitably hear about its founder Da Shu, then trace back to the 2017 ICO boom, Ethereum co-founder Vitalik's fundraising in China, angel investor and Bitcoin billionaire Li Xiaolai, Guo Hongcai who forked Ethereum and helped Binance, and eventually get familiar with names like Zhao Changpeng, Li Lin, Sun Yuchen, Du Jun—and truly understand the crypto world.
 
-The biggest issue in this job was that Da Shu was too wealthy, giving our project team great salaries with almost zero workload or pressure. I learned a lot during this time, including concepts like [PDP Proof](/2022/12/14/对-S-PDP-文件证明的示例和解释/) and [PoST](/2022/12/20/Proof-of-Storage-Space-Replication-的区别/). Unfortunately, the project never launched, and we were laid off when Da Shu abandoned the Chinese market to move to the U.S.
+The biggest issue in this job was that Da Shu was too wealthy, giving our project team great salaries with almost zero workload or pressure. I learned a lot during this time, including concepts like [PDP Proof](/2022/12/14/Example%20and%20Explanation%20of%20S-PDP%20File%20Proof/) and [PoST](/2022/12/20/Differences%20Between%20Proof%20of%20Storage_Space_Replication/). Unfortunately, the project never launched, and we were laid off when Da Shu abandoned the Chinese market to move to the U.S.
 
 My experience at UnionPay Advantage and Onchain made me mistakenly believe I had blockchain development skills, and I constantly planned my career around blockchain development.
 
