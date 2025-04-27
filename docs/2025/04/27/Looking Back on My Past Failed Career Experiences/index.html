@@ -59,6 +59,25 @@
 <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Overall, my past career experiences have been a huge failure. I spent years trying to become a true blockchain developer but never even touched the threshold—only working on the peripheries.</p>
 <p>And with the industry’s evolution, after 2019 the Layer 1 blockchain wars were basically over. By around 2023, with Binance, Tron, and Huobi leaving China, and Da Shu abandoning the Chinese market, there were almost no legitimate blockchain development companies left here. </p>
 <p>The world no longer needs “blockchain developers.”</p>
+<h3 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h3><h4 id="UChains-Technical-Architecture"><a href="#UChains-Technical-Architecture" class="headerlink" title="UChains Technical Architecture"></a>UChains Technical Architecture</h4><p>UChains is a blockchain project incubated within a traditional payment company. The project’s Team Leader left the company in 2019 and later co-founded ChainMaker (长安链) as a partner. When ChainMaker was first launched, many technical features bore strong similarities to UChains. Later on, ChainMaker developed quite successfully, collaborated with Tencent, and gained significant recognition.</p>
+<p>The technical architecture of UChains was previously mentioned in “<a href="/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/">VRF + BFT Consensus Causing Transaction Failures</a>“.</p>
+<p>The core of UChains is based on Tendermint Core, with the code directly integrated into the project and heavily customized. The main improvements include:</p>
+<ul>
+<li>VRF-based proposer node selection</li>
+<li>Layered consensus (switching consensus groups)</li>
+<li>Limited smart contract support</li>
+<li>Support for different types of databases</li>
+<li>Heterogeneous multi-chain support</li>
+</ul>
+<h4 id="SaveFS-Technical-Architecture"><a href="#SaveFS-Technical-Architecture" class="headerlink" title="SaveFS Technical Architecture"></a>SaveFS Technical Architecture</h4><p>SaveFS, also known as saveio, was a blockchain project incubated within Onchain. When Onchain was dissolved in 2022, the entire SaveFS project was shut down.</p>
+<p>Technical aspects related to SaveFS were previously discussed in “<a href="/2022/08/27/One%20Year%20Work%20Review/">A Year in Review</a>“.</p>
+<p>The SaveFS project was relatively complex, essentially integrating elements from the following projects:</p>
+<ul>
+<li>Ontology</li>
+<li>Lightning Network</li>
+<li>IPFS</li>
+</ul>
+<p>Why the term “essentially integrating”? Back then, NEO became a very successful project under the banner of “China’s Ethereum,” and it is speculated that SaveFS inherited this kind of ambition, aiming to become something like “China’s Filecoin.”</p>
 </div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

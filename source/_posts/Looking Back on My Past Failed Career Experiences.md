@@ -94,3 +94,32 @@ Overall, my past career experiences have been a huge failure. I spent years tryi
 And with the industry's evolution, after 2019 the Layer 1 blockchain wars were basically over. By around 2023, with Binance, Tron, and Huobi leaving China, and Da Shu abandoning the Chinese market, there were almost no legitimate blockchain development companies left here. 
 
 The world no longer needs "blockchain developers."
+
+### Appendix
+
+#### UChains Technical Architecture
+
+UChains is a blockchain project incubated within a traditional payment company. The project's Team Leader left the company in 2019 and later co-founded ChainMaker (长安链) as a partner. When ChainMaker was first launched, many technical features bore strong similarities to UChains. Later on, ChainMaker developed quite successfully, collaborated with Tencent, and gained significant recognition.
+
+The technical architecture of UChains was previously mentioned in "[VRF + BFT Consensus Causing Transaction Failures](/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/)".
+
+The core of UChains is based on Tendermint Core, with the code directly integrated into the project and heavily customized. The main improvements include:
+
+- VRF-based proposer node selection
+- Layered consensus (switching consensus groups)
+- Limited smart contract support
+- Support for different types of databases
+- Heterogeneous multi-chain support
+
+#### SaveFS Technical Architecture
+
+SaveFS, also known as saveio, was a blockchain project incubated within Onchain. When Onchain was dissolved in 2022, the entire SaveFS project was shut down.
+
+Technical aspects related to SaveFS were previously discussed in "[A Year in Review](/2022/08/27/One%20Year%20Work%20Review/)".
+
+The SaveFS project was relatively complex, essentially integrating elements from the following projects:
+- Ontology
+- Lightning Network
+- IPFS
+
+Why the term "essentially integrating"? Back then, NEO became a very successful project under the banner of "China's Ethereum," and it is speculated that SaveFS inherited this kind of ambition, aiming to become something like "China's Filecoin."
