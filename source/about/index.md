@@ -6,7 +6,11 @@ type: about
 
 Hi, I'm...
 
-If you're interested in any topic, feel free to email me at: [hello@smallyu.net](mailto:hello@smallyu.net)
+If you're interested in any of these topics, feel free to reach out anytime:
+
+- WeChat: smallyuwx  
+- Telegram: [smallyutg](https://t.me/smallyutg)  
+- Email: [hello@smallyu.net](mailto:hello@smallyu.net)
 
 <div style="text-align: right;">
   ↶ <a href="/">Back to Home</a>

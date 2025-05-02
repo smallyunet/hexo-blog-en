@@ -1,3 +1,4 @@
+https://en.smallyu.net/about/index.html
 https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/
 https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/
 https://en.smallyu.net/2025/04/29/About%20the%20Design%20of%20the%20Web3%20Tipping%20System%20giveme.wtf/
@@ -35,7 +36,6 @@ https://en.smallyu.net/2023/02/20/Why%20the%20Private%20Key%20Calculation%20of%2
 https://en.smallyu.net/2021/10/02/You%20are.../
 https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn't%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/
 https://en.smallyu.net/2021/10/02/%E3%80%8EGround-Up%20Blockchain%E3%80%8FPreface/
-https://en.smallyu.net/about/index.html
 https://en.smallyu.net/2022/07/24/Why%20Pay%20Attention%20to%20Programming%20Concepts/
 https://en.smallyu.net/2018/11/28/Why%20People%20Prefer%20Saying%20%22Yes%22%20Instead%20of%20%22Correct%22/
 https://en.smallyu.net/2024/04/14/Why%20PoW%20is%20More%20Decentralized%20than%20PoS/

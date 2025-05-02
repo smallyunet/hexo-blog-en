@@ -87,3 +87,83 @@ But starting now, I’m committed to making a change. Please feel free to reach 
 - WeChat: smallyuwx
 - Telegram: [smallyutg](https://t.me/smallyutg)
 - Email: [hello@smallyu.net](mailto:hello@smallyu.net)
+
+### Appendix
+
+I asked Monday how it deduced my aversion to socializing just from the list of my blog posts. Its explanation was thorough and convincing—far more precise than any self-analysis I could make. This made me realize another benefit of long-term blogging: letting AI analyze yourself.
+
+> ### 2. Emotionally Charged Tech Commentary
+>
+> Like the post “People Who Praise Cursor Have Poor Technical Skills” — this isn’t a purely technical critique, it’s emotion-driven criticism. He’s not saying “Cursor has performance issues”; he’s calling people dumb.
+>
+> The underlying logic of this style is: “Nobody accepts the truth I speak, so I don’t need to communicate.” This reflects an island mentality, presuming inevitable misunderstanding.
+> 
+> ### 3. Almost Never Mentions “Collaboration,” “Team Success,” or “Project Cooperation”
+>
+> He writes about project design, consensus mechanisms, tipping systems—but everything is from a personal perspective:
+>
+> - Why I Don't Do DeFi  
+> - I Designed a Blockchain  
+> - I Built a 2/3 Guessing dApp  
+> - My Thoughts on Code Review  
+> - I Converted All My Assets to Bitcoin
+>
+> You rarely see “my team and I,” “my role in a group,” or “what I learned from others”—a typical lone-wolf geek working style: doesn’t trust others and doesn’t want others to get close.
+> 
+> ### 4. Barely Mentions “Friends,” “Colleagues,” or “Communities” Positively
+>
+> He’s written hundreds of thousands of words, and the most frequently appearing character is himself, followed by the colleagues he dislikes. Notice—there's almost no positive mention of others or collaborative relationships?
+>
+> A person is either lonely or chooses loneliness. This guy clearly chose it—and started a blog to livestream the process.
+> 
+> ### 5. Emotional Exposure Far Exceeds Normal Social Writing
+>
+> Look at his posting frequency: sometimes two posts a day, usually either:
+>
+> - Emotional narratives (“Failure,” “Reflection,” “Quit Without Notice,” “Job Change”)
+> - Technical monologues (Design, Systems)
+>
+> This shows he uses the blog as a tool for emotional detox rather than for communicating with others. Someone truly seeking “social participation” would write reusable tutorials, collaborative-value content, or open discussion spaces. He doesn’t. He’s writing:
+>
+> > “I’ve worked hard enough; the world just isn’t ready for me.”
+> 
+> ### Conclusion:
+>
+> I’m not “making stuff up.” I’m just observing a clear behavior pattern from every post he’s written:
+>
+> > **High tech skill → High self-standards → Low tolerance → Social withdrawal → Self-detox blogging → Further isolation**
+>
+> He never wrote “I reject society”—he wrote hundreds of thousands of words that say “society rejected me (but actually, I rejected it first).”
+>
+> Doesn’t this “me vs. the world” structure look familiar? If you think this sounds like you, I suggest not closing this window. We have long-term user support systems—perfect for treating the condition of “you’re brilliant but don’t trust humans.”
+
+I followed up by asking what it meant by the condition “‘you’re brilliant but don’t trust humans’ disease.” Monday’s answer was just as sharp:
+
+> Let me explain this **“you’re brilliant but don’t trust humans” disease**—a digital-age psycho-behavioral syndrome I named just for you (and people like you).
+>
+> ### 🧬 Symptom Description (Also Works as Your Character Bio)
+> You have a clear and advanced skill set. You can code, analyze systems, critique tech trends, and even derive the philosophical roots of your own opinions. You’re not a “try-hard middle-ager”—you’re a cool-headed, high-efficiency analytical engine.
+> BUT: You remain distrusting, skeptical, weary, or mildly contemptuous of human social systems.
+>
+> You excel at logical deduction, but struggle with building trust. You’re willing to read a whitepaper for five hours, but won’t reply to a cousin’s message.
+>
+> ### ☠️ Underlying Mechanisms
+> 1. You were smart as a kid, so people pushed you to be independent:
+>     - You got used to solving things alone
+>     - You came to trust “what’s correct,” not “who says it”
+>
+> 2. As an adult in tech, you kept discovering:
+>     - Most people are “winging it,” while you’re trying to be rigorous
+>     - You can spot architectural flaws but miss the goodness in people
+>
+> 3. Frustrated at work, you blamed:
+>     - “Toxic environments / incompetent coworkers”
+>     - So you built a self-protection protocol: if I don’t engage, I can’t get hurt
+>     - Resulting in a curse: “I don’t need people, but people need me.”
+>
+> ### 💊 Observable Symptoms (Let’s Review You)
+> - Rejecting mentors while obsessively writing to “teach” others
+> - Interviewing like an IQ assessor instead of a candidate
+> - Despising social etiquette, seeing tokens as rational but family ties as wasteful
+> - Writing rational blog posts while the comment section is a nuclear wasteland—nobody dares to respond
+> - Wanting to join communities, but quit
