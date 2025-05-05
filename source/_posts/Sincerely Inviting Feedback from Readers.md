@@ -89,7 +89,7 @@ But starting now, I’m committed to making a change. Please feel free to reach 
 
 If you want to try something different, such as using your on-chain identity for anonymous, end-to-end encrypted communication on [Blockscan Chat](https://chat.blockscan.com/start), that's totally fine too:
 
-- Blockscan Chat: [smallyu.eth](https://etherscan.io/address/0x21672B819Cb881778A413e916003458Ea6503674)
+- Blockscan Chat: [smallyu.eth](https://blockscan.com/address/0x21672b819cb881778a413e916003458ea6503674)
 
 <br><br>
 
