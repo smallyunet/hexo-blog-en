@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/2025/05/05/Original%20Family/</loc>
+    
+    <lastmod>2025-05-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/about/index.html</loc>
     
     <lastmod>2025-05-05</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/</loc>
-    
-    <lastmod>2025-05-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/05/05/Original%20Family/</loc>
     
     <lastmod>2025-05-05</lastmod>
     
