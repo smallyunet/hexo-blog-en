@@ -35,6 +35,8 @@ My boss once summed up this difference in work models as a contrast between Chin
 
 I'm just an ordinary developer with no management experience. I don’t understand these management styles, nor do I want to or have the opportunity to think deeply about them. But now I’m starting to feel that management itself is a discipline—a rather big one...
 
+<br><br>
+
 ### Supplement (2025.04.20)
 
 Let me explain what the term “Incomplete Scrum” style means. The content above may look like an open-ended conclusion, but in reality, it's expressing dissatisfaction with the Scrum style—just subtly, because I was still employed at the time and couldn’t say it too directly.

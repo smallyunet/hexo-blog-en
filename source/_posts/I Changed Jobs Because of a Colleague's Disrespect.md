@@ -37,6 +37,8 @@ All in all, from various angles, there were plenty of reasons to change jobs. So
 
 (Note: The reasons for switching jobs have nothing to do with my evaluation of the project or the industry. I had doubts about the project just three days after joining—details are in “[The Economic Dilemma of Restaking Projects](/2024/11/18/The%20Economic%20Challenges%20of%20Restaking%20Projects/)”. Even now, as an internal developer, I still haven’t found an answer. But that didn’t stop me from wanting to keep working on the project and hoping it would succeed. In fact, we insiders want it to succeed even more than outsiders do because our interests are directly tied to it. So I want to reiterate: changing jobs had nothing to do with the project’s merits—it was purely about the work environment.)
 
+<br><br>
+
 ### Supplement (2025.04.20)
 
 Disrespecting others really is a habit. During the handover after I resigned, he wanted me to spend a day doing something. I agreed and said I was available over the weekend.

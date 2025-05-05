@@ -1,3 +1,5 @@
+https://en.smallyu.net/2025/03/22/Thoughts%20Triggered%20by%20Internal%20Team%20Chaos.../
+https://en.smallyu.net/2025/04/13/I%20Changed%20Jobs%20Because%20of%20a%20Colleague's%20Disrespect/
 https://en.smallyu.net/2025/05/05/Original%20Family/
 https://en.smallyu.net/about/index.html
 https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/
@@ -10,8 +12,6 @@ https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in%20Haskell_/
 https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/
 https://en.smallyu.net/2025/04/11/Interview%20Experience%20in%20April%202025/
 https://en.smallyu.net/2025/04/22/%22Guess%202-3%20of%20the%20Average%22%20Game%20Demo/
-https://en.smallyu.net/2025/04/13/I%20Changed%20Jobs%20Because%20of%20a%20Colleague's%20Disrespect/
-https://en.smallyu.net/2025/03/22/Thoughts%20Triggered%20by%20Internal%20Team%20Chaos.../
 https://en.smallyu.net/2025/04/12/People%20Who%20Hype%20Cursor%20Usually%20Lack%20Technical%20Skills/
 https://en.smallyu.net/2023/03/30/Don't%20Underestimate%20ChatGPT/
 https://en.smallyu.net/2025/03/25/On%20Code%20Review%20Etiquette/
