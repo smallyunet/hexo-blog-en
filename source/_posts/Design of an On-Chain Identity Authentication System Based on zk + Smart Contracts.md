@@ -1,6 +1,8 @@
 ---
 title: Design of an On-Chain Identity Authentication System Based on zk + Smart Contracts
-tags: zk
+tags: 
+- zk
+- Plan
 date: 2025-04-30 22:18:54
 draft_date: 2025-04-30 21:59:39
 ---

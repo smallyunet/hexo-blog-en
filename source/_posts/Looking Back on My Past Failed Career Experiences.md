@@ -95,6 +95,8 @@ And with the industry's evolution, after 2019 the Layer 1 blockchain wars were b
 
 The world no longer needs "blockchain developers."
 
+<br><br>
+
 ### Appendix
 
 #### UChains Technical Architecture

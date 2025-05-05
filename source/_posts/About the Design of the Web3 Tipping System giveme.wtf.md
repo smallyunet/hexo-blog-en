@@ -1,6 +1,8 @@
 ---
 title: About the Design of the Web3 Tipping System giveme.wtf
-tags: web3
+tags: 
+- web3
+- Plan
 date: 2025-04-29 19:26:45
 draft_date: 2025-04-29 00:45:36
 ---
