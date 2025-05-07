@@ -114,22 +114,26 @@ pre {
   background-color: #f8f8f8;
 }
 
-p code{
+p code {
   font-size: 90%;
   background-color: #f4f4f4;
   border: 1px solid #E0E0E0;
   border-radius: 2px;
   padding: 0 3px;
   margin: 0 3px;
+  word-break: break-all;
+  white-space: normal;
 }
 
-li code{
+li code {
   font-size: 90%;
   background-color: #f4f4f4;
   border: 1px solid #E0E0E0;
   border-radius: 2px;
   padding: 0 3px;
   margin: 0 3px;
+  word-break: break-all;
+  white-space: normal;
 }
 
 a {
@@ -320,6 +324,7 @@ table th, table td {
   padding: 15px;
   padding-left: 30px;
   border-radius: 10px;
+  font-size: 90%;
 }
 .card {
   display: flex;
@@ -464,4 +469,40 @@ ul.tags li:not(:last-child) {
 
 div.title-margin {
   margin-bottom: 40px;
+}
+
+/**** details style ****/
+details {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+  font-size: 90%;
+}
+
+summary {
+  cursor: pointer;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: "▼";
+  font-size: 90%;
+}
+
+details[open] summary::before {
+  content: "▲";
+}
+
+details > *:not(summary) {
+  margin-top: 0.5em;
 }
