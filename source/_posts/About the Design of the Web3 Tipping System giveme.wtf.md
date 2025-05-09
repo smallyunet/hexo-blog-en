@@ -1,5 +1,5 @@
 ---
-title: About the Design of the Web3 Tipping System giveme.wtf
+title: Design of the Web3 Tipping System giveme.wtf
 tags: 
 - web3
 - Plan
@@ -9,91 +9,81 @@ draft_date: 2025-04-29 00:45:36
 
 ### Product Form
 
-#### Introduction
-
-giveme.wtf is a domain name I just registered, planning to create a small Web3 tipping tool, similar to these Web2 platforms:
+giveme.wtf is a domain I just registered, intended as a small Web3 tipping tool. Similar Web2 platforms include:
 
 - https://buymeacoffee.com/
 - https://linktr.ee/
 
-The difference is that on a personal page of giveme.wtf, a Web3 wallet receiving address and a QR code will be displayed, just like PayPal's personal payment link, supporting multiple blockchain address formats, including Bitcoin, Ethereum, Dogecoin, etc., which can be freely chosen.
+The difference is that the personal page on giveme.wtf will display Web3 wallet receiving addresses and QR codes, much like a personal PayPal payment link. It will support multiple chain address formats including Bitcoin, Ethereum, Dogecoin, etc., and users can choose freely.
 
-giveme.wtf does not handle any funds; it only displays tipping address information. For example, visiting giveme.wtf/{username} will show the receiving address information set by the user, including Ethereum address text, QR code, etc. It's that simple.
+giveme.wtf will not act as an intermediary for funds; it will simply display tipping address information. For example, visiting giveme.wtf/{username} will show the receiving address info set up by the user, including Ethereum address text and QR code. That's it.
 
-Of course, under giveme.wtf/{username}, users can also set a simple bio, avatar, domain name, social media links, etc., like a small personal homepage, making it a bit more worth sharing.
-
-#### Expansion
-
-Later, based on on-chain data, it can generate statistics for addresses using the tipping system and the total amount of tips received, creating a leaderboard categorized by username or chain.
-
-If you rank high, your bio under your username can gain more exposure. Help your idol climb the ranks and stay on top!
-
-Additional features like a 24-hour leaderboard, PK-style competitions, etc., can also be added.
-
-It could also extend to social systems, where addresses with tipping records form a relationship graph, or even use IM tools for direct communication or auto-grouping.
+Of course, on giveme.wtf/{username}, users can also set a simple bio, avatar, domain, social media, etc., like a small personal homepage, making it more shareable.
 
 ### Technical Implementation
 
-#### Minimum Viable Product
-
 - Registration
 
-Users register with MetaMask wallet. After connecting the wallet, they can set a username, which is globally unique and managed by a smart contract. Users need to send a transaction to interact with the contract to submit their desired username.
+Users register with a MetaMask wallet. After connecting the wallet, they can set a unique, globally-managed username via a smart contract. This requires a transaction to submit the desired username to the contract.
 
-- Profile Information
+- Profile Info
 
-After binding the EVM address with the username, users can set profile information, including avatar, bio, wallet addresses, etc.
+Once the EVM address is bound to the username, users can set their profile info including avatar, bio, wallet addresses, etc.
 
-Once filled out, the frontend submits the data to the backend, which saves it to an IPFS node (keeping it pinned long-term) and generates a CID, which is then returned to the frontend.
+After entering the info, the frontend sends it to the backend, which saves it on an IPFS node (pinned for long-term), and returns the CID to the frontend.
 
-After receiving the CID, the frontend initiates another contract interaction to map username -> CID in the smart contract. This step can be combined with the registration or separated, depending on whether the user wants to set a profile immediately.
+The frontend, after receiving the CID, initiates another contract interaction to write the username->CID mapping into the smart contract. This step can be combined with registration or kept separate, since users may want to register without setting a profile.
 
 - Display
 
-The username->CID mapping on the contract is the most authoritative data source. The frontend page retrieves the CID based on the username from giveme.wtf/{username}, queries the specific data from an IPFS gateway, and renders the page based on that data.
+The on-chain username->CID is the authoritative data. The frontend fetches the CID from the contract based on the username in giveme.wtf/{username}, then queries the IPFS gateway for the data and renders the page.
 
-The profile will be very lightweight JSON data, and to speed up gateway queries, services like Cloudflare's Web3 gateway CDN can be used.
+Profiles are minimal JSON data, very small in size. To speed up gateway queries, Cloudflare's Web3 gateway CDN can be used.
 
-- Network Choice
+- Network Selection
 
-The smart contract will be deployed on Base.
+The smart contract is deployed on Base.
 
-### Future Optimizations
+### Extensions and Optimizations
+
+Later, on-chain data can be used to generate statistics like which receiving addresses are using the tipping system, total amount tipped, and make a leaderboard categorized by username or chain.
+
+Ranking can boost the exposure of the bio under each username. Upvote your idol to keep them at the top.
+
+We can also add 24-hour leaderboards or competitive ranking formats.
+
+The system could also be extended into a social network. Tipping history could form relationship graphs, and even evolve into an IM tool with auto group creation, etc.
 
 #### Username Recovery
 
-The problem with MetaMask registration is: what if the wallet is lost? Users would lose control over their username. A recovery mechanism could be designed where users can set a list of recovery addresses. Any address in the list could reclaim control over the username and change the corresponding CID. This mainly addresses wallet loss.
+A drawback of MetaMask registration is what happens if a wallet is lost—does that mean username control is lost too? A recovery mechanism can be designed, such as allowing each username to set a list of recovery addresses. Any address in this list can reclaim control and update the CID. This is aimed at lost wallets.
 
-If a wallet is hacked, the hacker already controls the username and can modify the recovery list to solidify their control. In Web3, once compromised, there's no way to reclaim it.
+What if the wallet gets hacked? Wouldn’t the hacker just change the recovery list? Yes, once a hacker has control of the username, they could reinforce it by changing to their own address. Is there a way to regain control after a hack? Not in Web3.
 
 #### Network Selection
 
-Choosing which chain to deploy on is a critical issue. Users may not have the necessary tokens for gas fees.
+Currently, a chain must be chosen to deploy the smart contract, which ensures data integrity. Choosing a chain is tricky, as users might not hold tokens on-chain.
 
-For example, if Base is selected, users must have ETH first, then ETH on Base to operate. These steps alone could deter most users.
+For example, choosing Base requires users to have ETH and also ETH on Base, which can be a big hurdle.
 
-To address this, future directions could include gas fee sponsorship using ERC-4337's paymaster (although it has cooled down) or Meta Transactions. However, issues like "farming" gas fee subsidies must be considered.
+To solve this, gas fee abstraction can be considered—using a paymaster from ERC-4337 (which has mostly faded), or the older Meta Transaction method. However, we also have to prevent abuse and ensure we can afford to subsidize fees.
 
 #### Data Availability
 
-In the MVP, data is stored on IPFS but maintained by only one server. IPFS is a low-level file routing protocol, and a lightweight layer (similar to but simpler than Filecoin) can be added.
+In the MVP, data is stored on IPFS, but there’s only one server. IPFS is a low-level file routing protocol, and we can wrap it with a simpler layer like Filecoin, but less complex due to small data volume. PoST is complex due to encryption/decryption for large files, but giveme.wtf’s data is small. We can just verify a Merkle Root Hash, meaning a lightweight verification and incentive system on top of IPFS. Nodes that store full data could receive rewards after periodic checks. Details of rewards are TBD.
 
-Given giveme.wtf's small data volume, simple solutions like verifying Merkle Root Hashes can be used. A mechanism can be designed to reward nodes for storing complete data and regularly verify storage integrity.
+#### Off-Chain Data Caching
 
-#### Off-chain Data Caching
+Querying username->CID from the contract every time is slow and uses RPC resources. We should cache this off-chain via a centralized backend that listens to contract events and writes username->CID to Cloudflare Workers KV.
 
-Querying username->CID from the smart contract for every page load is slow and consumes RPC resources. An off-chain caching mechanism is needed, such as a centralized backend service that listens to contract events and writes the username->CID mappings into Cloudflare Workers KV.
+Frontend should first query Cloudflare Workers KV, and fallback to the contract if unavailable.
 
-The frontend first queries Cloudflare Workers KV, falling back to the contract only if needed.
+But what if the centralized service is compromised and changes username->CID? Funds could be misdirected.
 
-However, if the centralized service is compromised, it could modify mappings, causing funds to be misdirected.
+This is a data integrity problem that Optimistic Rollup also solves. Here's a possible approach combined with Zetachain’s cross-chain logic.
 
-This integrity issue is what Optimistic Rollups address, with relatively mature solutions. Combining this with Zetachain’s cross-chain logic:
+First, the off-chain caching service builds a Merkle Tree using all username->CID data. The resulting Merkle Root Hash is the integrity proof and is regularly submitted on-chain. Frontend checks this root hash on-chain to verify if the cached CID is tampered.
 
-- The off-chain service constructs a Merkle Tree using username->CID mappings, with the Root Hash acting as the integrity proof.
-- The Merkle Root is periodically submitted to the contract, and the frontend can verify the Root Hash to ensure the CID hasn’t been tampered with.
-- Multiple off-chain indexers can collectively agree on a private key through TSS, and only this key can submit the Merkle Root to the contract, similar to multisig.
+Also, multiple indexer programs can agree on a TSS key. Only this key can submit Merkle Root Hashes. They will only agree if all their root hashes match—effectively multi-signature.
 
-Finally, introduce a cooldown and challenge period: the newly submitted Root Hash does not immediately take effect. Anyone can challenge it. If successful, the new Root is discarded, and the old Root continues to be used.
-
-This challenge mechanism is complex and can be deferred to later stages.
+Finally, introduce a cool-down + challenge period. After submission, the root hash doesn’t take effect immediately. Anyone can challenge it. If successful, the new root is invalidated, and the old one remains. Designing a reliable challenge mechanism is complex, but it’s something to optimize in the future.
