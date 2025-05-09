@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/about/index.html</loc>
+    
+    <lastmod>2025-05-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/</loc>
+    
+    <lastmod>2025-05-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2025/04/29/About%20the%20Design%20of%20the%20Web3%20Tipping%20System%20giveme.wtf/</loc>
     
     <lastmod>2025-05-09</lastmod>
@@ -14,24 +32,6 @@
     <loc>https://en.smallyu.net/2025/04/22/%22Guess%202-3%20of%20the%20Average%22%20Game%20Demo/</loc>
     
     <lastmod>2025-05-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/about/index.html</loc>
-    
-    <lastmod>2025-05-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/</loc>
-    
-    <lastmod>2025-05-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

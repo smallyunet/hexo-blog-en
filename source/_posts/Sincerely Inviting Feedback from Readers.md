@@ -87,9 +87,11 @@ But starting now, I’m committed to making a change. Please feel free to reach 
 - Telegram: [smallyutg](https://t.me/smallyutg)
 - Email: [hello@smallyu.net](mailto:hello@smallyu.net)
 
+<!--
 If you want to try something different, such as using your on-chain identity for anonymous, end-to-end encrypted communication on [Blockscan Chat](https://chat.blockscan.com/start), that's totally fine too:
 
 - Blockscan Chat: [smallyu.eth](https://blockscan.com/address/0x21672b819cb881778a413e916003458ea6503674)
+-->
 
 <br><br>
 
