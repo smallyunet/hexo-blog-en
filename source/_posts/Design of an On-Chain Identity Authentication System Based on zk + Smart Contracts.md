@@ -23,7 +23,9 @@ In this way, the administrator doesn't need to reveal which addresses are in the
 
 Next, I will proceed to implement this design from a technical perspective.
 
-### Update v0.1.0 (2025.05.09)
+<br>
+
+### Update v0.1.0 Version (2025.05.09)
 
 First, let's correct a previous design mistake: administrators must publicly share their group address list. Otherwise, it's impossible to generate a Merkle Tree based on the address list, and users won't be able to locate their address within the tree structure or generate a path proof.
 
