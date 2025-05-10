@@ -6,7 +6,7 @@
   <link href="https://en.smallyu.net/atom.xml" rel="self"/>
   <link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
   <link href="https://en.smallyu.net/"/>
-  <updated>2025-05-05T07:00:22.741Z</updated>
+  <updated>2025-05-10T17:21:38.546Z</updated>
   <id>https://en.smallyu.net/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Want to Develop a Minimal EVM Virtual Machine</title>
+    <link href="https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/"/>
+    <id>https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/</id>
+    <published>2025-05-10T17:15:07.000Z</published>
+    <updated>2025-05-10T17:21:38.546Z</updated>
+    
+    <content type="html"><![CDATA[<p>I’ve named this project echoevm.com. The main goal is to start from the simplest stack operations and gradually build a complete Ethereum bytecode execution environment.</p><p>Why choose this direction? Let’s analyze the technical modules of an Ethereum client:</p><ol><li>RPC: A GRPC wrapper? The focus is more on protocol design than technical implementation.</li><li>P2P: There’s an existing libp2p available — it’s mostly about node discovery and routing tables, maybe dig into Kademlia DHT?</li><li>Account system: ECDSA? Cryptography?</li><li>Transaction pool: Transaction analysis, sealed transactions, MEV protection directions.</li><li>Consensus mechanism: The design of consensus mechanisms belongs in the research realm — typically PhD-level research in labs, publishing papers, producing test data to prove cutting-edge optimizations, and finally securing funding to hire engineers for implementation.</li><li>Storage: Experts in database internals are useful anywhere; it’s not specific to blockchain.</li><li>Data structures: Study the implementation of Merkle Patricia Trees?</li><li>State synchronization: Light client direction — for example, using Celestia’s core tech to separate execution from storage, or offloading Archive node data?</li></ol><p>Overall, I lean toward doing something engineering-focused rather than academic, yet still technically challenging. It should be meaningful both for personal technical growth and for the potential outcomes. If this minimal EVM is successfully developed, it can lead to a series of follow-up achievements, and many valuable products can be built on top of it.</p><p>The conversion from Solidity to bytecode is compiler expert territory. What I aim to do is execute the bytecode — starting with the simplest operations like addition and jump, then move on to gas calculation, context switching, and ultimately be able to execute all historical Ethereum transactions.</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;I’ve named this project echoevm.com. The main goal is to start from the simplest stack operations and gradually build a complete</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Plan" scheme="https://en.smallyu.net/tags/Plan/"/>
+    
+    <category term="EVM" scheme="https://en.smallyu.net/tags/EVM/"/>
+    
+  </entry>
   
   <entry>
     <title>Original Family</title>
@@ -126,9 +153,9 @@
     <link href="https://en.smallyu.net/2025/04/27/Why%20I%20Converted%20Most%20of%20My%20Assets%20into%20Bitcoin/"/>
     <id>https://en.smallyu.net/2025/04/27/Why%20I%20Converted%20Most%20of%20My%20Assets%20into%20Bitcoin/</id>
     <published>2025-04-27T14:57:59.000Z</published>
-    <updated>2025-04-27T14:59:38.609Z</updated>
+    <updated>2025-05-10T17:14:50.549Z</updated>
     
-    <content type="html"><![CDATA[<p>First of all, I don’t want to keep a large amount of assets in the form of RMB in the bank.</p><p>On one hand, I expect the RMB exchange rate to decline. If U.S. tariffs increase further, the RMB exchange rate could fluctuate significantly. Even without policy factors, in the long run, the value of RMB is inferior to the dollar.</p><p>On the other hand, money stored in the bank isn’t really your own; it’s the state’s. Moreover, if your account gets frozen due to “suspicious activity,” it would be very troublesome to deal with, and you’d have money you can’t use. So, keeping money in the bank is not a safe option.</p><p>Aside from RMB, the choices are limited to gold, stocks, and cryptocurrencies.</p><p>As for gold, dare to buy physical gold in China? From what I remember, even bank-held gold (that you can’t physically take out) has had rusting issues, so I’m not familiar with it and afraid of buying fakes — not very reliable. Especially given the “simple folk” reputation domestically — I know it too well.</p><p>As for stocks, forget about domestic ones. As for foreign stocks, I don’t have an account to buy them and don’t know how.</p><p>That leaves cryptocurrencies. Among cryptocurrencies, there are only two real options: BTC and USDC.</p><p>When it comes to stablecoins, between USDT and USDC, USDC is more reliable.</p><p>Among cryptocurrencies, forget about altcoins. ETH can be played with a little, but anything more “alt” than ETH — don’t even think about heavy investment.</p><p>So comparing BTC and USDC: </p><p>BTC’s advantage is that it is a pure decentralized coin — not issued by any company, not controlled, and won’t suddenly disappear. The downside is the huge price volatility.</p><p>USDC’s advantage is that it’s a stablecoin — its value is stable and won’t drop. The downside is, for example, if it’s issued on the Ethereum chain, what happens if Ethereum goes down?</p><p>Therefore, I allocate my assets selectively between BTC and USDC.</p>]]></content>
+    <content type="html"><![CDATA[<p>First of all, I don’t want to keep a large amount of assets in the form of RMB in the bank.</p><p>On one hand, I expect the RMB exchange rate to decline. If U.S. tariffs increase further, the RMB exchange rate could fluctuate significantly. Even without policy factors, in the long run, the value of RMB is inferior to the dollar.</p><p>On the other hand, money stored in the bank isn’t really your own; it’s the state’s. Moreover, if your account gets frozen due to “suspicious activity,” it would be very troublesome to deal with, and you’d have money you can’t use. So, keeping money in the bank is not a safe option.</p><p>Aside from RMB, the choices are limited to gold, stocks, and cryptocurrencies.</p><p>As for gold, dare to buy physical gold in China? From what I remember, even bank-held gold (that you can’t physically take out) has had rusting issues, so I’m not familiar with it and afraid of buying fakes — not very reliable. Especially given the “simple folk” reputation domestically — I know it too well.</p><p>As for stocks, forget about domestic ones. As for foreign stocks, I don’t have an account to buy them and don’t know how.</p><p>That leaves cryptocurrencies. Among cryptocurrencies, there are only two real options: BTC and USDC.</p><p>When it comes to stablecoins, between USDT and USDC, USDC is more reliable.</p><p>Among cryptocurrencies, forget about altcoins. ETH can be played with a little, but anything more “alt” than ETH — don’t even think about heavy investment.</p><p>So comparing BTC and USDC: </p><p>BTC’s advantage is that it is a pure decentralized coin — not issued by any company, not controlled, and won’t suddenly disappear. The downside is the huge price volatility.</p><p>USDC’s advantage is that it’s a stablecoin — its value is stable and won’t drop. The downside is, for example, if it’s issued on the Ethereum chain, what happens if Ethereum goes down?</p><p>Therefore, I allocate my assets selectively between BTC and USDC.</p><br><h3 id="Supplement-2025-05-11"><a href="#Supplement-2025-05-11" class="headerlink" title="Supplement (2025.05.11)"></a>Supplement (2025.05.11)</h3><p>Just found out there are cryptocurrencies pegged to the price of gold, priced per ounce with a 1:1 physical reserve. So from a safe-haven asset perspective, it’s essential to allocate some gold-backed currency.</p>]]></content>
     
     
       

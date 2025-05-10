@@ -1,3 +1,5 @@
+https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/
+https://en.smallyu.net/2025/04/27/Why%20I%20Converted%20Most%20of%20My%20Assets%20into%20Bitcoin/
 https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/
 https://en.smallyu.net/about/index.html
 https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/
@@ -7,7 +9,6 @@ https://en.smallyu.net/2025/03/22/Thoughts%20Triggered%20by%20Internal%20Team%20
 https://en.smallyu.net/2025/04/13/I%20Changed%20Jobs%20Because%20of%20a%20Colleague's%20Disrespect/
 https://en.smallyu.net/2025/05/05/Original%20Family/
 https://en.smallyu.net/2025/04/27/Looking%20Back%20on%20My%20Past%20Failed%20Career%20Experiences/
-https://en.smallyu.net/2025/04/27/Why%20I%20Converted%20Most%20of%20My%20Assets%20into%20Bitcoin/
 https://en.smallyu.net/2019/05/18/Does%20JavaScript%20Have%20Associative%20Arrays_/
 https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in%20Haskell_/
 https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/
@@ -224,3 +225,4 @@ https://en.smallyu.net/tags/AI/
 https://en.smallyu.net/tags/Bitcoin/
 https://en.smallyu.net/tags/web3/
 https://en.smallyu.net/tags/zk/
+https://en.smallyu.net/tags/EVM/

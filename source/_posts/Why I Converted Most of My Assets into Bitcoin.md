@@ -30,3 +30,9 @@ BTC's advantage is that it is a pure decentralized coin — not issued by any co
 USDC's advantage is that it's a stablecoin — its value is stable and won't drop. The downside is, for example, if it's issued on the Ethereum chain, what happens if Ethereum goes down?
 
 Therefore, I allocate my assets selectively between BTC and USDC.
+
+<br>
+
+### Supplement (2025.05.11)
+
+Just found out there are cryptocurrencies pegged to the price of gold, priced per ounce with a 1:1 physical reserve. So from a safe-haven asset perspective, it's essential to allocate some gold-backed currency.

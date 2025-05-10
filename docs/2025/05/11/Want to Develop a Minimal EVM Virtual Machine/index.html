@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><title>Want to Develop a Minimal EVM Virtual Machine</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Want to Develop a Minimal EVM Virtual Machine</h1><div class="time">2025-05-11</div><ul class="tags"><li><span>#</span><a href="/tags/Plan/">Plan</a></li><li><span>#</span><a href="/tags/EVM/">EVM</a></li></ul><p>I’ve named this project echoevm.com. The main goal is to start from the simplest stack operations and gradually build a complete Ethereum bytecode execution environment.</p>
+<p>Why choose this direction? Let’s analyze the technical modules of an Ethereum client:</p>
+<ol>
+<li>RPC: A GRPC wrapper? The focus is more on protocol design than technical implementation.</li>
+<li>P2P: There’s an existing libp2p available — it’s mostly about node discovery and routing tables, maybe dig into Kademlia DHT?</li>
+<li>Account system: ECDSA? Cryptography?</li>
+<li>Transaction pool: Transaction analysis, sealed transactions, MEV protection directions.</li>
+<li>Consensus mechanism: The design of consensus mechanisms belongs in the research realm — typically PhD-level research in labs, publishing papers, producing test data to prove cutting-edge optimizations, and finally securing funding to hire engineers for implementation.</li>
+<li>Storage: Experts in database internals are useful anywhere; it’s not specific to blockchain.</li>
+<li>Data structures: Study the implementation of Merkle Patricia Trees?</li>
+<li>State synchronization: Light client direction — for example, using Celestia’s core tech to separate execution from storage, or offloading Archive node data?</li>
+</ol>
+<p>Overall, I lean toward doing something engineering-focused rather than academic, yet still technically challenging. It should be meaningful both for personal technical growth and for the potential outcomes. If this minimal EVM is successfully developed, it can lead to a series of follow-up achievements, and many valuable products can be built on top of it.</p>
+<p>The conversion from Solidity to bytecode is compiler expert territory. What I aim to do is execute the bytecode — starting with the simplest operations like addition and jump, then move on to gas calculation, context switching, and ultimately be able to execute all historical Ethereum transactions.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>
