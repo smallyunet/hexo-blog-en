@@ -23,7 +23,33 @@ In this way, the administrator doesn't need to reveal which addresses are in the
 
 Next, I will proceed to implement this design from a technical perspective.
 
-<br>
+
+<br><br>
+
+### Update v0.2.0 (2025.05.13)
+
+This version addresses the issue of verifying address ownership. The basic idea is to separate zk proof from the ownership proof. Off-chain, zk is used to prove the path of the address in the Merkle Root. On-chain, users need to submit a signature of the root signed with their private key, and the signature is then submitted to the blockchain. The contract recovers the address from the signature and compares it with the address information contained in the zk circuit proof.
+
+```
+1. zk proof includes address information -> On-chain verification of zk proof -> Obtain address information from zk proof
+2. Sign the root with private key -> Obtain signature on-chain -> Recover address from the signature
+
+3. Check if the address in zk proof == address recovered from signature
+```
+
+Specific code changes in the demo:
+
+1. The offchain part does not need changes. The script that generates `inputs.json` already includes the key information in [inputs](https://github.com/smallyunet/zkgate-demo/blob/v0.2.0/offchain/smt.js#L37).
+2. In the circuit code, the key in inputs needs to be made [public](https://github.com/smallyunet/zkgate-demo/blob/v0.2.0/circuits/merkleSmtProof.circom#L27).
+3. The contract code needs to accept the user's [signature](https://github.com/smallyunet/zkgate-demo/blob/v0.2.0/hardhat/contracts/ZkGateRegistry.sol#L38) as a parameter, and obtain the [address](https://github.com/smallyunet/zkgate-demo/blob/v0.2.0/hardhat/contracts/ZkGateRegistry.sol#L49) recovered from it, to compare with the proof key.
+4. The script that calls the contract needs to sign the root with a private key [here](https://github.com/smallyunet/zkgate-demo/blob/v0.2.0/hardhat/scripts/prove.js#L44-L45), and pass the signature as a parameter when calling the contract.
+
+At this point, the functionality implemented by zkgate.fun allows group admins to avoid publicly disclosing their group member information on-chain. They only need to submit the Merkle Root Hash. For group members, with access to the full member list and a signature from their private key for their address, they can generate a zk proof to verify on-chain that they are indeed part of the group.
+
+In this process, zk hides only one piece of information: the complete list of group members does not need to be publicly disclosed on-chain—only a Merkle Root Hash is required. However, the user's address cannot be hidden for now, as it must be submitted on-chain for verification.
+
+
+<br><br>
 
 ### Update v0.1.0 Version (2025.05.09)
 
@@ -33,17 +59,17 @@ Secondly, I'm happy to report that a very basic demo is now working ([smallyunet
 
 Here's how the implementation works:
 
-1. An [off-chain script](https://github.com/smallyunet/zkgate-demo/blob/main/offchain/smt.js) generates the zk circuit's [inputs.json](https://github.com/smallyunet/zkgate-demo/blob/main/offchain/inputs.json) from the address list and a user's own address. This input file includes the Merkle Root Hash and the path required to verify node position.
-2. Based on the [circuit code](https://github.com/smallyunet/zkgate-demo/blob/main/circuits/merkleSmtProof.circom), it compiles some [binary files](https://github.com/smallyunet/zkgate-demo/tree/main/circuits/build), which are used to generate the witness file.
-3. It uses a public [ptau file](https://github.com/smallyunet/zkgate-demo/blob/main/circuits/run.sh#L17-L28) to generate a .zkey file.
-4. From the .zkey file, it exports [proof.json](https://github.com/smallyunet/zkgate-demo/blob/main/circuits/proof.json), [public.json](https://github.com/smallyunet/zkgate-demo/blob/main/circuits/public.json), and [verification_key.json](https://github.com/smallyunet/zkgate-demo/blob/main/circuits/verification_key.json). These three JSON files enable offline off-chain verification of the proof's validity.
-5. It also exports a [.sol file](https://github.com/smallyunet/zkgate-demo/blob/main/circuits/contracts/Groth16Verifier.sol), i.e., the smart contract code, from the .zkey file to be deployed on-chain.
-6. By supplying the contents of proof.json and public.json as [parameters](https://github.com/smallyunet/zkgate-demo/blob/main/hardhat/scripts/prove.js#L41), one can call the smart contract's [verifyProof](https://github.com/smallyunet/zkgate-demo/blob/main/circuits/contracts/Groth16Verifier.sol) function. It returns true if the proof is valid; otherwise, false.
+1. An [off-chain script](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/offchain/smt.js) generates the zk circuit's [inputs.json](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/offchain/inputs.json) from the address list and a user's own address. This input file includes the Merkle Root Hash and the path required to verify node position.
+2. Based on the [circuit code](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/circuits/merkleSmtProof.circom), it compiles some [binary files](https://github.com/smallyunet/zkgate-demo/tree/main/circuits/build), which are used to generate the witness file.
+3. It uses a public [ptau file](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/circuits/run.sh#L17-L28) to generate a .zkey file.
+4. From the .zkey file, it exports [proof.json](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/circuits/proof.json), [public.json](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/circuits/public.json), and [verification_key.json](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/circuits/verification_key.json). These three JSON files enable offline off-chain verification of the proof's validity.
+5. It also exports a [.sol file](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/circuits/contracts/Groth16Verifier.sol), i.e., the smart contract code, from the .zkey file to be deployed on-chain.
+6. By supplying the contents of proof.json and public.json as [parameters](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/hardhat/scripts/prove.js#L41), one can call the smart contract's [verifyProof](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/circuits/contracts/Groth16Verifier.sol) function. It returns true if the proof is valid; otherwise, false.
 
 If an address is not in the group list, two scenarios are possible:
 
-1. If someone tries to generate an inputs.json using an [address not in the group list](https://github.com/smallyunet/zkgate-demo/blob/main/offchain/smt_non_member.js#L24), the circuit will directly reject it and throw an error during proof generation.
-2. If someone tries to submit a fake [proof with the correct root](https://github.com/smallyunet/zkgate-demo/blob/main/hardhat/scripts/fakeProofWithCorrectRoot.js#L26) for on-chain verification, the proof will fail verification.
+1. If someone tries to generate an inputs.json using an [address not in the group list](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/offchain/smt_non_member.js#L24), the circuit will directly reject it and throw an error during proof generation.
+2. If someone tries to submit a fake [proof with the correct root](https://github.com/smallyunet/zkgate-demo/blob/v0.1.0/hardhat/scripts/fakeProofWithCorrectRoot.js#L26) for on-chain verification, the proof will fail verification.
 
 Currently, the biggest flaw in this initial demo is that the proof is built using plaintext addresses, such as:
 

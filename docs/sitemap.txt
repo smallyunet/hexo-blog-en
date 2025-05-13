@@ -1,7 +1,7 @@
+https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/
 https://en.smallyu.net/2021/09/18/Saving%20Paths%20in%20Dijkstra%20Algorithm/
 https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/
 https://en.smallyu.net/2025/04/27/Why%20I%20Converted%20Most%20of%20My%20Assets%20into%20Bitcoin/
-https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/
 https://en.smallyu.net/about/index.html
 https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/
 https://en.smallyu.net/2025/04/29/About%20the%20Design%20of%20the%20Web3%20Tipping%20System%20giveme.wtf/
