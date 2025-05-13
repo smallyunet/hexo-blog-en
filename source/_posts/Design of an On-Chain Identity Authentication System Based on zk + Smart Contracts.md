@@ -23,8 +23,22 @@ In this way, the administrator doesn't need to reveal which addresses are in the
 
 Next, I will proceed to implement this design from a technical perspective.
 
+<br>
 
-<br><br>
+### Update (2025.05.14)
+
+There is an existing zk protocol supported by the Ethereum Foundation, with a relatively mature toolchain and ecosystem, also designed for identity verification. It's called Semaphore. You can try out the demo with a frontend interface directly on their official website:
+
+- https://semaphore.pse.dev/
+
+In the first two iterations of zkgate.fun, I did not choose to use Semaphore's EdDSA account system solution, mainly because I did not want to deviate from Ethereum's account system, nor did I want to abandon ECDSA. However, in reality, only EdDSA is zk-friendly. It supports signing with Poseidon Hash, allowing signature verification directly within the zk circuit, eliminating the need for the awkward approach of "off-chain signature, on-chain recover."
+
+I have to admit, from a personal learning perspective, although it has only been a few days, I have already roughly understood the operation process of zk (toolchain). From the perspective of cutting-edge industry technology, it's impossible for me to do better than Semaphore with just my personal efforts. Even if zkgate.fun were to further develop a frontend interface to visually demonstrate the specific interaction process, at most it would look like Semaphore's [Demo](https://demo.semaphore.pse.dev/), and technically it would not be as sophisticated as Semaphore.
+
+Therefore, the zkgate.fun project will no longer continue development. The domain will automatically expire after one year and will not be renewed.
+
+
+<br>
 
 ### Update v0.2.0 (2025.05.13)
 
@@ -49,7 +63,7 @@ At this point, the functionality implemented by zkgate.fun allows group admins t
 In this process, zk hides only one piece of information: the complete list of group members does not need to be publicly disclosed on-chain—only a Merkle Root Hash is required. However, the user's address cannot be hidden for now, as it must be submitted on-chain for verification.
 
 
-<br><br>
+<br>
 
 ### Update v0.1.0 Version (2025.05.09)
 
