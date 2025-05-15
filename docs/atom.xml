@@ -6,7 +6,7 @@
   <link href="https://en.smallyu.net/atom.xml" rel="self"/>
   <link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
   <link href="https://en.smallyu.net/"/>
-  <updated>2025-05-10T17:21:38.546Z</updated>
+  <updated>2025-05-15T12:38:25.982Z</updated>
   <id>https://en.smallyu.net/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The Company Closed, I&#39;m Unemployed Again</title>
+    <link href="https://en.smallyu.net/2025/05/15/The%20Company%20Closed,%20I&#39;m%20Unemployed%20Again/"/>
+    <id>https://en.smallyu.net/2025/05/15/The%20Company%20Closed,%20I&#39;m%20Unemployed%20Again/</id>
+    <published>2025-05-15T12:37:11.000Z</published>
+    <updated>2025-05-15T12:38:25.982Z</updated>
+    
+    <content type="html"><![CDATA[<p>In the past month, I worked as a backend developer for a company called <a href="https://www.tantin.com/">Tantin Chain</a>, focusing on wallet backend development. During my time there, I was mainly responsible for developing a transaction record aggregation service. The core function of this aggregation service was to query transaction records for a given address from data sources upon receiving requests from the client, process the data into a format defined by the business, and return the result.</p><p>Since it involved multiple chains, and the data came from several sources, each address also needed to handle three types of transactions: regular transactions, ERC-20 transactions, and internal transactions. Plus, there was the issue of writing to the Redis cache. Therefore, a dedicated aggregation service was needed for this purpose. Currently, the service supports four data sources: Ankr, Quick Node, Blockscout, and Etherscan. The complete code is open-sourced here: <a href="https://github.com/smallyunet/tx-aggregator">smallyunet&#x2F;tx-aggregator</a></p><p>This company had close ties with Coinstore. Initially, the core team was borrowed from Coinstore, but after forming a new team by hiring externally, the Coinstore employees returned to their original positions. The newly formed team had two groups, mainly responsible for three product lines: public chain, cross-chain bridge, and wallet. After a month of development, the plan was to release the first official version today. However, unexpectedly, the company laid off all employees in the two teams—right on the day of the planned release.</p><p>Back to my own work—the transaction aggregation service was actually quite simple, probably requiring just one or two weeks to develop. For the remaining time, I was looking for things to do: optimizing multi-environment configurations, writing unit tests, writing integration tests, writing documentation, optimizing code structure… I must say, this period of work was very pleasant. I hadn’t done such an easy job in the past two years. The team atmosphere was also great and cheerful. Having been immersed in the serious blockchain field for too long, it was quite refreshing to occasionally do regular backend development.</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;In the past month, I worked as a backend developer for a company called &lt;a href=&quot;https://www.tantin.com/&quot;&gt;Tantin Chain&lt;/a&gt;, focusing on</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Work" scheme="https://en.smallyu.net/tags/Work/"/>
+    
+  </entry>
   
   <entry>
     <title>Want to Develop a Minimal EVM Virtual Machine</title>
