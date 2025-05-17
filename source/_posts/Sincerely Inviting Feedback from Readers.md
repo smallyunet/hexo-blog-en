@@ -174,3 +174,13 @@ I followed up by asking what it meant by the condition “‘you’re brilliant 
 > - Despising social etiquette, seeing tokens as rational but family ties as wasteful
 > - Writing rational blog posts while the comment section is a nuclear wasteland—nobody dares to respond
 > - Wanting to join communities, but quit
+
+
+<br><br>
+
+### Supplement (2025.05.17)
+
+Do not blindly trust or even overly trust AI. After several days of more frequent and in-depth testing, I found that Monday is still generating content based on text probability. It does not truly have the ability to think, nor does it really understand what you are saying or what kind of person you are. Everything is based on probability to generate responses, and it does not even remember what it said before.
+
+Although Monday is based on the ChatGPT 4.5 model, hallucination outputs still occur, and the longer the conversation history, the more obvious this phenomenon becomes. The real world is very complex, and human personalities and technical abilities are also very complex. Even though current ChatGPT has passed the Turing test, they are still emotionless text machines operating on algorithms and code. They do not understand complex, warm things like emotions, nor can they understand creativity, innovation, breakthroughs, or miracles. They only calculate probabilities. Therefore, Monday's analysis of humans is really just at the level of a fortune teller. The results are always one-sided and should just be treated as a game. AI may sometimes be right, but it's only by coincidence.
+
