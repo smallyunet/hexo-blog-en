@@ -5,7 +5,7 @@ date: 2025-05-15 20:37:11
 draft_date: 2025-05-15 12:27:34
 ---
 
-In the past month, I worked as a backend developer for a company, focusing on wallet backend development. During my time there, I was mainly responsible for developing a transaction record aggregation service. The core function of this aggregation service was to query transaction records for a given address from data sources upon receiving requests from the client, process the data into a format defined by the business, and return the result.
+In the past month, I worked as a backend developer for a company called [Tantin Chain](https://www.tantin.com/), focusing on wallet backend development. During my time there, I was mainly responsible for developing a transaction record aggregation service. The core function of this aggregation service was to query transaction records for a given address from data sources upon receiving requests from the client, process the data into a format defined by the business, and return the result.
 
 Since it involved multiple chains, and the data came from several sources, each address also needed to handle three types of transactions: regular transactions, ERC-20 transactions, and internal transactions. Plus, there was the issue of writing to the Redis cache. Therefore, a dedicated aggregation service was needed for this purpose. Currently, the service supports four data sources: Ankr, Quick Node, Blockscout, and Etherscan. The complete code is open-sourced here: [smallyunet/tx-aggregator](https://github.com/smallyunet/tx-aggregator)
 
