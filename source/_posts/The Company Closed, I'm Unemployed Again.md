@@ -12,3 +12,11 @@ Since it involved multiple chains, and the data came from several sources, each 
 This company had close ties with Coinstore. Initially, the core team was borrowed from Coinstore, but after forming a new team by hiring externally, the Coinstore employees returned to their original positions. The newly formed team had two groups, mainly responsible for three product lines: public chain, cross-chain bridge, and wallet. After a month of development, the plan was to release the first official version today. However, unexpectedly, the company laid off all employees in the two teams—right on the day of the planned release.
 
 Back to my own work—the transaction aggregation service was actually quite simple, probably requiring just one or two weeks to develop. For the remaining time, I was looking for things to do: optimizing multi-environment configurations, writing unit tests, writing integration tests, writing documentation, optimizing code structure... I must say, this period of work was very pleasant. I hadn't done such an easy job in the past two years. The team atmosphere was also great and cheerful. Having been immersed in the serious blockchain field for too long, it was quite refreshing to occasionally do regular backend development.
+
+<br><br>
+
+### Reminder (2025.05.22)
+
+Tantin Chain's Chinese name is 天体链 (Tiāntǐ Liàn), and its affiliated department is Tantin Exchange (TTX), known in Chinese as 天体交易所. TTX was formerly known as ttsmart, and its issued token is called CTC.
+
+Just a reminder: this company originated in Cambodia and recently set up an office in Singapore. It has a strong background in pyramid schemes and a history of absconding with funds, traces of which can be found online. Everyone should avoid using Tantin’s products as much as possible to prevent personal asset losses. The company name used for recruitment is Tantin Technology. Industry professionals should also be cautious and avoid working for this company if possible, as there may be joint liability if issues arise with users later on.
