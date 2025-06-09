@@ -24,6 +24,17 @@ The conversion from Solidity to bytecode is compiler expert territory. What I ai
 
 <br><br>
 
+### v0.0.2 (2025.06.09)
+
+This version adds the ability to run runtime bytecode, meaning you can first deploy a contract and then call the deployed contract's functions with specific parameters. For example:
+
+```
+go run ./cmd/echoevm -bin ./build/Add.bin -function 'add(uint256,uint256)' -args "3,5"
+```
+
+This command executes the bytecode from the `./build/Add.bin` file and calls the [add function](https://github.com/smallyunet/echoevm/blob/v0.0.2/test/contracts/Add.sol#L7), passing in the arguments 3 and 5. After the program completes, it will return the computation result, which is 8.
+
+
 ### v0.0.1 (2025.05.27)
 
 Implemented a very simple version. Now you can use `solc` to compile an [Add.sol](https://github.com/smallyunet/echoevm/blob/v0.0.1/test/contracts/Add.sol) contract, and then have `echoevm` read the generated `Add.bin` deployment code, which will output the contract's runtime code after deployment.
