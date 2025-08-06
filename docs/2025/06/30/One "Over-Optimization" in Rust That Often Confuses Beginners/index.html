@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><title>One &quot;Over-Optimization&quot; in Rust That Often Confuses Beginners</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>One &quot;Over-Optimization&quot; in Rust That Often Confuses Beginners</h1><div class="time">2025-06-30</div><div class="title-margin"></div><p>Suppose we want to write some code. Just use <code>cargo new</code> to create a project, and then define a function called <code>append</code>. The function is straightforward—it concatenates two input strings. The first parameter is a reference to a string, and the second is also a string. For example, given the parameters <code>Hello</code> and <code>, world</code>, the function will return <code>Hello, world</code>. Here’s the function:</p>
+<pre><code class="rust">fn append(s1: &amp;String, s2: &amp;String) -&gt; String &#123;
+    return s1.clone() + s2.clone().as_str();
+&#125;
+</code></pre>
+<p>Don’t worry about the syntax after <code>return</code>; that’s not our focus here. In the <code>main</code> function, we call <code>append</code>, run the code, and the output will be as expected—<code>Hello, world</code>:</p>
+<pre><code class="rust">fn main() &#123;
+    let s1: String = String::from(&quot;Hello&quot;);
+    let s2: String = String::from(&quot;, world&quot;);
+    println!(&quot;&#123;&#125;&quot;, append(&amp;s1, &amp;s2));
+&#125;
+</code></pre>
+<p>Now, keep the <code>append</code> function exactly the same, but change the string definitions in <code>main</code>. The <code>main</code> function becomes:</p>
+<pre><code class="rust">fn main() &#123;
+    let s1: Box&lt;String&gt; = Box::new(String::from(&quot;Hello&quot;));
+    let s2: Box&lt;String&gt; = Box::new(String::from(&quot;, world&quot;));
+    println!(&quot;&#123;&#125;&quot;, append(&amp;s1, &amp;s2));
+&#125;
+</code></pre>
+<p>Our initial instinct might be that this should cause a compile-time error, since <code>s1</code> is of type <code>Box&lt;String&gt;</code>, and passing <code>&amp;s1</code> means the type is <code>&amp;Box&lt;String&gt;</code>, which doesn’t match the <code>append</code> function’s parameter type of <code>&amp;String</code>. So why does this compile successfully and output <code>Hello, world</code> as expected? (Ignore what <code>Box</code> is for now; it’s just another type.)</p>
+<p>Let’s take it further and modify <code>main</code> like this:</p>
+<pre><code class="rust">fn main() &#123;
+    use std::rc::Rc;
+
+    let s1: Rc&lt;String&gt; = Rc::new(String::from(&quot;Hello&quot;));
+    let s2: Rc&lt;String&gt; = Rc::new(String::from(&quot;, world&quot;));
+    println!(&quot;&#123;&#125;&quot;, append(&amp;s1, &amp;s2));
+&#125;
+</code></pre>
+<p>Will this compile? Will it run correctly? The <code>append</code> function definition hasn’t changed. Here, <code>s1</code> is of type <code>Rc&lt;String&gt;</code>, and the arguments passed into <code>append</code> are of type <code>&amp;Rc&lt;String&gt;</code>. So why doesn’t the compiler complain, and why does it still print <code>Hello, world</code>? (Again, ignore what <code>Rc</code> is—just treat it as a type.)</p>
+<p>From the above code snippets, we observe a phenomenon: when the function parameters are of type <code>&amp;String</code>, it accepts not only <code>&amp;String</code> but also <code>&amp;Box&lt;String&gt;</code> and <code>&amp;Rc&lt;String&gt;</code>.</p>
+<p>Let’s push this further. What happens if we change <code>main</code> to:</p>
+<pre><code class="rust">fn main() &#123;
+    let s1: Box&lt;Box&lt;Box&lt;Box&lt;String&gt;&gt;&gt;&gt; = Box::new(Box::new(Box::new(Box::new(String::from(&quot;Hello&quot;)))));
+    let s2: Box&lt;Box&lt;Box&lt;Box&lt;String&gt;&gt;&gt;&gt; = Box::new(Box::new(Box::new(Box::new(String::from(&quot;, world&quot;)))));
+    println!(&quot;&#123;&#125;&quot;, append(&amp;s1, &amp;s2));
+&#125;
+</code></pre>
+<p>Or like this:</p>
+<pre><code class="rust">fn main() &#123;
+    use std::rc::Rc;
+    
+    let s1: Rc&lt;Rc&lt;Rc&lt;Rc&lt;String&gt;&gt;&gt;&gt; = Rc::new(Rc::new(Rc::new(Rc::new(String::from(&quot;hello&quot;)))));
+    let s2: Rc&lt;Rc&lt;Rc&lt;Rc&lt;String&gt;&gt;&gt;&gt; = Rc::new(Rc::new(Rc::new(Rc::new(String::from(&quot;, world&quot;)))));
+    println!(&quot;&#123;&#125;&quot;, append(&amp;s1, &amp;s2));
+&#125;
+</code></pre>
+<p>The result: both versions of <code>main</code> compile and run normally, printing <code>Hello, world</code>.</p>
+<p>To explore the type behavior further, let’s define two more <code>append</code> functions. <code>append2</code> takes <code>&amp;Box&lt;String&gt;</code>, and <code>append3</code> takes <code>&amp;Rc&lt;String&gt;</code>:</p>
+<pre><code class="rust">fn append2(s1: &amp;Box&lt;String&gt;, s2: &amp;Box&lt;String&gt;) -&gt; Box&lt;String&gt; &#123;
+    let mut result = (**s1).clone();
+    result.push_str(s2);
+    Box::new(result)
+&#125;
+
+use std::rc::Rc;
+fn append3(s1: &amp;Rc&lt;String&gt;, s2: &amp;Rc&lt;String&gt;) -&gt; Rc&lt;String&gt; &#123;
+    let mut result = (**s1).clone();
+    result.push_str(s2);
+    Rc::new(result)
+&#125;
+</code></pre>
+<p>Now, consider the following <code>main</code> function. On which line will the compiler report an error?</p>
+<pre><code class="rust">fn main() &#123;
+    let s1: Box&lt;Box&lt;Rc&lt;Rc&lt;String&gt;&gt;&gt;&gt; = Box::new(Box::new(Rc::new(Rc::new(String::from(&quot;hello&quot;)))));
+    let s2: Box&lt;Box&lt;Rc&lt;Rc&lt;String&gt;&gt;&gt;&gt; = Box::new(Box::new(Rc::new(Rc::new(String::from(&quot;, world&quot;)))));
+    println!(&quot;&#123;&#125;&quot;, append(&amp;s1, &amp;s2));
+    println!(&quot;&#123;&#125;&quot;, append2(&amp;s1, &amp;s2));
+    println!(&quot;&#123;&#125;&quot;, append3(&amp;s1, &amp;s2));
+&#125;
+</code></pre>
+<p>What if we expand the types even further? Will the compiler still complain, and where?</p>
+<pre><code class="rust">fn main() &#123;
+    let s1: Box&lt;Box&lt;Rc&lt;Rc&lt;Box&lt;Box&lt;String&gt;&gt;&gt;&gt;&gt;&gt; = Box::new(Box::new(Rc::new(Rc::new(Box::new(Box::new(String::from(&quot;hello&quot;)))))));
+    let s2: Box&lt;Box&lt;Rc&lt;Rc&lt;Box&lt;Box&lt;String&gt;&gt;&gt;&gt;&gt;&gt; = Box::new(Box::new(Rc::new(Rc::new(Box::new(Box::new(String::from(&quot;, world&quot;)))))));
+    println!(&quot;&#123;&#125;&quot;, append(&amp;s1, &amp;s2));
+    println!(&quot;&#123;&#125;&quot;, append2(&amp;s1, &amp;s2));
+    println!(&quot;&#123;&#125;&quot;, append3(&amp;s1, &amp;s2));
+&#125;
+</code></pre>
+<p>Rust calls this ergonomic design, meant to reduce the developer’s burden. However, when it comes to things like frequent ownership moves or needing to annotate lifetimes with <code>&#39;</code>, Rust drops ergonomic considerations in favor of memory safety. Arguably, that’s not wrong—after all, memory safety is Rust’s non-negotiable priority.</p>
+<p>Finally, let’s raise the difficulty. In a real-world scenario, suppose there’s a function called <code>do_something</code> that takes generic parameters. The original logic looks like this:</p>
+<pre><code class="rust">fn do_something&lt;T1, T2&gt;(t1: T1, t2: T2) &#123;
+    println!(&quot;&#123;&#125;&quot;, append(&amp;t1, &amp;t2));
+&#125;
+</code></pre>
+<p>Now let’s add some extra processing:</p>
+<pre><code class="rust">fn do_something&lt;T1, T2&gt;(t1: T1, t2: T2) &#123;
+    // Add a function to process t1
+    handle_t1(&amp;t1);  
+
+    println!(&quot;&#123;&#125;&quot;, append(&amp;t1, &amp;t2));
+&#125;
+</code></pre>
+<p>So here’s the question: What is the type of parameter <code>t1</code>? How should the <code>handle_t1</code> function be defined? In the original logic, <code>t1</code> is passed to <code>append</code>, so does that mean <code>t1</code> is of type <code>&amp;String</code>? If not, what could <code>t1</code>’s type be?</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

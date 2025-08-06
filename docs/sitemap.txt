@@ -1,6 +1,18 @@
+https://en.smallyu.net/2021/11/12/A%20Person%20I%20Don't%20Quite%20Like/
+https://en.smallyu.net/2025/08/01/Analysis%20of%20the%20Psyche%20Network%20Project/
+https://en.smallyu.net/2025/08/05/Analysis%20of%20the%20Arcium%20Network%20Project/
+https://en.smallyu.net/2025/08/04/Analysis%20of%20the%20Camp%20Network%20Project/
+https://en.smallyu.net/2025/08/06/Analysis%20of%20the%200G%20Project/
+https://en.smallyu.net/2025/07/15/How%20to%20Develop%20a%20Bitcoin%20Runes%20Protocol/
+https://en.smallyu.net/2025/07/10/Bitcoin%20Script%20Development%20Tutorial/
+https://en.smallyu.net/2025/07/06/Blockchain%20Technical%20Interview%20Questions%20(2025%20Edition)/
+https://en.smallyu.net/2025/06/30/One%20%22Over-Optimization%22%20in%20Rust%20That%20Often%20Confuses%20Beginners/
+https://en.smallyu.net/2025/06/28/Solana%20Smart%20Contract%20Development%20Tutorial%20(3)/
+https://en.smallyu.net/2025/06/26/Solana%20Smart%20Contract%20Development%20Tutorial%20(2)/
+https://en.smallyu.net/2025/06/24/Solana%20Smart%20Contract%20Development%20Tutorial%20(1)/
+https://en.smallyu.net/2022/12/27/Designing%20a%20Guess%202_3%20of%20the%20Average%20dApp%20Game/
 https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/
 https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/
-https://en.smallyu.net/2025/05/15/The%20Company%20Closed,%20I'm%20Unemployed%20Again/
 https://en.smallyu.net/tags/index.html
 https://en.smallyu.net/categories/index.html
 https://en.smallyu.net/micro-blog/index.html
@@ -91,7 +103,6 @@ https://en.smallyu.net/2018/12/17/Basics%20of%20Scala%20Syntax/
 https://en.smallyu.net/2020/03/21/An%20Interactive%20Method%20for%20Side%20Navigation%20Bar/
 https://en.smallyu.net/2025/04/29/About%20the%20Design%20of%20the%20Web3%20Tipping%20System%20giveme.wtf/
 https://en.smallyu.net/2025/01/05/All%20BFT%20Consensus%20Blockchains%20Are%20Centralized/
-https://en.smallyu.net/2021/11/12/A%20Person%20I%20Don't%20Quite%20Like/
 https://en.smallyu.net/2019/07/06/A%20Simplified%20Version%20of%20Scala/
 https://en.smallyu.net/2020/05/03/About%20Human%20Abilities,%20Experiences,%20and.../
 https://en.smallyu.net/2023/02/22/A%20Mechanism%20for%20Generating%20Random%20Numbers%20on%20the%20Blockchain/
@@ -100,7 +111,6 @@ https://en.smallyu.net/2021/10/29/A%20Consensus%20Mechanism%20Based%20on%20%22Eg
 https://en.smallyu.net/2019/11/20/A%20Brief%20Analysis%20of%20the%20Blockchain%20Technology%20Behind%20Libra/
 https://en.smallyu.net/2020/08/22/%22Do%20the%20Right%20Thing,%20Then%20Wait%20to%20Get%20Fired%22/
 https://en.smallyu.net/2021/06/24/%22I%22%20am...%20(Series)/
-https://en.smallyu.net/2022/12/27/%22Designing%20a%20'Guess%202_3%20of%20the%20Average'%20dApp%20Game%22/
 https://en.smallyu.net/
 https://en.smallyu.net/tags/dApp/
 https://en.smallyu.net/tags/Work/
@@ -152,3 +162,8 @@ https://en.smallyu.net/tags/Encryption/
 https://en.smallyu.net/tags/Scripted-Murder-Mysteries/
 https://en.smallyu.net/tags/Cryptocurrency-Trading/
 https://en.smallyu.net/tags/planning/
+https://en.smallyu.net/tags/Rust/
+https://en.smallyu.net/tags/BTC/
+https://en.smallyu.net/tags/Smart-Contract/
+https://en.smallyu.net/tags/Tutorial/
+https://en.smallyu.net/tags/Project-Analysis/

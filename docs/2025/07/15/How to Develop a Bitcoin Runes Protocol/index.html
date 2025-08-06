@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><title>How to Develop a Bitcoin Runes Protocol</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>How to Develop a Bitcoin Runes Protocol</h1><div class="time">2025-07-15</div><div class="title-margin"></div><p>Technically, Bitcoin Runes are simple and easy to understand. Implementing Runes only requires the use of the <code>OP_RETURN</code> opcode in Bitcoin Script. Precisely because of this simplicity, Runes are relatively clean from a technical perspective and not as complex as Inscriptions or RGB in terms of off-chain state management. The power of Runes lies in how it sparked an ecosystem around it. Though that hype has cooled down, we’re not focused on market trends here—we’ll look at Runes from a purely technical angle and develop a simplified version of the Runes protocol step-by-step. Once we fully understand Runes, we can dive into more complex projects like Alkanes, a protocol supporting WASM smart contracts on Bitcoin.</p>
+<p>This tutorial builds on concepts covered in <a href="/2025/07/10/%E6%AF%94%E7%89%B9%E5%B8%81%E8%84%9A%E6%9C%AC%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/">Bitcoin Script Development Tutorial</a>. If you’re unfamiliar with Bitcoin Script, it’s recommended to read that first.</p>
+<h3 id="1-Define-the-Data-Structure"><a href="#1-Define-the-Data-Structure" class="headerlink" title="1. Define the Data Structure"></a>1. Define the Data Structure</h3><p>We define Runes operations as JSON-formatted structures. Language choice is flexible—this example uses Rust. To keep the tutorial simple, we skip some practical details (e.g., the <code>transfer</code> structure only supports one target address):</p>
+<pre><code class="rust">struct IssueRune &#123;
+    op: u8,          // Always 0 = Issue
+    symbol: String,  // Rune name
+    supply: String,  // Total supply
+&#125;
+
+struct TransferRune &#123;
+    op: u8,          // Always 1 = Transfer
+    id: u64,         // rune_id
+    vout: u32,       // Output index of the receiving address
+    amount: String,  // Amount to transfer
+&#125;
+</code></pre>
+<p>Why <code>vout</code> instead of address? In Runes, to save space, transfers target an output index (<code>vout</code>) in the same transaction:</p>
+<pre><code class="json">tx &#123;
+  vin:   [...]
+  vout:  [
+    &#123; vout: 0, scriptPubKey: OP_RETURN &lt;json_data&gt; &#125;,
+    &#123; vout: 1, scriptPubKey: OP_0 &lt;recipient_1&gt; &#125;,
+    &#123; vout: 2, scriptPubKey: OP_0 &lt;recipient_2&gt; &#125;
+  ]
+&#125;
+</code></pre>
+<p>Add serialization functions to convert the structs into JSON strings:</p>
+<pre><code class="rust">impl IssueRune &#123;
+    fn toJson(&amp;self) -&gt; String &#123;
+        format!(
+            &quot;&#123;&#123;\"op\":&#123;&#125;,\"symbol\":\"&#123;&#125;\",\"supply\":\"&#123;&#125;\"&#125;&#125;&quot;,
+            self.op, self.symbol, self.supply
+        )
+    &#125;
+&#125;
+
+impl TransferRune &#123;
+    fn toJson(&amp;self) -&gt; String &#123;
+        format!(
+            &quot;&#123;&#123;\"op\":&#123;&#125;,\"id\":&#123;&#125;,\"vout\":&#123;&#125;,\"amount\":\"&#123;&#125;\"&#125;&#125;&quot;,
+            self.op, self.id, self.vout, self.amount
+        )
+    &#125;
+&#125;
+</code></pre>
+<h3 id="2-Issue-Runes"><a href="#2-Issue-Runes" class="headerlink" title="2. Issue Runes"></a>2. Issue Runes</h3><p>Using a local <code>regtest</code> node, confirm the wallet is loaded and has balance. Define the Rune issuance:</p>
+<pre><code class="rust">fn issue_rune() &#123;
+    let issue = IssueRune &#123;
+        op: 0,
+        symbol: &quot;Doge&quot;.to_string(),
+        supply: &quot;1000&quot;.to_string(),
+    &#125;;
+    println!(&quot;Issue Doge JSON: &#123;&#125;&quot;, issue.toJson());
+&#125;
+</code></pre>
+<p>Output:</p>
+<pre><code class="bash">Issue Doge JSON: &#123;&quot;op&quot;:0,&quot;symbol&quot;:&quot;Doge&quot;,&quot;supply&quot;:&quot;1000&quot;&#125;
+</code></pre>
+<p>Convert JSON to hex:</p>
+<pre><code class="bash">echo -n &#39;&#123;&quot;op&quot;:0,&quot;symbol&quot;:&quot;Doge&quot;,&quot;supply&quot;:&quot;1000&quot;&#125;&#39; | xxd -p -c 999
+</code></pre>
+<p>Hex:</p>
+<pre><code class="bash">7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307d
+</code></pre>
+<p>Pick a UTXO (must be unspent):</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -regtest listunspent
+</code></pre>
+<p>Example UTXO:</p>
+<pre><code class="json">&#123;
+  &quot;txid&quot;: &quot;8bfd524e9fc150dab11289d7e6d07860b2b5d6acb54b278a5dc1d1d7631bc8fa&quot;,
+  &quot;vout&quot;: 0,
+  &quot;amount&quot;: 50.00000000
+&#125;
+</code></pre>
+<p>Generate a change address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getrawchangeaddress legacy
+</code></pre>
+<p>My address: <code>n4Ybvvzm9vRQepuMpXBnTWWbYuTgsPSZCV</code></p>
+<p>Create the raw transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ createrawtransaction \
+  &#39;[&#123;&quot;txid&quot;:&quot;...&quot;,&quot;vout&quot;:0&#125;]&#39; \
+  &#39;[&#123;&quot;data&quot;:&quot;7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307d&quot;&#125;,&#123;&quot;n4Ybvvzm9vRQepuMpXBnTWWbYuTgsPSZCV&quot;:49.99&#125;]&#39;
+</code></pre>
+<p>Sign the transaction, then broadcast it. Finally, mine a block:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ signrawtransactionwithwallet &lt;rawtx&gt;
+bitcoin-cli -datadir=./ sendrawtransaction &lt;signed_tx&gt;
+bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your_mining_address&gt;
+</code></pre>
+<p>Decode the transaction to confirm <code>OP_RETURN</code> content.</p>
+<h3 id="3-Transfer-Runes"><a href="#3-Transfer-Runes" class="headerlink" title="3. Transfer Runes"></a>3. Transfer Runes</h3><p>Calculate the Rune ID from the issuance transaction:</p>
+<pre><code class="rust">fn calc_run_idby_txid() &#123;
+    let txid = &quot;e2061d0b8b2f98ee47ba6564c1e7409872432354c7617d278fe0e8c4485ff04a&quot;.to_string();
+    let mut bytes = hex::decode(txid).unwrap();
+    bytes.reverse();
+    let run_id = u64::from_le_bytes(bytes[0..8].try_into().unwrap());
+    println!(&quot;Run ID: &#123;&#125;&quot;, run_id);
+&#125;
+</code></pre>
+<p>Output: <code>10367542271932362826</code></p>
+<p>Prepare a transfer structure:</p>
+<pre><code class="rust">fn transfer_rune() &#123;
+    let transfer = TransferRune &#123;
+        op: 1,
+        id: 10367542271932362826,
+        vout: 1,
+        amount: &quot;1000&quot;.to_string(),
+    &#125;;
+    println!(&quot;Transfer Rune JSON: &#123;&#125;&quot;, transfer.toJson());
+&#125;
+</code></pre>
+<p>Convert to hex:</p>
+<pre><code class="bash">echo -n &#39;&#123;&quot;op&quot;:1,&quot;id&quot;:10367542271932362826,&quot;vout&quot;:1,&quot;amount&quot;:&quot;1000&quot;&#125;&#39; | xxd -p -c 999
+</code></pre>
+<p>Create new address for receiving:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getnewaddress
+</code></pre>
+<p>Create and sign a transaction with the new OP_RETURN and outputs (Runes transfer + BTC output + change). Broadcast and mine a block.</p>
+<h3 id="4-Parse-Runes-Transactions"><a href="#4-Parse-Runes-Transactions" class="headerlink" title="4. Parse Runes Transactions"></a>4. Parse Runes Transactions</h3><p>Runes are entirely on-chain but stateless. Parsing must be done off-chain.</p>
+<p>Add dependencies in <code>Cargo.toml</code>:</p>
+<pre><code class="toml">[dependencies]
+hex              = &quot;0.4&quot;
+bitcoin          = &quot;0.31&quot;
+bitcoincore-rpc  = &quot;0.18&quot;
+serde            = &#123; version = &quot;1.0&quot;, features = [&quot;derive&quot;] &#125;
+anyhow           = &quot;1.0&quot;
+</code></pre>
+<p>Fetch and decode transaction data via RPC:</p>
+<pre><code class="rust">fn parse_tx() &#123;
+    let mut cookie = PathBuf::from(&quot;/Users/yourname/bitcoin-regtest&quot;);
+    cookie.push(&quot;regtest/.cookie&quot;);
+
+    let rpc = Client::new(
+        &quot;http://127.0.0.1:18443&quot;,
+        Auth::CookieFile(cookie),
+    ).unwrap();
+
+    let txid = Txid::from_str(&quot;...&quot;).unwrap();
+    let hex = rpc.get_raw_transaction_hex(&amp;txid, None).unwrap();
+    parse_op_return(hex);
+&#125;
+</code></pre>
+<p>Parse the OP_RETURN data:</p>
+<pre><code class="rust">fn parse_op_return(tx_str: String) &#123;
+    let tx: Transaction = bitcoin::consensus::deserialize(&amp;hex::decode(tx_str).unwrap()).unwrap();
+    let script = tx.output[0].script_pubkey.clone();
+    let mut iter = script.instructions();
+    if let (Some(Ok(_)), Some(Ok(bitcoin::blockdata::script::Instruction::PushBytes(bytes)))) =
+        (iter.next(), iter.next())
+    &#123;
+        let json_str = std::str::from_utf8(bytes.as_ref()).unwrap();
+        println!(&quot;&#123;&#125;&quot;, json_str);
+    &#125;
+&#125;
+</code></pre>
+<p>Sample output:</p>
+<pre><code class="bash">&#123;op:0,symbol:Doge,supply:1000&#125;
+&#123;&quot;op&quot;:1,&quot;id&quot;:10367542271932362826,&quot;vout&quot;:1,&quot;amount&quot;:&quot;1000&quot;&#125;
+</code></pre>
+<p>This concludes the core of the Runes protocol. The rest involves building an off-chain indexer to track rune IDs, balances, and link related transactions—exactly how Runes works under the hood.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

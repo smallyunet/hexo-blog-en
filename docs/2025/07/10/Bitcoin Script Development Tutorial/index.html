@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en"><head><title>Bitcoin Script Development Tutorial</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Bitcoin Script Development Tutorial</h1><div class="time">2025-07-10</div><div class="title-margin"></div><p>Bitcoin Script is a bit like the elephant in the room—everyone knows it exists, but few can see it clearly or care enough. This tutorial starts from the basics to help you understand how Bitcoin Script works and learn to write your own scripts. Since Bitcoin Script is not Turing-complete, the development process involves a lot of command-line operations and observing output.</p>
+<h3 id="1-Start-a-Local-Node"><a href="#1-Start-a-Local-Node" class="headerlink" title="1. Start a Local Node"></a>1. Start a Local Node</h3><p>Run this command to install the <code>bitcoind</code> binary, then test the installation with <code>bitcoind --help</code>:</p>
+<pre><code class="bash">brew install bitcoin
+</code></pre>
+<p>Create a directory for testing, such as <code>bitcoin-regtest</code>:</p>
+<pre><code class="bash">mkdir ./bitcoin-regtest
+cd ./bitcoin-regtest
+</code></pre>
+<p>In this directory, create a <code>bitcoin.conf</code> file and add the following config:</p>
+<pre><code class="conf">regtest=1
+txindex=1
+fallbackfee=0.0001
+</code></pre>
+<p>This configuration sets up a local development node. The <code>regtest=1</code> setting enables the local regression test network, starting from block height 0 and avoiding syncing with the public blockchain. <code>txindex=1</code> enables transaction indexing for easier lookup, and <code>fallbackfee</code> sets the default transaction fee.</p>
+<p>While in the directory with this config file, start the node:</p>
+<pre><code class="bash">bitcoind -datadir=./ -daemon
+</code></pre>
+<p>If successful, you’ll see “Bitcoin Core starting”. Check if the node is running:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getblockchaininfo
+</code></pre>
+<p>To verify further, check the log:</p>
+<pre><code class="bash">cat ./regtest/debug.log
+</code></pre>
+<p>To stop the node:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ stop
+</code></pre>
+<p>Note: <code>bitcoind</code> starts the server, while <code>bitcoin-cli</code> is the client.</p>
+<p>If you restart the node and find the wallet isn’t working, use this to load it:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ loadwallet learn-script 
+</code></pre>
+<h3 id="2-Create-a-Wallet"><a href="#2-Create-a-Wallet" class="headerlink" title="2. Create a Wallet"></a>2. Create a Wallet</h3><p>Create a Bitcoin wallet:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ createwallet &quot;learn-script&quot;
+</code></pre>
+<p>This will create a folder under <code>./regtest/wallets</code> named <code>learn-script</code>.</p>
+<p>Generate a new wallet address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getnewaddress
+</code></pre>
+<p>My sample address: <code>bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw</code></p>
+<p>Mine 101 blocks to this address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 101 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
+</code></pre>
+<p>Check the wallet balance (should be 50):</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getbalance
+</code></pre>
+<h3 id="3-Send-a-Transaction"><a href="#3-Send-a-Transaction" class="headerlink" title="3. Send a Transaction"></a>3. Send a Transaction</h3><p>Generate a new receiving address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getnewaddress
+</code></pre>
+<p>Example: <code>bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc</code></p>
+<p>Check the balance (should be 0):</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getreceivedbyaddress bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc 0
+</code></pre>
+<p>Send 0.01 BTC to it:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ sendtoaddress bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc 0.01
+</code></pre>
+<p>Get transaction details:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ gettransaction &lt;txid&gt;
+</code></pre>
+<p>Mine one block to confirm the transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
+</code></pre>
+<h3 id="4-Inspect-the-Script"><a href="#4-Inspect-the-Script" class="headerlink" title="4. Inspect the Script"></a>4. Inspect the Script</h3><p>Use <code>getrawtransaction</code> and <code>decoderawtransaction</code> to view the transaction script:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getrawtransaction &lt;txid&gt;
+bitcoin-cli -datadir=./ decoderawtransaction &lt;hex&gt;
+</code></pre>
+<p>You’ll see <code>txinwitness</code> (signature and pubkey) and <code>scriptPubKey</code> (locking script). <code>OP_0</code> in the script means an empty push (used in SegWit).</p>
+<h3 id="5-Debug-with-btcdeb"><a href="#5-Debug-with-btcdeb" class="headerlink" title="5. Debug with btcdeb"></a>5. Debug with btcdeb</h3><p>Use <code>btcdeb</code> to debug opcodes. Example:</p>
+<pre><code class="bash">btcdeb OP_0
+</code></pre>
+<p>And for a simple calculation:</p>
+<pre><code class="bash">btcdeb &#39;[OP_2 OP_3 OP_ADD]&#39;
+</code></pre>
+<p>Use <code>step</code> to execute each operation and watch the stack.</p>
+<h3 id="6-Write-Bitcoin-Script-1"><a href="#6-Write-Bitcoin-Script-1" class="headerlink" title="6. Write Bitcoin Script (1)"></a>6. Write Bitcoin Script (1)</h3><p>Write this simple script (insecure, for demo only):</p>
+<pre><code>[OP_2 OP_3 OP_ADD OP_5 OP_EQUAL]
+</code></pre>
+<p>Convert to hex: <code>5253935587</code></p>
+<p>Generate P2SH address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ decodescript 5253935587
+</code></pre>
+<p>Get descriptor:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getdescriptorinfo &quot;addr(&lt;p2sh-address&gt;)&quot;
+</code></pre>
+<p>Create a watch-only wallet:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ createwallet &quot;arith-watch&quot; true true &quot;&quot; true
+</code></pre>
+<p>Import the script:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=arith-watch importdescriptors &#39;[&#123;&quot;desc&quot;:&quot;addr(&lt;p2sh-address&gt;)#&lt;checksum&gt;&quot;,&quot;timestamp&quot;:&quot;now&quot;,&quot;label&quot;:&quot;arith-2+3=5&quot;&#125;]&#39;
+</code></pre>
+<p>Send BTC to the script address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=learn-script sendtoaddress &lt;p2sh-address&gt; 0.01
+</code></pre>
+<p>Mine a block to confirm:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your-address&gt;
+</code></pre>
+<h3 id="7-Write-Bitcoin-Script-2"><a href="#7-Write-Bitcoin-Script-2" class="headerlink" title="7. Write Bitcoin Script (2)"></a>7. Write Bitcoin Script (2)</h3><p>Create a new address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=learn-script getnewaddress
+</code></pre>
+<p>Use <code>createrawtransaction</code>, <code>fundrawtransaction</code>, <code>signrawtransactionwithwallet</code>, and <code>sendrawtransaction</code> to construct and broadcast a transaction spending from the script.</p>
+<p>Mine another block to confirm:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your-address&gt;
+</code></pre>
+<p>Check if the UTXO is spent:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ gettxout &lt;txid&gt; 0
+</code></pre>
+<h3 id="8-Troubleshooting"><a href="#8-Troubleshooting" class="headerlink" title="8. Troubleshooting"></a>8. Troubleshooting</h3><p>Environment used:</p>
+<pre><code class="text">OS: MacOS
+bitcoind: v29.0.0
+btcdeb: 5.0.24
+</code></pre>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

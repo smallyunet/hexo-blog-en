@@ -2,6 +2,123 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/2021/11/12/A%20Person%20I%20Don't%20Quite%20Like/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/01/Analysis%20of%20the%20Psyche%20Network%20Project/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/05/Analysis%20of%20the%20Arcium%20Network%20Project/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/04/Analysis%20of%20the%20Camp%20Network%20Project/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/06/Analysis%20of%20the%200G%20Project/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/07/15/How%20to%20Develop%20a%20Bitcoin%20Runes%20Protocol/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/07/10/Bitcoin%20Script%20Development%20Tutorial/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/07/06/Blockchain%20Technical%20Interview%20Questions%20(2025%20Edition)/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/06/30/One%20%22Over-Optimization%22%20in%20Rust%20That%20Often%20Confuses%20Beginners/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/06/28/Solana%20Smart%20Contract%20Development%20Tutorial%20(3)/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/06/26/Solana%20Smart%20Contract%20Development%20Tutorial%20(2)/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/06/24/Solana%20Smart%20Contract%20Development%20Tutorial%20(1)/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2022/12/27/Designing%20a%20Guess%202_3%20of%20the%20Average%20dApp%20Game/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/</loc>
     
     <lastmod>2025-08-06</lastmod>
@@ -12,15 +129,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/</loc>
-    
-    <lastmod>2025-08-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/05/15/The%20Company%20Closed,%20I'm%20Unemployed%20Again/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -839,15 +947,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/11/12/A%20Person%20I%20Don't%20Quite%20Like/</loc>
-    
-    <lastmod>2025-08-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2019/07/06/A%20Simplified%20Version%20of%20Scala/</loc>
     
     <lastmod>2025-08-06</lastmod>
@@ -912,15 +1011,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2021/06/24/%22I%22%20am...%20(Series)/</loc>
-    
-    <lastmod>2025-08-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2022/12/27/%22Designing%20a%20'Guess%202_3%20of%20the%20Average'%20dApp%20Game%22/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -1282,6 +1372,41 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/planning/</loc>
+    <lastmod>2025-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Rust/</loc>
+    <lastmod>2025-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/BTC/</loc>
+    <lastmod>2025-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Smart-Contract/</loc>
+    <lastmod>2025-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Tutorial/</loc>
+    <lastmod>2025-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Project-Analysis/</loc>
     <lastmod>2025-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

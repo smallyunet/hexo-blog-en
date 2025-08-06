@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><title>Analysis of the Arcium Network Project (Privacy Computing)</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Analysis of the Arcium Network Project (Privacy Computing)</h1><div class="time">2025-08-05</div><div class="title-margin"></div><h3 id="Project-Background"><a href="#Project-Background" class="headerlink" title="Project Background"></a>Project Background</h3><p><a href="https://www.arcium.com/">Arcium Network</a> is the first project in the Solana ecosystem focused on privacy computing. In May this year, it secured $50 million in funding led by GreenField, as announced in this <a href="https://x.com/ArciumHQ/status/1788557786537689447">funding post</a>.</p>
+<p>According to Arcium’s <a href="https://www.arcium.com/articles/arcium-purplepaper">Purplepaper</a>, the project is a decentralized privacy computing protocol composed mainly of two core components: MPC and its economic model:</p>
+<img src="1.png" width="80%">
+
+<p>The overall structure of Arcium is not difficult to grasp, especially its integration with blockchain—it directly uses Solana smart contracts:</p>
+<img src="2.png" width="80%">
+
+<p>However, Arcium is built on a strong foundation of hardcore technologies. For instance, in this <a href="https://www.arcium.com/articles/eli5-mpc">blog post</a>, Arcium explains the principles of MPC (Secure Multi-Party Computation) through simplified examples.</p>
+<p>MPC is not a new concept—it has been around for many years. A well-known application is MPC wallets, used by Binance and OKX. From a learning standpoint, it’s useful to distinguish between MPC, multisig, MPC wallets, TSS (Threshold Signature Scheme), and BLS aggregated signatures—terms that are related but often confused.</p>
+<p>In Arcium’s simplified example: suppose three parties a, b, and c are computing values +1, +2, +3, and they each add salts of +10, +20, +30 respectively. The total becomes 66. Removing the combined salt (60) results in the final value of 6.</p>
+<p>The desalinization process is sequential—each party removes its salt in turn. No single party knows the entire execution sequence. According to protocol design, such information is not public.</p>
+<p>In reality, MPC is a complex interactive protocol that requires significant engineering. Arcium is working to expand the practical applications of this cryptographic technology—a worthwhile direction.</p>
+<p>Arcium is exploring various technical areas, such as the <a href="https://www.arcium.com/articles/confidential-spl-token">Confidential SPL Token</a>, which combines Solana’s SPL token standard, <a href="https://github.com/solana-program/token-2022">Token-2022</a>, and Arcium’s MPC aggregation architecture to create a privacy-enabled token. They’ve also developed Dapps like on-chain Dark Pools—technically impressive.</p>
+<h3 id="Project-Architecture"><a href="#Project-Architecture" class="headerlink" title="Project Architecture"></a>Project Architecture</h3><p>Arcium’s <a href="https://docs.arcium.com/getting-started/architecture-overview">architecture</a> may look complex at first glance, with terms like MXEs, arxOS, and Arcis. This is a typical “concept invention” tactic—naming internal components with fancy terms rather than using widely understood technical names.</p>
+<p>A better understanding comes from the developer-focused <a href="https://docs.arcium.com/developers/computation-lifecycle">documentation</a>. As a developer using Arcium, you are essentially writing Solana smart contracts. You create your own contract (an MXE program) to describe the computation task, such as an addition operation (a + b &#x3D; c). This logic is deployed on-chain, then calls an official Arcium contract (Arcium Program) to submit the task into Arcium’s task pool:</p>
+<img src="3.png" width="80%">
+
+<p>The Arcium Program detects the task, and the MPC Cluster (arxOS) observes this on-chain event and initiates computation. Once complete, the result is submitted back to the Arcium Program on-chain. Your MXE program includes a callback function to receive the result and notify the client:</p>
+<img src="4.png" width="80%">
+
+<p>The types of computations you can implement (e.g., addition, subtraction, division) depend on what Arcium’s framework supports.</p>
+<p>Stripping away the fancy terms, Arcium’s process is: submit computation tasks via on-chain contracts, let off-chain nodes compute, and return results on-chain. Their real strength lies in mastering MPC and providing a developer-friendly contract framework.</p>
+<h3 id="Economic-Model"><a href="#Economic-Model" class="headerlink" title="Economic Model"></a>Economic Model</h3><p>Arcium calls its computation nodes <a href="https://docs.arcium.com/getting-started/network-stakeholders">StakHodlers</a>. It’s a bit complex, but in short: you can either provide hardware and go through setup to participate as a computation node and earn rewards, or you can delegate your ARX tokens to nodes to earn interest.</p>
+<p>The economic model is described in the Purplepaper. The total supply of ARX tokens adjusts automatically based on network usage to maintain balance:</p>
+<img src="5.png" width="80%">
+
+<p>The idea is to balance staking at 50%—if it drops below 50%, the protocol mints more ARX; if it exceeds 50%, it burns ARX. This favors active participants and node operators. However, it may be unfavorable for non-stakers, since minting doesn’t benefit them and burning reduces supply. It amplifies some issues found in Ethereum’s PoS model.</p>
+<p>That said, Arcium’s burn model differs from Ethereum’s. Arcium collects protocol fees in SOL and uses Dutch auctions to convert SOL into ARX, which is then burned. This introduces a more complex dynamic to supply that warrants closer observation.</p>
+<p>In summary, both the technical architecture and the economic model of Arcium are well thought out and form a complete system. There’s significant potential here. Arcium Network is currently in its testnet phase, with its roadmap still outlining mainnet launch plans.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>
