@@ -1,3 +1,6 @@
+https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/
+https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/
+https://en.smallyu.net/2025/05/15/The%20Company%20Closed,%20I'm%20Unemployed%20Again/
 https://en.smallyu.net/tags/index.html
 https://en.smallyu.net/categories/index.html
 https://en.smallyu.net/micro-blog/index.html
@@ -14,7 +17,6 @@ https://en.smallyu.net/2023/03/15/Why%20Trading%20Cryptocurrencies%20is%20Not%20
 https://en.smallyu.net/2024/09/12/Why%20You%20Shouldn't%20Engage%20in%20Secondary%20Development%20of%20Ethereum/
 https://en.smallyu.net/2021/04/18/Why%20Using%20Blockchain%20for%20Digital%20Currency%20is%20a%20Political%20Issue/
 https://en.smallyu.net/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/
-https://en.smallyu.net/2025/04/27/Why%20I%20Converted%20Most%20of%20My%20Assets%20into%20Bitcoin/
 https://en.smallyu.net/2022/02/16/Why%20I%20Don't%20Study%20Programming%20Languages/
 https://en.smallyu.net/2024/08/30/What%20is%20the%20Meaning%20of%20Writing%20a%20Blog/
 https://en.smallyu.net/2021/09/29/Where%20Consortium%20Chains%20Fall%20Short%20Compared%20to%20Public%20Chains/
@@ -26,21 +28,16 @@ https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in%20Haskell_/
 https://en.smallyu.net/2019/12/21/What%20is%20Rust's%20Ownership_/
 https://en.smallyu.net/2018/12/14/Using%20Scala%20to%20Reimplement%20Java:%20A%20Shallow%20Practice/
 https://en.smallyu.net/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/
-https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/
 https://en.smallyu.net/2020/03/31/Understanding%20the%20Actor%20Model%20Through%20Erlang/
 https://en.smallyu.net/2024/10/15/Understanding%20the%20Technical%20Architecture%20of%20Any%20Blockchain%20Project/
-https://en.smallyu.net/2025/03/22/Thoughts%20Triggered%20by%20Internal%20Team%20Chaos.../
 https://en.smallyu.net/2023/07/01/Understanding%20Blockchain%20Consensus%20Mechanisms/
 https://en.smallyu.net/2020/02/26/Three%20Minor%20Issues%20in%20Java%20Project%20Development/
 https://en.smallyu.net/2022/06/19/Understanding%20Web%203.0/
 https://en.smallyu.net/2024/11/18/The%20Economic%20Challenges%20of%20Restaking%20Projects/
-https://en.smallyu.net/2024/09/16/The%20Truth%20About%20Resigning%20Without%20a%20Job%20Lined%20Up/
 https://en.smallyu.net/2025/01/10/The%20Best%20Way%20to%20Issue%20a%20Cryptocurrency/
-https://en.smallyu.net/2025/05/15/The%20Company%20Closed,%20I'm%20Unemployed%20Again/
 https://en.smallyu.net/2023/06/04/The%20Company%20Disbanded/
 https://en.smallyu.net/2021/11/24/The%20Curse%20of%20Knowledge/
 https://en.smallyu.net/2019/07/25/Signs%20of%20Poor%20Work%20Performance/
-https://en.smallyu.net/2025/05/03/Sincerely%20Inviting%20Feedback%20from%20Readers/
 https://en.smallyu.net/2024/05/04/Small%20Tips%20for%20Cryptocurrency%20Investment/
 https://en.smallyu.net/2025/01/28/Suppose%20We%20Launch%20an%20Ethereum%20PoS%20Network%20Called%20Oiia%20Network/
 https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/
@@ -51,7 +48,6 @@ https://en.smallyu.net/2024/10/04/Reflections%20and%20Plans%20on%20Work/
 https://en.smallyu.net/2024/02/17/Recent%20Work%20in%20the%20Past%20Six%20Months/
 https://en.smallyu.net/2022/05/02/Records%20of%20Psychological%20Treatment/
 https://en.smallyu.net/2023/06/29/Recent%20Job%20Search%20Records%20(June)/
-https://en.smallyu.net/2024/10/06/Recent%20Solo%20Travel/
 https://en.smallyu.net/2024/09/11/Recent%20Job%20Search%20Record/
 https://en.smallyu.net/2021/11/23/Random%20Thoughts/
 https://en.smallyu.net/2019/11/05/Rational%20Understanding%20of%20Blockchain/
@@ -84,13 +80,10 @@ https://en.smallyu.net/2023/05/17/Limitations%20of%20PDP%20Proof%20of%20Storage/
 https://en.smallyu.net/2024/05/26/Key%20Points%20of%20Issuing%20Cryptocurrency/
 https://en.smallyu.net/2018/10/31/Java%2011%20Tutorial%20(Translation)/
 https://en.smallyu.net/2019/08/10/Java-Based%20Web%20Scraping%20Framework%20WebCollector/
-https://en.smallyu.net/2024/10/12/Interview%20Record%20for%20October/
 https://en.smallyu.net/2021/11/21/Is%20GitBook%20Good%20to%20Use_/
-https://en.smallyu.net/2025/04/11/Interview%20Experience%20in%20April%202025/
 https://en.smallyu.net/2024/08/18/Interactive%20Immersive%20Theater/
 https://en.smallyu.net/2023/07/12/How%20to%20Distinguish%20Between%20Public%20Chains%20and%20Consortium%20Chains/
 https://en.smallyu.net/2023/10/10/How%20to%20Work%20Remotely%20in%20a%20Healthy%20Way/
-https://en.smallyu.net/2025/04/13/I%20Changed%20Jobs%20Because%20of%20a%20Colleague's%20Disrespect/
 https://en.smallyu.net/2021/04/23/I%20Don't%20Insult%20People%20on%20My%20Blog/
 https://en.smallyu.net/2019/12/15/I%20Personally%20Wrote%20Unmaintainable%20Code/
 https://en.smallyu.net/2022/04/21/How%20to%20Deal%20with%20Misunderstandings/
@@ -112,7 +105,6 @@ https://en.smallyu.net/2023/06/24/Didn't%20Find%20a%20Job/
 https://en.smallyu.net/2021/11/25/Chinglish/
 https://en.smallyu.net/2019/03/27/Design%20Flaws%20in%20Elevator%20Floor%20Display%20Screens/
 https://en.smallyu.net/2020/09/20/Can%20Web%20Technologies%20Achieve%203D%20Modeling?/
-https://en.smallyu.net/2025/04/30/Design%20of%20an%20On-Chain%20Identity%20Authentication%20System%20Based%20on%20zk%20+%20Smart%20Contracts/
 https://en.smallyu.net/2020/12/08/Blockchain:%20The%20Cornerstone%20of%20the%20Next%20Generation%20Digital%20Identity%20Authentication%20System/
 https://en.smallyu.net/2021/02/11/Blog%20Theme%20Sharing%20Plan%20(Draft)/
 https://en.smallyu.net/2023/03/06/Blockchain%20Needs%20a%20Technological%20Revolution/
@@ -131,7 +123,6 @@ https://en.smallyu.net/2021/11/10/A%20Method%20for%20Blockchain%20Node%20Storage
 https://en.smallyu.net/2021/10/29/A%20Consensus%20Mechanism%20Based%20on%20%22Egocentrism%22/
 https://en.smallyu.net/2019/11/20/A%20Brief%20Analysis%20of%20the%20Blockchain%20Technology%20Behind%20Libra/
 https://en.smallyu.net/2020/08/22/%22Do%20the%20Right%20Thing,%20Then%20Wait%20to%20Get%20Fired%22/
-https://en.smallyu.net/2025/04/22/%22Guess%202-3%20of%20the%20Average%22%20Game%20Demo/
 https://en.smallyu.net/2021/06/24/%22I%22%20am...%20(Series)/
 https://en.smallyu.net/2022/12/27/%22Designing%20a%20'Guess%202_3%20of%20the%20Average'%20dApp%20Game%22/
 https://en.smallyu.net/
@@ -186,8 +177,8 @@ https://en.smallyu.net/tags/Public-Chain/
 https://en.smallyu.net/tags/Consortium-Chain/
 https://en.smallyu.net/tags/Ethereum/
 https://en.smallyu.net/tags/design/
-https://en.smallyu.net/tags/Bitcoin/
 https://en.smallyu.net/tags/Encryption/
 https://en.smallyu.net/tags/Scripted-Murder-Mysteries/
 https://en.smallyu.net/tags/Cryptocurrency-Trading/
 https://en.smallyu.net/tags/Script-Murder/
+https://en.smallyu.net/tags/planning/

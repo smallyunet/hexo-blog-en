@@ -6,7 +6,7 @@
     navbar.classList.remove('navbar-fixed-top');
   }
 }
-</script><div><div class="inner"><h1>PBFT in Blockchain Doesn't Require a Second Vote</h1><div class="time">2024-06-03</div><ul class="tags"><li><span>#</span><a href="/tags/BFT/">BFT</a></li></ul><p>Why does PBFT require two rounds of voting, and what is the role of the second vote? This question has puzzled me for a long time.</p>
+</script><div><div class="inner"><h1>PBFT in Blockchain Doesn't Require a Second Vote</h1><div class="time">2024-06-03</div><div class="title-margin"></div><p>Why does PBFT require two rounds of voting, and what is the role of the second vote? This question has puzzled me for a long time.</p>
 <h3 id="Reverse-Deduction"><a href="#Reverse-Deduction" class="headerlink" title="Reverse Deduction"></a>Reverse Deduction</h3><p>From this perspective, in what situations does the second vote play a role? It only plays a role when the results of the second vote differ from the first. If the second vote’s results are strictly consistent with the first, then there is no need for a second vote.</p>
 <p>So, in what situations would the second vote’s results differ from the first? Only when malicious nodes exist and deliberately cast different votes in the second voting phase will the results differ.</p>
 <p>This is the conventional operational flowchart of traditional PBFT, where node 3 is a faulty or malicious node and does not respond from beginning to end:</p>

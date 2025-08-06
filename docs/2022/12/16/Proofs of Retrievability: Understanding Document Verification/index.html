@@ -6,7 +6,7 @@
     navbar.classList.remove('navbar-fixed-top');
   }
 }
-</script><div><div class="inner"><h1>Proofs of Retrievability: Understanding Document Verification</h1><div class="time">2022-12-16</div><ul class="tags"><li><span>#</span><a href="/tags/File-Proof/">File Proof</a></li></ul><p>PORs (Proofs of Retrievability) and PDP were published in the same year, 2007. The paper is titled “PORs: Proofs of Retrievability for Large Files,” with Ari Juels as the first author.</p>
+</script><div><div class="inner"><h1>Proofs of Retrievability: Understanding Document Verification</h1><div class="time">2022-12-16</div><div class="title-margin"></div><p>PORs (Proofs of Retrievability) and PDP were published in the same year, 2007. The paper is titled “PORs: Proofs of Retrievability for Large Files,” with Ari Juels as the first author.</p>
 <p>PORs not only prove that a file is indeed stored on the server, but also whether the file has been modified or deleted, a capability that PDP lacks. However, the limitation of PORs is that they can only be used for encrypted files, meaning the file must be encrypted. The key to implementing PORs lies in the complex setup phase.</p>
 <p>The idea behind PORs is that the client generates some random encodings recorded in an array, called sentinels. For example, <code>[6, 4, 0]</code> are three sentinels.</p>
 <p>First, the client’s file is symmetrically encrypted, and it must be done using a block cipher method. During the encryption process, the sentinels are inserted into random positions in the file. Between two sentinels, there might be 1 block or countless blocks; the positions of the sentinels are random.</p>

@@ -17,6 +17,6 @@ Back to my own work—the transaction aggregation service was actually quite sim
 
 ### Reminder (2025.05.22)
 
-Tantin Chain's Chinese name is 天体链 (Tiāntǐ Liàn), and its affiliated department is Tantin Exchange (TTX), known in Chinese as 天体交易所. TTX was formerly known as ttsmart, and its issued token is called CTC.
+Upon investigation, we found that the Chinese name for Tantin Chain is “天体链” (Celestial Chain). Its sister division is Tantin Exchange (TTX), also known as 天体交易所. TTX was formerly called ttsmart, and the token it issues is CTC.
 
 Just a reminder: this company originated in Cambodia and recently set up an office in Singapore. It has a strong background in pyramid schemes and a history of absconding with funds, traces of which can be found online. Everyone should avoid using Tantin’s products as much as possible to prevent personal asset losses. The company name used for recruitment is Tantin Technology. Industry professionals should also be cautious and avoid working for this company if possible, as there may be joint liability if issues arise with users later on.

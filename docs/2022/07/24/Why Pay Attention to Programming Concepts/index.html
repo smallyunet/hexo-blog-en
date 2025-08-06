@@ -6,7 +6,7 @@
     navbar.classList.remove('navbar-fixed-top');
   }
 }
-</script><div><div class="inner"><h1>Why Pay Attention to Programming Concepts</h1><div class="time">2022-07-24</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Languages/">Programming Languages</a></li></ul><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>A couple of days ago, I encountered a small problem: a Solidity smart contract exceeding 24 KB couldn’t be deployed on the Ethereum mainnet due to EVM’s code size limitation. So, I considered how to reduce the contract size, but I was quite unclear about the concept of contract size.</p>
+</script><div><div class="inner"><h1>Why Pay Attention to Programming Concepts</h1><div class="time">2022-07-24</div><div class="title-margin"></div><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>A couple of days ago, I encountered a small problem: a Solidity smart contract exceeding 24 KB couldn’t be deployed on the Ethereum mainnet due to EVM’s code size limitation. So, I considered how to reduce the contract size, but I was quite unclear about the concept of contract size.</p>
 <p>I noticed that a contract can include other contracts and call their methods, just by passing the deployed contract’s address as a parameter to the contract:</p>
 <pre><code class="solidity">contract Demo &#123;&#125;
 contract Main &#123;

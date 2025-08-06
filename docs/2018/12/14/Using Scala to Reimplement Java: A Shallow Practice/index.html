@@ -6,7 +6,7 @@
     navbar.classList.remove('navbar-fixed-top');
   }
 }
-</script><div><div class="inner"><h1>Using Scala to Reimplement Java: A Shallow Practice</h1><div class="time">2018-12-14</div><ul class="tags"><li><span>#</span><a href="/tags/Programming-Languages/">Programming Languages</a></li></ul><h3 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h3><p>I wanted to implement a Markdown parser using Java, and I have currently completed the parsing of multi-level headings. Essentially, it involves using regular expressions to match and replace the corresponding content. The program is relatively simple at this stage, and the main process is as follows:</p>
+</script><div><div class="inner"><h1>Using Scala to Reimplement Java: A Shallow Practice</h1><div class="time">2018-12-14</div><div class="title-margin"></div><h3 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h3><p>I wanted to implement a Markdown parser using Java, and I have currently completed the parsing of multi-level headings. Essentially, it involves using regular expressions to match and replace the corresponding content. The program is relatively simple at this stage, and the main process is as follows:</p>
 <p><img src="/mainProcess.png" alt="main process"></p>
 <h3 id="Reimplementation"><a href="#Reimplementation" class="headerlink" title="Reimplementation"></a>Reimplementation</h3><p>Following the same process, I used Scala to implement this functionality, and I will continue to develop it using Scala. First, let’s read the file content. For IO operations, I referred to the “Scala Cookbook,” and it can be done in a single line of code:</p>
 <pre><code class="scala">var srcLines = Source.fromFile(srcFile).getLines().toList

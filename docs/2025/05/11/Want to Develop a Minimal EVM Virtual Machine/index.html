@@ -6,7 +6,7 @@
     navbar.classList.remove('navbar-fixed-top');
   }
 }
-</script><div><div class="inner"><h1>Want to Develop a Minimal EVM Virtual Machine</h1><div class="time">2025-05-11</div><ul class="tags"><li><span>#</span><a href="/tags/Plan/">Plan</a></li><li><span>#</span><a href="/tags/EVM/">EVM</a></li></ul><p>I’ve named this project echoevm.com. The main goal is to start from the simplest stack operations and gradually build a complete Ethereum bytecode execution environment.</p>
+</script><div><div class="inner"><h1>Want to Develop a Minimal EVM Virtual Machine</h1><div class="time">2025-05-11</div><div class="title-margin"></div><p>I’ve named this project echoevm.com. The main goal is to start from the simplest stack operations and gradually build a complete Ethereum bytecode execution environment.</p>
 <p>Why choose this direction? Let’s analyze the technical modules of an Ethereum client:</p>
 <ol>
 <li>RPC: A GRPC wrapper? The focus is more on protocol design than technical implementation.</li>
@@ -20,14 +20,53 @@
 </ol>
 <p>Overall, I lean toward doing something engineering-focused rather than academic, yet still technically challenging. It should be meaningful both for personal technical growth and for the potential outcomes. If this minimal EVM is successfully developed, it can lead to a series of follow-up achievements, and many valuable products can be built on top of it.</p>
 <p>The conversion from Solidity to bytecode is compiler expert territory. What I aim to do is execute the bytecode — starting with the simplest operations like addition and jump, then move on to gas calculation, context switching, and ultimately be able to execute all historical Ethereum transactions.</p>
-<p><br><br></p>
+<br>
+
 <h3 id="v0-0-2-2025-06-09"><a href="#v0-0-2-2025-06-09" class="headerlink" title="v0.0.2 (2025.06.09)"></a>v0.0.2 (2025.06.09)</h3><p>This version adds the ability to run runtime bytecode, meaning you can first deploy a contract and then call the deployed contract’s functions with specific parameters. For example:</p>
 <pre><code>go run ./cmd/echoevm -bin ./build/Add.bin -function &#39;add(uint256,uint256)&#39; -args &quot;3,5&quot;
 </code></pre>
 <p>This command executes the bytecode from the <code>./build/Add.bin</code> file and calls the <a href="https://github.com/smallyunet/echoevm/blob/v0.0.2/test/contracts/Add.sol#L7">add function</a>, passing in the arguments 3 and 5. After the program completes, it will return the computation result, which is 8.</p>
-<p><br><br></p>
+<br>
+
 <h3 id="v0-0-1-2025-05-27"><a href="#v0-0-1-2025-05-27" class="headerlink" title="v0.0.1 (2025.05.27)"></a>v0.0.1 (2025.05.27)</h3><p>Implemented a very simple version. Now you can use <code>solc</code> to compile an <a href="https://github.com/smallyunet/echoevm/blob/v0.0.1/test/contracts/Add.sol">Add.sol</a> contract, and then have <code>echoevm</code> read the generated <code>Add.bin</code> deployment code, which will output the contract’s runtime code after deployment.</p>
 <p>During the implementation of this version, I learned the difference between deployment code and runtime code. Typically, we first deploy a contract to the blockchain and then make calls to it. These are actually two different operations, but both use the same EVM execution. The EVM doesn’t care whether the input bytecode is for deployment or invocation; it simply handles different opcodes differently. Deployment code generally includes both the <code>CODECOPY</code> and <code>RETURN</code> opcodes, which can be used to distinguish the type of input.</p>
+<br>
+
+<h3 id="v0-0-2-2025-06-09-1"><a href="#v0-0-2-2025-06-09-1" class="headerlink" title="v0.0.2 (2025-06-09)"></a>v0.0.2 (2025-06-09)</h3><p>This version adds the ability to run runtime bytecode—that is, first deploy the contract and then call its functions, optionally passing parameters. For example:</p>
+<pre><code>go run ./cmd/echoevm -bin ./build/Add.bin -function &#39;add(uint256,uint256)&#39; -args &quot;3,5&quot;
+</code></pre>
+<p>This command executes the bytecode in <code>./build/Add.bin</code>, calls the <a href="https://github.com/smallyunet/echoevm/blob/v0.0.2/test/contracts/Add.sol#L7">add function</a> with arguments 3 and 5, and returns 8 when the program finishes.</p>
+<br>
+
+<h3 id="v0-0-3-2025-06-24"><a href="#v0-0-3-2025-06-24" class="headerlink" title="v0.0.3 (2025-06-24)"></a>v0.0.3 (2025-06-24)</h3><p>Good news—echoevm can now execute contract transactions in the first 10 000 blocks of the Ethereum mainnet! (Because there were no contract transactions in those early blocks :P)</p>
+<p>This release introduces block-execution mode: you can run a single block or a range of blocks. You’ll need a URL that serves block data; for early Ethereum blocks, be sure to use an archive-mode node. The full command looks like this:</p>
+<pre><code>echoevm -start-block 0 -end-block 10000 -rpc &lt;url&gt;
+</code></pre>
+<p>echoevm’s bytecode support is still limited. Running more recent blocks may raise errors about unsupported opcodes; that’s expected.</p>
+<br>
+
+<h3 id="v0-0-4-2025-07-05"><a href="#v0-0-4-2025-07-05" class="headerlink" title="v0.0.4 (2025-07-05)"></a>v0.0.4 (2025-07-05)</h3><p>This version adds the ability to read bytecode directly from an artifact file—the JSON artifact generated by a Hardhat project when it compiles. Earlier versions could only read the binary file produced by <code>solc</code>. Previously, you’d compile and run like this:</p>
+<pre><code># Compile the contract to produce bytecode
+npx --yes solc --bin Add.sol -o ./build
+# Run echoevm to execute the bytecode
+go run ./cmd/echoevm run -bin ./test/bins/build/Add_sol_Add.bin -function &quot;add(uint256,uint256)&quot; -args &quot;1,2&quot;
+</code></pre>
+<p>Now it’s simpler. For a standard <a href="https://github.com/smallyunet/echoevm/tree/v0.0.4/test/contract">Hardhat project</a>, every compile creates an artifact file, and echoevm can read the JSON directly:</p>
+<pre><code># Compile the Hardhat project’s contracts
+npx hardhat compile
+# (Optional) run the project’s tests
+npx hardhat test
+# Run echoevm to execute the bytecode
+go run ./cmd/echoevm run -artifact ./test/contract/artifacts/contracts/Add.sol/Add.json -function &quot;add(uint256,uint256)&quot; -args &quot;1,2&quot;
+</code></pre>
+<p>This release also adds support for more opcodes, but it’s still not enough to execute a full Ethereum block. Next we’ll add test cases incrementally by Solidity feature and examine missing opcodes—hence the focus on execution improvements in this version.</p>
+<br>
+
+<h3 id="v0-0-5-2025-07-27"><a href="#v0-0-5-2025-07-27" class="headerlink" title="v0.0.5 (2025-07-27)"></a>v0.0.5 (2025-07-27)</h3><p>This is a minor release that adds a comprehensive set of <a href="https://github.com/smallyunet/echoevm/tree/v0.0.5/test/contract/contracts">Solidity contracts</a> as test cases, covering basic data types, functions, control flow, modifiers, events, interfaces, libraries, inline assembly, and other Solidity features.</p>
+<p>A handy command is provided; run it from the project root to see all the test results:</p>
+<pre><code>make test-advanced
+</code></pre>
+<p>All tests pass. However, echoevm still can’t execute Ethereum mainnet block 10 000 000, indicating the missing opcodes aren’t part of Solidity’s core syntax—they must come from elsewhere.</p>
 </div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
