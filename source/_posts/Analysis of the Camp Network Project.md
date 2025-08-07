@@ -1,5 +1,5 @@
 ---
-title: Analysis of the Camp Network Project (Intellectual Property Protection)
+title: Analysis of the Camp Network Project (On-chain Property Rights)
 date: 2025-08-04 12:15:42
 tags:
 - Project Analysis
