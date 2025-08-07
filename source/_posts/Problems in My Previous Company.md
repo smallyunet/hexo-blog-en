@@ -1,0 +1,59 @@
+---
+title: Problems in My Previous Company
+tags: 
+ - Work
+ - Problems
+update_date: 2022-03-11 18:58:39
+date: 2021-08-31 18:58:39
+draft_date: 2021-08-31 13:27:46
+---
+
+### Business Positioning
+
+My previous employer was a traditional telecommunications service company, originally focused on mobile payment. The blockchain department was an innovation unit, incubating internal projects and products. It operated as a cost center—funded by the company but with some revenue targets. Its main revenue sources were:
+
+- Government subsidies  
+- Projects won through bidding  
+- Projects introduced by acquaintances  
+
+All were delivery-based projects. Bidding projects involved developing software to specific requirements and handing it over entirely. Projects from acquaintances meant delivering internally developed blockchain products, including development, integration, and post-sales support. Without winning bids or personal introductions, there was no revenue—creating financial pressure.
+
+This revenue model was relatively easy to understand. Before I learned about the department's income sources, I once casually told a colleague, “It's no longer the era of making money by selling software,” implying that the department head’s revenue strategy was flawed. My colleague asked, “Then how do you make money?” I responded without thinking, “By selling services.” It was just idle talk at the time.
+
+This topic came to mind because today I asked HR about the company’s profit model. “We’re not making money like selling pancakes—earning profit with each item sold. Why are salaries higher in internet companies? It’s not because of direct profit, but because investors pour in money. Many internet companies operate at a loss yet still attract investment. They focus on acquiring market share and users, then go public, and the public shareholders end up footing the bill. We also have IPO plans…”
+
+Of course, I doubt the truth and accuracy of all that. But it’s certainly a very different sales model from my previous company.
+
+HR said I could ask any questions anytime and emphasized a culture of “open communication.” I replied that asking directly often only yields “high-sounding” responses, and some truths need to be probed repeatedly. I realized this behavior of mine might stem from past experiences.
+
+If you ask a realistic and specific question, and someone responds with a lot of talk about things like financial models at banks, quotes from professors, stories about government officials, executive orders, employee behavior, famous sayings, and historical anecdotes—you might find that they never actually answered your question. It seems like they did, but they didn’t. At first, it might seem insightful, like they operate at a high level and know a lot of sophisticated theories.
+
+But over time, you notice that every time you raise a specific issue, they reply with abstract methodology—deflecting rather than addressing the problem directly. Even worse, they often repeat the same stories or theories from different angles. While deriving methodology from specific cases is a high-level skill, obsessing over methodology can become a disaster. Every problem is understood, dissected, and explained, yet nothing ever gets resolved. Eventually, you realize—they might not be avoiding the question because they don’t want to answer, but because they don’t know the answer. Some say, they’re just as lost.
+
+In terms of actual work, their only requirement is “customer recognition,” meaning projects that make money or generate direct benefits. You could list out all the product-related technical directions, but none would qualify as “customer recognized.” Are there any such directions in the country? What are they? Why would a customer pay because of a specific technology used? You know the project has all kinds of problems and how to fix them, but under the standard of “customer recognition,” none of those issues are worth addressing. No technical direction is worth pursuing.
+
+“Customer recognition” is undeniably a correct standard—companies exist to make money, and costs should reflect revenue. But still, it feels so difficult. That kind of business model—very few companies in China actually profit from it.
+
+Especially when I saw how successful some domestic open-source projects have become, it became even harder for our department’s products to find a breakthrough. With no significant innovations in recent years, no technical reserves, no development roadmap, no business resources, and even poor engineering quality—when you point out the lack of product competitiveness, you hear: “Actually, our company doesn’t specialize in this.” Company leadership gave up on the department and its products multiple times—all signs pointing to its inevitable demise.
+
+### Technical Positioning (2022.03.11)
+
+Recently, I noticed the field of service integration in software development, and some [startups](https://coolshell.cn/articles/20765.html) that have made achievements in this space. This, along with someone coming in for an interview, reminded me of my past experiences. I hadn't mentioned in earlier posts that the department’s market positioning was unclear. There are many historical reasons—initially a subsidiary with backing, operating with a strong Party A stance, then transitioning to a Party B role—lacking market adaptability. Here I only want to talk about the outcome.
+
+If the department was meant to develop products based on technical capabilities, then the problems were severe.
+
+After I officially took over the core product development, I found the codebase was a mess—not just in terms of disorganization, but lacking top-level design, clear module separation, a logical directory structure, or reliable software design. The project supported four or five different databases, but their configuration methods were inconsistent—spread across different config files in various places. It was unclear which ones took effect, which functions worked, and which didn’t—it all depended on experience or guessing. The API design was terrible too. I mentioned URL parameter issues in my post “[Thoughts](/2021/11/23/%E9%9A%8F%E6%83%B3/)”. URL configuration and parameter validation were written in a single config file, which meant that adding a new URL in a smart contract required editing that file and restarting the node. Nobody seemed to care about hot reloading for configuration rules.
+
+The smart contract mechanism was also problematic. Once a transaction was submitted to a contract, validation and execution were separate steps. Both used bitMap for input/output, requiring strict length matching—or the node would panic due to out-of-index errors in loops. But that’s a smart contract—why use such rigid logic? I was told the principle was: “It must never fail,” because the so-called smart contracts were actually tightly coupled functional modules—system contracts—developed by the underlying chain developers, not for user use. Writing contracts required deep knowledge of the underlying blockchain. People even took pride in this—like “we can do it because we know more,” never admitting it was poor design, but calling it a “feature with a threshold.” It was originally never meant to support smart contracts, but it was forcibly added as demand grew. One person even treated a leader’s blog post as gospel, claiming that “blockchains don’t necessarily need smart contracts,” and praised this contradictory design.
+
+After writing a few more contracts, I noticed each contract’s validation function included a check for null transactions. I wondered why a null transaction would appear in internal function calls. After reproducing and tracing the issue, I found that under concurrency, the queue occasionally broke—pushing in a batch of transactions would result in some null ones popping out. This was a pure data structure issue. Even after identifying it, no one fixed it—instead, I just added null checks in contracts as a workaround. Who knows how many hidden bugs still exist from previous developers.
+
+When handling business via contracts, database read/write becomes a bottleneck for transaction performance—especially with MySQL. There was one question I never figured out: how does a contract’s validation function determine if a transaction succeeded or failed? Contracts are developed based on business needs. Both validation and execution happen during the BFT consensus commit phase—by that time, consensus is done. Validation functions can't pre-execute DB writes. (If contracts relied on DB features like transactions, blockchain would be meaningless.) So do we rule out all possible failure scenarios up front? Semantically or through execution logic? Even if you could enumerate exceptions, how much performance would it cost? Then you might wonder: why not validate before consensus? But pre-consensus validation exists too. Still, no matter when it’s done, total DB operations and performance loss don’t change. (Further question: Why do public chains not have this issue, but consortium chains do?)
+
+Version control chaos was another engineering problem. No one could clearly state the current version—was it 2.0? Config files still said 1.4. Was it 2.0.1? The repo had 2.0.3, but no one knew who made the changes or what they were. Test code remained in the main branch—including edge cases like malicious voting in BFT consensus—which were enabled via config during tests but never cleaned up. Other code bloat also existed. For instance, common interfaces in smart contracts were expanded to be compatible with UTXO, even though most contracts didn’t need them—but still had to implement them.
+
+Technically, the project had countless issues. For example, I once fixed a problem where VRF use caused blacklist rules to fail during the proposal stage of consensus—showing that the system, especially its core parts, was far from mature. But refactoring would be extremely costly. The project’s main value was to participate in an industry-standard test event. Passing the test earned a certificate from an organization to prove that the software was qualified, certified, and compliant. The company would then use that certificate for marketing, bidding, and monetization. The quality of the software itself? Not important. Initially, I thought the test items were basic blockchain requirements—nothing impressive. But after going through the process, I found the difficulties were immense and artificial—due to previous developers’ unprofessionalism, loose management, flawed design, poor documentation, and staff turnover. These all made the test prep much harder. Maybe no one realized what *valid difficulties* look like—creating the illusion that the project was “good.”
+
+If the department’s positioning was service integration—offering solutions and tech support—it was also unqualified.
+
+Besides the blockchain core, we had Bass, middleware, SDKs, and block explorers—using components like Kafka, Zookeeper, Redis, Prometheus, etc. But usage was shallow, with low technical depth. The overall implementation was poor—no product sense, no UI, no user-centric thinking, no ownership mindset. All improvements were reactionary—made only when business demanded, leading to constant scrambling, always prioritizing customer appeasement. Service integration can be simple or complex—it’s easy to get wrong. And the department wasn’t keen on doing integration anyway. For instance, when using Hyperledger Fabric, the leader said: “Clients will ask—if you’re just using Fabric as-is, why should they pay you?” This alone shows how chaotic the department’s positioning was.
