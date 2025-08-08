@@ -1,5 +1,5 @@
 ---
-title: Design of an On-Chain Identity Authentication System Based on ZK and Smart Contracts
+title: Design of a ZK-Based On-Chain Identity System
 tags: 
 - zk
 - planning

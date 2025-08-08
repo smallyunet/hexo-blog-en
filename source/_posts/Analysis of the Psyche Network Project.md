@@ -1,5 +1,5 @@
 ---
-title: Analysis of the Psyche Network Project (AI)
+title: Analysis of the Psyche Network Project
 date: 2025-08-01 14:33:21
 tags:
 - Project Analysis

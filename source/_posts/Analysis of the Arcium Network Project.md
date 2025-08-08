@@ -1,5 +1,5 @@
 ---
-title: Analysis of the Arcium Network Project (Privacy Computing)
+title: Analysis of the Arcium Network Project
 date: 2025-08-05 17:29:59
 tags: Project Analysis
 ---

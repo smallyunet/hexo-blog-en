@@ -1,9 +1,9 @@
 # Navigation bar without starting with a slash
 menu:
   Blog: ''
+  Contact: about
   Paragraph: https://paragraph.com/@smallyu
-  Contact Me: about
-  中文版: https://smallyu.net
+  中文: https://smallyu.net
 
 # Recommended to enable when the page count is more than 1
 paginator: false

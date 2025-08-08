@@ -1,5 +1,5 @@
 ---
-title: Analysis of the 0G Project (AI)
+title: Analysis of the 0G Project
 date: 2025-08-06 13:08:00
 tags: Project Analysis
 ---
