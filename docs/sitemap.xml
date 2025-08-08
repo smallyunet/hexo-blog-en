@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/2025/05/15/Beware%20of%20Tantin%20Technology%20and%20Its%20Products/</loc>
+    
+    <lastmod>2025-08-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2025/07/24/What%20I%20Learned%20from%20Yin%20Wang's%20Computer%20Science%20Course/</loc>
     
     <lastmod>2025-08-07</lastmod>
@@ -1405,6 +1414,13 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Yin-Wang/</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Unemployment/</loc>
     <lastmod>2025-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
