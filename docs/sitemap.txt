@@ -31,7 +31,6 @@ https://en.smallyu.net/2024/09/12/Why%20You%20Shouldn't%20Engage%20in%20Secondar
 https://en.smallyu.net/2021/04/18/Why%20Using%20Blockchain%20for%20Digital%20Currency%20is%20a%20Political%20Issue/
 https://en.smallyu.net/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/
 https://en.smallyu.net/2022/02/16/Why%20I%20Don't%20Study%20Programming%20Languages/
-https://en.smallyu.net/2024/08/30/What%20is%20the%20Meaning%20of%20Writing%20a%20Blog/
 https://en.smallyu.net/2021/09/29/Where%20Consortium%20Chains%20Fall%20Short%20Compared%20to%20Public%20Chains/
 https://en.smallyu.net/2020/05/16/Why%20Do%20Constructors%20Have%20No%20Return%20Value_/
 https://en.smallyu.net/2023/10/04/Why%20Bitcoin%20Doesn't%20Use%20Probabilistic%20Encryption%20Functions/
