@@ -20,7 +20,6 @@ https://en.smallyu.net/2023/10/04/Why%20Bitcoin%20Doesn't%20Use%20Probabilistic%
 https://en.smallyu.net/2021/09/29/Where%20Consortium%20Chains%20Fall%20Short%20Compared%20to%20Public%20Chains/
 https://en.smallyu.net/2020/05/16/Why%20Do%20Constructors%20Have%20No%20Return%20Value_/
 https://en.smallyu.net/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/
-https://en.smallyu.net/2022/02/16/Why%20I%20Don't%20Study%20Programming%20Languages/
 https://en.smallyu.net/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/
 https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/
 https://en.smallyu.net/2025/07/24/What%20I%20Learned%20from%20Yin%20Wang's%20Computer%20Science%20Course/
@@ -52,7 +51,6 @@ https://en.smallyu.net/2025/04/12/People%20Who%20Hype%20Cursor%20Usually%20Lack%
 https://en.smallyu.net/2024/12/16/Predictions%20for%20the%20Blockchain%20Industry%20in%202025/
 https://en.smallyu.net/2020/01/11/Positioning%20of%20Programmers/
 https://en.smallyu.net/2021/08/31/Problems%20in%20My%20Previous%20Company/
-https://en.smallyu.net/2021/11/23/Random%20Thoughts/
 https://en.smallyu.net/2022/12/16/Proofs%20of%20Retrievability:%20Understanding%20Document%20Verification/
 https://en.smallyu.net/2022/09/25/Randomized%20Block%20Confirmation%20Consensus%20Mechanism/
 https://en.smallyu.net/2019/11/05/Rational%20Understanding%20of%20Blockchain/
@@ -109,7 +107,6 @@ https://en.smallyu.net/2021/11/10/A%20Method%20for%20Blockchain%20Node%20Storage
 https://en.smallyu.net/2021/10/29/A%20Consensus%20Mechanism%20Based%20on%20%22Egocentrism%22/
 https://en.smallyu.net/2019/11/20/A%20Brief%20Analysis%20of%20the%20Blockchain%20Technology%20Behind%20Libra/
 https://en.smallyu.net/2020/08/22/%22Do%20the%20Right%20Thing,%20Then%20Wait%20to%20Get%20Fired%22/
-https://en.smallyu.net/2021/06/24/%22I%22%20am...%20(Series)/
 https://en.smallyu.net/
 https://en.smallyu.net/tags/Work/
 https://en.smallyu.net/tags/Opinion/
