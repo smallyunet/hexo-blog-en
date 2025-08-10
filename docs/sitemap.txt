@@ -7,7 +7,6 @@ https://en.smallyu.net/micro-blog/index.html
 https://en.smallyu.net/tags/index.html
 https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn't%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/
 https://en.smallyu.net/2023/02/20/Why%20the%20Private%20Key%20Calculation%20of%20Ethereum%20is%20Irreversible/
-https://en.smallyu.net/2021/10/02/%E3%80%8EGround-Up%20Blockchain%E3%80%8FPreface/
 https://en.smallyu.net/categories/index.html
 https://en.smallyu.net/about/index.html
 https://en.smallyu.net/micro-blog/2020.json
