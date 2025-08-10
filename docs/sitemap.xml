@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/2021/10/17/A%20Multi-Linked-List-Based%20Blockchain%20Idea/</loc>
+    
+    <lastmod>2025-08-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2021/10/27/Common%20Linked%20List%20Algorithm%20Problems%20and%20Explanations/</loc>
+    
+    <lastmod>2025-08-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2021/10/13/Hash%20Functions%20and%20Serialization/</loc>
+    
+    <lastmod>2025-08-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2025/06/24/Solana%20Smart%20Contract%20Development%20Tutorial/</loc>
     
     <lastmod>2025-08-10</lastmod>
@@ -120,15 +147,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2024/04/14/Why%20PoW%20is%20More%20Decentralized%20than%20PoS/</loc>
-    
-    <lastmod>2025-08-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2021/07/20/Why%20Scripted%20Murder%20Mysteries%20Need%20Genre%20Classification/</loc>
     
     <lastmod>2025-08-08</lastmod>
     
@@ -426,15 +444,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2020/01/11/Positioning%20of%20Programmers/</loc>
-    
-    <lastmod>2025-08-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2021/08/31/Problems%20in%20My%20Previous%20Company/</loc>
     
     <lastmod>2025-08-08</lastmod>
     
@@ -1215,13 +1224,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Problems/</loc>
-    <lastmod>2025-08-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/Algorithm/</loc>
     <lastmod>2025-08-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -1327,13 +1329,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Scripted-Murder-Mysteries/</loc>
-    <lastmod>2025-08-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/Cryptocurrency-Trading/</loc>
     <lastmod>2025-08-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -1342,6 +1337,20 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Smart-Contracts/</loc>
+    <lastmod>2025-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Cryptography/</loc>
+    <lastmod>2025-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Linked-List/</loc>
     <lastmod>2025-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

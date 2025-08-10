@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><title>A Multi-Linked-List-Based Blockchain Idea</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>A Multi-Linked-List-Based Blockchain Idea</h1><div class="time">2021-10-17</div><div class="title-margin"></div><p>Is it possible for a blockchain to move beyond a purely linear structure into a graph-like data structure with multiple links—say, evolving from a singly linked list to a multi‑linked list? If we assume a multi‑linked list form, what changes would it bring to a blockchain—or is it even feasible?</p>
+<p>First, a forward (outward‑branching) multi‑linked list, like this:</p>
+<img src="1.png" width="50%">
+
+<p>Then, a backward (converging) multi‑linked list suited for blockchains, like this:</p>
+<img src="2.png" width="50%">
+
+<p>For a multi‑linked list, one variant fixes the number of successors (e.g., exactly 2 child nodes per node). Another allows a variable number of successors—each node can point to any number of children. The difference between the two is minor.</p>
+<p>Another fork in the road is whether to retain the concept of block height. Block height indexes block order and plays an important role in synchronizing data across nodes. In a multi‑linked list, if we define block height by tree depth, it would look like this:</p>
+<img src="3.png" width="50%">
+
+<p>Alternatively, we can define it by the order in which blocks are written—that is, the initial label implies block height:</p>
+<img src="2.png" width="50%">
+
+<p>For blockchains, verifying data integrity is critical. When there’s only one child per node, other nodes can easily sync a block’s data and validate it via hash values. In a multi‑linked‑list scenario, validating a block becomes more complex—but not unmanageable. You simply repeat the original “validate one block” operation multiple times in a loop to verify more links.</p>
+<p>The key difference between forward and backward multi‑linked lists is this: one diverges outward, so each higher level contains more nodes—growing exponentially. The other converges, so the number of nodes per level decreases until only one remains. In other words, a right‑side‑up tree versus an upside‑down tree.</p>
+<img src="6.png" width="50%">
+
+<p>Blockchains have a genesis block. In a forward multi‑linked list, the genesis block remains singular, but as children expand, things become increasingly hard to control. If we keep block height, there’s no fundamental reason it couldn’t work—beyond some extra steps in the program. If we drop block height or replace it with an index, blocks can still be produced one by one; there’s no technical impossibility, though the handling remains essentially chain‑like. Simply switching the data structure from a linked list to a multi‑linked list doesn’t seem to offer clear benefits, because it’s hard to imagine what advantages it would bring.</p>
+<img src="7.png" width="50%">
+
+<p>With a backward multi‑linked list, there’s a big question: what about the genesis block? In an upside‑down tree, the number of children shrinks and finally becomes one. Would the genesis block then have to specify a large initial number of nodes that gradually converges to one? That’s unreasonable—equivalent to hard‑coding a halting condition: once a certain block height is reached, you can no longer append content. Clearly undesirable.</p>
+<p>Because tree structures either diverge or converge, the multi‑linked‑list idea runs into problems. So how about this: use <strong>parallel</strong> multi‑linked lists—would that work?</p>
+<img src="4.png" width="50%">
+
+<p>Since you’d need multiple inputs and outputs—and the counts must match—this uses repeated pointers to achieve that.</p>
+<p>Again, it’s technically feasible. The question is: what’s the benefit? What does this data structure actually bring—beyond extra program complexity?</p>
+<p>Well, there is one thing: this structure allows producing two blocks at the same time. As long as two nodes use the same parent, even if they’re simultaneous with no ordering, both can be appended as children.</p>
+<p>But then more problems arise. How do we prevent double‑spending? If the same account’s transactions appear in both blocks, which one wins? In distributed systems, synchronization is ultimately a process of many points becoming one. Even parallel programs face resource contention. After producing two blocks simultaneously, you still need some single‑point mechanism to process the data; producing simultaneous blocks becomes meaningless and doesn’t speed up the system’s overall throughput.</p>
+<p>Moreover, a “parallel” multi‑linked list can essentially be viewed like this:</p>
+<img src="5.png" width="50%">
+
+<p>Seen this way, parallel multi‑linked lists make even less sense.</p>
+<p>All in all, is it possible for a blockchain to be based on a multi‑linked‑list data structure? It seems unnecessary. A singly linked list is simple, yet it truly fits a blockchain’s needs.</p>
+<p><br><br></p>
+<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><h4 id="Singly-Linked-List"><a href="#Singly-Linked-List" class="headerlink" title="Singly Linked List"></a>Singly Linked List</h4><img src="10.png" width="50%">
+
+<p>A singly linked list is a linear data structure. Each node contains a field that points to the next node, explicitly representing relationships between nodes. In programs, this field is usually filled with the referenced object’s address. (You could also use the node’s value directly, but separating by type is clearer.)</p>
+<pre><code>type Node struct &#123;
+    Value int
+    Next  *Node
+&#125;
+
+func main() &#123;
+    node1 := Node&#123;Value: 1&#125;
+    fmt.Printf(&quot;%p\n&quot;, &amp;node1) // 0x14000104210
+
+    node2 := Node&#123;Value: 2&#125;
+    fmt.Printf(&quot;%p\n&quot;, &amp;node2) // 0x14000104220
+
+    node1.Next = &amp;node2
+    fmt.Println(node1) // &#123;1 0x14000104220&#125;
+    fmt.Println(node2) // &#123;2 &lt;nil&gt;&#125;
+&#125;
+</code></pre>
+<p><code>node1</code>’s memory address is <code>0x14000104210</code>, and <code>node2</code>’s is <code>0x14000104220</code>. Assign <code>node2</code>’s address to <code>node1</code>’s <code>next</code> field. At that point, accessing <code>node1</code> lets you reach <code>node2</code> via <code>next</code>. By extension, even with many nodes, knowing only the starting node <code>node1</code> lets you traverse all nodes in the linked list.</p>
+<h4 id="Doubly-Linked-List"><a href="#Doubly-Linked-List" class="headerlink" title="Doubly Linked List"></a>Doubly Linked List</h4><img src="11.png" width="50%">
+
+<p>A doubly linked list adds one more field on top of a singly linked list to store a pointer to the previous node. With this structure, when you access any node, you can learn both the next and the previous node.</p>
+<pre><code>type Node struct &#123;
+    Value int
+    Next  *Node
+    Prev  *Node
+&#125;
+</code></pre>
+<h4 id="Doubly-Linked-List-−-Singly-Linked-List"><a href="#Doubly-Linked-List-−-Singly-Linked-List" class="headerlink" title="(Doubly Linked List) − (Singly Linked List)"></a>(Doubly Linked List) − (Singly Linked List)</h4><p>A singly linked list retains information about the next node; a doubly linked list keeps both previous and next. Is there a data structure that keeps <strong>only</strong> the previous node? For example:</p>
+<pre><code>type Node struct &#123;
+    Value int
+    Prev  *Node
+&#125;
+</code></pre>
+<p>Why build a linked list that retains only the previous node? Because there’s a scenario where, when creating the current node, the next node’s content and reference address are not yet determined—or don’t exist.</p>
+<p>Once the next node is determined, should we modify the previous node? It’s easy to change in a demo, but what about in a massive database? Update costs are high. And in a distributed system? Network I&#x2F;O and consistency add even more cost.</p>
+<img src="12.png" width="50%">
+
+<p>This structure might not be bad: it preserves the essence of a linked list while allowing the list to grow without altering prior nodes’ data. The traversal order, however, is the reverse of a singly linked list—you must traverse from the last node backward to visit all nodes, as if the singly linked list were flipped. But a flipped singly linked list is still a singly linked list.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

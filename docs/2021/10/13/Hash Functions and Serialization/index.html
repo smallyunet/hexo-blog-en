@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="en"><head><title>Hash Functions and Serialization</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Hash Functions and Serialization</h1><div class="time">2021-10-13</div><div class="title-margin"></div><h3 id="Hash-function"><a href="#Hash-function" class="headerlink" title="Hash function"></a>Hash function</h3><p>A hash function maps data to its hash values. A hash value is like a quasi-unique identifier for data, allowing the data to be represented in a smaller, memory-friendly form. There are many implementations of hash functions. You can think of them as a black box: data goes in, a hash value comes out.</p>
+<img src="7.png" width="50%">
+
+<p>For example, we can take a character’s ASCII code as its hash value:</p>
+<pre><code>HASH(&quot;a&quot;) = 97
+HASH(&quot;b&quot;) = 98
+HASH(&quot;c&quot;) = 99
+HASH(&quot;d&quot;) = 100
+</code></pre>
+<p>For data consisting of two characters, add the two characters’ ASCII codes to produce the hash value:</p>
+<pre><code>HASH(&quot;ab&quot;) = 97 + 98 = 195
+HASH(&quot;cd&quot;) = 99 + 100 = 199
+</code></pre>
+<p>But it’s easy to see a problem: <code>HASH(&quot;ad&quot;) == HASH(&quot;bc&quot;) == 197</code>. For strings of length 3, 4, or more, collisions (duplicate hash values) become even more likely.</p>
+<p>Collisions are allowed—hash values may repeat—but if there are too many of them, the hash function loses its utility and use cases. If everything collides, you can’t distinguish anything; what good is a hash then?</p>
+<p>Unfortunately, even the best hash functions can’t eliminate collisions; they can only reduce the probability. One idea—by analogy to sharding in databases—is to give each character enough “headroom.”</p>
+<p>We can redesign our hash function: for a single character, still output its ASCII code. For two characters, multiply the first character by a base and then add the second character. Since the first character becomes large after multiplication, adding the second character’s ASCII code on top of it should avoid collisions regardless of the second character.</p>
+<pre><code>HASH(&quot;ab&quot;) = 97 * 1000 + 98 = 97098
+HASH(&quot;cd&quot;) = 99 * 1000 + 100 = 99100
+HASH(&quot;ad&quot;) = 97 * 1000 + 100 = 97100
+HASH(&quot;cd&quot;) = 98 * 1000 + 99 = 98099
+</code></pre>
+<p>This at least solves collisions for two-character strings.</p>
+<p>Generalizing to longer strings: choose a prime as the base to avoid repetitive patterns from addition. To ensure sufficient “space,” use increasing powers of the prime for each character. The formula:</p>
+<pre><code>hashCodes = char1 * base^(l-1) + char2 * base^(l-2) + ...
+</code></pre>
+<p>Here, <code>hashCodes</code> is the output hash value, <code>char1</code> is the first character, <code>char2</code> the second, <code>base</code> is the chosen prime, and <code>l</code> is the string length. For a 3-character string, the first character uses base^2, the second uses base^1, the third uses base^0, and so on.</p>
+<p>If we choose 31 as the prime, an implementation looks like:</p>
+<pre><code>public static int hashCode(byte[] value) &#123;
+    int h = 0;
+    for(int i = 0; i &lt; value.length; ++i) &#123;
+        h = 31 * h + value[i];
+    &#125;
+    return h;
+&#125;
+</code></pre>
+<p>The exact code may not match your initial intuition, but you can trust it aligns with the formula above.</p>
+<pre><code>hashCode(&quot;a&quot;) = 97
+hashCode(&quot;ab&quot;) = 97 * 31 + 98 = 3105
+hashCode(&quot;abc&quot;) = 97*31^2 + 98*31 + 99 = 96354
+</code></pre>
+<p>This is how <code>hashCode</code> is implemented in the JDK (Java Development Kit).</p>
+<h3 id="Cryptographic-hash-function-CHF"><a href="#Cryptographic-hash-function-CHF" class="headerlink" title="Cryptographic hash function (CHF)"></a>Cryptographic hash function (CHF)</h3><p>It’s not hard to see that, for simple hash functions, one can often reconstruct the original data from the hash value. Suppose we already know the data length is 2, and characters use ASCII (0–255). We can write a program that enumerates all pairs <code>(x, y)</code> that satisfy the target hash value:</p>
+<pre><code> public static String deHashCode(int code) &#123;
+    for (int x = 0; x &lt;= 255; x++) &#123;
+        int y = code - 31 * x;
+        if (y &lt; 0 || y &gt; 255) &#123;
+            continue;
+        &#125;
+        System.out.println(((char) x)+&quot;,&quot;+((char) y));
+    &#125;
+    return &quot;&quot;;
+&#125;
+</code></pre>
+<p>For example, when <code>hashCode = 3105</code>, we might get output like:</p>
+<pre><code>\,ý
+],Þ
+^,¿
+_, 
+`,
+a,b
+b,C
+c,$
+d,
+</code></pre>
+<p>The original data <code>ab</code> appears among the (few) possibilities.</p>
+<p>Is there a way to make it harder to infer the original data from the hash value? In public-key cryptography, <code>%</code> (modulus) plays a major role. Hash functions can also borrow ideas from cryptography.</p>
+<p>“Cryptographic” is a modifier on “hash function,” meaning a hash function that incorporates cryptographic techniques.</p>
+<img src="8.png" width="50%">
+
+<p>MD5 is a very widely used—and nearly obsolete—cryptographic hash function that maps inputs of arbitrary length to a 128-bit hash value.</p>
+<pre><code>md5(&quot;a&quot;) = 0cc175b9c0f1b6a831c399e269772661
+md5(&quot;ab&quot;) = 187ef4436122d1cc2f40dc2b92f0eba0
+</code></pre>
+<p>MD5’s internal steps are numerous; it is a one-way, non-reversible hash function, so you can’t easily derive the original data from the hash value. The input can be any size—even a 1 GB binary file—and it will be hashed to a 128-bit string.</p>
+<p>Beyond MD5, SHA-1 offers higher security, and BLAKE2 is faster to compute; both are typical cryptographic hash functions.</p>
+<br>
+
+<h3 id="Serialization"><a href="#Serialization" class="headerlink" title="Serialization"></a>Serialization</h3><p>Serialization is a very common operation in programming. It converts complex, structured data into a format that’s easy to process uniformly across different environments—like defining an interface format for network transmission.</p>
+<img src="9.png" width="50%">
+
+<p>The process of converting data into a uniform format is called serialization; converting from the uniform format back to a specific structure is deserialization. JSON’s <code>stringify</code> can be viewed as a form of serialization:</p>
+<pre><code>let object = &#123;
+    field1: &quot;abc&quot;,
+    field2: 123
+&#125;
+
+let str = JSON.stringify(object)    
+print(str)    // &#123;&quot;field1&quot;:&quot;abc&quot;,&quot;field2&quot;:123&#125;
+</code></pre>
+<h3 id="Serialization-CHF"><a href="#Serialization-CHF" class="headerlink" title="Serialization + CHF"></a>Serialization + CHF</h3><p>It’s clear that the result of <code>JSON.stringify</code> is a string, which we can feed into a cryptographic hash function:</p>
+<pre><code>md5(str) = d79152b724c5f1e52e6bd4bfaf6e1532
+</code></pre>
+<p>As long as we define how to serialize the data, we can obtain a hash value for any data format.</p>
+<h3 id="Serialization-CHF-Linked-List"><a href="#Serialization-CHF-Linked-List" class="headerlink" title="Serialization + CHF + Linked List"></a>Serialization + CHF + Linked List</h3><p>Links in a linked list are usually represented by references (pointers), but pointers aren’t the only option. We can extend the idea of the data structure and use the node’s data hash value as the linkage:</p>
+<img src="10.png" width="50%">
+
+<p><code>98</code> is the hash value of <code>b</code>, indicating that the node with value <code>a</code> points to the next node whose hash value is <code>98</code>, i.e., the node with value <code>b</code>.</p>
+<p>We can also use a reverse linked list:</p>
+<img src="11.png" width="50%">
+
+<p><code>a</code> has a hash value of 97, indicating that the node with value <code>b</code> points backward to a previous node whose hash value is <code>97</code>.</p>
+<p>Of course, these “values” can be more complex structures. As long as we define a serialization format, we can apply more sophisticated hash functions. For example, a forward linked list like this:</p>
+<pre><code>type Node struct &#123;
+    Value int
+    Next  string
+&#125;
+
+node1 = Node&#123; Value: &quot;a&quot; &#125;
+node1_str = JSON.stringify(node1)   // &#123; &quot;Value&quot;: &quot;a&quot; &#125;
+node1_hash = md5(node1_str)         // 9ad06e8a44d0daf821f110794fb012c7
+
+node1.Next = node1_hash
+</code></pre>
+<p>This constructs one node; and so on.</p>
+<p>Another form—perhaps better or more suitable in some scenarios—is a reverse linked list:</p>
+<pre><code>type Node struct &#123;
+    Prev string
+    Value int
+&#125;
+
+node1 = Node&#123; Value: &quot;a&quot; &#125;
+node1_str = JSON.stringify(node1)   // &#123; &quot;Value&quot;: &quot;a&quot; &#125;
+node1_hash = md5(node1_str)         // 9ad06e8a44d0daf821f110794fb012c7
+
+node2 = Node&#123; Value: &quot;b&quot; &#125;
+node2_str = JSON.stringify(node2)   // &#123; &quot;Value&quot;: &quot;b&quot; &#125;
+node2_hash = md5(node2_str)         // 7e332b78dbaac93a818a6ab639f5a71b
+
+node2.Prev = node1_hash
+</code></pre>
+<p>This kind of reverse linked list is the fundamental data structure of blockchains.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="en"><head><title>Common Linked List Algorithm Problems and Explanations</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Common Linked List Algorithm Problems and Explanations</h1><div class="time">2021-10-27</div><div class="title-margin"></div><p>Contents:</p>
+<ul>
+<li><a href="#Reverse-a-Linked-List">Reverse a Linked List</a></li>
+<li><a href="#Detect-if-a-Linked-List-Has-a-Cycle">Detect if a Linked List Has a Cycle</a></li>
+<li><a href="#If-the-List-Has-a-Cycle-Find-the-Cycle-Entry">If the List Has a Cycle, Find the Cycle Entry</a></li>
+<li><a href="#Determine-Whether-Two-Linked-Lists-Intersect">Determine Whether Two Linked Lists Intersect</a></li>
+<li><a href="#If-Two-Lists-Intersect-Find-the-First-Intersection-Node">If Two Lists Intersect, Find the First Intersection Node</a></li>
+<li><a href="#Merge-Two-Sorted-Linked-Lists">Merge Two Sorted Linked Lists</a></li>
+</ul>
+<br>
+
+<h2 id="Reverse-a-Linked-List"><a href="#Reverse-a-Linked-List" class="headerlink" title="Reverse a Linked List"></a>Reverse a Linked List</h2><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>For a linked list like this:</p>
+<img src="4.png" width="50%">
+
+<p>We want it to become this after processing:</p>
+<img src="5.png" width="50%">
+
+<h3 id="Linked-List-Structure-Definition"><a href="#Linked-List-Structure-Definition" class="headerlink" title="Linked List Structure Definition"></a>Linked List Structure Definition</h3><p>Node definition:</p>
+<pre><code>type Node struct &#123;
+    Value int
+    Next  *Node
+&#125;
+</code></pre>
+<p>Method to construct a linked list:</p>
+<pre><code>func createLinkedList(n int) *Node &#123;
+    head := &amp;Node&#123;Value: 0&#125;
+    node := head
+    for i := 0; i &lt; n; i++ &#123;
+        if i &lt; n &#123;
+            node.Next = &amp;Node&#123;Value: i + 1&#125;
+        &#125;
+        node = node.Next
+    &#125;
+    return head
+&#125;
+</code></pre>
+<p>The function returns a pointer to the head of a linked list. We use a pointer instead of the struct type because, due to some of Go’s variable semantics, you can’t determine whether a variable is empty using <code>Node&#123;&#125; == nil</code>. Theoretically, <code>Node&#123;&#125;</code> is not <code>nil</code>. This means if you use <code>Node&#123;&#125;</code> as the head node’s type, you won’t have a reasonable stopping condition during traversal—you’d have to use something like <code>Node&#123;&#125;.Next == nil</code>, which would also miss the last node.</p>
+<h3 id="Iterative-Reversal"><a href="#Iterative-Reversal" class="headerlink" title="Iterative Reversal"></a>Iterative Reversal</h3><p>We shouldn’t reverse by directly changing node values, e.g., by storing values in an array during one pass and then writing them back in reverse during a second pass. That defeats the purpose of the data structure. You can use iteration or recursion to reverse the list.</p>
+<img src="6.png" width="50%">
+
+<p>Take the first node as an example: use a <code>temp</code> variable to store the location of the next node before reversal, then set <code>head.Next</code> to point to the node it should point to after reversal. The next of the first node should be the <code>nil node</code>, and the next of the second node should be <code>node 1</code>. After setting <code>head.Next</code>, move <code>head</code> to <code>temp</code> (the original next) to continue traversal. You also need a <code>curr</code> variable to store the position of <code>head</code> before it jumps, so that on the next step <code>head.Next</code> can point back to the previous node. This is a straightforward process.</p>
+<pre><code>func reverseLinkedList(head *Node) *Node &#123;
+    curr := new(Node)
+    for head != nil &#123;
+        temp := head.Next
+        head.Next = curr
+        curr = head
+        head = temp
+    &#125;
+    return curr
+&#125;
+</code></pre>
+<ul>
+<li>Time complexity: O(n)</li>
+<li>Space complexity: O(1)</li>
+</ul>
+<h3 id="Execution"><a href="#Execution" class="headerlink" title="Execution"></a>Execution</h3><p>After running, the result matches expectations:</p>
+<pre><code>func main() &#123;
+    head := createLinkedList(4)
+    head = reverseLinkedList(head)
+    for head != nil &#123;
+        fmt.Println(head.Value)
+        head = head.Next
+    &#125;
+&#125;
+</code></pre>
+<p><br><br></p>
+<h2 id="Detect-if-a-Linked-List-Has-a-Cycle"><a href="#Detect-if-a-Linked-List-Has-a-Cycle" class="headerlink" title="Detect if a Linked List Has a Cycle"></a>Detect if a Linked List Has a Cycle</h2><h3 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h3><p>A cycle in a linked list means the “last” node points to one of the previous nodes.</p>
+<img src="9.png" width="50%">
+
+<p>When traversing such a list, the program will loop forever. How can we detect whether a list has a cycle?</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>A common approach is the two-pointer technique. Imagine a track: two people A and B start at the same point, but run at different speeds, with A’s speed v<sub>1</sub>&#x3D;1 and B’s speed v<sub>2</sub>&#x3D;2 (B is faster). As long as they keep running, B will eventually lap A and catch up again—this is intuitive.</p>
+<img src="7.png" width="50%">
+
+<p>On a circular track, a fast and a slow runner will always meet again, and the distances they cover follow this relation:</p>
+<pre><code>s2 - s1 = nR
+</code></pre>
+<p>R is the circumference of the circle, and n is a positive integer. At the starting line, n&#x3D;0; at the first meeting, B has run one full lap more than A, so n&#x3D;1.</p>
+<p>Compared to a linked list, this track scenario is missing an initial straight section before entering the loop. Before entering the circular part, A and B run along a straight path of length d. Their speeds remain unchanged throughout, but when they enter the circle, they are no longer at the same “relative” starting point.</p>
+<img src="8.png" width="50%">
+
+<p>In this case, can s<sub>1</sub> and s<sub>2</sub> still satisfy a formula? Let the straight distance before the circle be d. Inside the circle, the paths still differ by n times the circumference R, only the expression becomes:</p>
+<pre><code>(s2 - d) - (s1 - d) = nR
+    s2 - d - s1 + d = nR
+            s2 - s1 = nR
+</code></pre>
+<p>After canceling out d, the result is the same as before.</p>
+<p>Since A’s distance s<sub>1</sub>&#x3D;v<sub>1</sub>t and B’s s<sub>2</sub>&#x3D;v<sub>2</sub>t, with the same time t and known speeds v<sub>1</sub>&#x3D;1 and v<sub>2</sub>&#x3D;2, we have:</p>
+<pre><code>    s2 - s1 = nR
+  v2t - v1t = nR
+     2t - t = nR
+          t = nR
+</code></pre>
+<p>Taking n &#x3D; 1 gives <code>t = R</code>.</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Back to linked lists: to detect a cycle, we only need fast and slow pointers; we don’t need to know exactly where they meet, though the distance relation helps validate correctness.</p>
+<p>For this list, let pointers A and B start from node 1 at speeds 1 and 2:</p>
+<img src="9.png" width="50%">
+
+<p>Their positions over time:</p>
+<table>
+<thead>
+<tr>
+<th>Time t</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A’s pos</td>
+<td>Node 1</td>
+<td>Node 2</td>
+<td>Node 3</td>
+<td>Node 4</td>
+<td><strong>Node 5</strong></td>
+</tr>
+<tr>
+<td>B’s pos</td>
+<td>Node 1</td>
+<td>Node 3</td>
+<td>Node 5</td>
+<td>Node 3</td>
+<td><strong>Node 5</strong></td>
+</tr>
+</tbody></table>
+<p>At t&#x3D;4 they meet; the cycle length is exactly 4, matching <code>t = R</code>.</p>
+<p><br><br></p>
+<h2 id="If-the-List-Has-a-Cycle-Find-the-Cycle-Entry"><a href="#If-the-List-Has-a-Cycle-Find-the-Cycle-Entry" class="headerlink" title="If the List Has a Cycle, Find the Cycle Entry"></a>If the List Has a Cycle, Find the Cycle Entry</h2><h3 id="Problem-2"><a href="#Problem-2" class="headerlink" title="Problem"></a>Problem</h3><p>This extends the previous problem. Given a list that has a cycle, find the entry point of the cycle. In this example, the entry is node 3.</p>
+<img src="20.png" width="50%">
+
+<h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>(1)</p>
+<p>From the cycle detection problem, we obtained a crucial conclusion:</p>
+<pre><code>t = R
+</code></pre>
+<p>The fast and slow pointers meet at a time equal to the cycle length. For the list above, their positions are:</p>
+<table>
+<thead>
+<tr>
+<th>Time t</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A’s pos</td>
+<td>Node 1</td>
+<td>Node 2</td>
+<td>Node 3</td>
+<td>Node 4</td>
+<td>Node 5</td>
+<td>Node 6</td>
+<td><strong>Node 7</strong></td>
+</tr>
+<tr>
+<td>B’s pos</td>
+<td>Node 1</td>
+<td>Node 3</td>
+<td>Node 5</td>
+<td>Node 7</td>
+<td>Node 3</td>
+<td>Node 5</td>
+<td><strong>Node 7</strong></td>
+</tr>
+</tbody></table>
+<p>The cycle length is 6, and the pointers meet at t&#x3D;6 at node 7:</p>
+<img src="21.png" width="50%">
+
+<p>(2)</p>
+<p>By the earlier conclusion, at speed v<sub>1</sub>&#x3D;1 for the slow pointer, the distance traveled equals the time. From the start to the meeting point, the path length at time <code>t = R</code> is exactly the cycle length R:</p>
+<img src="22.png" width="50%">
+
+<p>(3)</p>
+<p>Suppose the slow pointer keeps that length R as a “window” and moves it forward by one step:</p>
+<img src="23.png" width="50%">
+
+<p>Move one more step:</p>
+<img src="24.png" width="50%">
+
+<p>(4)</p>
+<p>Now let’s define variables: let the distance from <code>Start</code> to the <code>Cycle Entry</code> be l<sub>1</sub>, the total list length be l, and the cycle length remain R.</p>
+<img src="25.png" width="50%">
+
+<p>These satisfy:</p>
+<pre><code>l - l1 = R
+</code></pre>
+<p>This is obvious.</p>
+<p>(5)</p>
+<p>Recall our initial conclusion: the distance from <code>Start</code> to the <code>Meeting Point</code> equals the cycle length R:</p>
+<img src="22.png" width="50%">
+
+<p>Keeping l and l<sub>1</sub> unchanged, the figure becomes:</p>
+<img src="26.png" width="50%">
+
+<p>Now l still equals <code>l1 + R</code>, but <code>l1</code> and <code>R</code> overlap.</p>
+<p>(6)</p>
+<pre><code>l - l1 = R
+</code></pre>
+<p>Does the equality still hold after overlap? Of course, since the whole list is unchanged and variable magnitudes remain the same—though it may feel a bit counterintuitive.</p>
+<p>Define a new variable l<sub>2</sub> as the distance from the <code>Meeting Point</code> to the <code>Cycle Entry</code>:</p>
+<img src="27.png" width="50%">
+
+<p>Then:</p>
+<pre><code>l - l2 = R
+</code></pre>
+<p>(7)</p>
+<p>From these comparisons, we find <code>l1 == l2</code>, i.e., the distance from <code>Start</code> to the <code>Cycle Entry</code> equals the distance from the <code>Meeting Point</code> to the <code>Cycle Entry</code>.</p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><pre><code>Start -&gt; Cycle Entry == Meeting Point -&gt; Cycle Entry
+</code></pre>
+<p>This is important because the fast and slow pointers are at the <code>Meeting Point</code> (node 7).</p>
+<p>If we introduce another pointer p<sub>3</sub> starting from the overall list <code>Start</code> (node 1) at the exact moment the slow and fast pointers meet (moving at speed 1), then p<sub>3</sub> and the slow pointer will meet at the cycle entry, because the distance from p<sub>3</sub> to the <code>Cycle Entry</code> equals that from the slow pointer to the <code>Cycle Entry</code>. The meeting point is the cycle entry.</p>
+<img src="28.png" width="50%">
+
+
+
+<p><br><br></p>
+<h2 id="Determine-Whether-Two-Linked-Lists-Intersect"><a href="#Determine-Whether-Two-Linked-Lists-Intersect" class="headerlink" title="Determine Whether Two Linked Lists Intersect"></a>Determine Whether Two Linked Lists Intersect</h2><h3 id="Problem-3"><a href="#Problem-3" class="headerlink" title="Problem"></a>Problem</h3><p>There are two linked lists that at some node point to the same next node:</p>
+<img src="10.png" width="50%">
+
+<p>We have:</p>
+<pre><code>1 -&gt; 2 -&gt; 3 -&gt; 4
+     5 -&gt; 3 -&gt; 4
+</code></pre>
+<p>How do we determine if the two lists intersect?</p>
+<h3 id="Analysis-2"><a href="#Analysis-2" class="headerlink" title="Analysis"></a>Analysis</h3><p>A simple approach is to traverse each list to its last node and check whether the last nodes are the same. If two lists intersect at some middle node, their last node must be the same.</p>
+<p><br><br></p>
+<h2 id="If-Two-Lists-Intersect-Find-the-First-Intersection-Node"><a href="#If-Two-Lists-Intersect-Find-the-First-Intersection-Node" class="headerlink" title="If Two Lists Intersect, Find the First Intersection Node"></a>If Two Lists Intersect, Find the First Intersection Node</h2><h3 id="Problem-4"><a href="#Problem-4" class="headerlink" title="Problem"></a>Problem</h3><p>For the two lists:</p>
+<img src="31.png" width="50%">
+
+<img src="32.png" width="50%">
+
+<p>How do we find the first intersection node 3?</p>
+<h3 id="Analysis-3"><a href="#Analysis-3" class="headerlink" title="Analysis"></a>Analysis</h3><p>One simple idea is to connect the tail of one list to the head of the other:</p>
+<img src="33.png" width="50%">
+
+<p>It can be the tail of list 1 to the head of list 2, or the tail of list 2 to the head of list 1. After connecting, the problem reduces to finding the entry point of a cycle.</p>
+<p><br><br></p>
+<h2 id="Merge-Two-Sorted-Linked-Lists"><a href="#Merge-Two-Sorted-Linked-Lists" class="headerlink" title="Merge Two Sorted Linked Lists"></a>Merge Two Sorted Linked Lists</h2><h3 id="Problem-5"><a href="#Problem-5" class="headerlink" title="Problem"></a>Problem</h3><img src="11.png" width="50%">
+
+<p>Given two sorted linked lists, merge them into one sorted list.</p>
+<h3 id="Analysis-4"><a href="#Analysis-4" class="headerlink" title="Analysis"></a>Analysis</h3><p>The idea is straightforward: iterate both lists simultaneously and merge in order. Mind the edge cases.</p>
+<img src="12.png" width="50%">
+
+<img src="13.png" width="50%">
+
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><p><code>Node</code> structure:</p>
+<pre><code>type Node struct &#123;
+    Value int
+    Next  *Node
+&#125;
+</code></pre>
+<p>Build two lists:</p>
+<pre><code>func main() &#123;
+    root1 := &amp;Node&#123;
+        Value: 1,
+    &#125;
+    root1.Next = &amp;Node&#123;
+        Value: 1,
+    &#125;
+    root1.Next.Next = &amp;Node&#123;
+        Value: 3,
+    &#125;
+    root1.Next.Next.Next = &amp;Node&#123;
+        Value: 5,
+    &#125;
+
+    root2 := &amp;Node&#123;
+        Value: 1,
+    &#125;
+    root2.Next = &amp;Node&#123;
+        Value: 2,
+    &#125;
+    root2.Next.Next = &amp;Node&#123;
+        Value: 4,
+    &#125;
+
+    root := merge(root1, root2)
+    for root != nil &#123;
+        fmt.Println(root.Value)
+        root = root.Next
+    &#125;
+&#125;
+</code></pre>
+<p>Merge function:</p>
+<pre><code>func merge(root1 *Node, root2 *Node) *Node &#123;
+    var root *Node
+    var temp *Node
+    if root1.Value &lt;= root2.Value &#123;
+        root = root1
+        temp = root2
+    &#125; else &#123;
+        root = root2
+        temp = root1
+    &#125;
+    p1 := root
+    p2 := p1.Next
+    for &#123;
+        if p2 == nil || temp == nil &#123;
+            break
+        &#125;
+        if p2.Value &lt;= temp.Value &#123;
+            p1.Next = p2
+            p1 = p1.Next
+            p2 = p2.Next
+        &#125; else &#123;
+            p1.Next = temp
+            p1 = p1.Next
+            temp = temp.Next
+        &#125;
+    &#125;
+    return root
+&#125;
+</code></pre>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>
