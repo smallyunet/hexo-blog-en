@@ -1,0 +1,566 @@
+<!DOCTYPE html><html lang="en"><head><title>Solana Smart Contract Development Tutorial</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Solana Smart Contract Development Tutorial</h1><div class="time">2025-06-24</div><div class="title-margin"></div><p>This is a beginner-friendly series that teaches Solana smart contract development from the ground up. It has 3 parts:</p>
+<ul>
+<li><a href="#Development-Tutorial-1">Part 1</a>: Install the basics, deploy a HelloWorld program, and call it on-chain</li>
+<li><a href="#Development-Tutorial-2">Part 2</a>: Implement a minimal USDT-like program with custom data structures and methods</li>
+<li><a href="#Development-Tutorial-3">Part 3</a>: Reuse functionality via the official SPL library to issue a standards-compliant token</li>
+</ul>
+<br>
+
+<h2 id="Development-Tutorial-1"><a href="#Development-Tutorial-1" class="headerlink" title="Development-Tutorial-1"></a>Development-Tutorial-1</h2><p>We’ll start from first principles. You only need general programming knowledge—concepts like OOP are enough. You don’t need prior smart contract experience on other networks, nor do you need to know Rust beforehand.</p>
+<h3 id="1-Install-the-toolchain"><a href="#1-Install-the-toolchain" class="headerlink" title="1. Install the toolchain"></a>1. Install the toolchain</h3><p>Follow Solana’s official installation guide: <a href="https://solana.com/docs/intro/installation">https://solana.com/docs/intro/installation</a></p>
+<p>There’s a one-liner to install everything, and also a detailed step-by-step guide. Note that the Solana CLI requires editing your shell’s environment file. After installation, the <code>solana</code> command should be available:</p>
+<pre><code>solana --help
+</code></pre>
+<h3 id="2-Initialize-a-project"><a href="#2-Initialize-a-project" class="headerlink" title="2. Initialize a project"></a>2. Initialize a project</h3><p>Use the <code>anchor</code> CLI to initialize a new smart contract project. This tool was installed in the previous step. Don’t worry yet about the generated folder structure:</p>
+<pre><code>anchor init hello_sol
+cd hello_sol
+</code></pre>
+<h3 id="3-Write-the-program-code"><a href="#3-Write-the-program-code" class="headerlink" title="3. Write the program code"></a>3. Write the program code</h3><p>In <code>programs/hello_sol/src</code> there’s a <code>lib.rs</code>. The <code>.rs</code> extension means it’s a Rust source file. Paste the following. Note: the value inside <code>declare_id</code> is generated for your project during initialization—you’ll already have your own; you don’t need to copy the one below verbatim.</p>
+<pre><code>use anchor_lang::prelude::*;
+
+declare_id!(&quot;3Zbdw1oWu1CiMiQr3moQeT4XzMgeqmCvjH5R5wroDWQH&quot;);
+
+#[program]
+pub mod hello_sol &#123;
+    use super::*;
+
+    pub fn say_hello(ctx: Context&lt;Hello&gt;) -&gt; Result&lt;()&gt; &#123;
+        msg!(&quot;Hello, world!&quot;);
+        Ok(())
+    &#125;
+&#125;
+
+#[derive(Accounts)]
+pub struct Hello &#123;&#125;
+</code></pre>
+<h3 id="4-Build-the-smart-contract"><a href="#4-Build-the-smart-contract" class="headerlink" title="4. Build the smart contract"></a>4. Build the smart contract</h3><p>Use <code>anchor</code> to compile the program you just pasted. Make sure it compiles successfully. You may see some warnings—that’s fine. Rust is strict and will warn on small issues. If all goes well, there should be no errors in the output:</p>
+<pre><code>anchor build
+</code></pre>
+<h3 id="5-Set-the-default-local-cluster"><a href="#5-Set-the-default-local-cluster" class="headerlink" title="5. Set the default local cluster"></a>5. Set the default local cluster</h3><p>Run this to make the <code>solana</code> CLI default to devnet. Devnet is for developers—it lets you test without spending real SOL:</p>
+<pre><code>solana config set --url https://api.devnet.solana.com
+</code></pre>
+<h3 id="6-Create-a-local-keypair"><a href="#6-Create-a-local-keypair" class="headerlink" title="6. Create a local keypair"></a>6. Create a local keypair</h3><p>This creates a local Solana account used to deploy programs. Deploying costs fees, which must be paid from an account:</p>
+<pre><code>solana-keygen new -o ~/.config/solana/id.json  
+</code></pre>
+<p>In the output, look for the line starting with <code>pubkey:</code>—that’s your local account address. Since you set devnet as the default network, you can check your balance directly:</p>
+<pre><code>solana balance
+</code></pre>
+<p>You can also open the devnet <a href="https://explorer.solana.com/?cluster=devnet">explorer</a> and search for your address. The URL will look like:
+<a href="https://explorer.solana.com/address/75sFifxBt7zw1YrDfCdPjDCGDyKEqLWrBarPCLg6PHwb?cluster=devnet">https://explorer.solana.com/address/75sFifxBt7zw1YrDfCdPjDCGDyKEqLWrBarPCLg6PHwb?cluster=devnet</a></p>
+<p>You’ll see the balance is <code>0 SOL</code>.</p>
+<h3 id="7-Request-a-devnet-airdrop"><a href="#7-Request-a-devnet-airdrop" class="headerlink" title="7. Request a devnet airdrop"></a>7. Request a devnet airdrop</h3><p>Run this to receive 2 SOL (the <code>2</code> parameter is the amount). Due to faucet limits, 2 is the max per request—but it’s enough for the steps ahead.</p>
+<pre><code>solana airdrop 2
+</code></pre>
+<h3 id="8-Deploy-to-devnet"><a href="#8-Deploy-to-devnet" class="headerlink" title="8. Deploy to devnet"></a>8. Deploy to devnet</h3><p>You have the program code, a local account, and some SOL. Time to deploy:</p>
+<pre><code>anchor deploy --provider.cluster devnet 
+</code></pre>
+<p>On success you’ll see <code>Deploy success</code>. Also look for <code>Program Id:</code>—that’s your program’s address. You can search it on the devnet explorer. For example, here’s a page like this (the <code>3Zbd...DWQH</code> is the program ID deployed in my example):
+<a href="https://explorer.solana.com/address/3Zbdw1oWu1CiMiQr3moQeT4XzMgeqmCvjH5R5wroDWQH?cluster=devnet">https://explorer.solana.com/address/3Zbdw1oWu1CiMiQr3moQeT4XzMgeqmCvjH5R5wroDWQH?cluster=devnet</a></p>
+<h3 id="9-Call-the-on-chain-program"><a href="#9-Call-the-on-chain-program" class="headerlink" title="9. Call the on-chain program"></a>9. Call the on-chain program</h3><p>In <code>hello_sol/app</code>, create a file <code>app.js</code> and paste the following. In short, it loads your default local keypair and uses your Solana account to send a transaction that calls the on-chain program. Each run creates one transaction:</p>
+<pre><code>const anchor = require(&#39;@coral-xyz/anchor&#39;);
+const fs     = require(&#39;fs&#39;);
+const os     = require(&#39;os&#39;);
+const path   = require(&#39;path&#39;);
+const &#123; Keypair, Connection &#125; = anchor.web3;
+
+const RPC_URL    = process.env.RPC_URL;
+const connection = new Connection(RPC_URL, &#123; commitment: &#39;confirmed&#39; &#125;);
+
+const secretKey = Uint8Array.from(
+  JSON.parse(
+    fs.readFileSync(
+      path.join(os.homedir(), &#39;.config/solana/id.json&#39;),
+      &#39;utf8&#39;,
+    ),
+  ),
+);
+
+const wallet   = new anchor.Wallet(Keypair.fromSecretKey(secretKey));
+const provider = new anchor.AnchorProvider(connection, wallet, &#123;
+  preflightCommitment: &#39;confirmed&#39;,
+&#125;);
+anchor.setProvider(provider);
+
+const idlPath = path.resolve(__dirname, &#39;../target/idl/hello_sol.json&#39;);
+const idl     = JSON.parse(fs.readFileSync(idlPath, &#39;utf8&#39;));
+const program = new anchor.Program(idl, provider);
+
+(async () =&gt; &#123;
+  try &#123;
+    const sig = await program.methods.sayHello().rpc();
+    console.log(&#39;✅ tx&#39;, sig);
+    console.log(`🌐 https://explorer.solana.com/tx/$&#123;sig&#125;?cluster=devnet`);
+  &#125; catch (err) &#123;
+    console.error(&#39;❌&#39;, err);
+  &#125;
+&#125;)();
+</code></pre>
+<p>Back at the project root (<code>hello_sol</code>), install the Node.js deps:</p>
+<pre><code>npm init -y 
+npm install @coral-xyz/anchor
+</code></pre>
+<p>Still at the project root, run the script to call your deployed program on devnet:</p>
+<pre><code>export RPC_URL=https://api.devnet.solana.com
+node app/app.js
+</code></pre>
+<p><code>RPC_URL</code> is the endpoint used by the script. Since Node.js doesn’t go through a system proxy by default, if your network is restricted you’ll want a better endpoint than the public RPC—for example, <a href="https://www.helius.dev/">Helius</a> offers free accounts. If you see an error like below, it’s most likely a network issue—switch to a more reliable RPC:</p>
+<pre><code>❌ Error: failed to get recent blockhash: TypeError: fetch failed
+    at Connection.getLatestBlockhash (/Users/smallyu/work/github/hello_sol/node_modules/@solana/web3.js/lib/index.cjs.js:7236:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AnchorProvider.sendAndConfirm (/Users/smallyu/work/github/hello_sol/node_modules/@coral-xyz/anchor/dist/cjs/provider.js:89:35)
+    at async MethodsBuilder.rpc [as _rpcFn] (/Users/smallyu/work/github/hello_sol/node_modules/@coral-xyz/anchor/dist/cjs/program/namespace/rpc.js:15:24)
+    at async /Users/smallyu/work/github/hello_sol/app/app.js:40:17
+</code></pre>
+<p>You might wonder why we didn’t specify the program address—how does the script know which program you deployed? Notice the <code>idlPath</code> variable. Open <code>target/idl/hello_sol.json</code> and you’ll find metadata about the compiled program, including the program ID. That’s right—the address is generated offline; the program has a unique address even before deployment.</p>
+<p>If the script runs without errors, the terminal will print the transaction signature and a browser URL you can open. For example:
+<a href="https://explorer.solana.com/tx/2fnPgKkv3tGKKq72hhRxmW6WFSXuofMzXfY2UYoFZXTdJi37btdESy9NzS2gjpWzXX4CL5F7QfxugpctBVaMcBFY?cluster=devnet">https://explorer.solana.com/tx/2fnPgKkv3tGKKq72hhRxmW6WFSXuofMzXfY2UYoFZXTdJi37btdESy9NzS2gjpWzXX4CL5F7QfxugpctBVaMcBFY?cluster=devnet</a></p>
+<p>At the bottom of that transaction page you’ll see <code>Program logged: &quot;Hello, world!&quot;</code>, which is the <code>msg!</code> we wrote in the program.</p>
+<h3 id="10-Troubleshooting"><a href="#10-Troubleshooting" class="headerlink" title="10. Troubleshooting"></a>10. Troubleshooting</h3><p>If you hit errors, first suspect version mismatches. The blockchain space iterates quickly and incompatibilities are common. Here are my local versions:</p>
+<pre><code>rustup: rustup 1.28.2 (e4f3ad6f8 2025-04-28)
+rustc: rustc 1.90.0-nightly (706f244db 2025-06-23)
+solana: solana-cli 2.2.18 (src:8392f753; feat:3073396398, client:Agave)
+archor: anchor-cli 0.31.1
+node: v24.2.0
+@coral-xyz/anchor(nodejs): ^0.31.1
+</code></pre>
+<p><br><br></p>
+<h2 id="Development-Tutorial-2"><a href="#Development-Tutorial-2" class="headerlink" title="Development-Tutorial-2"></a>Development-Tutorial-2</h2><p>We’ve learned how to create, deploy, and call a program. Now let’s go deeper into program structure and logic by implementing a simple USDT-like token program, reading through the code while learning Solana’s style of smart contracts.</p>
+<h3 id="1-Create-a-project"><a href="#1-Create-a-project" class="headerlink" title="1. Create a project"></a>1. Create a project</h3><p>Use the command you already know:</p>
+<pre><code>anchor init usdt_clone
+</code></pre>
+<h3 id="2-Config-file"><a href="#2-Config-file" class="headerlink" title="2. Config file"></a>2. Config file</h3><p>Check <code>programs/usdt_clone/Cargo.toml</code>. Cargo is Rust’s package manager, and <code>Cargo.toml</code> declares dependencies and versions. The autogenerated config contains:</p>
+<pre><code>[dependencies]
+anchor-lang = &quot;0.31.1&quot;
+</code></pre>
+<p>Anchor’s macros are key to Solana programs—things like <code>#[program]</code> and <code>#[account]</code> tell Solana’s SVM where the entrypoints and data structures are. Without the Anchor dependency, this would be a normal Rust project and Solana wouldn’t know how to interpret it. That’s how Solana leverages Rust to implement smart contracts.</p>
+<h3 id="3-Program-address"><a href="#3-Program-address" class="headerlink" title="3. Program address"></a>3. Program address</h3><p>Open <code>usdt_clone/programs/usdt_clone/src/lib.rs</code>. The first line imports common Anchor types, which is fine as-is:</p>
+<pre><code>use anchor_lang::prelude::*;
+</code></pre>
+<p>The second line calls <code>declare_id</code> to set the Program ID (the address). As mentioned earlier, Solana program addresses can be generated offline.</p>
+<pre><code>declare_id!(&quot;CFmGdHuqDymqJYBX44fyNjrFoJx6wRkZPkYgZqfkAQvT&quot;);
+</code></pre>
+<p>This is a random-looking value, but not arbitrary—it’s an Ed25529 public key. If you change the last character <code>T</code> to <code>t</code>, the string is no longer a valid public key. So while it can be randomly generated, you can’t just tweak it freely. Where’s the private key, then? During initialization, a keypair is created at <code>target/deploy/usdt_clone-keypair.json</code>. It’s an array of bytes; the <code>declare_id</code> public key is derived from that private key.</p>
+<h3 id="4-Stored-data-structures"><a href="#4-Stored-data-structures" class="headerlink" title="4. Stored data structures"></a>4. Stored data structures</h3><p>Add your logic below <code>declare_id</code>:</p>
+<pre><code>#[account]
+pub struct Mint &#123;
+    pub decimals: u8,
+    pub mint_authority: Pubkey,
+&#125;
+</code></pre>
+<p>You can think of <code>#[account]</code> as defining on-chain data structures. Anchor’s “magic” wires things so you can read&#x2F;write these structures on-chain. Here we define a <code>Mint</code> with two fields: <code>decimals</code> for token precision, and <code>mint_authority</code> for who can mint.</p>
+<p>Define another struct to store per-user balances. <code>owner</code> is the user address, <code>balance</code> is their balance:</p>
+<pre><code>#[account]
+pub struct TokenAccount &#123;
+    pub owner: Pubkey,
+    pub balance: u64,
+&#125;
+</code></pre>
+<h3 id="5-Account-constraint-structs"><a href="#5-Account-constraint-structs" class="headerlink" title="5. Account constraint structs"></a>5. Account constraint structs</h3><p>At the bottom of the template you’ll see <code>#[derive(Accounts)]</code>—this macro lets you specify constraints for accounts. You can define functions within a <code>#[derive(Accounts)]</code> block and then use <code>#[account]</code> to define structures; those structures gain behavior akin to methods.</p>
+<p>Remove the original <code>Initialize</code>:</p>
+<pre><code>#[derive(Accounts)]
+pub struct Initialize &#123;&#125;    // delete
+</code></pre>
+<p>Add your own:</p>
+<pre><code>#[derive(Accounts)]
+pub struct InitMint&lt;&#39;info&gt; &#123;
+    #[account(
+        init, 
+        payer = authority,
+        space = 8 + 1 + 32
+    )]
+    pub mint: Account&lt;&#39;info, Mint&gt;,
+
+    #[account(mut)]
+    pub authority: Signer&lt;&#39;info&gt;,
+
+    pub system_program: Program&lt;&#39;info, System&gt;,
+&#125;
+</code></pre>
+<p>A bit to unpack. In <code>#[account(...)]</code> we pass 3 parameters defined by Anchor:</p>
+<ul>
+<li><code>init</code> is a flag: create the account if it doesn’t exist.</li>
+<li><code>payer</code> specifies who pays for the account creation.</li>
+<li><code>space</code> is how many bytes to allocate: 8 (discriminator) + 1 for <code>u8</code> + 32 for <code>Pubkey</code>.</li>
+</ul>
+<p>This macro decorates the <code>mint</code> field. <code>Account&lt;&#39;info, Mint&gt;</code> is an Anchor account type for reading&#x2F;writing our <code>Mint</code> (as opposed to <code>TokenAccount</code>, etc.).</p>
+<p>Next, <code>#[account(mut)]</code> indicates lamports may change. <code>authority</code> is a <code>Signer&lt;&#39;info&gt;</code>, meaning a signature from the owner is required. The <code>’info</code> lifetime is a Rust feature—think of it like a borrowed reference. Finally, <code>system_program</code> is boilerplate whenever SOL transfers may occur. Altogether, <code>InitMint</code> is a wrapper around <code>Mint</code> with account-related constraints.</p>
+<h3 id="6-Initialize-the-token-program"><a href="#6-Initialize-the-token-program" class="headerlink" title="6. Initialize the token program"></a>6. Initialize the token program</h3><p>Focus on the functions under <code>#[program]</code>, which marks program entrypoints. The template contains:</p>
+<pre><code>#[program]
+pub mod usdt_clone &#123;
+    use super::*;
+
+    pub fn initialize(ctx: Context&lt;Initialize&gt;) -&gt; Result&lt;()&gt; &#123;   // delete
+        msg!(&quot;Greetings from: &#123;:?&#125;&quot;, ctx.program_id);             // delete
+        Ok(())                                                    // delete
+    &#125;                                                             // delete
+&#125;
+</code></pre>
+<p>Remove <code>initialize</code> and add:</p>
+<pre><code>pub fn init_mint(ctx: Context&lt;InitMint&gt;, decimals: u8) -&gt; Result&lt;()&gt; &#123;
+    let mint = &amp;mut ctx.accounts.mint;
+    mint.decimals = decimals;
+    mint.mint_authority = ctx.accounts.authority.key();
+    Ok(())
+&#125;
+</code></pre>
+<p>Place <code>init_mint</code> where <code>initialize</code> was. Ignoring the macros, it’s a normal Rust function. <code>Context</code> is provided by Anchor (even though we didn’t define it), and <code>InitMint</code> is the type we created earlier.</p>
+<p>The first parameter specifies the authority; the second (<code>u8</code>) is the token precision. It returns <code>()</code>: success returns nothing; errors bubble up.</p>
+<p>Inside, we assign to <code>mint</code>, which is a deserialized, mutable account from <code>ctx.accounts</code>. Because it’s a mutable reference, updating it persists the data on-chain.</p>
+<h3 id="7-Unit-tests"><a href="#7-Unit-tests" class="headerlink" title="7. Unit tests"></a>7. Unit tests</h3><p>Compile first to ensure you didn’t miss anything—Rust is strict and may produce warnings:</p>
+<pre><code>anchor build  
+</code></pre>
+<p>Then edit <code>usdt_clone/tests/usdt_clone.ts</code> and paste:</p>
+<pre><code>import anchor from &quot;@coral-xyz/anchor&quot;;
+import &#123; Program &#125; from &quot;@coral-xyz/anchor&quot;;
+import &#123; SystemProgram, Keypair &#125; from &quot;@solana/web3.js&quot;;
+import &#123; assert &#125; from &quot;chai&quot;;
+
+const &#123; AnchorProvider, BN &#125; = anchor;
+
+describe(&quot;usdt_clone / init_mint&quot;, () =&gt; &#123;
+  const provider = AnchorProvider.env();
+  anchor.setProvider(provider);
+  const program = anchor.workspace.UsdtClone as Program;
+
+  const mintKey = Keypair.generate();
+
+  it(&quot;creates a Mint with correct metadata&quot;, async () =&gt; &#123;
+    const txSig = await program.methods
+      .initMint(new BN(6))
+      .accounts(&#123;
+        mint: mintKey.publicKey,
+        authority: provider.wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+      &#125;)
+      .signers([mintKey])
+      .rpc();
+
+    console.log(&quot;tx:&quot;, txSig);
+
+    const mintAccount = await program.account.mint.fetch(mintKey.publicKey);
+
+    assert.equal(mintAccount.decimals, 6);
+    assert.equal(
+      mintAccount.mintAuthority.toBase58(),
+      provider.wallet.publicKey.toBase58()
+    );
+  &#125;);
+&#125;);
+</code></pre>
+<p>This uses the local test framework to call <code>initMint</code>, e.g., setting 6 decimals and supplying the 3 accounts that <code>InitMint</code> requires. It logs <code>txSig</code>, then reads <code>program.account.mint.fetch</code> and asserts the values.</p>
+<p>Run the tests:</p>
+<pre><code>anchor test
+</code></pre>
+<p>If all goes well you’ll see <code>1 passing (460ms)</code>.</p>
+<h3 id="8-Open-account-amp-transfer"><a href="#8-Open-account-amp-transfer" class="headerlink" title="8. Open account &amp; transfer"></a>8. Open account &amp; transfer</h3><p>Building on what we’ve learned, add two more account structs for opening an account and transferring. The new macro <code>#[error_code]</code> defines an enum for program errors:</p>
+<pre><code>#[derive(Accounts)]
+pub struct InitTokenAccount&lt;&#39;info&gt; &#123;
+    #[account(init, payer = owner, space = 8 + 32 + 8)]
+    pub token: Account&lt;&#39;info, TokenAccount&gt;,
+    #[account(mut, signer)]
+    pub owner: Signer&lt;&#39;info&gt;,
+    pub system_program: Program&lt;&#39;info, System&gt;,
+&#125;
+
+#[derive(Accounts)]
+pub struct Transfer&lt;&#39;info&gt; &#123;
+    #[account(mut, has_one = owner)]
+    pub from: Account&lt;&#39;info, TokenAccount&gt;,
+    #[account(mut)]
+    pub to: Account&lt;&#39;info, TokenAccount&gt;,
+    #[account(signer)]
+    pub owner: Signer&lt;&#39;info&gt;,
+&#125;
+
+#[error_code]
+pub enum ErrorCode &#123;
+    InsufficientFunds,
+    ArithmeticOverflow,
+&#125;
+</code></pre>
+<p>Add two methods for opening and transferring. Note <code>token.balance = 1000</code> grants a default balance of 1000 upon opening—this simplifies tests and can be changed as you like:</p>
+<pre><code>pub fn init_token_account(ctx: Context&lt;InitTokenAccount&gt;) -&gt; Result&lt;()&gt; &#123;
+  let token = &amp;mut ctx.accounts.token;
+  token.owner = ctx.accounts.owner.key();
+  token.balance = 1000;
+  Ok(())
+&#125;
+
+pub fn transfer(ctx: Context&lt;Transfer&gt;, amount: u64) -&gt; Result&lt;()&gt; &#123;
+  let from = &amp;mut ctx.accounts.from;
+  let to   = &amp;mut ctx.accounts.to;
+
+  require!(from.balance &gt;= amount, ErrorCode::InsufficientFunds);
+
+  from.balance -= amount;
+  to.balance = to
+      .balance
+      .checked_add(amount)
+      .ok_or(ErrorCode::ArithmeticOverflow)?;
+
+  Ok(())
+&#125;
+</code></pre>
+<p>Unit tests:</p>
+<pre><code>const tokenA = Keypair.generate();
+const tokenB = Keypair.generate();
+
+it(&quot;initializes tokenA &amp; tokenB, each with balance 1000&quot;, async () =&gt; &#123;
+  for (const tok of [tokenA, tokenB]) &#123;
+    await program.methods
+      .initTokenAccount()
+      .accounts(&#123;
+        token: tok.publicKey,
+        owner: provider.wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+      &#125;)
+      .signers([tok])
+      .rpc();
+
+    const acc = await program.account.tokenAccount.fetch(tok.publicKey);
+    assert.equal(
+      acc.owner.toBase58(),
+      provider.wallet.publicKey.toBase58()
+    );
+    assert.equal(acc.balance.toNumber(), 1000);
+  &#125;
+&#125;);
+
+it(&quot;transfers 250 from A to B (balances 750 / 1250)&quot;, async () =&gt; &#123;
+  await program.methods
+    .transfer(new BN(250))
+    .accounts(&#123;
+      from:  tokenA.publicKey,
+      to:    tokenB.publicKey,
+      owner: provider.wallet.publicKey,
+    &#125;)
+    .rpc();
+
+  const a = await program.account.tokenAccount.fetch(tokenA.publicKey);
+  const b = await program.account.tokenAccount.fetch(tokenB.publicKey);
+
+  assert.equal(a.balance.toNumber(), 750);
+  assert.equal(b.balance.toNumber(), 1250);
+&#125;);
+</code></pre>
+<p>If you’re curious, try deploying this program to devnet as well and calling it via the SDK.</p>
+<p><br><br></p>
+<h2 id="Development-Tutorial-3"><a href="#Development-Tutorial-3" class="headerlink" title="Development-Tutorial-3"></a>Development-Tutorial-3</h2><p>You may have noticed that describing business logic is relatively lightweight, while <code>#[account]</code> types and their parameters (auto-creating accounts, how many bytes to rent, etc.) are the tricky bits. Because all account data must fit into node memory—and memory is expensive—Solana requires careful sizing. The account model is also a bit complex.</p>
+<h3 id="1-Issue-a-token-via-CLI"><a href="#1-Issue-a-token-via-CLI" class="headerlink" title="1. Issue a token via CLI"></a>1. Issue a token via CLI</h3><p>For USDT-like scenarios, Solana provides library functions and even CLI tools. You can issue tokens without writing a program. Tokens are called SPL Tokens. To create a 6-decimal SPL token (no token name needed):</p>
+<pre><code>spl-token create-token --decimals 6
+</code></pre>
+<p>The output includes an <code>Address</code>, the token mint address. For example, mine was <code>E75GMXAfJ91XuRboSpjwkDmta45Etgt3F3Gf5WLZvLbV</code> (view it in the <a href="https://explorer.solana.com/address/E75GMXAfJ91XuRboSpjwkDmta45Etgt3F3Gf5WLZvLbV?cluster=devnet">explorer</a>).</p>
+<p>Next, create an Associated Token Account (ATA) for your local wallet for this token. This is like instantiating a record in the token program that tracks your balance. Without it, the token program doesn’t “know” you.</p>
+<p>“Account” here can be confusing: you already have a wallet address visible via <code>solana address</code>, so why create an ATA in the token program? Think of the program maintaining a <code>map&#123;&#125;</code>; creating an ATA inserts a key&#x2F;value where the key is your wallet address and the value is your token balance. If there’s no entry, you can’t even receive transfers.</p>
+<p>Why require pre-creation? Because on Solana, on-chain space is scarce and must be paid for. Creating an ATA reserves 165 bytes. You can estimate rent with <code>solana rent 165</code>, e.g., <code>0.00203928 SOL</code>. Beyond the transaction fee, you pay this rent when creating the ATA. Hence the explicit creation step.</p>
+<p>Create the ATA:</p>
+<pre><code>spl-token create-account E75GMXAfJ91XuRboSpjwkDmta45Etgt3F3Gf5WLZvLbV
+</code></pre>
+<p>You’ll see <code>Creating account</code> followed by the ATA address, e.g., <code>E5XmcEJhhGUri8itThLGk8QfPzY1acFid8JmVyo5DWUo</code> (also visible in the <a href="https://explorer.solana.com/address/E5XmcEJhhGUri8itThLGk8QfPzY1acFid8JmVyo5DWUo?cluster=devnet">explorer</a>).</p>
+<p>Note that ATAs have their own addresses. If your wallet is <code>a</code>, your USDT ATA might be <code>b</code>. Receiving and sending USDT uses the ATA, not your base wallet. SPL Token CLI can show the mapping:</p>
+<pre><code>spl-token address --verbose --token E75GMXAfJ91XuRboSpjwkDmta45Etgt3F3Gf5WLZvLbV
+
+// output looks like
+Wallet address: 75sFifxBt7zw1YrDfCdPjDCGDyKEqLWrBarPCLg6PHwb
+Associated token address: E5XmcEJhhGUri8itThLGk8QfPzY1acFid8JmVyo5DWUo
+</code></pre>
+<p>Now check your USDT balance. The <code>balance</code> parameter takes the mint (token) address, not the ATA:</p>
+<pre><code>spl-token balance E75GMXAfJ91XuRboSpjwkDmta45Etgt3F3Gf5WLZvLbV 
+</code></pre>
+<p>It’ll be 0 by default. Mint some tokens. The command has 3 parameters: mint address, amount, and ATA (who to mint to):</p>
+<pre><code>spl-token mint E75GMXAfJ91XuRboSpjwkDmta45Etgt3F3Gf5WLZvLbV 5 E5XmcEJhhGUri8itThLGk8QfPzY1acFid8JmVyo5DWUo
+</code></pre>
+<p>After success, you can query the balance or view it in the explorer. To transfer:</p>
+<pre><code>spl-token transfer &lt;MINT&gt; 1 &lt;ATA&gt;
+</code></pre>
+<p>For convenience, the last parameter can be a wallet address instead of an ATA (the CLI derives the ATA), which is why wallets feel like “there is no ATA”:</p>
+<pre><code>spl-token transfer &lt;MINT&gt; 1 &lt;RECIPIENT_WALLET&gt;
+</code></pre>
+<h3 id="2-Write-a-program-using-the-SPL-library"><a href="#2-Write-a-program-using-the-SPL-library" class="headerlink" title="2. Write a program using the SPL library"></a>2. Write a program using the SPL library</h3><p>Let’s call SPL library functions from a program. These system-level libraries are audited and safer than rolling your own. With them, you can focus on business logic rather than low-level details like precision math. Create a new project:</p>
+<pre><code>anchor init usdt_spl
+</code></pre>
+<p>Add the <code>anchor-spl</code> dependency. This pulls the latest version. After running it, <code>programs/usdt_spl/Cargo.toml</code> should include <code>anchor-spl = &quot;0.31.1&quot;</code> under <code>[dependencies]</code>:</p>
+<pre><code>cargo add anchor-spl
+</code></pre>
+<p>Start coding. First import SPL types. Previously we used Anchor types like <code>Account</code> and <code>Signer</code>. SPL also provides types—for example, <code>TokenAccount</code> represents an ATA:</p>
+<pre><code>use anchor_spl::token::&#123;self, MintTo, Token, TokenAccount, Mint&#125;;
+</code></pre>
+<p>Define the accounts for a mint-to operation:</p>
+<pre><code>#[derive(Accounts)]
+pub struct MintToCtx&lt;&#39;info&gt; &#123;
+    #[account(mut)]
+    pub mint: Account&lt;&#39;info, Mint&gt;, 
+
+    #[account(mut)]
+    pub to:   Account&lt;&#39;info, TokenAccount&gt;,
+
+    #[account(mut)]
+    pub authority: Signer&lt;&#39;info&gt;,
+
+    pub token_program: Program&lt;&#39;info, Token&gt;,
+&#125;
+</code></pre>
+<p><code>mut</code> means data is writable. <code>Account</code> is the Anchor wrapper we’ve used. <code>Mint</code> here is from SPL—we no longer define our own <code>Mint</code> struct. Similarly, <code>TokenAccount</code> and <code>Token</code> are SPL types. Looks simpler, right? Not so fast—one more piece:</p>
+<pre><code>impl&lt;&#39;info&gt; From&lt;&amp;MintToCtx&lt;&#39;info&gt;&gt; for CpiContext&lt;&#39;_, &#39;_, &#39;_, &#39;info, MintTo&lt;&#39;info&gt;&gt;
+&#123;
+    fn from(accts: &amp;MintToCtx&lt;&#39;info&gt;) -&gt; Self &#123;
+        let cpi_accounts = MintTo &#123;
+            mint:      accts.mint.to_account_info(),
+            to:        accts.to.to_account_info(),
+            authority: accts.authority.to_account_info(),
+        &#125;;
+        CpiContext::new(accts.token_program.to_account_info(), cpi_accounts)
+    &#125;
+&#125;
+</code></pre>
+<p>This Rust <code>From</code> impl converts <code>&amp;MintToCtx&lt;&#39;info&gt;</code> into <code>CpiContext&lt;..., MintTo&lt;&#39;info&gt;&gt;</code>. CPI stands for Cross-Program Invocation—packaging the target program and accounts into a single structure. The last generic, <code>MintTo</code>, is the SPL type we’ll pass.</p>
+<p>Why an “external program”? Because SPL Token isn’t just types—it’s an already-deployed on-chain program. Using SPL crates essentially calls those deployed programs. When your program runs and you invoke SPL, it finds the SPL program and executes logic there, returning results. In other words, programs across the network share the same SPL implementation.</p>
+<p>Finally, the <code>#[program]</code> method:</p>
+<pre><code>pub fn mint_to(ctx: Context&lt;MintToCtx&gt;, amount: u64) -&gt; Result&lt;()&gt; &#123;
+    token::mint_to((&amp;*ctx.accounts).into(), amount)
+&#125;
+</code></pre>
+<h3 id="3-Build-the-program"><a href="#3-Build-the-program" class="headerlink" title="3. Build the program"></a>3. Build the program</h3><p>You’ll hit a compile error unless you enable features in <code>programs/usdt_spl/Cargo.toml</code>:</p>
+<pre><code>[features]
+idl-build = [&quot;anchor-lang/idl-build&quot;, &quot;anchor-spl/idl-build&quot;]
+
+[dependencies]
+anchor-spl  = &#123; version = &quot;0.31.1&quot;, features = [&quot;token&quot;, &quot;idl-build&quot;] &#125;
+</code></pre>
+<p>Static builds won’t include SPL by default; the config above enables it. Now build:</p>
+<pre><code>anchor build
+</code></pre>
+<h3 id="4-Write-tests"><a href="#4-Write-tests" class="headerlink" title="4. Write tests"></a>4. Write tests</h3><p>Install SPL-related Node.js deps. Tests are in TypeScript:</p>
+<pre><code>npm i @coral-xyz/anchor@^0.31 @solana/spl-token chai
+</code></pre>
+<p>Paste into <code>tests/usdt_spl.ts</code>:</p>
+<pre><code>import anchor from &quot;@coral-xyz/anchor&quot;;
+import &#123; Program &#125; from &quot;@coral-xyz/anchor&quot;;
+import &#123;
+  createMint,
+  createAssociatedTokenAccount,
+  getAccount,
+  TOKEN_PROGRAM_ID,
+&#125; from &quot;@solana/spl-token&quot;;
+import &#123; assert &#125; from &quot;chai&quot;;
+
+const &#123; AnchorProvider, BN &#125; = anchor;
+
+describe(&quot;usdt_spl / mint_to&quot;, () =&gt; &#123;
+  const provider = AnchorProvider.env();
+  anchor.setProvider(provider);
+  const program = anchor.workspace.UsdtSpl as Program;
+
+  let mintPubkey: anchor.web3.PublicKey;
+  let ata: anchor.web3.PublicKey;
+
+  it(&quot;creates mint, mints 1 USDT into ATA&quot;, async () =&gt; &#123;
+    mintPubkey = await createMint(
+      provider.connection,
+      provider.wallet.payer,          // fee-payer
+      provider.wallet.publicKey,      // mint authority
+      null,                           // freeze authority
+      6                               // decimals
+    );
+
+    ata = await createAssociatedTokenAccount(
+      provider.connection,
+      provider.wallet.payer,          // fee-payer
+      mintPubkey,
+      provider.wallet.publicKey       // owner
+    );
+
+    await program.methods
+      .mintTo(new BN(1_000_000))      // 1 USDT
+      .accounts(&#123;
+        mint: mintPubkey,
+        to: ata,
+        authority: provider.wallet.publicKey,
+        tokenProgram: TOKEN_PROGRAM_ID,
+      &#125;)
+      .rpc();
+
+    const accInfo = await getAccount(provider.connection, ata);
+    assert.equal(accInfo.amount.toString(), &quot;1000000&quot;);
+  &#125;);
+&#125;);
+</code></pre>
+<p>Run tests:</p>
+<pre><code>anchor test
+</code></pre>
+<h3 id="5-Deploy-to-devnet"><a href="#5-Deploy-to-devnet" class="headerlink" title="5. Deploy to devnet"></a>5. Deploy to devnet</h3><p>Ensure you have enough SOL, then:</p>
+<pre><code>anchor deploy --provider.cluster devnet 
+</code></pre>
+<p>Sometimes you’ll hit <code>Operation timed out</code>. You can pass your own RPC URL (wrap long URLs in quotes):</p>
+<pre><code>anchor deploy --provider.cluster &quot;&lt;your-rpc-url&gt;&quot;
+</code></pre>
+<p>Network issues can also leave partial buffers locally or on-chain. To bypass such states, try:</p>
+<pre><code>solana program deploy \
+  target/deploy/usdt_spl.so \
+  --program-id target/deploy/usdt_spl-keypair.json \
+  --url &quot;&lt;your-rpc-url&gt;&quot;
+</code></pre>
+<p>This is often more reliable. Without <code>--program-id</code>, it generates a new keypair and deploys to a new address—choose based on your needs. After success, check the <a href="https://explorer.solana.com/address/CFXzAhGKEz7tSFdNcVeCX8HosFGYczD7rZyD4vwoWozY?cluster=devnet">explorer</a>.</p>
+<h3 id="6-Call-the-on-chain-program-via-SDK"><a href="#6-Call-the-on-chain-program-via-SDK" class="headerlink" title="6. Call the on-chain program via SDK"></a>6. Call the on-chain program via SDK</h3><p>Let’s use the SDK again. Edit <code>app/app.js</code> and paste:</p>
+<pre><code>/* scripts/mint_to.js   (CommonJS) */
+const anchor = require(&quot;@coral-xyz/anchor&quot;);
+const &#123;
+  createMint,
+  createAssociatedTokenAccount,
+  getAccount,
+  TOKEN_PROGRAM_ID,
+&#125; = require(&quot;@solana/spl-token&quot;);
+const fs   = require(&quot;fs&quot;);
+const os   = require(&quot;os&quot;);
+const path = require(&quot;path&quot;);
+const &#123; Keypair, Connection, PublicKey &#125; = anchor.web3;
+
+const RPC_URL = process.env.RPC_URL || &quot;https://api.devnet.solana.com&quot;;
+const connection = new Connection(RPC_URL, &#123; commitment: &quot;confirmed&quot; &#125;);
+
+const secret = Uint8Array.from(
+  JSON.parse(fs.readFileSync(path.join(os.homedir(), &quot;.config/solana/id.json&quot;)))
+);
+const wallet = new anchor.Wallet(Keypair.fromSecretKey(secret));
+const provider = new anchor.AnchorProvider(connection, wallet, &#123;
+  preflightCommitment: &#39;confirmed&#39;,
+&#125;);
+anchor.setProvider(provider);
+
+const idl  = JSON.parse(fs.readFileSync(path.resolve(&quot;target/idl/usdt_spl.json&quot;)));
+const prog = new anchor.Program(idl, provider);
+
+(async () =&gt; &#123;
+  const mint = await createMint(connection, wallet.payer, wallet.publicKey, null, 6);
+  const ata  = await createAssociatedTokenAccount(connection, wallet.payer, mint, wallet.publicKey);
+
+  const sig = await prog.methods
+    .mintTo(new anchor.BN(1_000_000))
+    .accounts(&#123; mint, to: ata, authority: wallet.publicKey, tokenProgram: TOKEN_PROGRAM_ID &#125;)
+    .rpc();
+
+  console.log(&quot;tx:&quot;, sig);
+  console.log(`explorer: https://explorer.solana.com/tx/$&#123;sig&#125;?cluster=devnet`);
+
+  const bal = await getAccount(connection, ata);
+  console.log(&quot;balance:&quot;, bal.amount.toString());
+&#125;)();
+</code></pre>
+<p>If everything works, you’ll see:</p>
+<pre><code>~/work/github/sol_contract/usdt_spl main ❯ node app/app.js
+tx: 3MgHxsfnJp68mrrABvCh9iwNm6MSXp1SEvk7vDYHoW7KhTEHfVNyMWsbfbEAXTC9gLzcmWu5xbkzia8hgZrcZ18i
+explorer: https://explorer.solana.com/tx/3MgHxsfnJp68mrrABvCh9iwNm6MSXp1SEvk7vDYHoW7KhTEHfVNyMWsbfbEAXTC9gLzcmWu5xbkzia8hgZrcZ18i?cluster=devnet
+balance: 1000000
+</code></pre>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>
