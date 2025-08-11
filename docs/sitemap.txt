@@ -1,3 +1,4 @@
+https://en.smallyu.net/about/index.html
 https://en.smallyu.net/2021/10/17/A%20Multi-Linked-List-Based%20Blockchain%20Idea/
 https://en.smallyu.net/2021/10/27/Common%20Linked%20List%20Algorithm%20Problems%20and%20Explanations/
 https://en.smallyu.net/2021/10/13/Hash%20Functions%20and%20Serialization/
@@ -11,7 +12,6 @@ https://en.smallyu.net/tags/index.html
 https://en.smallyu.net/2024/09/11/Why%20You%20Shouldn't%20Pursue%20Smart%20Contract%20or%20DeFi%20Development/
 https://en.smallyu.net/2023/02/20/Why%20the%20Private%20Key%20Calculation%20of%20Ethereum%20is%20Irreversible/
 https://en.smallyu.net/categories/index.html
-https://en.smallyu.net/about/index.html
 https://en.smallyu.net/micro-blog/2020.json
 https://en.smallyu.net/2022/07/24/Why%20Pay%20Attention%20to%20Programming%20Concepts/
 https://en.smallyu.net/2024/04/14/Why%20PoW%20is%20More%20Decentralized%20than%20PoS/
