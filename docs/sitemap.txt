@@ -71,7 +71,6 @@ https://en.smallyu.net/2019/08/10/Java-Based%20Web%20Scraping%20Framework%20WebC
 https://en.smallyu.net/2021/11/21/Is%20GitBook%20Good%20to%20Use_/
 https://en.smallyu.net/2023/07/12/How%20to%20Distinguish%20Between%20Public%20Chains%20and%20Consortium%20Chains/
 https://en.smallyu.net/2023/10/10/How%20to%20Work%20Remotely%20in%20a%20Healthy%20Way/
-https://en.smallyu.net/2019/12/15/I%20Personally%20Wrote%20Unmaintainable%20Code/
 https://en.smallyu.net/2022/04/21/How%20to%20Deal%20with%20Misunderstandings/
 https://en.smallyu.net/2024/08/22/How%20PoS%20Blockchains%20Handle%20Forks/
 https://en.smallyu.net/2023/05/06/Half-Year%20Work%20Review/
@@ -88,7 +87,6 @@ https://en.smallyu.net/2019/03/27/Design%20Flaws%20in%20Elevator%20Floor%20Displ
 https://en.smallyu.net/2020/09/20/Can%20Web%20Technologies%20Achieve%203D%20Modeling?/
 https://en.smallyu.net/2020/12/08/Blockchain:%20The%20Cornerstone%20of%20the%20Next%20Generation%20Digital%20Identity%20Authentication%20System/
 https://en.smallyu.net/2021/02/11/Blog%20Theme%20Sharing%20Plan%20(Draft)/
-https://en.smallyu.net/2023/03/06/Blockchain%20Needs%20a%20Technological%20Revolution/
 https://en.smallyu.net/2023/07/12/Blockchain%20Technology%20Interview%20Questions/
 https://en.smallyu.net/2019/03/15/Basic%20Syntax%20of%20Go%20Language/
 https://en.smallyu.net/2018/12/17/Basics%20of%20Scala%20Syntax/
@@ -96,7 +94,6 @@ https://en.smallyu.net/2020/03/21/An%20Interactive%20Method%20for%20Side%20Navig
 https://en.smallyu.net/2025/04/29/About%20the%20Design%20of%20the%20Web3%20Tipping%20System%20giveme.wtf/
 https://en.smallyu.net/2025/01/05/All%20BFT%20Consensus%20Blockchains%20Are%20Centralized/
 https://en.smallyu.net/2019/07/06/A%20Simplified%20Version%20of%20Scala/
-https://en.smallyu.net/2020/05/03/About%20Human%20Abilities,%20Experiences,%20and.../
 https://en.smallyu.net/2023/02/22/A%20Mechanism%20for%20Generating%20Random%20Numbers%20on%20the%20Blockchain/
 https://en.smallyu.net/2021/11/10/A%20Method%20for%20Blockchain%20Node%20Storage%20Expansion/
 https://en.smallyu.net/2021/10/29/A%20Consensus%20Mechanism%20Based%20on%20%22Egocentrism%22/
@@ -111,12 +108,10 @@ https://en.smallyu.net/tags/Consensus-Mechanism/
 https://en.smallyu.net/tags/Programming-Languages/
 https://en.smallyu.net/tags/web3/
 https://en.smallyu.net/tags/Plan/
-https://en.smallyu.net/tags/Learning/
 https://en.smallyu.net/tags/BFT/
 https://en.smallyu.net/tags/Programming-Language/
 https://en.smallyu.net/tags/Design/
 https://en.smallyu.net/tags/Dreams/
-https://en.smallyu.net/tags/Blockchain-Revolution/
 https://en.smallyu.net/tags/Life/
 https://en.smallyu.net/tags/Interview-Questions/
 https://en.smallyu.net/tags/zk/
