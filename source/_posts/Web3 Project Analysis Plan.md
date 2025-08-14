@@ -1,0 +1,52 @@
+---
+title: Web3 Project Analysis Plan
+date: 2025-08-14 23:00:00
+tags:
+- Project Analysis
+---
+
+The dedicated Paragraph channel for the Web3 Project Analysis Series is:
+
+- [https://paragraph.com/@smallyu](https://paragraph.com/@smallyu)
+
+After a few days of trying this out, I feel that the Web3 Project Analysis Plan is a very meaningful initiative. I'm not sure whether readers of the analysis articles gain anything, but from the perspective of deepening my own understanding of projects and learning technology, it has been rewarding. So I need to keep this plan going and make it a regular routine.
+
+The specific plan is to analyze one Web3 industry project per week—starting from reading the white paper, understanding the project's operation model, and current business status, with a particular focus on technical concepts and innovation. Then I’ll write it up into an analysis report. It doesn't need to be highly professional—something akin to study notes is enough. The choice of which project to analyze is subjective. The final analysis report may turn out to be insightful and of high quality, or it may be short and less substantial. That’s because I can't determine a project’s value—especially its technical depth—at the outset.
+
+This plan is somewhat like what a blockchain researcher would do, rather than what a blockchain developer typically does. Why isn’t my plan to write 100 lines of code every day, developing a small blockchain tool, or to accumulate work daily toward building a large blockchain project?
+
+Because engineering code, if detached from a project background, has no value. Over the years, I’ve written a lot of code in my job, but if I were to revisit that code now, I’d find it meaningless. Engineering code is often written to improve a project’s features, which exist to meet operational and promotional needs—ultimately for commercial purposes. If the need doesn’t exist, the code is worthless.
+
+Especially as AI becomes more powerful, writing engineering code is becoming increasingly cheap. AI can generate tens of thousands of lines of code in minutes—its ability to churn out code easily surpasses that of humans. If I aim to train and improve myself by writing a few hundred lines of code daily, I’ll fail miserably. So that’s not the right approach.
+
+What kind of engineering code is meaningful? It’s the kind that implements well-defined product requirements and positioning—where you want to make the functionality work and let AI do the heavy lifting. AI-written code sometimes goes off track and needs manual debugging. In those cases, manually written engineering code has meaning. That should be the pace of development nowadays.
+
+In the past, people liked to say, “Talk is cheap. Show me the code.” But times have changed. Now, prompts are more valuable than code. Maybe the phrase will become, “Code is cheap. Show me the prompt.”
+
+Another reason I don’t plan to write engineering code daily is that I’ve already tried building small blockchain tools and even large blockchain projects. So far, none of my ideas—whether small or large—have yielded results, perhaps because the needs didn’t really exist. With no positive feedback, it's impossible to continue.
+
+Compared to writing code, writing text—articles and opinions—is more meaningful. A product idea may require 100 lines or even 10,000 lines of code. The time cost varies greatly. But if the final attention it receives is zero, the result is the same—9,900 lines of code wasted. Words, however, can convey thought.
+
+You might argue, how can engineering code be considered worthless? Ethereum’s client has multiple engineering implementations of the same spec, using different languages and optimizations, with varying market shares. Isn’t that proof of the value of engineering code? Of course it is. Those teams are sponsored by the Ethereum Foundation, running companies, and writing code with clear project backgrounds—so the code has value. What I’m talking about is engineering code without a project context.
+
+While engineering code may lack value, educational code still holds meaning. I continue to review computer science exercises to maintain my coding proficiency. I’m on my third round doing those exercises. This time, I strictly limit myself to one problem per day. This ensures I have enough time to digest the knowledge embedded in each exercise—I believe in the power of the subconscious. Also, I need to allocate time to other tasks and can’t keep repeating the same things. The slower pace also helps cultivate a habit of daily practice, so I don’t forget what I learned in computer science courses.
+
+Why do I think project analysis is meaningful? Because a large part of my understanding of blockchain technology comes from reading many white papers years ago. At the time, I downloaded white papers for the top few hundred cryptocurrencies by market cap, even printing them out on A4 paper to read.
+
+I remember years ago, someone emailed me asking how to learn blockchain technology. I replied seriously, listing the websites where I downloaded white papers and the books I had read. But they replied saying that wasn’t what they wanted—they wanted to learn how to write code. That’s when I realized people have different definitions of “technology.”
+
+Before AI, I didn’t grasp the value of code. Now with AI, I still don’t.
+
+Why do I think I can write analysis reports? I’ve never written any formally, but I have done technical comparisons across projects. So focusing on the technical analysis of a specific project shouldn’t be difficult. For projects I’ve worked on, I could definitely detail their inner workings—though I can’t write about them since they’re still active. Writing project analysis is also a learning and accumulation process for me.
+
+In fact, I already laid out a methodology for analyzing blockchain projects in “[Understanding the Technical Architecture of Any Blockchain Project](/2024/10/15/看懂任意区块链项目的技术架构/)” and still think there’s nothing wrong with that article. It all comes down to on-chain and off-chain interactions, with each project embedding its own business logic.
+
+As for what kind of articles should go on the blog—I struggle with that. I don’t want the blog homepage to be filled with “Analysis of Project XX.” To keep the homepage clean, I think these project analysis pieces should be hosted on another platform. Recently I found Paragraph to be quite good. Paragraph is a Web3 newsletter platform, similar in function to Substack in Web2. Every article published there is stored on the Arweave blockchain—including the author’s name, avatar, content, and images. This means once an article is published, it can’t be deleted.
+
+Why not use other platforms—like Zhihu, Juejin, even Toutiao, Baidu, DengLian, or platforms like Medium, X, or Mirror? Articles posted there would surely get more views and followers.
+
+Because those platforms are flooded with low-quality content—they’re not worthy of publishing high-quality articles. Those readers don’t understand what I’m writing about. Just look at Juejin’s homepage—8 out of 10 articles are about Cursor. It's hard to imagine how low the user base's quality must be. Zhihu is even worse—cluttered, commercialized, and constantly bombarding users with popups to log in or download their app. Who in their right mind uses that kind of site? On Maimai’s “Career Talk” section, under an anonymous account, I’ve posted thousands of messages with tens of millions of views—mostly provocative, controversial content. Does that kind of traffic have any real meaning? None at all.
+
+If I go by my own preferences, I think my most valuable writing is the emotional venting type—complaints about coworkers, companies, interview experiences, etc. These reflect real personal experiences, insights, and emotions—hard-earned life experiences that are far more interesting than technical articles. Insights into the industry, dissatisfaction with companies, and coworker rants are areas where my writing will always surpass AI—because AI has no emotions. It can’t get angry or feel frustrated. It can generate a lot of content on technical topics, but it will never experience what it means to be human.
+
+In the end, people must make choices—either stay busy living or stay busy dying.
