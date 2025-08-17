@@ -2,7 +2,7 @@
 menu:
   Blog: ''
   Contact: about
-  中文: https://smallyu.net
+  # 中文: https://smallyu.net
 
 # Recommended to enable when the page count is more than 1
 paginator: false
