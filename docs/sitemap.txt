@@ -1,3 +1,4 @@
+https://en.smallyu.net/2025/08/18/What%20Is%20the%20Principle%20Behind%20Go's%20GMP%20Scheduler/
 https://en.smallyu.net/2025/07/23/continuation%20Basics:%20Understanding%20CPS/
 https://en.smallyu.net/2025/08/14/Web3%20Project%20Analysis%20Plan/
 https://en.smallyu.net/2025/07/24/What%20I%20Learned%20from%20Yin%20Wang's%20Computer%20Science%20Course/
@@ -156,3 +157,4 @@ https://en.smallyu.net/tags/Cryptography/
 https://en.smallyu.net/tags/Linked-List/
 https://en.smallyu.net/tags/Smart-Contracts/
 https://en.smallyu.net/tags/continuation/
+https://en.smallyu.net/tags/Go/

@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head><title>What Is the Principle Behind Go's GMP Scheduler</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>What Is the Principle Behind Go's GMP Scheduler</h1><div class="time">2025-08-18</div><div class="title-margin"></div><p><strong>Disclaimer</strong>: I look down on technical topics like “What is the principle behind Go’s GMP scheduler?”</p>
+<p>I’m usually not interested in studying this type of question. But it’s been asked so frequently in interviews that I’m now setting aside 2 hours to understand it. On one hand, I want to see if there’s any real technical depth behind it; on the other hand, I’m writing down the answer here. But I won’t let this information stay in my brain—next time I’m asked in an interview, I’ll still say I don’t know 😏</p>
+<h3 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><p>GMP is an acronym:</p>
+<ul>
+<li><strong>G (Goroutine)</strong>: A coroutine; every <code>go</code> statement adds a new G.</li>
+<li><strong>M (Machine)</strong>: A system-level thread, similar to a thread in other languages.</li>
+<li><strong>P (Processor)</strong>: The number of P equals <code>GOMAXPROCS</code>, typically the number of CPU cores.</li>
+</ul>
+<p>GMP means: spin up several M (threads) to execute G (goroutines), but at most P (cores) M’s can run in parallel.</p>
+<h3 id="Three-Invariants"><a href="#Three-Invariants" class="headerlink" title="Three Invariants"></a>Three Invariants</h3><p>Here come some boring (and simplified) rules:</p>
+<ol>
+<li>Only M’s that obtain a P can execute tasks.</li>
+<li>Runnable G’s reside in either a P’s local run queue or the global queue.</li>
+<li>When an M becomes blocked (syscall&#x2F;cgo), it promptly hands over its P.</li>
+</ol>
+<p>These may sound confusing now, but they’ll make more sense with the code examples later.</p>
+<h3 id="GMP-Debug-Log"><a href="#GMP-Debug-Log" class="headerlink" title="GMP Debug Log"></a>GMP Debug Log</h3><p>Here’s a basic code file to demonstrate spawning a goroutine:</p>
+<pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
+
+func main() &#123;
+    var wg sync.WaitGroup
+    wg.Add(1)
+    go func() &#123;
+        defer wg.Done()
+        fmt.Println(&quot;Hello from goroutine&quot;)
+    &#125;()
+    wg.Wait()
+&#125;
+</code></pre>
+<p>Run it with debug flags:</p>
+<pre><code class="bash">go build demo0.go
+GODEBUG=&#39;schedtrace=200,scheddetail=1&#39; ./demo0
+</code></pre>
+<p>Don’t use <code>go run</code>—it introduces extra runtime logs. The binary version’s logs are cleaner:</p>
+<pre><code class="bash">SCHED 0ms: gomaxprocs=10 idleprocs=7 threads=5 spinningthreads=1 needspinning=0 idlethreads=0 runqueue=0 gcwaiting=false nmidlelocked=1 stopwait=0 sysmonwait=false
+  P0: status=0 schedtick=0 syscalltick=0 m=nil runqsize=0 gfreecnt=0 timerslen=0
+  P1: status=1 schedtick=0 syscalltick=0 m=2 runqsize=0 gfreecnt=0 timerslen=0
+  ...
+Hello from goroutine
+</code></pre>
+<p>These logs show:</p>
+<ul>
+<li>The first line starting with <code>SCHED</code> is a summary—10 P’s were launched (<code>gomaxprocs=10</code>).</li>
+<li>Only <code>P1</code> is running, held by <code>M2</code>.</li>
+<li><code>P0</code> is held by <code>M3</code> and is in <code>spinning</code> state (waiting for tasks).</li>
+</ul>
+<p>You don’t see the print-related G because it finishes too quickly—GMP details can be viewed via debug logs like this.</p>
+<h3 id="Preemptive-Scheduling"><a href="#Preemptive-Scheduling" class="headerlink" title="Preemptive Scheduling"></a>Preemptive Scheduling</h3><pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;runtime&quot;
+    &quot;time&quot;
+)
+
+func busy(tag string, d time.Duration) &#123;
+    end := time.Now().Add(d)
+    x := 0
+    for time.Now().Before(end) &#123;
+        x++
+    &#125;
+    fmt.Println(tag, &quot;done&quot;, x)
+&#125;
+
+func main() &#123;
+    runtime.GOMAXPROCS(1)
+    go busy(&quot;A&quot;, 1500*time.Millisecond)
+    busy(&quot;B&quot;, 1500*time.Millisecond)
+&#125;
+</code></pre>
+<p>Sometimes “A” prints first, sometimes “B”.</p>
+<p>We set <code>GOMAXPROCS(1)</code>, so only one P exists. Yet, Go’s GMP scheduler preempts every 10ms, meaning even if <code>go busy(&quot;A&quot;)</code> is running, it eventually yields, letting the main thread run <code>B</code>.</p>
+<p>To visualize this more clearly:</p>
+<pre><code class="go">func busy(tag string, d time.Duration) &#123;
+    end := time.Now().Add(d)
+    next := time.Now()
+    for time.Now().Before(end) &#123;
+        if time.Now().After(next) &#123;
+            fmt.Print(tag, &quot; &quot;) // Print ~every 100ms
+            next = time.Now().Add(100 * time.Millisecond)
+        &#125;
+    &#125;
+    fmt.Println(tag, &quot;done&quot;)
+&#125;
+</code></pre>
+<p>Sample output: <code>B A B A B A A B A B A B A B A B A B A B A B A B B A B A B A B done</code></p>
+<p>This confirms that <code>A</code> and <code>B</code> alternate—they’re interleaved due to GMP’s preemptive scheduler.</p>
+<h3 id="P-Work-Stealing"><a href="#P-Work-Stealing" class="headerlink" title="P Work Stealing"></a>P Work Stealing</h3><pre><code class="go">package main
+
+import (
+    &quot;runtime&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
+
+func spin(d time.Duration) &#123;
+    deadline := time.Now().Add(d)
+    for time.Now().Before(deadline) &#123;
+    &#125;
+&#125;
+
+func main() &#123;
+    runtime.GOMAXPROCS(1)
+
+    const N = 120
+    var wg sync.WaitGroup
+    wg.Add(N)
+    for i := 0; i &lt; N; i++ &#123;
+        go func() &#123; defer wg.Done(); spin(500 * time.Millisecond) &#125;()
+    &#125;
+
+    time.Sleep(30 * time.Millisecond)
+
+    runtime.GOMAXPROCS(4)
+    wg.Wait()
+&#125;
+</code></pre>
+<p>Initially all G’s go to one P. Then <code>GOMAXPROCS</code> is increased to 4—new P’s (P1–P3) “steal” tasks from P0’s queue.</p>
+<p>Debug logs show:</p>
+<pre><code class="bash">P0: runqsize=17
+P1: runqsize=5
+P2: runqsize=5
+P3: runqsize=17
+</code></pre>
+<p>Initially, all G’s were with P0. Later, others came and took some.</p>
+<h3 id="P’s-runq-and-the-Global-Queue"><a href="#P’s-runq-and-the-Global-Queue" class="headerlink" title="P’s runq and the Global Queue"></a>P’s runq and the Global Queue</h3><pre><code class="go">package main
+
+import (
+    &quot;runtime&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
+
+func spin(d time.Duration) &#123;
+    end := time.Now().Add(d)
+    for time.Now().Before(end) &#123;
+    &#125;
+&#125;
+
+func main() &#123;
+    runtime.GOMAXPROCS(1)
+
+    const N = 600
+    var wg sync.WaitGroup
+    wg.Add(N)
+    for i := 0; i &lt; N; i++ &#123;
+        go func() &#123; defer wg.Done(); spin(800 * time.Millisecond) &#125;()
+    &#125;
+
+    time.Sleep(500 * time.Millisecond)
+
+    runtime.GOMAXPROCS(4)
+    wg.Wait()
+&#125;
+</code></pre>
+<p>Use debug to analyze:</p>
+<pre><code class="bash">go build demo4.go   
+GODEBUG=&#39;schedtrace=200,scheddetail=1&#39; ./demo4 &amp;&gt; demo4.log
+</code></pre>
+<p>Initial logs show:</p>
+<pre><code class="bash">runqueue=0 // global queue
+P0: runqsize=0
+P1: runqsize=0
+</code></pre>
+<p>Later, P0 starts many G’s:</p>
+<pre><code class="bash">P0: runqsize=204
+runqueue=395 // global queue overflow
+</code></pre>
+<p>Default <code>runq</code> capacity is 256. Excess tasks go to the global queue. When P1–P3 enter, they pick tasks from the global queue first—not by stealing.</p>
+<p>If a P finds no work in its runq or the global queue, it checks netpoll (OS), and if that fails, it spins.</p>
+<h3 id="Blocking-syscalls-Yield-P"><a href="#Blocking-syscalls-Yield-P" class="headerlink" title="Blocking syscalls Yield P"></a>Blocking syscalls Yield P</h3><pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;runtime&quot;
+    &quot;time&quot;
+)
+
+func main() &#123;
+    runtime.GOMAXPROCS(2)
+
+    go func() &#123;
+        time.Sleep(2 * time.Second)
+        fmt.Println(&quot;blocking done&quot;)
+    &#125;()
+
+    go func() &#123;
+        for i := 0; i &lt; 6; i++ &#123;
+            time.Sleep(300 * time.Millisecond)
+            fmt.Println(&quot;still running&quot;, i)
+        &#125;
+    &#125;()
+
+    time.Sleep(3 * time.Second)
+&#125;
+</code></pre>
+<p>Output:</p>
+<pre><code class="bash">still running 0
+still running 1
+...
+blocking done
+</code></pre>
+<p>Even though the first G blocks, the second keeps running—GMP properly yields P when blocking occurs.</p>
+<h3 id="Disable-Async-Preemption"><a href="#Disable-Async-Preemption" class="headerlink" title="Disable Async Preemption"></a>Disable Async Preemption</h3><pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;runtime&quot;
+    &quot;time&quot;
+)
+
+func spin() &#123;
+    for &#123; &#125;
+&#125;
+
+func main() &#123;
+    runtime.GOMAXPROCS(1)
+    go spin()
+    time.Sleep(100 * time.Millisecond)
+    fmt.Println(&quot;I should still print unless preemption is off&quot;)
+&#125;
+</code></pre>
+<p>Two ways to run:</p>
+<pre><code class="bash">go build demo7.go
+GODEBUG=&#39;schedtrace=1000,scheddetail=1&#39; ./demo7
+</code></pre>
+<p>and:</p>
+<pre><code class="bash">go build demo7.go
+GODEBUG=&#39;schedtrace=1000,scheddetail=1,asyncpreemptoff=1&#39; ./demo7
+</code></pre>
+<p>With <code>asyncpreemptoff=1</code>, async preemption is disabled—the print never happens due to infinite loop. This illustrates GMP’s ability to yield CPU, and what happens when it’s turned off.</p>
+<h3 id="Go-Source-Code"><a href="#Go-Source-Code" class="headerlink" title="Go Source Code"></a>Go Source Code</h3><p>I didn’t dig deeply into the source. For example, constants for G&#x2F;M&#x2F;P are in <a href="https://github.com/golang/go/blob/master/src/runtime/runtime2.go#L18"><code>src/runtime/runtime2.go</code></a>:</p>
+<img src="1.png" width="60%">
+
+<p>And <code>runqputslow</code> in <a href="https://github.com/golang/go/blob/master/src/runtime/proc.go"><code>src/runtime/proc.go</code></a> handles queue overflow:</p>
+<img src="2.png" width="60%">
+
+<h3 id="Digging-Deeper"><a href="#Digging-Deeper" class="headerlink" title="Digging Deeper"></a>Digging Deeper</h3><p>This post is probably incomplete—I’m not going any deeper. Some people may love diving into this.</p>
+<p>GMP is an engineering implementation of a coroutine scheduler. Many care about the engineering details—task queue management, preemption, yielding, etc. But underneath, all coroutine schedulers are based on continuation. Go just happens to spotlight coroutines. Other languages can implement their own coroutine schedulers too.</p>
+<p>So here’s the question: if you love researching GMP, have you studied coroutine&#x2F;virtual thread&#x2F;async function&#x2F;process implementations in other languages? How do they differ from Go’s goroutines?</p>
+<p>If my job someday requires a deep understanding of these, I’ll learn them.</p>
+<h3 id="Doubts"><a href="#Doubts" class="headerlink" title="Doubts"></a>Doubts</h3><p>I once said:</p>
+<p>Go designed automatic garbage collection to reduce the mental load of memory management. Yet some interviewers go out of their way to master GC internals and quiz candidates on it. If you truly believe in using your brain to manage memory, why not just use Rust?</p>
+<p>It’s like I’m learning to drive, and someone expects me to understand how internal combustion works before getting a license. I’m not building cars—I’m driving one.</p>
+<p>Same goes for Go’s <code>go</code> keyword. It was built to make concurrency easy. Yet some folks study its internals obsessively, and use that as a gauge of Go proficiency. Doesn’t that contradict the language’s intent? If a language needs you to understand scheduling internals to write good code, it has failed in its abstraction.</p>
+<p>If you’re building programming languages or implementing schedulers, by all means, understand GMP thoroughly. Otherwise?</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>
