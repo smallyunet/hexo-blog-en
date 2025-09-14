@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><title>Solana Smart Contract Development Tutorial (1)</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Solana Smart Contract Development Tutorial (1)</h1><div class="time">2025-06-24</div><div class="title-margin"></div><blockquote>
+<p>This is a beginner-friendly series that starts from the very basics and teaches you how to develop Solana smart contracts. Due to space, only Part 1 is included here:</p>
+<ul>
+<li>“<a href="/2025/06/24/Solana%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/">Part 1</a>”: Install the base environment, deploy a HelloWorld contract, call an on-chain contract</li>
+<li>“Part 2”: Implement the minimal model of a USDT-like contract; define custom data structures and methods</li>
+<li>“Part 3”: Reuse contract functionality with the official SPL library to issue a standardized token</li>
+</ul>
+</blockquote>
+<p>We’ll start from the most basic operations to learn Solana smart contract development. You only need general programming basics—understanding concepts like OOP is enough. You don’t need prior knowledge of smart contracts on other networks, nor do you need to know the Rust programming paradigm in advance.</p>
+<h3 id="1-Install-the-environment"><a href="#1-Install-the-environment" class="headerlink" title="1. Install the environment"></a>1. Install the environment</h3><p>Visit the official Solana installation guide: <a href="https://solana.com/docs/intro/installation">https://solana.com/docs/intro/installation</a></p>
+<p>The docs provide a single command to install all dependencies, as well as a step-by-step guide. Note that Solana CLI requires updating your environment variable file. After everything is installed, the <code>solana</code> command should be available:</p>
+<pre><code>solana --help
+</code></pre>
+<h3 id="2-Initialize-the-project"><a href="#2-Initialize-the-project" class="headerlink" title="2. Initialize the project"></a>2. Initialize the project</h3><p>Use the <code>anchor</code> command to initialize a smart contract project. This CLI tool was installed in the previous step. Don’t worry yet about the generated directory structure:</p>
+<pre><code>anchor init hello_sol
+cd hello_sol
+</code></pre>
+<h3 id="3-Write-the-contract-code"><a href="#3-Write-the-contract-code" class="headerlink" title="3. Write the contract code"></a>3. Write the contract code</h3><p>There’s a <code>lib.rs</code> file under <code>programs/hello_sol/src</code>. The <code>.rs</code> extension means it’s a Rust source file. Copy the following code into it. Note that the content inside <code>declare_id</code> is automatically generated when you initialize your project—you don’t need to copy the exact value shown below:</p>
+<pre><code>use anchor_lang::prelude::*;
+
+declare_id!(&quot;3Zbdw1oWu1CiMiQr3moQeT4XzMgeqmCvjH5R5wroDWQH&quot;);
+
+#[program]
+pub mod hello_sol &#123;
+    use super::*;
+
+    pub fn say_hello(ctx: Context&lt;Hello&gt;) -&gt; Result&lt;()&gt; &#123;
+        msg!(&quot;Hello, world!&quot;);
+        Ok(())
+    &#125;
+&#125;
+
+#[derive(Accounts)]
+pub struct Hello &#123;&#125;
+</code></pre>
+<h3 id="4-Compile-the-smart-contract"><a href="#4-Compile-the-smart-contract" class="headerlink" title="4. Compile the smart contract"></a>4. Compile the smart contract</h3><p>Use the <code>anchor</code> command to compile the contract code you just added and make sure the compilation succeeds with no errors. You may see some warnings—that’s okay. Rust is very strict and will emit verbose warnings for even small issues. If all goes well, there won’t be error logs in the output:</p>
+<pre><code>anchor build
+</code></pre>
+<h3 id="5-Set-the-local-default-network"><a href="#5-Set-the-local-default-network" class="headerlink" title="5. Set the local default network"></a>5. Set the local default network</h3><p>Run this command to make your local <code>solana</code> CLI use devnet by default. Devnet is for developers to test programs without spending real SOL:</p>
+<pre><code>solana config set --url https://api.devnet.solana.com
+</code></pre>
+<h3 id="6-Create-a-local-account-file"><a href="#6-Create-a-local-account-file" class="headerlink" title="6. Create a local account file"></a>6. Create a local account file</h3><p>This command creates a Solana account in your default local path for deploying smart contracts. Deployments consume fees, which must be paid by an account:</p>
+<pre><code>solana-keygen new -o ~/.config/solana/id.json  
+</code></pre>
+<p>Among the command’s output, there will be a line starting with <code>pubkey:</code>—the value after <code>pubkey</code> is your local account address. Since we set devnet as the default network in the previous step, you can directly check your local account balance with:</p>
+<pre><code>solana balance
+</code></pre>
+<p>You can also open the devnet <a href="https://explorer.solana.com/?cluster=devnet">explorer</a> and search for the address you just generated. After searching, the URL will look like:
+<a href="https://explorer.solana.com/address/75sFifxBt7zw1YrDfCdPjDCGDyKEqLWrBarPCLg6PHwb?cluster=devnet">https://explorer.solana.com/address/75sFifxBt7zw1YrDfCdPjDCGDyKEqLWrBarPCLg6PHwb?cluster=devnet</a></p>
+<p>Of course, you’ll see your account balance is <code>0 SOL</code>.</p>
+<h3 id="7-Request-a-devnet-airdrop"><a href="#7-Request-a-devnet-airdrop" class="headerlink" title="7. Request a devnet airdrop"></a>7. Request a devnet airdrop</h3><p>Run this command and your account will receive 2 SOL. The <code>2</code> in the argument is the requested amount. Due to faucet limits, you can get at most 2 SOL per request. Don’t worry—that’s enough for our next steps.</p>
+<pre><code>solana airdrop 2
+</code></pre>
+<h3 id="8-Deploy-the-contract-to-devnet"><a href="#8-Deploy-the-contract-to-devnet" class="headerlink" title="8. Deploy the contract to devnet"></a>8. Deploy the contract to devnet</h3><p>Now that we have the contract code, a local account, and some SOL in it, we can deploy the contract to devnet. Run:</p>
+<pre><code>anchor deploy --provider.cluster devnet 
+</code></pre>
+<p>If deployment succeeds, you’ll see <code>Deploy success</code>. There’s another line to note in the output: the value after <code>Program Id:</code> is the contract address after deployment. You can search this address directly in the devnet explorer and see a page like this one. In the URL below, <code>3Zbdw1oWu1CiMiQr3moQeT4XzMgeqmCvjH5R5wroDWQH</code> is the address of the contract I deployed:
+<a href="https://explorer.solana.com/address/3Zbdw1oWu1CiMiQr3moQeT4XzMgeqmCvjH5R5wroDWQH?cluster=devnet">https://explorer.solana.com/address/3Zbdw1oWu1CiMiQr3moQeT4XzMgeqmCvjH5R5wroDWQH?cluster=devnet</a></p>
+<h3 id="9-Call-the-on-chain-contract"><a href="#9-Call-the-on-chain-contract" class="headerlink" title="9. Call the on-chain contract"></a>9. Call the on-chain contract</h3><p>In the <code>hello_sol/app</code> directory, create a new file named <code>app.js</code> and paste in the following code. In short, this script reads your default local account file and uses your Solana account to submit a transaction that calls the smart contract. Each run of the script creates one on-chain transaction.</p>
+<pre><code>const anchor = require(&#39;@coral-xyz/anchor&#39;);
+const fs     = require(&#39;fs&#39;);
+const os     = require(&#39;os&#39;);
+const path   = require(&#39;path&#39;);
+const &#123; Keypair, Connection &#125; = anchor.web3;
+
+const RPC_URL    = process.env.RPC_URL;
+const connection = new Connection(RPC_URL, &#123; commitment: &#39;confirmed&#39; &#125;);
+
+const secretKey = Uint8Array.from(
+  JSON.parse(
+    fs.readFileSync(
+      path.join(os.homedir(), &#39;.config/solana/id.json&#39;),
+      &#39;utf8&#39;,
+    ),
+  ),
+);
+
+const wallet   = new anchor.Wallet(Keypair.fromSecretKey(secretKey));
+const provider = new anchor.AnchorProvider(connection, wallet, &#123;
+  preflightCommitment: &#39;confirmed&#39;,
+&#125;);
+anchor.setProvider(provider);
+
+const idlPath = path.resolve(__dirname, &#39;../target/idl/hello_sol.json&#39;);
+const idl     = JSON.parse(fs.readFileSync(idlPath, &#39;utf8&#39;));
+const program = new anchor.Program(idl, provider);
+
+(async () =&gt; &#123;
+  try &#123;
+    const sig = await program.methods.sayHello().rpc();
+    console.log(&#39;✅ tx&#39;, sig);
+    console.log(`🌐 https://explorer.solana.com/tx/$&#123;sig&#125;?cluster=devnet`);
+  &#125; catch (err) &#123;
+    console.error(&#39;❌&#39;, err);
+  &#125;
+&#125;)();
+</code></pre>
+<p>Go back to the project root <code>hello_sol</code> and run the following commands to install Node.js dependencies:</p>
+<pre><code>npm init -y 
+npm install @coral-xyz/anchor
+</code></pre>
+<p>Still in the project root, run this command to execute the <code>app.js</code> script you just wrote. The script will call our deployed smart contract on devnet:</p>
+<pre><code>export RPC_URL=https://api.devnet.solana.com
+node app/app.js
+</code></pre>
+<p>Here the environment variable <code>RPC_URL</code> is the API endpoint the script uses. Since Node.js scripts don’t use the system proxy by default, if your network is restricted you’ll need a more reliable endpoint than the public RPC. You can use a service like <a href="https://www.helius.dev/">Helius</a>—just register a free account. If you see the following error while executing the script, it’s a network issue; switch to a more reliable RPC endpoint:</p>
+<pre><code>❌ Error: failed to get recent blockhash: TypeError: fetch failed
+    at Connection.getLatestBlockhash (/Users/smallyu/work/github/hello_sol/node_modules/@solana/web3.js/lib/index.cjs.js:7236:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AnchorProvider.sendAndConfirm (/Users/smallyu/work/github/hello_sol/node_modules/@coral-xyz/anchor/dist/cjs/provider.js:89:35)
+    at async MethodsBuilder.rpc [as _rpcFn] (/Users/smallyu/work/github/hello_sol/node_modules/@coral-xyz/anchor/dist/cjs/program/namespace/rpc.js:15:24)
+    at async /Users/smallyu/work/github/hello_sol/app/app.js:40:17
+</code></pre>
+<p>You might wonder why we don’t need to specify the contract address—how does this script know where the contract you just deployed lives on-chain? Notice the <code>idlPath</code> variable in the script. If you open the file at <code>target/idl/hello_sol.json</code>, you’ll see the contract’s compiled metadata, which includes the contract address. That’s right—the contract address is generated offline; it doesn’t need to be on-chain for the contract to already have its unique address.</p>
+<p>If the script runs without errors, you’ll see the transaction hash for this contract call printed in the terminal, along with a browser URL you can open directly. For example, here’s a transaction that calls the contract:
+<a href="https://explorer.solana.com/tx/2fnPgKkv3tGKKq72hhRxmW6WFSXuofMzXfY2UYoFZXTdJi37btdESy9NzS2gjpWzXX4CL5F7QfxugpctBVaMcBFY?cluster=devnet">https://explorer.solana.com/tx/2fnPgKkv3tGKKq72hhRxmW6WFSXuofMzXfY2UYoFZXTdJi37btdESy9NzS2gjpWzXX4CL5F7QfxugpctBVaMcBFY?cluster=devnet</a></p>
+<p>At the bottom of that transaction page, you’ll see the log <code>Program logged: &quot;Hello, world!&quot;</code> emitted when our smart contract was called. That’s exactly the <code>msg</code> we wrote in the contract code.</p>
+<h3 id="10-Troubleshooting"><a href="#10-Troubleshooting" class="headerlink" title="10. Troubleshooting"></a>10. Troubleshooting</h3><p>If you run into errors when executing any of the above commands or code, first consider whether it’s a CLI tooling version issue. The blockchain space iterates quickly, and version incompatibilities are common. My local environment and versions are:</p>
+<pre><code>rustup: rustup 1.28.2 (e4f3ad6f8 2025-04-28)
+rustc: rustc 1.90.0-nightly (706f244db 2025-06-23)
+solana: solana-cli 2.2.18 (src:8392f753; feat:3073396398, client:Agave)
+archor: anchor-cli 0.31.1
+node: v24.2.0
+@coral-xyz/anchor(nodejs): ^0.31.1
+</code></pre>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

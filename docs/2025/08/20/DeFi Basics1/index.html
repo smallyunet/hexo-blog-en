@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head><title>DeFi Basics: Understanding the AMM Pricing Mechanism</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>DeFi Basics: Understanding the AMM Pricing Mechanism</h1><div class="time">2025-08-20</div><div class="title-margin"></div><blockquote>
+<p>This is a DeFi tutorial series aimed at learning and understanding DeFi concepts and principles through hands-on practice. Due to space constraints, only Part 1 is included here:</p>
+<ol>
+<li><a href="/2025/08/20/DeFi%E5%9F%BA%E7%A1%801/">DeFi Basics: Understanding the AMM Pricing Mechanism</a></li>
+<li>DeFi Basics: Oracles and Price Feeds</li>
+<li>DeFi Basics: Lending and Liquidation</li>
+<li>DeFi Advanced: Flash Loans and Arbitrage</li>
+</ol>
+</blockquote>
+<p>AMM stands for Automated Market Maker. Its purpose is to enable automated pricing and trading without the need for an order book.</p>
+<p>This article explains the core pricing logic of Uniswap V2 and provides complete contract code examples, command-line operations, and real on-chain transactions to support a thorough understanding of AMM.</p>
+<h3 id="AMM-Pricing-Formula"><a href="#AMM-Pricing-Formula" class="headerlink" title="AMM Pricing Formula"></a>AMM Pricing Formula</h3><h4 id="Basic-Logic"><a href="#Basic-Logic" class="headerlink" title="Basic Logic"></a>Basic Logic</h4><p>Uniswap V2 uses the Constant Product Market Maker (CPMM) model, which is also used by the AMM contract in our example. The model is based on a simple invariant:</p>
+<pre><code>x * y = k
+</code></pre>
+<p>This means that for two assets <code>x</code> and <code>y</code> in the pool, when <code>x</code> increases, <code>y</code> must decrease, and vice versa, to keep the product <code>k</code> constant.</p>
+<p>When adding initial liquidity, we set this value of <code>k</code>. For example, if we add liquidity at a price of 2000 USDC &#x2F; 1 WETH (ignoring precision), we get:</p>
+<pre><code>k = 2000
+</code></pre>
+<p>When swapping USDC for WETH, the pool’s USDC increases. To keep <code>k</code> constant, the contract calculates how much WETH should remain and sends the rest to the user.</p>
+<h4 id="First-Swap"><a href="#First-Swap" class="headerlink" title="First Swap"></a>First Swap</h4><p>When we swap USDC for WETH, the pool’s USDC increases, and to maintain the constant <code>k</code>, the contract sends out some WETH.</p>
+<p>For instance, if we swap 500 USDC, and the pool already has 2000 USDC, the total becomes 2500 USDC:</p>
+<pre><code>x = 2500
+y = k/x = 2000/2500 = 0.8
+</code></pre>
+<p>This means the pool must retain 0.8 WETH to keep <code>k</code> at 2000, so it sends us 0.2 WETH.</p>
+<h4 id="Second-Swap"><a href="#Second-Swap" class="headerlink" title="Second Swap"></a>Second Swap</h4><p>If we swap another 500 USDC, the pool now has 2500+500 &#x3D; 3000 USDC:</p>
+<pre><code>x = 3000
+y = k/x = 2000/3000 = 0.667
+</code></pre>
+<p>The pool should retain 0.667 WETH. Since there were 0.8 WETH left from the last trade, we receive 0.8 - 0.667 &#x3D; 0.133 WETH.</p>
+<p>Comparing the two trades: the first 500 USDC got us 0.2 WETH, while the second got us only 0.133 WETH. As the remaining WETH in the pool decreases, its price rises.</p>
+<h4 id="Price-Curve"><a href="#Price-Curve" class="headerlink" title="Price Curve"></a>Price Curve</h4><p>This is the core logic of AMMs: prices are not fixed but calculated based on remaining liquidity in the pool. The x*y&#x3D;k formula gives a curve: since <code>y = k/x</code>, the graph looks like this:</p>
+<img src="1.png" width="50%">
+
+<p>Next, we will interact with the blockchain to experience how AMMs work in practice.</p>
+<h3 id="Example-Contract"><a href="#Example-Contract" class="headerlink" title="Example Contract"></a>Example Contract</h3><p>The source code for the contract can be found at: <a href="https://github.com/smallyunet/defi-invariant-lab/tree/v0.0.1">smallyunet&#x2F;defi-invariant-lab@v0.0.1</a></p>
+<p>We will prepare two contracts. The first is <a href="https://github.com/smallyunet/defi-invariant-lab/blob/v0.0.1/contracts/libs/TestERC20.sol">TestERC20.sol</a>, a customizable ERC-20 token with adjustable decimals and minting.</p>
+<p>The second is <a href="https://github.com/smallyunet/defi-invariant-lab/blob/v0.0.1/contracts/amm/SimpleAMM.sol">SimpleAMM.sol</a>, which provides functions for adding liquidity and swapping tokens. Though not trivial, we’ll gradually understand the functionality and source code through practice.</p>
+<p>All actions are performed on Ethereum’s Sepolia testnet.</p>
+<h3 id="Environment-Setup"><a href="#Environment-Setup" class="headerlink" title="Environment Setup"></a>Environment Setup</h3><p>Prepare your CLI tools and set two environment variables:</p>
+<pre><code class="bash">foundryup
+
+export RPC_URL=&quot;https://ethereum-sepolia-rpc.publicnode.com&quot;
+export PK_HEX=&quot;&lt;YOUR_PRIVATE_KEY_HEX&gt;&quot;
+</code></pre>
+<p>Clone the repo and switch to the correct branch:</p>
+<pre><code>git clone https://github.com/smallyunet/defi-invariant-lab/
+git switch v0.0.1
+cd defi-invariant-lab
+</code></pre>
+<h3 id="Deploy-ERC-20-Tokens"><a href="#Deploy-ERC-20-Tokens" class="headerlink" title="Deploy ERC-20 Tokens"></a>Deploy ERC-20 Tokens</h3><h4 id="Deploy-Contracts"><a href="#Deploy-Contracts" class="headerlink" title="Deploy Contracts"></a>Deploy Contracts</h4><p>Deploy two test tokens: one called USDC and one called WETH:</p>
+<pre><code class="bash">forge create \
+  --rpc-url $RPC_URL \
+  --private-key $PK_HEX \
+  --broadcast \
+  contracts/libs/TestERC20.sol:TestERC20 \
+  --constructor-args &quot;USD Coin&quot; &quot;USDC6&quot; 6
+</code></pre>
+<p>Deployed at: <a href="https://sepolia.etherscan.io/address/0x84637EaB3d14d481E7242D124e5567B72213D7F2"><code>0x84637EaB3d14d481E7242D124e5567B72213D7F2</code></a></p>
+<pre><code class="bash">forge create \
+  --rpc-url $RPC_URL \
+  --private-key $PK_HEX \
+  --broadcast \
+  contracts/libs/TestERC20.sol:TestERC20 \
+  --constructor-args &quot;Wrapped Ether&quot; &quot;WETH18&quot; 18
+</code></pre>
+<p>Deployed at: <a href="https://sepolia.etherscan.io/address/0xD1d071cBfce9532C1D3c372f3962001A8aa332b7"><code>0xD1d071cBfce9532C1D3c372f3962001A8aa332b7</code></a></p>
+<h4 id="Verify-Contracts"><a href="#Verify-Contracts" class="headerlink" title="Verify Contracts"></a>Verify Contracts</h4><p>You may verify them like this:</p>
+<pre><code class="bash">export ETHERSCAN_API_KEY=your_key
+cast abi-encode &quot;constructor(string,string,uint8)&quot; &quot;USD Coin&quot; &quot;USDC6&quot; 6
+
+forge verify-contract \
+  --chain-id 11155111 \
+  0x84637EaB3d14d481E7242D124e5567B72213D7F2 \
+  contracts/libs/TestERC20.sol:TestERC20 \
+  --constructor-args &lt;ENCODED_ARGS&gt; \
+  --etherscan-api-key $ETHERSCAN_API_KEY
+
+forge verify-contract \
+  --chain-id 11155111 \
+  0xD1d071cBfce9532C1D3c372f3962001A8aa332b7 \
+  contracts/libs/TestERC20.sol:TestERC20 \
+  --constructor-args $(cast abi-encode &quot;constructor(string,string,uint8)&quot; &quot;Wrapped Ether&quot; &quot;WETH18&quot; 18) \
+  --etherscan-api-key $ETHERSCAN_API_KEY
+</code></pre>
+<h3 id="Deploy-AMM-Contract"><a href="#Deploy-AMM-Contract" class="headerlink" title="Deploy AMM Contract"></a>Deploy AMM Contract</h3><h4 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h4><p>Set 30 (0.3%) as the swap fee:</p>
+<pre><code class="bash">forge create \
+  --rpc-url $RPC_URL \
+  --private-key $PK_HEX \
+  --broadcast \
+  contracts/amm/SimpleAMM.sol:SimpleAMM \
+  --constructor-args $USDC_ADDR $WETH_ADDR 30
+</code></pre>
+<p>Deployed at: <a href="https://sepolia.etherscan.io/address/0x339278aA7A09657A4674093Ab6A1A3df346EcFCF"><code>0x339278aA7A09657A4674093Ab6A1A3df346EcFCF</code></a></p>
+<h4 id="Verify"><a href="#Verify" class="headerlink" title="Verify"></a>Verify</h4><pre><code class="bash">forge verify-contract \
+  --chain-id 11155111 \
+  0x339278aA7A09657A4674093Ab6A1A3df346EcFCF \
+  contracts/amm/SimpleAMM.sol:SimpleAMM \
+  --constructor-args $(cast abi-encode &quot;constructor(address,address,uint16)&quot; $USDC_ADDR $WETH_ADDR 30) \
+  --etherscan-api-key $ETHERSCAN_API_KEY
+</code></pre>
+<h3 id="Mint-Tokens"><a href="#Mint-Tokens" class="headerlink" title="Mint Tokens"></a>Mint Tokens</h3><p>Set addresses:</p>
+<pre><code class="bash">export MY_ADDR=0x44D7A0F44e6340E666ddaE70dF6eEa9b5b17a657
+export AMM_ADDR=0x339278aA7A09657A4674093Ab6A1A3df346EcFCF
+export USDC_ADDR=0x84637EaB3d14d481E7242D124e5567B72213D7F2
+export WETH_ADDR=0xD1d071cBfce9532C1D3c372f3962001A8aa332b7
+</code></pre>
+<p>Mint 1 million USDC (6 decimals):</p>
+<pre><code class="bash">cast send $USDC_ADDR &quot;mint(address,uint256)&quot; $MY_ADDR 1000000000000 \
+  --rpc-url $RPC_URL --private-key $PK_HEX
+</code></pre>
+<p>Mint 1000 WETH (18 decimals):</p>
+<pre><code class="bash">cast send $WETH_ADDR &quot;mint(address,uint256)&quot; $MY_ADDR 1000000000000000000000 \
+  --rpc-url $RPC_URL --private-key $PK_HEX
+</code></pre>
+<p><a href="https://sepolia.etherscan.io/tx/0x7140377c3c495be8a593a97c63cfa768783923861e539d330e49f9a93a2cfacd">USDC Mint Tx</a><br><a href="https://sepolia.etherscan.io/tx/0xeb659015a41982a3daaca481869ef4e6afc6c5b0b7a34fa656efc7bc2f9be6ad">WETH Mint Tx</a></p>
+<h3 id="Approve-AMM-Contract"><a href="#Approve-AMM-Contract" class="headerlink" title="Approve AMM Contract"></a>Approve AMM Contract</h3><p>Approve AMM to transfer your tokens:</p>
+<pre><code class="bash">cast send $USDC_ADDR &quot;approve(address,uint256)&quot; $AMM_ADDR &quot;0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff&quot; \
+  --rpc-url $RPC_URL --private-key $PK_HEX
+
+cast send $WETH_ADDR &quot;approve(address,uint256)&quot; $AMM_ADDR &quot;0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff&quot; \
+  --rpc-url $RPC_URL --private-key $PK_HEX
+</code></pre>
+<p><a href="https://sepolia.etherscan.io/tx/0x5d71669f6a5a63f439a53e6af801d21fdf23ae67cf43d17e30d34b5f66974354">USDC Approval Tx</a><br><a href="https://sepolia.etherscan.io/tx/0x1650337af02c74280b9ae1b83222a35f77e090500e3099f419cb0dc0ec7062ab">WETH Approval Tx</a></p>
+<h3 id="Add-Initial-Liquidity"><a href="#Add-Initial-Liquidity" class="headerlink" title="Add Initial Liquidity"></a>Add Initial Liquidity</h3><p>Add 2000 USDC &#x2F; 1 WETH as initial liquidity:</p>
+<pre><code class="bash">cast send $AMM_ADDR &quot;addLiquidity(uint256,uint256)&quot; 200000000000 100000000000000000000 \
+  --rpc-url $RPC_URL --private-key $PK_HEX
+</code></pre>
+<p><a href="https://sepolia.etherscan.io/tx/0x060bfff6111946c7c84fe6415f883c92ffe7ff9bd694e5b87598a647b63c089f">Tx Link</a></p>
+<p>Check pool reserves:</p>
+<pre><code class="bash">cast call $AMM_ADDR &quot;getReserves()(uint112,uint112)&quot; --rpc-url $RPC_URL
+
+# 200000000000 [2e11]
+# 100000000000000000000 [1e20]
+</code></pre>
+<h3 id="Swap-USDC-for-WETH"><a href="#Swap-USDC-for-WETH" class="headerlink" title="Swap USDC for WETH"></a>Swap USDC for WETH</h3><h4 id="Contract-Code-Review"><a href="#Contract-Code-Review" class="headerlink" title="Contract Code Review"></a>Contract Code Review</h4><p>Key function <a href="https://github.com/smallyunet/defi-invariant-lab/blob/v0.0.1/contracts/amm/SimpleAMM.sol#L39"><code>swap0For1</code></a>:</p>
+<pre><code class="solidity">function swap0For1(uint256 amtIn) external returns (uint256 out) &#123;
+    require(token0.transferFrom(msg.sender, address(this), amtIn), &quot;t0in&quot;);
+    uint256 r0 = token0.balanceOf(address(this));
+    uint256 r1 = token1.balanceOf(address(this));
+
+    uint256 amtInEff = (amtIn * (10_000 - feeBps)) / 10_000;
+    uint256 k = (r0 - amtInEff) * r1;
+    out = r1 - Math.ceilDiv(k, r0);
+    require(token1.transfer(msg.sender, out), &quot;t1out&quot;);
+&#125;
+</code></pre>
+<p>This reflects the x*y&#x3D;k logic. <code>amtInEff</code> accounts for the fee deduction.</p>
+<h4 id="First-Swap-Test"><a href="#First-Swap-Test" class="headerlink" title="First Swap Test"></a>First Swap Test</h4><p>Try swapping 1000 USDC:</p>
+<pre><code class="bash">cast send $AMM_ADDR &quot;swap0For1(uint256)&quot; 1000000000 \
+  --rpc-url $RPC_URL --private-key $PK_HEX
+</code></pre>
+<p><a href="https://sepolia.etherscan.io/tx/0xf13bd1d1602d7c106c2acdf4cb3b1ec37fa42d8871a682e32cce3f2049fff5a2">Swap Tx</a></p>
+<p>Check balances:</p>
+<pre><code class="bash">cast call $USDC_ADDR &quot;balanceOf(address)(uint256)&quot; $MY_ADDR --rpc-url $RPC_URL
+cast call $WETH_ADDR &quot;balanceOf(address)(uint256)&quot; $MY_ADDR --rpc-url $RPC_URL
+cast call $AMM_ADDR &quot;getReserves()(uint112,uint112)&quot; --rpc-url $RPC_URL
+</code></pre>
+<p>You received <code>0.496019900497512437</code> WETH. The 0.3% fee explains why it’s slightly less than 0.5 WETH.</p>
+<h4 id="Second-Swap-Test"><a href="#Second-Swap-Test" class="headerlink" title="Second Swap Test"></a>Second Swap Test</h4><p>Try again:</p>
+<pre><code class="bash">cast send $AMM_ADDR &quot;swap0For1(uint256)&quot; 1000000000 \
+  --rpc-url $RPC_URL --private-key $PK_HEX
+</code></pre>
+<p><a href="https://sepolia.etherscan.io/tx/0x1ee9ceb0707d77d78669bfb6cc1179bf9d6b31c57b868f5f52ed2f01a4127481">Second Swap Tx</a></p>
+<p>This time you received <code>0.491116179005960297</code> WETH—less than before, showing price slippage.</p>
+<h3 id="Swap-WETH-for-USDC"><a href="#Swap-WETH-for-USDC" class="headerlink" title="Swap WETH for USDC"></a>Swap WETH for USDC</h3><p>Feel free to try it out yourself.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

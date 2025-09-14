@@ -1,5 +1,5 @@
 ---
-title: Design of the Web3 Tipping System giveme.wtf
+title: Design of a Web3 Tipping System
 tags: 
 - web3
 - Plan

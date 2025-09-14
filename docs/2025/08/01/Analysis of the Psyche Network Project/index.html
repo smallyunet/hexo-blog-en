@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><title>Analysis of the Psyche Network Project</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=0.5"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/css/highlight/xcode.min.css"><link rel="stylesheet" href="/css/bootstrap/bootstrap-tooltips.css"><link rel="stylesheet" href="/css/post.css"><script src="/js/jquery.min.js"></script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><script>if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) {
+  document.body.classList.add('mobile')
+  var navbar = document.querySelector('nav.navbar');
+  if (navbar) {
+    navbar.classList.remove('navbar-fixed-top');
+  }
+}
+</script><div><div class="inner"><h1>Analysis of the Psyche Network Project</h1><div class="time">2025-08-01</div><div class="title-margin"></div><h3 id="Project-Background"><a href="#Project-Background" class="headerlink" title="Project Background"></a>Project Background</h3><p><a href="https://psyche.network/runs">Psyche Network</a> is a project in the AI + Web3 space, developed by the <a href="https://nousresearch.com/">Nous Research</a> team. Two months ago, it secured a <a href="https://cointelegraph.com/news/nous-research-raises-50m-paradigm-decentralized-ai-solana">Series A funding</a> of $50 million from Paradigm.</p>
+<p>The project background is detailed in <a href="https://nousresearch.com/nous-psyche/">the official article</a>. The Nous Research team developed a decentralized algorithm called DeMo, which enables the training of large language models (LLMs) on a distributed network, avoiding the high coupling of cluster-based services. It’s similar in concept to how mining pools break down large computational tasks and distribute them to various Client nodes, which then compute and return results for aggregation.</p>
+<p>Of course, LLM training and mining pool algorithms are fundamentally different; the analogy is just to aid understanding. The detailed algorithmic explanation of how DeMo splits and merges tasks can be found in <a href="https://blog.lambdaclass.com/introducing-demo-decoupled-momentum-optimization-for-efficient-distributed-llm-training/">the official post</a>. Honestly, I didn’t fully grasp it—it’s full of vector, weight, and loss function jargon. How it prevents nodes from submitting fake data should also be part of the algorithm’s design, so I won’t go deeper into the algorithm’s effectiveness here.</p>
+<p>In DeMo’s <a href="https://arxiv.org/pdf/2411.19870">paper</a>, they used 100 billion tokens for training and testing, achieving good results. What does 100B tokens mean? For example, <a href="https://github.com/deepseek-ai/DeepSeek-V3?tab=readme-ov-file#4-evaluation-results">DeepSeek-V3</a> has 15 TB of tokens. So, DeMo’s experimental scale is still far from commercial-grade products. Here’s a comparison with other models’ token counts:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameters</th>
+<th>Pretraining Tokens</th>
+<th>Public Sources or Leaks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GPT-3</td>
+<td>175 B</td>
+<td>≈ 499 B</td>
+<td>Papers and follow-up reviews</td>
+</tr>
+<tr>
+<td>GPT-3.5</td>
+<td>175 B</td>
+<td>Estimated ~1 T</td>
+<td>—</td>
+</tr>
+<tr>
+<td>GPT-4</td>
+<td>1.7 T</td>
+<td>≈ 13 T tokens</td>
+<td>SemiAnalysis &#x2F; The Decoder reports</td>
+</tr>
+<tr>
+<td>Llama 3</td>
+<td>70 B</td>
+<td>&gt; 15 T tokens</td>
+<td>Meta official model card</td>
+</tr>
+<tr>
+<td>DeMo OLMo</td>
+<td>1 B</td>
+<td>0.1 T tokens (100 B)</td>
+<td>DeMo paper</td>
+</tr>
+</tbody></table>
+<p>Psyche Network builds a distributed network based on DeMo’s algorithm principles, combining it with blockchain. The first phase aims to train a model with 40 B parameters and 20 T tokens. Regarding <code>parameters</code> and <code>tokens</code>, my understanding is that <code>parameters</code> are a fixed metric defined at the beginning of training, while <code>tokens</code> require ongoing computation and training—DeMo solves the distributed computing for <code>tokens</code>. The Psyche Network website displays real-time training progress, and it has already reached 1 TB of tokens:</p>
+<img src="1.png" width="80%">
+
+<p>Once training is complete, the model might approach GPT-3’s level. While the token count is higher than GPT-3, the parameters are fewer, so the final performance is likely inferior.</p>
+<h3 id="Project-Architecture"><a href="#Project-Architecture" class="headerlink" title="Project Architecture"></a>Project Architecture</h3><p>Psyche Network’s <a href="https://docs.psyche.network/explain/index.html">documentation</a> outlines the overall architecture, which is fairly easy to understand. There is a centralized Coordinator responsible for creating training tasks, while Clients receive and execute those tasks and submit results. Without blockchain, communication between Coordinator and Clients occurs via direct TCP connections. With blockchain, messages are passed through the blockchain instead.</p>
+<img src="2.png" width="40%">
+
+<p>In the <a href="https://github.com/PsycheFoundation/psyche/tree/main/architectures">code repository</a>, both <code>centralized</code> and <code>decentralized</code> architectures are maintained. This isn’t exactly a good sign, as it suggests the project was initially designed to run in a centralized manner and is now being retrofitted for decentralization. So, the degree of decentralization is inherently limited.</p>
+<p>For the decentralized part, Psyche Network chose Solana as the smart contract platform, likely due to its original use of Rust.</p>
+<p>Under the decentralized directory in the codebase, there are several Solana contracts responsible for creating training tasks, calculating each Client node’s reward, and distributing those rewards.</p>
+<p>Psyche Network is currently in the testnet stage, and all on-chain transactions occur on Solana’s Devnet. You can see the contract address in the <code>declare_id!()</code> statements in the source files. For example, the coordinator contract’s address is <code>HR8RN2TP9E9zsi2kjhvPbirJWA1R6L6ruf4xNNGpjU5Y</code>, which shows frequent transactions on <a href="https://solscan.io/account/HR8RN2TP9E9zsi2kjhvPbirJWA1R6L6ruf4xNNGpjU5Y?cluster=devnet">the blockchain explorer</a>.</p>
+<p>As for reward calculation, because there is a centralized Coordinator, the process is simple: the Coordinator validates the result from a Client, and if valid, initiates an on-chain transaction to credit the Client. The relevant code is in <a href="https://github.com/PsycheFoundation/psyche/blob/main/architectures/decentralized/solana-coordinator/programs/solana-coordinator/src/instance_state.rs#L146-L149">these two lines</a>:</p>
+<img src="3.png" width="80%">
+
+<p>Each Client’s score is recorded in the contract. To claim rewards, Clients go to the treasurer contract and initiate a claim. The treasurer calculates and transfers tokens based on the score and exchange rate.</p>
+<p>So which token does the treasurer distribute? The token is <a href="https://github.com/PsycheFoundation/psyche/blob/main/architectures/decentralized/solana-treasurer/programs/solana-treasurer/src/logic/run_create.rs#L34">specified</a> by the Coordinator when creating the task. Any standard SPL token is supported.</p>
+<img src="4.png" width="70%">
+
+<p>Overall, Psyche Network uses the Solana blockchain to record task meta information, compute rewards, and distribute them. As long as Client participation is permissionless, the project indeed achieves its goal of decentralized LLM training.</p>
+<p>Token distribution and reward mechanisms are common in blockchain projects, but they at least offer transparency. It’s likely that Psyche Network will eventually issue its own token, and rewards will be paid exclusively in it. It might even evolve into a full-fledged LLM training task platform, where third parties can create tasks and distribute rewards—similar to Eigen Layer.</p>
+</div></div></body><script src="/js/highlight.min.js"></script><script src="/js/main.js"></script><script src="/js/bootstrap/bootstrap.min.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2615E2THFJ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2615E2THFJ');</script></html>

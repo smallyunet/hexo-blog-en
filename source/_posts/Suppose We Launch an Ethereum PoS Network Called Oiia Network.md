@@ -1,5 +1,5 @@
 ---
-title: Suppose We Launch an Ethereum PoS Network Called Oiia Network
+title: What If We Start a New Ethereum PoS Network
 date: 2025-01-28 23:26:40
 tags: OIIA
 ---
