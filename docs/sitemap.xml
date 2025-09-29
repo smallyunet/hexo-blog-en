@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://en.smallyu.net/about/index.html</loc>
+    
+    <lastmod>2025-09-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/09/20/Can%20Wang%20Yin's%20Courses%20Help%20Programmers%20Resist%20the%20Impact%20of%20AI/</loc>
+    
+    <lastmod>2025-09-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2025/08/05/Analysis%20of%20the%20Arcium%20Network%20Project/</loc>
     
     <lastmod>2025-09-14</lastmod>
@@ -95,15 +113,6 @@
     <loc>https://en.smallyu.net/2025/08/14/Web3%20Project%20Analysis%20Plan/</loc>
     
     <lastmod>2025-08-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/about/index.html</loc>
-    
-    <lastmod>2025-08-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -209,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/categories/index.html</loc>
+    <loc>https://en.smallyu.net/micro-blog/index.html</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -227,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/micro-blog/index.html</loc>
+    <loc>https://en.smallyu.net/categories/index.html</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -362,15 +371,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/</loc>
-    
-    <lastmod>2025-08-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2018/12/14/Using%20Scala%20to%20Reimplement%20Java:%20A%20Shallow%20Practice/</loc>
     
     <lastmod>2025-08-06</lastmod>
@@ -380,7 +380,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/10/15/Understanding%20the%20Technical%20Architecture%20of%20Any%20Blockchain%20Project/</loc>
+    <loc>https://en.smallyu.net/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -398,6 +398,15 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/2024/10/15/Understanding%20the%20Technical%20Architecture%20of%20Any%20Blockchain%20Project/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2020/02/26/Three%20Minor%20Issues%20in%20Java%20Project%20Development/</loc>
     
     <lastmod>2025-08-06</lastmod>
@@ -407,7 +416,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/06/19/Understanding%20Web%203.0/</loc>
+    <loc>https://en.smallyu.net/2023/07/01/Understanding%20Blockchain%20Consensus%20Mechanisms/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -416,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/07/01/Understanding%20Blockchain%20Consensus%20Mechanisms/</loc>
+    <loc>https://en.smallyu.net/2022/06/19/Understanding%20Web%203.0/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -452,7 +461,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/05/04/Small%20Tips%20for%20Cryptocurrency%20Investment/</loc>
+    <loc>https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -461,7 +470,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/</loc>
+    <loc>https://en.smallyu.net/2024/05/04/Small%20Tips%20for%20Cryptocurrency%20Investment/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -560,6 +569,15 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/2023/01/18/On%20Ethereum%20Private%20Key%20Collision/</loc>
+    
+    <lastmod>2025-08-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2019/08/19/Overview%20of%20Basic%20Rust%20Syntax/</loc>
     
     <lastmod>2025-08-06</lastmod>
@@ -570,15 +588,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2024/06/03/PBFT%20in%20Blockchain%20Doesn't%20Require%20a%20Second%20Vote/</loc>
-    
-    <lastmod>2025-08-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2023/01/18/On%20Ethereum%20Private%20Key%20Collision/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -722,7 +731,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/</loc>
+    <loc>https://en.smallyu.net/2020/08/09/Giving%20Blockchain%20a%20Definition/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -731,7 +740,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2020/08/09/Giving%20Blockchain%20a%20Definition/</loc>
+    <loc>https://en.smallyu.net/2018/12/02/Getting%20One%20Piece%20Update%20Information%20with%20Python/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -794,7 +803,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/02/11/Blog%20Theme%20Sharing%20Plan%20(Draft)/</loc>
+    <loc>https://en.smallyu.net/2020/12/08/Blockchain:%20The%20Cornerstone%20of%20the%20Next%20Generation%20Digital%20Identity%20Authentication%20System/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -803,7 +812,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2020/12/08/Blockchain:%20The%20Cornerstone%20of%20the%20Next%20Generation%20Digital%20Identity%20Authentication%20System/</loc>
+    <loc>https://en.smallyu.net/2021/02/11/Blog%20Theme%20Sharing%20Plan%20(Draft)/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -821,7 +830,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/03/15/Basic%20Syntax%20of%20Go%20Language/</loc>
+    <loc>https://en.smallyu.net/2018/12/17/Basics%20of%20Scala%20Syntax/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -830,7 +839,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2018/12/17/Basics%20of%20Scala%20Syntax/</loc>
+    <loc>https://en.smallyu.net/2019/03/15/Basic%20Syntax%20of%20Go%20Language/</loc>
     
     <lastmod>2025-08-06</lastmod>
     
@@ -913,7 +922,7 @@
 
   <url>
     <loc>https://en.smallyu.net/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -921,399 +930,399 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Work/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Blockchain/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Plans/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Consensus-Mechanism/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/MEV/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Plans/</loc>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Programming-Languages/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Design/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Project-Analysis/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/AI/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/BFT/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/web3/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Plan/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/BFT/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Design/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Project-Analysis/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/AI/</loc>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/MPC/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Programming-Language/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Tutorial/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/BTC/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Interview-Questions/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Linked-List/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/DeFi/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/zk/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/planning/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/dApp/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Mindset/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/File-Proof/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Cryptography/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Life/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Public-Chains/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Consortium-Chains/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Tools/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Perspective/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Dreams/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Remote-Work/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Proof-of-Storage/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Wang-Yin/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Linked-List/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/DeFi/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/zk/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/planning/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/dApp/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Mindset/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/File-Proof/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Cryptography/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Life/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Perspective/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Dreams/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Public-Chains/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Consortium-Chains/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Remote-Work/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Tools/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Dollar-Cost-Averaging-Strategy/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Proof-of-Storage/</loc>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Programmer/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Rust/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Documentation/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Layer2/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Entrepreneurship/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Crypto-Trading/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Algorithm/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Opinions/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Restaking/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/OIIA/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Smart-Contracts/</loc>
-    <lastmod>2025-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Web3/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Psychology/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Crypto-Trading/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/OIIA/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Opinions/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Restaking/</loc>
+    <lastmod>2025-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Web3/</loc>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/EVM/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Go/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Public-Chain/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Consortium-Chain/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Encryption/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/design/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Ethereum/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://en.smallyu.net/tags/Cryptocurrency-Trading/</loc>
-    <lastmod>2025-09-14</lastmod>
+    <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
