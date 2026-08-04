@@ -191,7 +191,43 @@ public class JsWithCookieDocs extends BreadthCrawler &#123;
     &#125;
 &#125;
 </code></pre>
-<h3 id="External-Proxy"><a href="#External-Proxy" class="headerlink" title="External Proxy"></a>External Proxy</h3><p>Perhaps it is not over yet. In the initial conceptual image, both setting cookies and obtaining JavaScript-generated data were defined using internal Selenium and</p>
+<h3 id="External-Proxy"><a href="#External-Proxy" class="headerlink" title="External Proxy"></a>External Proxy</h3><p>Perhaps it is not over yet. In the overview diagram, setting cookies while retrieving JavaScript-generated data was implemented with internal Selenium plus an external browsermob-proxy. Suppose we did not override <code>execute</code> as above—the official project does not provide a similar demo either. How could we achieve the same effect? One approach is to start a local proxy, configure the cookie on the proxy, and make Selenium’s WebDriver access the target page through it. That lets us retrieve JavaScript-generated data with the required header. Based on <code>JsDocs.java</code>, the complete proxy-based implementation is:</p>
+<pre><code class="Java">public class JsWithProxyDocs &#123;
+    public static void main(String[] args) throws Exception &#123;
+        Executor executor = (CrawlDatum datum, CrawlDatums next) -&gt; &#123;
+
+            // Start a proxy.
+            BrowserMobProxy proxy = new BrowserMobProxyServer();
+            proxy.start(0);
+            // Add the header.
+            proxy.addHeader(&quot;Cookie&quot; , &quot;name=smallyu&quot;);
+
+            // Create Selenium&#39;s proxy object.
+            Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
+            // Generate capabilities from the proxy.
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+            // Required by the built-in driver.
+            capabilities.setBrowserName(&quot;htmlunit&quot;);
+
+            // Create HtmlUnitDriver with the capabilities.
+            HtmlUnitDriver driver = new HtmlUnitDriver(capabilities);
+            driver.setJavascriptEnabled(true);
+
+            driver.get(datum.url());
+
+            WebElement divEle = driver.findElement(By.id(&quot;content&quot;));
+            System.out.println(divEle.getText());   // 2
+        &#125;;
+
+        // A Crawler requires both a DBManager and an Executor.
+        Crawler crawler = new Crawler(new RocksDBManager(&quot;crawl&quot;), executor);
+        crawler.addSeed(&quot;http://127.0.0.1:9000/&quot;);
+        crawler.start(1);
+    &#125;
+&#125;
+</code></pre>
+<h3 id="Other-Notes"><a href="#Other-Notes" class="headerlink" title="Other Notes"></a>Other Notes</h3><p>I have no interest in learning more about WebCollector. Seeing the package name <code>cn.edu.hfut</code> did, however, make everything click. The messy coding style, inexplicable comments everywhere, and architecture with no sense of design are consistent with the level of open-source software from an obscure domestic university. It may still be exponentially far from an industrial-grade framework. As for problems such as the unclear meaning of <code>depth</code>, threads terminating abnormally, and <code>next.add</code> having no effect, so be it; they are unsurprising. The entire framework feels rushed, or like a student practice project. I submitted a PR to WebCollector’s GitHub repository about overriding <code>execute</code>. From the developer’s brief reply, I suspect even the project’s author did not fully understand what was inside it. :P</p>
 </div></div></body><!-- Defer non-critical scripts for better performance--><script defer src="/js/jquery.min.js?v=v1.2"></script><script defer src="/js/highlight.min.js?v=v1.2"></script><script defer src="/js/main.js?v=v1.2"></script><script defer src="/js/lightbox.js?v=v1.2"></script><script defer src="/js/bootstrap.min.js?v=v1.2"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5JRBZ6P1W3"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

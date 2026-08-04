@@ -218,24 +218,36 @@ go build demo4.go
 GODEBUG='schedtrace=200,scheddetail=1' ./demo4 &> demo4.log
 ```
 
-Initial logs show:
+The first few lines of the log look like this:
 
 ```bash
-runqueue=0 // global queue
-P0: runqsize=0
-P1: runqsize=0
+SCHED 0ms: gomaxprocs=10 idleprocs=9 threads=2 spinningthreads=0 needspinning=0 idlethreads=0 runqueue=0 gcwaiting=false nmidlelocked=0 stopwait=0 sysmonwait=false
+  P0: status=1 schedtick=0 syscalltick=0 m=0 runqsize=0 gfreecnt=0 timerslen=0
+  P1: status=0 schedtick=0 syscalltick=0 m=nil runqsize=0 gfreecnt=0 timerslen=0
 ```
 
-Later, P0 starts many G’s:
+The `runqueue=0` on the first line is the global queue. The `runqsize=0` after P0 is P0's local queue, and the one after P1 is P1's local queue. At this point P1 has status 0, meaning it is not runnable.
+
+As the program runs, P0 starts a large number of Gs. The log then looks like this:
 
 ```bash
-P0: runqsize=204
-runqueue=395 // global queue overflow
+SCHED 200ms: gomaxprocs=1 idleprocs=0 threads=5 spinningthreads=0 needspinning=1 idlethreads=3 runqueue=395 gcwaiting=false nmidlelocked=0 stopwait=0 sysmonwait=false
+  P0: status=1 schedtick=10 syscalltick=2 m=0 runqsize=204 gfreecnt=0 timerslen=1
 ```
 
-Default `runq` capacity is 256. Excess tasks go to the global queue. When P1–P3 enter, they pick tasks from the global queue first—not by stealing.
+The default upper limit for a P's local queue is 256. Once it reaches that limit, excess tasks spill into the global queue.
 
-If a P finds no work in its runq or the global queue, it checks netpoll (OS), and if that fails, it spins.
+P1, P2, and P3 then start and take tasks from the global queue. When work is available globally, they do not need to steal from another P:
+
+```bash
+SCHED 826ms: gomaxprocs=4 idleprocs=0 threads=5 spinningthreads=0 needspinning=1 idlethreads=0 runqueue=217 gcwaiting=false nmidlelocked=0 stopwait=0 sysmonwait=false
+  P0: status=1 schedtick=35 syscalltick=2 m=0 runqsize=179 gfreecnt=0 timerslen=0
+  P1: status=1 schedtick=14 syscalltick=0 m=3 runqsize=90 gfreecnt=0 timerslen=0
+  P2: status=1 schedtick=14 syscalltick=0 m=4 runqsize=64 gfreecnt=0 timerslen=0
+  P3: status=1 schedtick=13 syscalltick=0 m=2 runqsize=46 gfreecnt=0 timerslen=0
+```
+
+If a P cannot find work in its local runq, the global queue, or another P, it checks netpoll to ask the operating system whether a new G is available. If so, it runs that G; otherwise, it spins while waiting. This is the logic a P follows when looking for work.
 
 ### Blocking syscalls Yield P
 
@@ -272,11 +284,16 @@ Output:
 ```bash
 still running 0
 still running 1
-...
+still running 2
+still running 3
+still running 4
+still running 5
 blocking done
 ```
 
-Even though the first G blocks, the second keeps running—GMP properly yields P when blocking occurs.
+Although the first G appears to occupy a P while blocking, the second G continues to run.
+
+This shows that the GMP scheduler does not let one blocked G prevent other Gs from executing. In fact, that is a basic requirement for a coroutine scheduler.
 
 ### Disable Async Preemption
 
@@ -315,7 +332,13 @@ go build demo7.go
 GODEBUG='schedtrace=1000,scheddetail=1,asyncpreemptoff=1' ./demo7
 ```
 
-With `asyncpreemptoff=1`, async preemption is disabled—the print never happens due to infinite loop. This illustrates GMP's ability to yield CPU, and what happens when it’s turned off.
+The `asyncpreemptoff=1` setting disables asynchronous preemption. Without it, the program runs normally and prints:
+
+```bash
+I should still print unless preemption is off
+```
+
+With asynchronous preemption disabled, the infinite loop blocks the program. This example highlights GMP's ability to yield the CPU proactively: when that ability is disabled, GMP gets stuck.
 
 ### Go Source Code
 

@@ -1,6 +1,6 @@
 <!-- Stable asset version (for cache busting without full-site churn)--><!DOCTYPE html><html lang="en"><head><title>How to Develop a Bitcoin Runes Protocol</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><!-- Mobile viewport: include viewport-fit=cover to allow CSS safe-area usage on full-screen devices--><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><!-- iOS Safari / PWA status bar style (use default so text stays legible on light background)--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><!-- SEO basics--><meta name="description"><!-- Open Graph & Twitter--><link rel="canonical" href="https://en.smallyu.net/2025/07/15/How to Develop a Bitcoin Runes Protocol/"><meta property="og:title" content="How to Develop a Bitcoin Runes Protocol"><meta property="og:type" content="article"><meta property="og:url" content="https://en.smallyu.net/2025/07/15/How to Develop a Bitcoin Runes Protocol/"><meta property="og:site_name" content="smallyu‘s Blog"><meta name="twitter:card" content="summary_large_image"><!-- Browser UI color--><meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1115"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><!-- stylesheets--><!-- Use a stable, configurable asset version to prevent full-site churn on every build.--><!-- Set `asset_version` in theme _config.yml when you actually change CSS/JS.--><link rel="stylesheet" href="/css/xcode.min.css?v=v1.2"><link rel="stylesheet" href="/css/post.css?v=v1.2"><!-- unified typography overrides for both home and post pages--><link rel="stylesheet" href="/css/typography.css?v=v1.2"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
 </head><body><div><div class="inner"><h1>How to Develop a Bitcoin Runes Protocol</h1><div class="time">2025-07-15</div><div class="title-margin"></div><p>Technically, Bitcoin Runes are simple and easy to understand. Implementing Runes only requires the use of the <code>OP_RETURN</code> opcode in Bitcoin Script. Precisely because of this simplicity, Runes are relatively clean from a technical perspective and not as complex as Inscriptions or RGB in terms of off-chain state management. The power of Runes lies in how it sparked an ecosystem around it. Though that hype has cooled down, we’re not focused on market trends here—we’ll look at Runes from a purely technical angle and develop a simplified version of the Runes protocol step-by-step. Once we fully understand Runes, we can dive into more complex projects like Alkanes, a protocol supporting WASM smart contracts on Bitcoin.</p>
-<p>This tutorial builds on concepts covered in [Bitcoin Script Development Tutorial](&#x2F;2025&#x2F;07&#x2F;10&#x2F;Bitcoin Script Development Tutorial&#x2F;). If you are unfamiliar with Bitcoin Script, it is recommended to read that first.</p>
+<p>This tutorial builds on concepts covered in <a href="/2025/07/10/Bitcoin%20Script%20Development%20Tutorial/">Bitcoin Script Development Tutorial</a>. If you are unfamiliar with Bitcoin Script, it is recommended to read that first.</p>
 <h3 id="1-Define-the-Data-Structure"><a href="#1-Define-the-Data-Structure" class="headerlink" title="1. Define the Data Structure"></a>1. Define the Data Structure</h3><p>We define Runes operations as JSON-formatted structures. Language choice is flexible—this example uses Rust. To keep the tutorial simple, we skip some practical details (e.g., the <code>transfer</code> structure only supports one target address):</p>
 <pre><code class="rust">struct IssueRune &#123;
     op: u8,          // Always 0 = Issue
@@ -60,35 +60,68 @@ impl TransferRune &#123;
 <p>Convert JSON to hex:</p>
 <pre><code class="bash">echo -n &#39;&#123;&quot;op&quot;:0,&quot;symbol&quot;:&quot;Doge&quot;,&quot;supply&quot;:&quot;1000&quot;&#125;&#39; | xxd -p -c 999
 </code></pre>
-<p>Hex:</p>
+<p>This produces:</p>
 <pre><code class="bash">7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307d
 </code></pre>
-<p>Pick a UTXO (must be unspent):</p>
+<p>This is the data placed after <code>OP_RETURN</code> and written on-chain. Note that <code>OP_RETURN</code> supports no more than 80 bytes, so the payload cannot be too long.</p>
+<p>Next inspect the wallet and choose an unspent output, because every Runes operation must be attached to a UTXO:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ -regtest listunspent
 </code></pre>
-<p>Example UTXO:</p>
+<p>For example, I used this UTXO:</p>
 <pre><code class="json">&#123;
   &quot;txid&quot;: &quot;8bfd524e9fc150dab11289d7e6d07860b2b5d6acb54b278a5dc1d1d7631bc8fa&quot;,
   &quot;vout&quot;: 0,
+  &quot;address&quot;: &quot;bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw&quot;,
   &quot;amount&quot;: 50.00000000
+  // ...
 &#125;
 </code></pre>
-<p>Generate a change address:</p>
+<p>Generate a change address for the remaining bitcoin. This example uses a legacy address, but that is not required; a SegWit address works as well:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ getrawchangeaddress legacy
 </code></pre>
-<p>My address: <code>n4Ybvvzm9vRQepuMpXBnTWWbYuTgsPSZCV</code></p>
-<p>Create the raw transaction:</p>
+<p>Mine is <code>n4Ybvvzm9vRQepuMpXBnTWWbYuTgsPSZCV</code>. Use it to construct the transaction:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ createrawtransaction \
-  &#39;[&#123;&quot;txid&quot;:&quot;...&quot;,&quot;vout&quot;:0&#125;]&#39; \
+  &#39;[&#123;&quot;txid&quot;:&quot;8bfd524e9fc150dab11289d7e6d07860b2b5d6acb54b278a5dc1d1d7631bc8fa&quot;,&quot;vout&quot;:0&#125;]&#39; \
   &#39;[&#123;&quot;data&quot;:&quot;7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307d&quot;&#125;,&#123;&quot;n4Ybvvzm9vRQepuMpXBnTWWbYuTgsPSZCV&quot;:49.99&#125;]&#39;
 </code></pre>
-<p>Sign the transaction, then broadcast it. Finally, mine a block:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ signrawtransactionwithwallet &lt;rawtx&gt;
-bitcoin-cli -datadir=./ sendrawtransaction &lt;signed_tx&gt;
-bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your_mining_address&gt;
+<p>The command assigns 49.99 BTC to the change address. Do not use this shortcut on mainnet: you must calculate the difference between the input, the payment, and the fee precisely, or you could lose a substantial amount. The imprecise value is used here only to avoid extra calculation in a local test.</p>
+<p>Sign the generated transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ signrawtransactionwithwallet 0200000001fac81b63d7d1c15d8a274bb5acd6b5b26078d0e6d78912b1da50c19f4e52fd8b0000000000fdffffff020000000000000000206a1e7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307dc0aff629010000001976a914fc9ab9cd801c625c9fe323fe669e6a3e362eed8088ac00000000
 </code></pre>
-<p>Decode the transaction to confirm <code>OP_RETURN</code> content.</p>
-<h3 id="3-Transfer-Runes"><a href="#3-Transfer-Runes" class="headerlink" title="3. Transfer Runes"></a>3. Transfer Runes</h3><p>Calculate the Rune ID from the issuance transaction:</p>
+<p>Broadcast the signed transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ sendrawtransaction 02000000000101fac81b63d7d1c15d8a274bb5acd6b5b26078d0e6d78912b1da50c19f4e52fd8b0000000000fdffffff020000000000000000206a1e7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307dc0aff629010000001976a914fc9ab9cd801c625c9fe323fe669e6a3e362eed8088ac02473044022004a2553cc5348dd4521c093149b0ba5e5603fe4134d06a455e12abeac097ea19022076e72632b2488e1316e54559ed733b37de9ce7fd04119e78a59546a3d2c1faea0121020b396a9dfa1655feef066fe03b403d3e4bdee41ef9b26551497c0921acbf6bc100000000
+</code></pre>
+<p>This command returns an important transaction ID. We will later spend the Doge tokens from this transaction, so keep a record of it. Mine is <code>e2061d0b8b2f98ee47ba6564c1e7409872432354c7617d278fe0e8c4485ff04a</code>. Mine one block to confirm it:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
+</code></pre>
+<p>If everything went well, the transaction is now on-chain. An off-chain parser will recognize the Rune issuance operation when it sees the transaction. To confirm that the <code>OP_RETURN</code> payload was written correctly, decode the transaction we just broadcast:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ decoderawtransaction 02000000000101fac81b63d7d1c15d8a274bb5acd6b5b26078d0e6d78912b1da50c19f4e52fd8b0000000000fdffffff020000000000000000206a1e7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307dc0aff629010000001976a914fc9ab9cd801c625c9fe323fe669e6a3e362eed8088ac02473044022004a2553cc5348dd4521c093149b0ba5e5603fe4134d06a455e12abeac097ea19022076e72632b2488e1316e54559ed733b37de9ce7fd04119e78a59546a3d2c1faea0121020b396a9dfa1655feef066fe03b403d3e4bdee41ef9b26551497c0921acbf6bc100000000
+</code></pre>
+<p>The relevant part of the output is:</p>
+<pre><code class="json">&quot;vout&quot;: [
+    &#123;
+      &quot;value&quot;: 0.00000000,
+      &quot;n&quot;: 0,
+      &quot;scriptPubKey&quot;: &#123;
+        &quot;asm&quot;: &quot;OP_RETURN 7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307d&quot;
+        // ...
+      &#125;
+    &#125;,
+    &#123;
+      &quot;value&quot;: 49.99000000,
+      &quot;n&quot;: 1,
+      &quot;scriptPubKey&quot;: &#123; //... &#125;
+    &#125;
+  ]
+</code></pre>
+<p>Output 0 clearly contains <code>OP_RETURN</code> followed by the hexadecimal payload. Decode the payload as one final check:</p>
+<pre><code class="bash">echo -n &quot;7b6f703a302c73796d626f6c3a446f67652c737570706c793a313030307d&quot; | xxd -r -p
+</code></pre>
+<p>The result should be:</p>
+<pre><code class="bash">&#123;op:0,symbol:Doge,supply:1000&#125;
+</code></pre>
+<h3 id="3-Transfer-Runes"><a href="#3-Transfer-Runes" class="headerlink" title="3. Transfer Runes"></a>3. Transfer Runes</h3><p>We have issued 1,000 Doge. Next, we will transfer all 1,000 in another transaction.</p>
+<p>First calculate the <code>rune_id</code>, the unique ID of the Doge issuance. Symbol strings can be duplicated and occupy more space, so an implementation usually makes an engineering tradeoff. Here we reverse the transaction ID byte-by-byte and take the first eight bytes as a <code>u64</code>:</p>
 <pre><code class="rust">fn calc_run_idby_txid() &#123;
     let txid = &quot;e2061d0b8b2f98ee47ba6564c1e7409872432354c7617d278fe0e8c4485ff04a&quot;.to_string();
     let mut bytes = hex::decode(txid).unwrap();
@@ -97,8 +130,7 @@ bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your_mining_address&gt;
     println!(&quot;Run ID: &#123;&#125;&quot;, run_id);
 &#125;
 </code></pre>
-<p>Output: <code>10367542271932362826</code></p>
-<p>Prepare a transfer structure:</p>
+<p>The function returns <code>10367542271932362826</code>. Use that value as the <code>rune_id</code> when constructing the transfer payload:</p>
 <pre><code class="rust">fn transfer_rune() &#123;
     let transfer = TransferRune &#123;
         op: 1,
@@ -109,15 +141,38 @@ bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your_mining_address&gt;
     println!(&quot;Transfer Rune JSON: &#123;&#125;&quot;, transfer.toJson());
 &#125;
 </code></pre>
-<p>Convert to hex:</p>
+<p>Pay attention to <code>vout</code>: it is the output index of the address that will receive the Rune in the transaction we are about to construct. It has nothing to do with the issuance transaction’s output index. Running the code produces:</p>
+<pre><code class="bash">Transfer Doge JSON: &#123;&quot;op&quot;:1,&quot;id&quot;:10367542271932362826,&quot;vout&quot;:1,&quot;amount&quot;:&quot;1000&quot;&#125;
+</code></pre>
+<p>Repeat the earlier process and convert the JSON to hexadecimal:</p>
 <pre><code class="bash">echo -n &#39;&#123;&quot;op&quot;:1,&quot;id&quot;:10367542271932362826,&quot;vout&quot;:1,&quot;amount&quot;:&quot;1000&quot;&#125;&#39; | xxd -p -c 999
 </code></pre>
-<p>Create new address for receiving:</p>
+<p>The result is <code>7b6f703a312c69643a31303336373534323237313933323336323832362c766f75743a312c616d6f756e743a313030307d</code>.</p>
+<p>Create a new address to receive Doge:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ getnewaddress
 </code></pre>
-<p>Create and sign a transaction with the new OP_RETURN and outputs (Runes transfer + BTC output + change). Broadcast and mine a block.</p>
-<h3 id="4-Parse-Runes-Transactions"><a href="#4-Parse-Runes-Transactions" class="headerlink" title="4. Parse Runes Transactions"></a>4. Parse Runes Transactions</h3><p>Runes are entirely on-chain but stateless. Parsing must be done off-chain.</p>
-<p>Add dependencies in <code>Cargo.toml</code>:</p>
+<p>My new address is <code>bcrt1qc250507tws9z9wkurfcv3jue2nls6npzaqt7ka</code>.</p>
+<p>Use the values above to assemble a Doge transfer transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ createrawtransaction \
+&#39;[&#123;&quot;txid&quot;:&quot;e2061d0b8b2f98ee47ba6564c1e7409872432354c7617d278fe0e8c4485ff04a&quot;,&quot;vout&quot;:1&#125;]&#39; \
+&#39;[&#123;&quot;data&quot;:&quot;7b226f70223a312c226964223a31303336373534323237313933323336323832362c22766f7574223a312c22616d6f756e74223a2231303030227d&quot;&#125;,&#123;&quot;bcrt1q0n2x7030x59j5ql9pp6mw0tps74ag0znrdp45r&quot;:0.01&#125;,&#123;&quot;n4Ybvvzm9vRQepuMpXBnTWWbYuTgsPSZCV&quot;:49.9798&#125;]&#39;
+</code></pre>
+<p>This transaction differs slightly from the earlier one because it has two non-data outputs. The first is the address receiving Doge; its BTC amount is arbitrary because the Doge balance, not the BTC balance, is what matters. The second is the change address used earlier.</p>
+<p>The remaining operations are familiar: sign the transaction, broadcast it, and mine a block to confirm it:</p>
+<pre><code class="bash"># Sign the transaction
+bitcoin-cli -datadir=./ signrawtransactionwithwallet 02000000014af05f48c4e8e08f277d61c7542343729840e7c16465ba47ee982f8b0b1d06e20100000000fdffffff0300000000000000003d6a3b7b226f70223a312c226964223a31303336373534323237313933323336323832362c22766f7574223a312c22616d6f756e74223a2231303030227d40420f00000000001600147cd46f3e2f350b2a03e50875b73d6187abd43c53601fe729010000001976a914fc9ab9cd801c625c9fe323fe669e6a3e362eed8088ac00000000
+
+# Broadcast it
+bitcoin-cli -datadir=./ sendrawtransaction 02000000014af05f48c4e8e08f277d61c7542343729840e7c16465ba47ee982f8b0b1d06e2010000006a47304402201437a9e83ae0c6842ebd9d355af9c7be1f6f2eaa070b5d7a6e02e13ca8f2d13102206d05753c428f526b8c6636022991591517cc7d7982badfc633519cb44715957a0121026f441e8156148d0bb4963edaff187873f9800a37bb5f0731256e38d632031283fdffffff0300000000000000003d6a3b7b226f70223a312c226964223a31303336373534323237313933323336323832362c22766f7574223a312c22616d6f756e74223a2231303030227d40420f00000000001600147cd46f3e2f350b2a03e50875b73d6187abd43c53601fe729010000001976a914fc9ab9cd801c625c9fe323fe669e6a3e362eed8088ac00000000
+# Transaction ID: 80709a25e5355d51ee6d7fb625c40e9c4c49b049afa3aca18aeaa03bc685c1f0
+
+# Confirm it
+bitcoin-cli -datadir=./ generatetoaddress 1 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
+</code></pre>
+<p>The Doge transfer is now complete and recorded on-chain.</p>
+<h3 id="4-Parse-Runes-Transactions"><a href="#4-Parse-Runes-Transactions" class="headerlink" title="4. Parse Runes Transactions"></a>4. Parse Runes Transactions</h3><p>At first this may look like nothing more than two ordinary Bitcoin transactions with JSON payloads attached. That is exactly how Runes works: every operation fits inside the 80-byte space allowed by <code>OP_RETURN</code>. The chain records Runes operations but does not maintain final Runes state. Information such as which tokens exist and what their balances are must be derived according to the protocol and maintained by an off-chain program.</p>
+<p>We can retrieve the complete data for the two transactions from their known transaction IDs. If the IDs were not known, an indexer could scan every transaction in every block and parse those matching the protocol. We use the simpler known-ID approach here.</p>
+<p>Add these dependencies to <code>Cargo.toml</code>:</p>
 <pre><code class="toml">[dependencies]
 hex              = &quot;0.4&quot;
 bitcoin          = &quot;0.31&quot;
@@ -125,9 +180,18 @@ bitcoincore-rpc  = &quot;0.18&quot;
 serde            = &#123; version = &quot;1.0&quot;, features = [&quot;derive&quot;] &#125;
 anyhow           = &quot;1.0&quot;
 </code></pre>
-<p>Fetch and decode transaction data via RPC:</p>
-<pre><code class="rust">fn parse_tx() &#123;
-    let mut cookie = PathBuf::from(&quot;/Users/yourname/bitcoin-regtest&quot;);
+<p>Query the node for transaction data over RPC:</p>
+<pre><code class="rust">// Required imports
+use bitcoin::&#123;Transaction, Txid&#125;;
+use bitcoincore_rpc::&#123;Auth, Client, RpcApi&#125;;
+use serde::Deserialize;
+use std::path::PathBuf;
+use std::str::FromStr;
+
+fn parse_tx()
+&#123;
+    // Find the RPC authentication cookie in the Bitcoin node&#39;s data directory.
+    let mut cookie = PathBuf::from(&quot;/Users/smallyu/work/github/bitcoin-regtest&quot;);
     cookie.push(&quot;regtest/.cookie&quot;);
 
     let rpc = Client::new(
@@ -135,29 +199,62 @@ anyhow           = &quot;1.0&quot;
         Auth::CookieFile(cookie),
     ).unwrap();
 
-    let txid = Txid::from_str(&quot;...&quot;).unwrap();
-    let hex = rpc.get_raw_transaction_hex(&amp;txid, None).unwrap();
-    parse_op_return(hex);
+    // Known transaction IDs
+    let issue_txid    = Txid::from_str(&quot;e2061d0b8b2f98ee47ba6564c1e7409872432354c7617d278fe0e8c4485ff04a&quot;).unwrap();
+    let transfer_txid = Txid::from_str(&quot;80709a25e5355d51ee6d7fb625c40e9c4c49b049afa3aca18aeaa03bc685c1f0&quot;).unwrap();
+
+    // Retrieve the complete transactions.
+    let issue_hex    = rpc.get_raw_transaction_hex(&amp;issue_txid, None).unwrap();
+    let transfer_hex = rpc.get_raw_transaction_hex(&amp;transfer_txid, None).unwrap();
+
+    println!(&quot;Issue Hex: &#123;&#125;&quot;, issue_hex);
+    println!(&quot;Transfer Hex: &#123;&#125;&quot;, transfer_hex);
+
+    parse_op_return(issue_hex);
+    parse_op_return(transfer_hex);
 &#125;
 </code></pre>
-<p>Parse the OP_RETURN data:</p>
-<pre><code class="rust">fn parse_op_return(tx_str: String) &#123;
+<p>This function queries the node for the real on-chain transaction data. We can now parse the Runes operations in the two transactions:</p>
+<pre><code class="rust">fn parse_op_return(tx_str: String)
+&#123;
     let tx: Transaction = bitcoin::consensus::deserialize(&amp;hex::decode(tx_str).unwrap()).unwrap();
     let script = tx.output[0].script_pubkey.clone();
+    // OP_RETURN, DATA
     let mut iter = script.instructions();
-    if let (Some(Ok(_)), Some(Ok(bitcoin::blockdata::script::Instruction::PushBytes(bytes)))) =
-        (iter.next(), iter.next())
+    let mut op_return = iter.next();
+    let mut data = iter.next();
+    // Parse the data.
+    match op_return
     &#123;
-        let json_str = std::str::from_utf8(bytes.as_ref()).unwrap();
-        println!(&quot;&#123;&#125;&quot;, json_str);
+        Some(Ok(op_return)) =&gt;
+            &#123;
+                match data
+                &#123;
+                    Some(Ok(data)) =&gt;
+                        &#123;
+                            match (data)
+                            &#123;
+                                bitcoin::blockdata::script::Instruction::PushBytes(bytes) =&gt;
+                                    &#123;
+                                        let json_str = std::str::from_utf8(bytes.as_ref()).unwrap();
+                                        println!(&quot;&#123;&#125;&quot;, json_str);
+                                    &#125;
+                                _ =&gt; panic!(&quot;Expected OP_RETURN with data&quot;),
+                            &#125;
+                        &#125;
+                    _ =&gt; panic!(&quot;No data found in OP_RETURN&quot;),
+                &#125;
+            &#125;
+        _ =&gt; panic!(&quot;No OP_RETURN found in script&quot;),
     &#125;
 &#125;
 </code></pre>
-<p>Sample output:</p>
+<p>The parsing code is deeply nested because I prefer not to use syntactic sugar. It could be made more concise, but it would perform the same work. After decoding the transaction layer by layer, the function prints:</p>
 <pre><code class="bash">&#123;op:0,symbol:Doge,supply:1000&#125;
 &#123;&quot;op&quot;:1,&quot;id&quot;:10367542271932362826,&quot;vout&quot;:1,&quot;amount&quot;:&quot;1000&quot;&#125;
 </code></pre>
-<p>This concludes the core of the Runes protocol. The rest involves building an off-chain indexer to track rune IDs, balances, and link related transactions—exactly how Runes works under the hood.</p>
+<p>These are the two expected Runes operations: issuing Doge and transferring Doge.</p>
+<p>This is the core of the Runes protocol. What remains is to extend the off-chain program so that it records Runes state, associates operations using <code>rune_id</code>, and stores and displays balance changes.</p>
 </div></div></body><!-- Defer non-critical scripts for better performance--><script defer src="/js/jquery.min.js?v=v1.2"></script><script defer src="/js/highlight.min.js?v=v1.2"></script><script defer src="/js/main.js?v=v1.2"></script><script defer src="/js/lightbox.js?v=v1.2"></script><script defer src="/js/bootstrap.min.js?v=v1.2"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5JRBZ6P1W3"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

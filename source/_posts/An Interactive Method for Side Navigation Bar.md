@@ -1,5 +1,5 @@
 ---
-title: An Interactive Method for Side Navigation Bar
+title: An Interaction Pattern for a Side Navigation Bar
 date: 2020-03-21 17:59:37
 tags: Design
 ---

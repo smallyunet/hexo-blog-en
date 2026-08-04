@@ -1,12 +1,12 @@
 ---
-title: "Using Scala to Reimplement Java: A Shallow Practice"
+title: "A Brief Experiment in Rewriting Java with Scala"
 date: 2018-12-14 12:36:36
 tags: Programming Languages
 ---
 
 ### Origin
 
-I wanted to implement a Markdown parser using Java, and I have currently completed the parsing of multi-level headings. Essentially, it involves using regular expressions to match and replace the corresponding content. The program is relatively simple at this stage, and the main process is as follows:
+I wanted to implement a Markdown parser in Java and have so far completed support for multi-level headings. The basic approach is to use regular expressions to match and replace the corresponding content. The program is still simple at this stage, and its main flow is as follows:
 
 ![main process](mainProcess.png)
 
@@ -64,7 +64,7 @@ List.range(0, srcLines.size).foreach(index => {
 })
 ```
 
-Whether or not there are matches, the loop performs an updated operation on the list, updating the original content to the content after regex replacement. This approach may be slightly inadequate, and I will continue to monitor and rectify performance issues. It can be seen that the programming philosophy of Scala differs somewhat from the typical OOP in Java.
+Whether or not the regular expression matches, every iteration updates the list by replacing the original item with the transformed content. This approach may not be ideal, and I will continue to watch for and address performance problems. Even from this small example, Scala's programming style is visibly different from conventional object-oriented Java.
 
 Finally, regarding file writing, the SDK does not provide a specialized operation object, so you can use the PrintWriter from JDK:
 

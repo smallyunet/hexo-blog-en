@@ -228,4 +228,45 @@ public class JsWithCookieDocs extends BreadthCrawler {
 
 ### External Proxy
 
-Perhaps it is not over yet. In the initial conceptual image, both setting cookies and obtaining JavaScript-generated data were defined using internal Selenium and
+Perhaps it is not over yet. In the overview diagram, setting cookies while retrieving JavaScript-generated data was implemented with internal Selenium plus an external browsermob-proxy. Suppose we did not override `execute` as above—the official project does not provide a similar demo either. How could we achieve the same effect? One approach is to start a local proxy, configure the cookie on the proxy, and make Selenium's WebDriver access the target page through it. That lets us retrieve JavaScript-generated data with the required header. Based on `JsDocs.java`, the complete proxy-based implementation is:
+
+```Java
+public class JsWithProxyDocs {
+    public static void main(String[] args) throws Exception {
+        Executor executor = (CrawlDatum datum, CrawlDatums next) -> {
+
+            // Start a proxy.
+            BrowserMobProxy proxy = new BrowserMobProxyServer();
+            proxy.start(0);
+            // Add the header.
+            proxy.addHeader("Cookie" , "name=smallyu");
+
+            // Create Selenium's proxy object.
+            Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
+            // Generate capabilities from the proxy.
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+            // Required by the built-in driver.
+            capabilities.setBrowserName("htmlunit");
+
+            // Create HtmlUnitDriver with the capabilities.
+            HtmlUnitDriver driver = new HtmlUnitDriver(capabilities);
+            driver.setJavascriptEnabled(true);
+
+            driver.get(datum.url());
+
+            WebElement divEle = driver.findElement(By.id("content"));
+            System.out.println(divEle.getText());   // 2
+        };
+
+        // A Crawler requires both a DBManager and an Executor.
+        Crawler crawler = new Crawler(new RocksDBManager("crawl"), executor);
+        crawler.addSeed("http://127.0.0.1:9000/");
+        crawler.start(1);
+    }
+}
+```
+
+### Other Notes
+
+I have no interest in learning more about WebCollector. Seeing the package name `cn.edu.hfut` did, however, make everything click. The messy coding style, inexplicable comments everywhere, and architecture with no sense of design are consistent with the level of open-source software from an obscure domestic university. It may still be exponentially far from an industrial-grade framework. As for problems such as the unclear meaning of `depth`, threads terminating abnormally, and `next.add` having no effect, so be it; they are unsurprising. The entire framework feels rushed, or like a student practice project. I submitted a PR to WebCollector's GitHub repository about overriding `execute`. From the developer's brief reply, I suspect even the project's author did not fully understand what was inside it. :P

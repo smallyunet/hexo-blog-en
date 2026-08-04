@@ -2,54 +2,153 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://en.smallyu.net/2025/08/14/Web3%20Project%20Analysis%20Plan/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/07/15/How%20to%20Develop%20a%20Bitcoin%20Runes%20Protocol/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2024/08/28/My%20Cryptocurrency%20Dollar-Cost%20Averaging%20Strategy%20(Part%201)/</loc>
     
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-08-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2025/06/24/Solana%20Smart%20Contract%20Development%20Tutorial%20(1)/</loc>
+    <loc>https://en.smallyu.net/2025/08/01/Analysis%20of%20the%20Psyche%20Network%20Project/</loc>
     
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/07/06/Blockchain%20Technical%20Interview%20Questions%20(2025%20Edition)/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-08-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2025/08/20/DeFi%20Basics1/</loc>
+    <loc>https://en.smallyu.net/2023/01/18/On%20Ethereum%20Private%20Key%20Collision/</loc>
     
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2022/11/15/Observations%20on%20the%20Blockchain%20Industry/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2020/12/08/Blockchain:%20The%20Cornerstone%20of%20the%20Next%20Generation%20Digital%20Identity%20Authentication%20System/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2023/07/08/Response%20to%20Ideas%20on%20Layer%202%20Project%20Entrepreneurship/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2023/02/20/Why%20the%20Private%20Key%20Calculation%20of%20Ethereum%20is%20Irreversible/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2019/11/05/Rational%20Understanding%20of%20Blockchain/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2020/03/21/An%20Interactive%20Method%20for%20Side%20Navigation%20Bar/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2018/12/14/Using%20Scala%20to%20Reimplement%20Java:%20A%20Shallow%20Practice/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2020/03/31/Understanding%20the%20Actor%20Model%20Through%20Erlang/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/07/10/Bitcoin%20Script%20Development%20Tutorial/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/09/06/A%20Compatibility%20Layer%20Integrating%20Geth%20and%20CometBFT/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2022/07/24/Why%20Pay%20Attention%20to%20Programming%20Concepts/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/28/coin/my-cryptocurrency-dollar-cost-averaging-strategy-part-2/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,7 +157,115 @@
   <url>
     <loc>https://en.smallyu.net/2022/12/27/Designing%20a%20Guess%202_3%20of%20the%20Average%20dApp%20Game/</loc>
     
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/07/15/How%20to%20Develop%20a%20Bitcoin%20Runes%20Protocol/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/07/06/Blockchain%20Technical%20Interview%20Questions%20(2025%20Edition)/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/06/24/Solana%20Smart%20Contract%20Development%20Tutorial%20(1)/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/14/Web3%20Project%20Analysis%20Plan/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/20/DeFi%20Basics1/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/08/18/What%20Is%20the%20Principle%20Behind%20Go's%20GMP%20Scheduler/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2025/03/25/On%20Code%20Review%20Etiquette/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2021/10/29/A%20Consensus%20Mechanism%20Based%20on%20%22Egocentrism%22/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2019/11/20/A%20Brief%20Analysis%20of%20the%20Blockchain%20Technology%20Behind%20Libra/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2019/03/15/Basic%20Syntax%20of%20Go%20Language/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2019/08/10/Java-Based%20Web%20Scraping%20Framework%20WebCollector/</loc>
+    
+    <lastmod>2026-08-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -75,24 +282,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2025/07/23/continuation/continuation-tutorial-1-understanding-cps/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/09/06/A%20Compatibility%20Layer%20Integrating%20Geth%20and%20CometBFT/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/08/28/coin/my-cryptocurrency-dollar-cost-averaging-strategy-part-2/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -263,15 +452,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/07/24/Why%20Pay%20Attention%20to%20Programming%20Concepts/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2024/04/14/Why%20PoW%20is%20More%20Decentralized%20than%20PoS/</loc>
     
     <lastmod>2026-03-22</lastmod>
@@ -282,15 +462,6 @@
   
   <url>
     <loc>https://en.smallyu.net/2023/03/15/Why%20Trading%20Cryptocurrencies%20is%20Not%20a%20Good%20Idea/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2021/04/18/Why%20Using%20Blockchain%20for%20Digital%20Currency%20is%20a%20Political%20Issue/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -317,7 +488,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/02/20/Why%20the%20Private%20Key%20Calculation%20of%20Ethereum%20is%20Irreversible/</loc>
+    <loc>https://en.smallyu.net/2021/04/18/Why%20Using%20Blockchain%20for%20Digital%20Currency%20is%20a%20Political%20Issue/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -335,15 +506,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2023/10/04/Why%20Bitcoin%20Doesn't%20Use%20Probabilistic%20Encryption%20Functions/</loc>
     
     <lastmod>2026-03-22</lastmod>
@@ -353,7 +515,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in%20Haskell_/</loc>
+    <loc>https://en.smallyu.net/2024/06/09/Why%20Ethereum%20Casper%20Needs%20EIP-7251/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -371,70 +533,16 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/2019/11/26/What%20is%20a%20Monad%20in%20Haskell_/</loc>
+    
+    <lastmod>2026-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/2024/03/13/What%20a%20Bull%20Market%20Means%20for%20the%20Average%20Person/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/08/18/What%20Is%20the%20Principle%20Behind%20Go's%20GMP%20Scheduler/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2018/12/14/Using%20Scala%20to%20Reimplement%20Java:%20A%20Shallow%20Practice/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2022/09/03/VRF%20+%20BFT%20Consensus%20Causing%20Transaction%20Failure%20Issues/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/05/11/Want%20to%20Develop%20a%20Minimal%20EVM%20Virtual%20Machine/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2022/06/19/Understanding%20Web%203.0/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2020/03/31/Understanding%20the%20Actor%20Model%20Through%20Erlang/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2024/10/15/Understanding%20the%20Technical%20Architecture%20of%20Any%20Blockchain%20Project/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -452,7 +560,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2024/11/18/The%20Economic%20Challenges%20of%20Restaking%20Projects/</loc>
+    <loc>https://en.smallyu.net/2022/06/19/Understanding%20Web%203.0/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -461,7 +569,16 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/07/30/The%20%22Obedience%20to%20Authority%22%20Psychology%20of%20Programmers/</loc>
+    <loc>https://en.smallyu.net/2024/10/15/Understanding%20the%20Technical%20Architecture%20of%20Any%20Blockchain%20Project/</loc>
+    
+    <lastmod>2026-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/2024/11/18/The%20Economic%20Challenges%20of%20Restaking%20Projects/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -479,15 +596,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2025/01/28/Suppose%20We%20Launch%20an%20Ethereum%20PoS%20Network%20Called%20Oiia%20Network/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2024/05/04/Small%20Tips%20for%20Cryptocurrency%20Investment/</loc>
     
     <lastmod>2026-03-22</lastmod>
@@ -497,7 +605,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2021/09/18/Saving%20Paths%20in%20Dijkstra%20Algorithm/</loc>
+    <loc>https://en.smallyu.net/2025/01/28/Suppose%20We%20Launch%20an%20Ethereum%20PoS%20Network%20Called%20Oiia%20Network/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -506,7 +614,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2023/07/08/Response%20to%20Ideas%20on%20Layer%202%20Project%20Entrepreneurship/</loc>
+    <loc>https://en.smallyu.net/2021/09/18/Saving%20Paths%20in%20Dijkstra%20Algorithm/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -542,15 +650,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/11/05/Rational%20Understanding%20of%20Blockchain/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2023/05/18/Pebbling-Game/</loc>
     
     <lastmod>2026-03-22</lastmod>
@@ -578,25 +677,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/11/15/Observations%20on%20the%20Blockchain%20Industry/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2023/01/18/On%20Ethereum%20Private%20Key%20Collision/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/03/25/On%20Code%20Review%20Etiquette/</loc>
+    <loc>https://en.smallyu.net/2025/06/30/One%20%22Over-Optimization%22%20in%20Rust%20That%20Often%20Confuses%20Beginners/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -614,25 +695,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2025/06/30/One%20%22Over-Optimization%22%20in%20Rust%20That%20Often%20Confuses%20Beginners/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2024/05/26/Key%20Points%20of%20Issuing%20Cryptocurrency/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2023/05/17/Limitations%20of%20PDP%20Proof%20of%20Storage/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -650,7 +713,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/08/10/Java-Based%20Web%20Scraping%20Framework%20WebCollector/</loc>
+    <loc>https://en.smallyu.net/2023/05/17/Limitations%20of%20PDP%20Proof%20of%20Storage/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -713,7 +776,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/04/24/Exception%20Handling%20Mechanisms%20in%20Mainstream%20Programming%20Languages/</loc>
+    <loc>https://en.smallyu.net/2022/12/14/Example%20and%20Explanation%20of%20S-PDP%20File%20Proof/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -722,7 +785,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/12/14/Example%20and%20Explanation%20of%20S-PDP%20File%20Proof/</loc>
+    <loc>https://en.smallyu.net/2019/04/24/Exception%20Handling%20Mechanisms%20in%20Mainstream%20Programming%20Languages/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -749,7 +812,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/05/18/Does%20JavaScript%20Have%20Associative%20Arrays_/</loc>
+    <loc>https://en.smallyu.net/2022/12/20/Differences%20Between%20Proof%20of%20Storage_Space_Replication/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -758,7 +821,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2022/12/20/Differences%20Between%20Proof%20of%20Storage_Space_Replication/</loc>
+    <loc>https://en.smallyu.net/2019/05/18/Does%20JavaScript%20Have%20Associative%20Arrays_/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -803,15 +866,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2020/12/08/Blockchain:%20The%20Cornerstone%20of%20the%20Next%20Generation%20Digital%20Identity%20Authentication%20System/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2018/12/17/Basics%20of%20Scala%20Syntax/</loc>
     
     <lastmod>2026-03-22</lastmod>
@@ -821,43 +875,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/2019/03/15/Basic%20Syntax%20of%20Go%20Language/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/07/10/Bitcoin%20Script%20Development%20Tutorial/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2025/08/01/Analysis%20of%20the%20Psyche%20Network%20Project/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/2025/01/05/All%20BFT%20Consensus%20Blockchains%20Are%20Centralized/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2020/03/21/An%20Interactive%20Method%20for%20Side%20Navigation%20Bar/</loc>
     
     <lastmod>2026-03-22</lastmod>
     
@@ -910,24 +928,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://en.smallyu.net/2021/10/29/A%20Consensus%20Mechanism%20Based%20on%20%22Egocentrism%22/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/2019/11/20/A%20Brief%20Analysis%20of%20the%20Blockchain%20Technology%20Behind%20Libra/</loc>
-    
-    <lastmod>2026-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://en.smallyu.net/</loc>
@@ -939,6 +939,13 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Blockchain/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Plans/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -959,7 +966,14 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Programming-Languages/</loc>
+    <loc>https://en.smallyu.net/tags/web3/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Plan/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -973,14 +987,21 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/web3/</loc>
+    <loc>https://en.smallyu.net/tags/Programming-Languages/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Plan/</loc>
+    <loc>https://en.smallyu.net/tags/Design/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Programming-Language/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1001,7 +1022,14 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Programming-Language/</loc>
+    <loc>https://en.smallyu.net/tags/Tutorial/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/BTC/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1015,14 +1043,14 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Plans/</loc>
+    <loc>https://en.smallyu.net/tags/Work/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Work/</loc>
+    <loc>https://en.smallyu.net/tags/Linked-List/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1036,7 +1064,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Linked-List/</loc>
+    <loc>https://en.smallyu.net/tags/dApp/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1064,27 +1092,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Tutorial/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/BTC/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/dApp/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/File-Proof/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -1092,21 +1099,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Design/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/Cryptography/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Remote-Work/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1127,7 +1120,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
+    <loc>https://en.smallyu.net/tags/Remote-Work/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1141,7 +1134,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Proof-of-Storage/</loc>
+    <loc>https://en.smallyu.net/tags/Cryptocurrency/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1149,6 +1142,13 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Dollar-Cost-Averaging-Strategy/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Proof-of-Storage/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1176,34 +1176,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Algorithm/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Smart-Contracts/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/OIIA/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://en.smallyu.net/tags/Crypto-Trading/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/Layer2/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -1218,6 +1190,27 @@
   </url>
   
   <url>
+    <loc>https://en.smallyu.net/tags/Algorithm/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Crypto-Trading/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Smart-Contracts/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://en.smallyu.net/tags/Psychology/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -1225,7 +1218,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Restaking/</loc>
+    <loc>https://en.smallyu.net/tags/OIIA/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1239,7 +1232,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Go/</loc>
+    <loc>https://en.smallyu.net/tags/Restaking/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1247,6 +1240,13 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/EVM/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Go/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1267,13 +1267,6 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Ethereum/</loc>
-    <lastmod>2026-08-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://en.smallyu.net/tags/Encryption/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -1288,14 +1281,14 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Investment/</loc>
+    <loc>https://en.smallyu.net/tags/Ethereum/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/continuation/</loc>
+    <loc>https://en.smallyu.net/tags/Investment/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1309,7 +1302,7 @@
   </url>
   
   <url>
-    <loc>https://en.smallyu.net/tags/Wallet/</loc>
+    <loc>https://en.smallyu.net/tags/continuation/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1324,6 +1317,13 @@
   
   <url>
     <loc>https://en.smallyu.net/tags/Yin-Wang/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://en.smallyu.net/tags/Wallet/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

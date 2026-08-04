@@ -109,4 +109,236 @@ Initially, I tried rendering this data using Echarts for better comparison, but 
 
 Overall, Erlang is the slowest, possibly due to its age and lack of optimization. Elixir might perform better. Comparatively, Java is faster than Erlang, and Go is faster than Java, which seems expected. Java's time consumption is one-third of Erlang's, and Go's is half of Java's.
 
-The most surprising finding is that Akka's actor speed is faster than Go's goroutines. Before 1,000 interactions, Akka is slower than Erlang. At the 10K scale, it surpasses Erlang, at 100K, it surpasses Java, and at 1M, it surpasses
+The most surprising finding is that Akka's actors are even faster than Go's goroutines. Below 1,000 interactions, Akka is slower than Erlang. At the 10K scale it overtakes Erlang; at 100K it overtakes Java; and at 1M it overtakes Go and remains in the lead. This is an astonishing result. Although both implementations run on the JVM, Akka takes only about one-third as long as the Java version. Communication between Java threads may indeed introduce substantial overhead.
+
+It is unfortunate that I did not test Elixir. Why Akka is so fast, whether that speed is related to the Actor model, and how strong that relationship is all require further investigation.
+
+(The End)
+
+### Akka
+
+The Akka program used in the benchmark is based on Akka's official Hello World example. The Actor model is readily visible, especially in the `!` operator and the `receive` method.
+
+``` Scala
+import akka.actor.typed.ActorRef
+import akka.actor.typed.ActorSystem
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Behaviors
+import GreeterMain.SayHello
+```
+
+These are the imports. If you use an editor such as VS Code, they are important. As in the Erlang program, there is a `Greeter` that sends messages, a `GreeterBot` that receives and replies to them, and a main method.
+
+``` Scala
+object Greeter {
+  final case class Greet(whom: String, replyTo: ActorRef[Greeted])
+  final case class Greeted(whom: String, from: ActorRef[Greet])
+
+  def apply(): Behavior[Greet] =
+    Behaviors.receive { (context, message) =>
+      message.replyTo ! Greeted(message.whom, context.self)
+      Behaviors.same
+    }
+}
+```
+
+This is the message-sending `Greeter`. Calling `Greeter` as a function automatically executes the code in `apply`. The `apply` method uses `receive`, which, like Erlang's `receive`, waits until the actor receives a message. `replyTo` is the GreeterBot's equivalent of a PID. After Greeter receives a message, it sends a reply to GreeterBot.
+
+``` Scala
+object GreeterBot {
+  var startTime = System.currentTimeMillis()
+
+  def apply(max: Int) = {
+    bot(0, max)
+  }
+
+  private def bot(greetingCounter: Int, max: Int): Behavior[Greeter.Greeted] =
+    Behaviors.receive { (context, message) =>
+      val n = greetingCounter + 1
+      context.log.info("{}", n)
+      if (n >= max) {
+        context.log.info("The End | {}", System.currentTimeMillis() - startTime)
+        Behaviors.stopped
+      } else {
+        message.from ! Greeter.Greet(message.whom, context.self)
+        bot(n, max)
+      }
+    }
+}
+```
+
+This is `GreeterBot`. Compared with Erlang's concise code, Scala's lengthy type declarations can feel cumbersome. After receiving a message from Greeter, GreeterBot checks whether `n` has reached `max`. If enough iterations have run, it stops; otherwise it recursively calls itself.
+
+``` Scala
+object GreeterMain {
+
+  final case class SayHello(name: String)
+
+  def apply(): Behavior[SayHello] =
+    Behaviors.setup { context =>
+      val greeter = context.spawn(Greeter(), "greeter")
+
+      Behaviors.receiveMessage { message =>
+        val replyTo = context.spawn(GreeterBot(max = 10), message.name)
+        greeter ! Greeter.Greet(message.name, replyTo)
+        Behaviors.same
+      }
+    }
+}
+
+object AkkaQuickstart extends App {
+  val greeterMain = ActorSystem(GreeterMain(), "AkkaQuickStart")
+  greeterMain ! SayHello("Charles")
+}
+```
+
+Finally, this is the main method, which may also look rather long. A class extending `App` can be run as the main class. It registers `GreeterMain` with the Actor system and executes `GreeterMain.apply`. GreeterMain spawns two processes, behaving similarly to the Erlang program.
+
+### Go
+
+The Go program is much more concise. Here is its header:
+
+``` Go
+package main
+
+import(
+  "fmt"
+  "time"
+)
+
+var maxCount = 100000000
+var startTime = time.Now().UnixNano() / 1e6
+```
+
+It defines two variables: the number of iterations and the program's start time.
+
+``` Go
+func main() {
+  ch := make(chan bool)
+  exit := make(chan bool)
+
+  go func() {
+    for i := 0; i < maxCount; i++ {
+      fmt.Println(i)
+      <- ch
+      ch <- true
+    }
+  }()
+
+  go func() {
+    defer func() {
+      timeUsed := time.Now().UnixNano() / 1e6 - startTime
+      fmt.Println("The End | ", timeUsed)
+      close(ch)
+      close(exit)
+    }()
+    for i := 0; i < maxCount; i++ {
+      ch <- true
+      <- ch
+    }
+  }()
+
+  <- exit
+}
+```
+
+The two goroutines alternate between reading from and writing to a channel. The Go program looks much cleaner; the Scala version is visually exhausting by comparison.
+
+### Java
+
+Java is no less verbose than Scala.
+
+``` Java
+public class Test{
+    public static void main(String[] args) {
+        Object lock = new Object();
+        Thread sender = new Sender(lock);
+        Thread receiver = new Receiver(lock);
+        sender.start();
+        receiver.start();
+    }
+}
+```
+
+The main method starts two threads that share a lock.
+
+``` Java
+class Message {
+    static long MAX_COUNT = 100000000;
+    static String status = new String("init");
+    static long count = 0;
+    static long startTime = 0;
+    public static void send() {
+        System.out.println(count);
+        status = "sent";
+        count++;
+        if (count == 1) {
+            startTime = System.currentTimeMillis();
+        }
+        if (count >= MAX_COUNT) {
+            status = "stop";
+            long time = System.currentTimeMillis() - startTime;
+            System.out.println("The End | " + time);
+        }
+    }
+    public static void receive() {
+        status = "received";
+    }
+    public static String getStatus() {
+        return status;
+    }
+}
+```
+
+`Message` is the shared resource that stores the message state. It also performs a few auxiliary actions when the state changes, printing the required logs.
+
+``` Java
+class Sender extends Thread {
+    Object lock = null;
+    public Sender(Object lock) {
+        this.lock = lock;
+    }
+    @Override
+    public void run() {
+        while (!Message.getStatus().equals("stop")) {
+            synchronized (lock) {
+                if (Message.getStatus().equals("init")
+                  || Message.getStatus().equals("received")) {
+                    Message.send();
+                    lock.notify();
+                    try {
+                        lock.wait();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+}
+
+class Receiver extends Thread {
+    Object lock = null;
+    public Receiver(Object lock) {
+        this.lock = lock;
+    }
+    @Override
+    public void run() {
+        while (!Message.getStatus().equals("stop")) {
+            synchronized (lock) {
+                if (Message.getStatus().equals("sent")) {
+                    Message.receive();
+                    lock.notify();
+                    try {
+                        lock.wait();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+`Sender` and `Receiver` are similar. Sender sends a message and then waits for Receiver's response. Receiver continually checks in a loop whether a message has arrived. When it has, Receiver replies, wakes Sender to tell it that the message is ready to process, and then waits for Sender's next response.

@@ -76,4 +76,26 @@ Why can't the failed blacklist work like the first transaction, processing by al
 
 #### Blocking Subsequent Transactions
 
-Let's continue analyzing the second failed transaction. Node C
+Let's continue analyzing the second failed transaction. Node C still has the transaction; its copy of the failed transaction has not been processed, and it begins using VRF to select a node.
+
+As mentioned above, the blacklist is now ineffective, so whichever node the VRF selects is accepted. It selected node B in the previous round. With the blacklist disabled, could it select B again? Yes. What happens if B is again responsible for producing the block?
+
+Node B cannot produce a block because it no longer has the transaction. It deleted its only failed transaction in the previous round. All four nodes are therefore waiting for B to produce a block. B knows it has been selected, but it has no block to propose, so it abandons the round and advances to the next one without sending any message.
+
+In a distributed system, the absence of a message is frightening. The other nodes are still waiting for B while B has moved on by itself. B is now one consensus round ahead of the others.
+
+BFT consensus has two indexes: block height and consensus round. The same block height can pass through several rounds when a block is not confirmed. Because B did not produce a block, it incremented its round without the other nodes knowing.
+
+All nodes are now on the VRF blacklist, and B's consensus round is higher than everyone else's.
+
+If node A receives another failed transaction, two outcomes are possible. If VRF selects B again, the other nodes reject B's proposed block because they are still waiting for B's block from two rounds earlier, so its higher round does not match. If VRF selects another node, that node must first wait for B's earlier proposal to time out. After the timeout, the nodes synchronize to the highest round, consensus recovers, and VRF selects again.
+
+But remember that this is a failed transaction and the blacklist remains ineffective. Even after consensus recovers, the system may repeat the entire failure, and node A may still receive no result. I cannot be bothered to calculate the exact probability.
+
+### Summary
+
+This bug was caused by several unreasonable system-level design choices acting together. The direct cause was the VRF blacklist becoming ineffective after every node entered it. Put differently, the blacklist was not cleared promptly. The original code cleared it only when the block height changed, perhaps based on the assumption that every block should be handled by a different node. That overlooks the fact that the consensus round can also change at the same height, with each round producing a new block. Clearing the blacklist whenever the consensus round changes fixes the problem. The actual code change was only two lines.
+
+I may not even want to read the explanation above carefully myself. It is abstract, difficult to follow, and limited by my ability to express it in words. Describing state-machine transitions in prose is painful, especially when the details are deeply coupled to the project as it existed then. Overall, however, I consider the analysis and solution logically self-contained: they explain the cause and observed behavior and repair the surface-level problem in the simplest way.
+
+It feels strange that I can still remember all of this almost two years later.

@@ -95,4 +95,90 @@ If the receiving node finds the block content is 5 and the previous block hash i
 
 <img src="52.png" width="50%">
 
-This mechanism risks replacing the entire chain upon receiving a block, a serious unacceptable cost. But such risk exists. You met a bad person who undermined your values, leading you astray. Reflect on why your routing table has such
+This mechanism risks replacing the entire chain after receiving a single block, an extremely serious and unacceptable cost. Yet the possibility exists. You encountered a bad actor who took advantage of you, overturned your values, and led you astray until you no longer recognized those closest to you. You should reflect on why such a bad actor was in your routing table. And are there many of them? Even if one malicious node replaces your entire chain with a single block, there is a high probability that a good node will subsequently restore it to the state shared by the majority.
+
+This exposes a problem: is it too hasty to accept the first block received? What if it comes from a malicious node? To make attacks harder, when a node receives block 5 and finds that its previous-block hash does not match, it should not request history from only the first peer. It should run the complete active synchronization process, querying every peer in its routing table by block height. If block 5's previous hash disagrees with most nodes, discard block 5. If it agrees with the majority, it is not harmful content.
+
+#### No Node Needs It
+
+After adding a block, a node may discover that no peer needs a block at its current height.
+
+<img src="6.png" width="50%">
+
+Every other node's block height is greater than or equal to the height being broadcast. In that case, the current node must compromise slightly. To make others accept it and its block data, it first synchronizes from another node so that it becomes consistent with them.
+
+<img src="7.png" width="50%">
+
+At block height 4, the current node broadcasts its block to everyone and finds that nobody will accept it. It then requests the block at the same height from the last node it contacted. Why the last node? It could run the full active synchronization process, but to improve efficiency and reduce network traffic, it can first accept an arbitrary block and evaluate it afterward. The last node is chosen because it is close. After missing all the noise and distractions of the world, you suddenly look back and realize that the last node is now your closest companion.
+
+<img src="8.png" width="50%">
+
+<img src="9.png" width="50%">
+
+After receiving block 7 from the last node, the current node continues broadcasting its own block 5.
+
+If every other node is unfortunately far ahead, then the current node truly has fallen behind and should synchronize their content first. Before trying to innovate or add new content, it must at least reach some kind of frontier.
+
+<img src="10.png" width="50%">
+
+It does not have to be the frontier of the entire network, only the frontier of some circle within it.
+
+### Exchanging Data
+
+#### Network Shapes
+
+Under the mechanism described so far, the network may be chaotic and unsynchronized. Synchronization is deliberately assumed to be slow, but what if some nodes prefer speed, using faster computation and more bandwidth to reach the leading edge of the network?
+
+<img src="33.png" width="50%">
+
+This creates a network where most nodes are slow and a few are fast. Every node updates and broadcasts by block height, which alleviates the problem to some extent. If you want to move fast, go ahead; it has nothing to do with us. The slow nodes form their own group and follow majority consistency rather than blindly following whoever has the greatest height. Compete as aggressively as you like—we will not play that game.
+
+<img src="32.png" width="50%">
+
+Another possibility is that half the nodes are slow and half are fast. There is little to fear; at worst, they form two separate networks.
+
+<img src="31.png" width="50%">
+
+The most ordinary case is a few slow nodes and a fast majority.
+
+#### Merging
+
+When half the nodes are slow and the other half are fast, conflicting data can easily emerge. Even at the same block height, the two groups may hold different content.
+
+<img src="34.png" width="50%">
+
+<img src="35.png" width="50%">
+
+At that point one side must compromise. If the two networks want to merge, one of them must sacrifice something. Suppose their routing tables become connected while their block heights are equal. When new block data are produced, the process is effectively the active broadcast procedure. The current node first produces a block:
+
+<img src="36.png" width="50%">
+
+For example, the last node receives the block and discovers that its previous-block hash does not match its own:
+
+<img src="37.png" width="50%">
+
+It requests the preceding block height from other nodes:
+
+<img src="38.png" width="50%">
+
+<img src="39.png" width="50%">
+
+It then discovers that the hash of the block before that also differs:
+
+<img src="40.png" width="50%">
+
+So it continues requesting the corresponding height from other nodes:
+
+<img src="41.png" width="50%">
+
+<img src="42.png" width="50%">
+
+The process repeats until the entire chain is identical.
+
+Replaced block contents can be placed in a cache queue and reused as the contents of new blocks, then broadcast again, reducing the loss of node-generated content.
+
+### Conclusion
+
+This is an idea for a consensus mechanism that has not been tested in practice and cannot easily be modeled with formulas. Consensus begins from the node's own position and asks how it should respond to the different behaviors of other nodes, rather than designing the interaction protocol from a godlike perspective over the whole network. Such a mechanism introduces uncertainty, but also many possibilities. We can consider only the basic rules of node behavior, just as we learn the rules of life. It is difficult to predict where the network will go, just as we cannot predict the direction in which the world will develop. This mechanism does not—and perhaps cannot—solve a specific problem such as building an electronic cash system or providing a Turing-complete execution platform. It operates at a more fundamental level, offering a method and a way of thinking about data consistency.
+
+The virtual world formed by computers connected through networks must be fascinating too.

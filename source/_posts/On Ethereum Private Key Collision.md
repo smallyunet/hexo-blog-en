@@ -29,7 +29,6 @@ Since a private key is just a string, is it possible to randomly generate a stri
 
 Of course, the randomly generated string must be a 64-character hexadecimal string. To avoid any collision prevention mechanisms in the Ethereum SDK, we can generate it straightforwardly, like this:
 
-```
 ```javascript
 let s = "0123456789abcdef";
 let hex = "0x";
@@ -37,9 +36,8 @@ for (let i = 0; i < 64; i++) {
   hex += s[Math.floor(Math.random() * 16)];
 }
 ```
-```
 
-This method is straightforward, generating a 64-character string through random concatenation. Although Ethereum doesn't have collision prevention mechanisms.
+This is straightforward: it randomly assembles a 64-character string. It is the sort of thing that appears every day in easy LeetCode problems. In practice, Ethereum does not have any collision-prevention mechanism.
 
 ### Collision Probability
 
@@ -65,7 +63,7 @@ This is an extremely low probability. The lowest winning rate for the Chinese lo
 
 However, lottery winning has a speed limit, such as requiring a day to announce the result. Cryptocurrency private keys don't have such a limit. Can increasing the speed of random private key generation improve the collision probability?
 
-Currently, the [hash rate](https://www.blockchain.com/explorer/charts/hash-rate) of the entire Bitcoin network is 270M TH/s. Bitcoin mining involves continuous hashing until a string with a certain number of leading zeros is found. Thus, Bitcoin's hash rate can describe the private key generation rate. After [unit conversion](https://en.bitcoinwiki.org/wiki/Hashrate):
+At the time this article was written, the [hash rate](https://www.blockchain.com/explorer/charts/hash-rate) of the Bitcoin network was 270M TH/s. Bitcoin mining involves continuous hashing until a value with a required number of leading zeros is found, so the network hash rate can be used here as a rough upper-bound analogy for private-key generation speed. After [unit conversion](https://en.bitcoinwiki.org/wiki/Hashrate):
 
 ```
 r = 270M TH/s
@@ -124,7 +122,7 @@ With these 10,000 addresses, the program can run faster without API rate limits 
 
 By the way, remember to add a mutex to the map in Golang because maps aren't concurrency-safe. Adding locks reduces speed. To solve the lock issue, since there are only 10,000 addresses, not much memory is needed, so instantiate multiple maps, one for each goroutine. This ensures the efficiency of private key generation and verification.
 
-Are 10,000 addresses too few? How many Ethereum addresses are there? According to Etherscan [statistics](https://etherscan.io/chart/address), there are currently about 230M, approximately 200 million addresses.
+Are 10,000 addresses too few? How many Ethereum addresses were there? According to Etherscan [statistics](https://etherscan.io/chart/address), there were about 230 million at the time of writing—roughly 200 million for an order-of-magnitude estimate.
 
 I found a repository, [eth-collision/Wallet-private-key-collision-brute-force-tool](https://github.com/eth-collision/Wallet-private-key-collision-brute-force-tool), providing a OneDrive download link for a file containing 180 million account addresses with transaction records on the chain. The compressed file is 4.4GB, and after decompression, it's about 16GB in pkl format, which I converted to a txt file using Python.
 
@@ -132,4 +130,37 @@ With this many account addresses, the question becomes how to use the data.
 
 First, load all data into a map. This amount of data in memory would require at least 16GB, necessitating a 24GB server. The cheapest suitable server on Vultr costs nearly $150 per month. Furthermore, Golang's query efficiency with such a large data set and the need for locking are concerns.
 
-Are there better solutions? MySQL can't handle billion-level data queries efficiently. In a previous project, the simplest query in a
+Are there better solutions? MySQL cannot efficiently support queries over hundreds of millions of rows. In a previous project, even the simplest single query over more than 100 million records took over ten seconds. Here we need thousands of lookups per second. What about Redis? Its lookup performance should be sufficient, but it still loads all data into memory. According to the Redis [FAQ](https://redis.io/docs/getting-started/faq/), one million keys require 85 MB of memory. Scaling that up:
+
+```
+1M   -> 85M
+180M -> 180 * 85M
+     = 15300M
+     = 15G
+```
+
+A 16 GB Redis instance on Vultr is very expensive—far more than a server—at about $480 per month. Heavier databases such as Elasticsearch or a more specialized system such as HBase would require setting up the database, importing the data, and processing it, making the overall workflow rather cumbersome. The server cost would not necessarily be lower either.
+
+Later I came across Bloom filters, which happen to fit this use case. I tried one configured for 200 million entries with a false-positive rate of one in a billion. After loading 180 million addresses, the exported [binary file](https://github.com/eth-collision/eth-address-all) occupied only 1 GB on disk and required only 1 GB of memory when loaded.
+
+That is a fairly good solution. I ran the collision program on servers: a two-core, 4 GB instance costing $30 per month could test 60 million addresses per hour, while an eight-core, 16 GB instance costing RMB 600 per month could test 160 million per hour.
+
+Of course, no server is good enough. Even all the computing power on Earth would not be enough.
+
+### Vanity Addresses
+
+Ethereum also has vanity addresses. For example, `0x00000006A3D4DA3A559829B1730603CAeE97cC3D` contains six leading zeros. See [this article](https://www.theblockbeats.info/news/33808?from=telegram) for more about vanity addresses.
+
+I wrote [eth-collision/eth-collision-find-address](https://github.com/eth-collision/eth-collision-find-address) to search for them. Finding an address with six leading zeros is generally easy and takes only a few minutes on a MacBook Air M1. Seven leading zeros may take half an hour. Eight can take a day or two.
+
+An address with ten leading zeros is extremely rare. Vanity addresses are of little practical use, of course: once you know the private key, the account is yours, and nobody else would want it from you.
+
+### Manual Online Collision
+
+This webpage lets you experiment with private-key collisions manually. It can derive a public key from a private key, generate random key pairs, and link directly to Etherscan to check the corresponding account balance.
+
+Website: [http://eag.smallyu.net](http://eag.smallyu.net)
+
+Source: [smallyunet/eth-address-generator](https://github.com/smallyunet/eth-address-generator)
+
+The page is implemented entirely in the browser, works offline, and introduces no security risk.

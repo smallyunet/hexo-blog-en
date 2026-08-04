@@ -1,5 +1,5 @@
 ---
-title: Response to Ideas on Layer 2 Project Entrepreneurship
+title: A Response to a Layer 2 Startup Idea
 tags:
   - Layer2
   - Entrepreneurship
@@ -97,7 +97,7 @@ There are some topics not mentioned in the reply, which I will briefly discuss.
 
 First, why is Layer 2 hot? Because Vitalik has frequently mentioned zkEVM in his recent blogs. For example, in the article [Endgame](https://vitalik.ca/general/2021/12/06/endgame.html), he considers supporting ZK-rollup as an important task for Ethereum’s future. Some issues cannot be directly resolved on Layer 1, so they hope to solve them through Layer 2. With Vitalik, a highly regarded developer, leading the technical direction in the ecosystem, Layer 2 has become a development hotspot for Ethereum.
 
-Vitalik is quite optimistic about ZK-SNARKs type zkEVMs. From a technical perspective, ZK-rollups will be the so-called Endgame. However, ZK development costs are very high and currently still in research and development. Small-scale capital cannot afford it; it is too expensive.
+Vitalik was quite optimistic about ZK-SNARK-based zkEVMs. From the perspective presented in this 2023 article, ZK-rollups were the so-called Endgame. At the time, however, ZK development costs were extremely high and the technology was still in research and development. It was too expensive for small-scale investors to pursue.
 
 The Dapp-learning community has a technical sharing video on Scroll on Youtube, which is quite good. The entire Scroll technical team is based in China. From the video explanation, it seems Scroll's technical solution involves some brute-force elements, such as creating a table for a certain type of circuit results and expanding various tables to support the entire EVM. This is how Scroll compares the ways each ZK project implements EVM completeness:
 
@@ -107,9 +107,8 @@ Vitalik’s blog post [The different types of ZK-EVMs](https://vitalik.ca/genera
 
 Optimistic rollups are more like a transitional solution for L2. I believe once ZK rolls out, OP projects will be impacted, as OP does not rely on the reliability of cryptographic technology. From its name, you can see it is optimistic, assuming a transaction has no issues first and then giving a 7-day challenge period. If there are issues, users need to challenge it themselves or third-party verifiers to fully challenge, involving significant human intervention.
 
-Another issue is the centralization of L2 projects. Except for Sidechains projects, L2 must be centralized because consensus is handed over to L1. L2 does not manage it. From a motivational perspective, L2's role is to quickly collect transactions and package them to L1. The ultimate trust in a transaction falls on L1. Users trust L1's transaction records, not L2, so L2 does not need decentralization. Users don’t need it, and project parties don’t need it. L2s are generally issued and operated by project teams. Users trust the project's technical solution and are willing to engage with it and pledge assets.
+Another issue is the centralization of L2 projects. Apart from sidechains, L2 systems are necessarily centralized because consensus is delegated to L1 rather than handled by L2 itself. An L2's role is to collect transactions quickly, batch them, and submit them to L1. The transaction ultimately derives its trust from L1: users trust the record on L1, not the L2 operator. From this perspective, neither users nor project teams require the L2 itself to be decentralized. L2s are generally launched and operated by project teams, and users deposit assets only when they trust the project's technical design.
 
-There is also the issue of L2 user experience. Currently, few users use OP or ARB for low-cost asset transfers. They prefer using BNB or TRX for anonymous payment scenarios. The more common uses are governance token investments or interactions in DApp project forms. The 7-day wait for OP to redeem assets is quite inconvenient. Asset transfers between L2 chains are also an issue. For example, can USDT on OP be transferred to ARB? Otherwise, if I use OP and another person uses ARB, we cannot trade. There is still much room for improvement in this area.
+There was also the issue of L2 user experience. At the time of writing, few users used OP or ARB for low-cost asset transfers. They preferred BNB or TRX for pseudonymous payments. More common uses of L2s were investing in governance tokens or interacting with DApps. OP's seven-day withdrawal period was inconvenient, and moving assets between L2 networks was another problem. For example, could USDT on OP be transferred to ARB? If I used OP and another person used ARB, we could not transact directly. There was still considerable room for improvement.
 
 L2 is a promising technical direction, and we look forward to it bringing us a better user experience. As for whether there are low-cost profit opportunities, that is uncertain.
-

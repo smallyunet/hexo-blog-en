@@ -163,17 +163,25 @@ func main() &#123;
 <pre><code class="bash">go build demo4.go   
 GODEBUG=&#39;schedtrace=200,scheddetail=1&#39; ./demo4 &amp;&gt; demo4.log
 </code></pre>
-<p>Initial logs show:</p>
-<pre><code class="bash">runqueue=0 // global queue
-P0: runqsize=0
-P1: runqsize=0
+<p>The first few lines of the log look like this:</p>
+<pre><code class="bash">SCHED 0ms: gomaxprocs=10 idleprocs=9 threads=2 spinningthreads=0 needspinning=0 idlethreads=0 runqueue=0 gcwaiting=false nmidlelocked=0 stopwait=0 sysmonwait=false
+  P0: status=1 schedtick=0 syscalltick=0 m=0 runqsize=0 gfreecnt=0 timerslen=0
+  P1: status=0 schedtick=0 syscalltick=0 m=nil runqsize=0 gfreecnt=0 timerslen=0
 </code></pre>
-<p>Later, P0 starts many G’s:</p>
-<pre><code class="bash">P0: runqsize=204
-runqueue=395 // global queue overflow
+<p>The <code>runqueue=0</code> on the first line is the global queue. The <code>runqsize=0</code> after P0 is P0’s local queue, and the one after P1 is P1’s local queue. At this point P1 has status 0, meaning it is not runnable.</p>
+<p>As the program runs, P0 starts a large number of Gs. The log then looks like this:</p>
+<pre><code class="bash">SCHED 200ms: gomaxprocs=1 idleprocs=0 threads=5 spinningthreads=0 needspinning=1 idlethreads=3 runqueue=395 gcwaiting=false nmidlelocked=0 stopwait=0 sysmonwait=false
+  P0: status=1 schedtick=10 syscalltick=2 m=0 runqsize=204 gfreecnt=0 timerslen=1
 </code></pre>
-<p>Default <code>runq</code> capacity is 256. Excess tasks go to the global queue. When P1–P3 enter, they pick tasks from the global queue first—not by stealing.</p>
-<p>If a P finds no work in its runq or the global queue, it checks netpoll (OS), and if that fails, it spins.</p>
+<p>The default upper limit for a P’s local queue is 256. Once it reaches that limit, excess tasks spill into the global queue.</p>
+<p>P1, P2, and P3 then start and take tasks from the global queue. When work is available globally, they do not need to steal from another P:</p>
+<pre><code class="bash">SCHED 826ms: gomaxprocs=4 idleprocs=0 threads=5 spinningthreads=0 needspinning=1 idlethreads=0 runqueue=217 gcwaiting=false nmidlelocked=0 stopwait=0 sysmonwait=false
+  P0: status=1 schedtick=35 syscalltick=2 m=0 runqsize=179 gfreecnt=0 timerslen=0
+  P1: status=1 schedtick=14 syscalltick=0 m=3 runqsize=90 gfreecnt=0 timerslen=0
+  P2: status=1 schedtick=14 syscalltick=0 m=4 runqsize=64 gfreecnt=0 timerslen=0
+  P3: status=1 schedtick=13 syscalltick=0 m=2 runqsize=46 gfreecnt=0 timerslen=0
+</code></pre>
+<p>If a P cannot find work in its local runq, the global queue, or another P, it checks netpoll to ask the operating system whether a new G is available. If so, it runs that G; otherwise, it spins while waiting. This is the logic a P follows when looking for work.</p>
 <h3 id="Blocking-syscalls-Yield-P"><a href="#Blocking-syscalls-Yield-P" class="headerlink" title="Blocking syscalls Yield P"></a>Blocking syscalls Yield P</h3><pre><code class="go">package main
 
 import (
@@ -203,10 +211,14 @@ func main() &#123;
 <p>Output:</p>
 <pre><code class="bash">still running 0
 still running 1
-...
+still running 2
+still running 3
+still running 4
+still running 5
 blocking done
 </code></pre>
-<p>Even though the first G blocks, the second keeps running—GMP properly yields P when blocking occurs.</p>
+<p>Although the first G appears to occupy a P while blocking, the second G continues to run.</p>
+<p>This shows that the GMP scheduler does not let one blocked G prevent other Gs from executing. In fact, that is a basic requirement for a coroutine scheduler.</p>
 <h3 id="Disable-Async-Preemption"><a href="#Disable-Async-Preemption" class="headerlink" title="Disable Async Preemption"></a>Disable Async Preemption</h3><pre><code class="go">package main
 
 import (
@@ -234,7 +246,10 @@ GODEBUG=&#39;schedtrace=1000,scheddetail=1&#39; ./demo7
 <pre><code class="bash">go build demo7.go
 GODEBUG=&#39;schedtrace=1000,scheddetail=1,asyncpreemptoff=1&#39; ./demo7
 </code></pre>
-<p>With <code>asyncpreemptoff=1</code>, async preemption is disabled—the print never happens due to infinite loop. This illustrates GMP’s ability to yield CPU, and what happens when it’s turned off.</p>
+<p>The <code>asyncpreemptoff=1</code> setting disables asynchronous preemption. Without it, the program runs normally and prints:</p>
+<pre><code class="bash">I should still print unless preemption is off
+</code></pre>
+<p>With asynchronous preemption disabled, the infinite loop blocks the program. This example highlights GMP’s ability to yield the CPU proactively: when that ability is disabled, GMP gets stuck.</p>
 <h3 id="Go-Source-Code"><a href="#Go-Source-Code" class="headerlink" title="Go Source Code"></a>Go Source Code</h3><p>I didn’t dig deeply into the source. For example, constants for G&#x2F;M&#x2F;P are in <a href="https://github.com/golang/go/blob/master/src/runtime/runtime2.go#L18"><code>src/runtime/runtime2.go</code></a>:</p>
 <img src="1.png" width="60%">
 

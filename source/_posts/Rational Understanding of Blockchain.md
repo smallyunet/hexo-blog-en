@@ -1,5 +1,5 @@
 ---
-title: Rational Understanding of Blockchain
+title: A Rational View of Blockchain
 date: 2019-11-05 13:53:58
 tags: Blockchain
 ---

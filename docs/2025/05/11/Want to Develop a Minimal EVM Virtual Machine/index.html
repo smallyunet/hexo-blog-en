@@ -1,5 +1,5 @@
-<!-- Stable asset version (for cache busting without full-site churn)--><!DOCTYPE html><html lang="en"><head><title>Want to Develop a Minimal EVM Virtual Machine</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><!-- Mobile viewport: include viewport-fit=cover to allow CSS safe-area usage on full-screen devices--><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><!-- iOS Safari / PWA status bar style (use default so text stays legible on light background)--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><!-- SEO basics--><meta name="description"><!-- Open Graph & Twitter--><link rel="canonical" href="https://en.smallyu.net/2025/05/11/Want to Develop a Minimal EVM Virtual Machine/"><meta property="og:title" content="Want to Develop a Minimal EVM Virtual Machine"><meta property="og:type" content="article"><meta property="og:url" content="https://en.smallyu.net/2025/05/11/Want to Develop a Minimal EVM Virtual Machine/"><meta property="og:site_name" content="smallyu‘s Blog"><meta name="twitter:card" content="summary_large_image"><!-- Browser UI color--><meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1115"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><!-- stylesheets--><!-- Use a stable, configurable asset version to prevent full-site churn on every build.--><!-- Set `asset_version` in theme _config.yml when you actually change CSS/JS.--><link rel="stylesheet" href="/css/xcode.min.css?v=v1.2"><link rel="stylesheet" href="/css/post.css?v=v1.2"><!-- unified typography overrides for both home and post pages--><link rel="stylesheet" href="/css/typography.css?v=v1.2"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
-</head><body><div><div class="inner"><h1>Want to Develop a Minimal EVM Virtual Machine</h1><div class="time">2025-05-11</div><div class="title-margin"></div><p>I’ve named this project echoevm.com. The main goal is to start from the simplest stack operations and gradually build a complete Ethereum bytecode execution environment.</p>
+<!-- Stable asset version (for cache busting without full-site churn)--><!DOCTYPE html><html lang="en"><head><title>An Attempt to Build a Minimal EVM Virtual Machine</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><!-- Mobile viewport: include viewport-fit=cover to allow CSS safe-area usage on full-screen devices--><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><!-- iOS Safari / PWA status bar style (use default so text stays legible on light background)--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><!-- SEO basics--><meta name="description"><!-- Open Graph & Twitter--><link rel="canonical" href="https://en.smallyu.net/2025/05/11/Want to Develop a Minimal EVM Virtual Machine/"><meta property="og:title" content="An Attempt to Build a Minimal EVM Virtual Machine"><meta property="og:type" content="article"><meta property="og:url" content="https://en.smallyu.net/2025/05/11/Want to Develop a Minimal EVM Virtual Machine/"><meta property="og:site_name" content="smallyu‘s Blog"><meta name="twitter:card" content="summary_large_image"><!-- Browser UI color--><meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1115"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><!-- stylesheets--><!-- Use a stable, configurable asset version to prevent full-site churn on every build.--><!-- Set `asset_version` in theme _config.yml when you actually change CSS/JS.--><link rel="stylesheet" href="/css/xcode.min.css?v=v1.2"><link rel="stylesheet" href="/css/post.css?v=v1.2"><!-- unified typography overrides for both home and post pages--><link rel="stylesheet" href="/css/typography.css?v=v1.2"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><div><div class="inner"><h1>An Attempt to Build a Minimal EVM Virtual Machine</h1><div class="time">2025-05-11</div><div class="title-margin"></div><p>I’ve named this project echoevm.com. The main goal is to start from the simplest stack operations and gradually build a complete Ethereum bytecode execution environment.</p>
 <p>Why choose this direction? Let’s analyze the technical modules of an Ethereum client:</p>
 <ol>
 <li>RPC: A GRPC wrapper? The focus is more on protocol design than technical implementation.</li>
@@ -15,17 +15,11 @@
 <p>The conversion from Solidity to bytecode is compiler expert territory. What I aim to do is execute the bytecode — starting with the simplest operations like addition and jump, then move on to gas calculation, context switching, and ultimately be able to execute all historical Ethereum transactions.</p>
 <br>
 
-<h3 id="v0-0-2-2025-06-09"><a href="#v0-0-2-2025-06-09" class="headerlink" title="v0.0.2 (2025.06.09)"></a>v0.0.2 (2025.06.09)</h3><p>This version adds the ability to run runtime bytecode, meaning you can first deploy a contract and then call the deployed contract’s functions with specific parameters. For example:</p>
-<pre><code>go run ./cmd/echoevm -bin ./build/Add.bin -function &#39;add(uint256,uint256)&#39; -args &quot;3,5&quot;
-</code></pre>
-<p>This command executes the bytecode from the <code>./build/Add.bin</code> file and calls the <a href="https://github.com/smallyunet/echoevm/blob/v0.0.2/test/contracts/Add.sol#L7">add function</a>, passing in the arguments 3 and 5. After the program completes, it will return the computation result, which is 8.</p>
-<br>
-
 <h3 id="v0-0-1-2025-05-27"><a href="#v0-0-1-2025-05-27" class="headerlink" title="v0.0.1 (2025.05.27)"></a>v0.0.1 (2025.05.27)</h3><p>Implemented a very simple version. Now you can use <code>solc</code> to compile an <a href="https://github.com/smallyunet/echoevm/blob/v0.0.1/test/contracts/Add.sol">Add.sol</a> contract, and then have <code>echoevm</code> read the generated <code>Add.bin</code> deployment code, which will output the contract’s runtime code after deployment.</p>
 <p>During the implementation of this version, I learned the difference between deployment code and runtime code. Typically, we first deploy a contract to the blockchain and then make calls to it. These are actually two different operations, but both use the same EVM execution. The EVM doesn’t care whether the input bytecode is for deployment or invocation; it simply handles different opcodes differently. Deployment code generally includes both the <code>CODECOPY</code> and <code>RETURN</code> opcodes, which can be used to distinguish the type of input.</p>
 <br>
 
-<h3 id="v0-0-2-2025-06-09-1"><a href="#v0-0-2-2025-06-09-1" class="headerlink" title="v0.0.2 (2025-06-09)"></a>v0.0.2 (2025-06-09)</h3><p>This version adds the ability to run runtime bytecode—that is, first deploy the contract and then call its functions, optionally passing parameters. For example:</p>
+<h3 id="v0-0-2-2025-06-09"><a href="#v0-0-2-2025-06-09" class="headerlink" title="v0.0.2 (2025-06-09)"></a>v0.0.2 (2025-06-09)</h3><p>This version adds the ability to run runtime bytecode—that is, first deploy the contract and then call its functions, optionally passing parameters. For example:</p>
 <pre><code>go run ./cmd/echoevm -bin ./build/Add.bin -function &#39;add(uint256,uint256)&#39; -args &quot;3,5&quot;
 </code></pre>
 <p>This command executes the bytecode in <code>./build/Add.bin</code>, calls the <a href="https://github.com/smallyunet/echoevm/blob/v0.0.2/test/contracts/Add.sol#L7">add function</a> with arguments 3 and 5, and returns 8 when the program finishes.</p>
@@ -60,6 +54,32 @@ go run ./cmd/echoevm run -artifact ./test/contract/artifacts/contracts/Add.sol/A
 <pre><code>make test-advanced
 </code></pre>
 <p>All tests pass. However, echoevm still can’t execute Ethereum mainnet block 10 000 000, indicating the missing opcodes aren’t part of Solidity’s core syntax—they must come from elsewhere.</p>
+<br>
+
+<h3 id="v0-0-6-2025-11-27"><a href="#v0-0-6-2025-11-27" class="headerlink" title="v0.0.6 (2025-11-27)"></a>v0.0.6 (2025-11-27)</h3><p>This <a href="https://github.com/smallyunet/echoevm/releases/tag/v0.0.6">minor release</a> adds two commands. The <code>debug</code> command displays bytecode execution step by step:</p>
+<pre><code class="bash">~/work/github/echoevm &gt; ./bin/echoevm run --debug 60016002
+PC    OP              GAS        STACK (Top)
+------------------------------------------------------------
+0002  PUSH1           0          0x1
+0004  PUSH1           0          0x2
+Return: 0x
+</code></pre>
+<p>The <code>repl</code> command works like Bitcoin’s <code>btcdeb</code>, allowing opcodes or bytecode to be entered and executed interactively:</p>
+<pre><code class="bash">~/work/github/echoevm &gt; ./bin/echoevm repl
+EchoEVM REPL
+Type opcodes (e.g., &#39;PUSH1 01 ADD&#39;) or hex (e.g., &#39;600101&#39;). Type &#39;exit&#39; to quit.
+&gt;  PUSH1 10
+Stack [1]:
+  0000: 0x10
+&gt; PUSH1 20
+Stack [2]:
+  0001: 0x20
+  0000: 0x10
+&gt; ADD
+Stack [1]:
+  0000: 0x30
+&gt; exit
+</code></pre>
 </div></div></body><!-- Defer non-critical scripts for better performance--><script defer src="/js/jquery.min.js?v=v1.2"></script><script defer src="/js/highlight.min.js?v=v1.2"></script><script defer src="/js/main.js?v=v1.2"></script><script defer src="/js/lightbox.js?v=v1.2"></script><script defer src="/js/bootstrap.min.js?v=v1.2"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5JRBZ6P1W3"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

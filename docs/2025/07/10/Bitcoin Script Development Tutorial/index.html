@@ -32,76 +32,215 @@ fallbackfee=0.0001
 <h3 id="2-Create-a-Wallet"><a href="#2-Create-a-Wallet" class="headerlink" title="2. Create a Wallet"></a>2. Create a Wallet</h3><p>Create a Bitcoin wallet:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ createwallet &quot;learn-script&quot;
 </code></pre>
-<p>This will create a folder under <code>./regtest/wallets</code> named <code>learn-script</code>.</p>
-<p>Generate a new wallet address:</p>
+<p>Because the command uses <code>-datadir</code> to specify the data directory, the wallet files are also stored there. If you inspect <code>./regtest/wallets</code>, you will find a <code>learn-script</code> directory containing the wallet we just created.</p>
+<p>Generate a new wallet address. Mine is <code>bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw</code>:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ getnewaddress
 </code></pre>
-<p>My sample address: <code>bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw</code></p>
-<p>Mine 101 blocks to this address:</p>
+<p>Next, mine some bitcoin to the wallet address on the local node. The argument <code>101</code> means mining 101 blocks. Why 101? Coinbase rewards have a maturity period of 100 blocks before they can be spent. If we mined only 99 blocks, the rewards would exist in theory but would not yet be spendable.</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 101 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
 </code></pre>
-<p>Check the wallet balance (should be 50):</p>
+<p>The command outputs the hash of every block it mines. Once it finishes, check the wallet balance, which should be 50 BTC:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ getbalance
 </code></pre>
-<h3 id="3-Send-a-Transaction"><a href="#3-Send-a-Transaction" class="headerlink" title="3. Send a Transaction"></a>3. Send a Transaction</h3><p>Generate a new receiving address:</p>
+<p>Why 50? Before Bitcoin’s first halving, each block paid a reward of 50 BTC. Why do 101 mined blocks yield only 50 spendable BTC? Because the latest 100 block rewards are still within the maturity period.</p>
+<h3 id="3-Send-a-Transaction"><a href="#3-Send-a-Transaction" class="headerlink" title="3. Send a Transaction"></a>3. Send a Transaction</h3><p>We now have a running local node and a funded wallet, so we can make an ordinary transfer. First generate a new receiving address. Mine is <code>bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc</code>:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ getnewaddress
 </code></pre>
-<p>Example: <code>bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc</code></p>
-<p>Check the balance (should be 0):</p>
+<p>Verify that the newly generated address has a balance of 0. The final argument, <code>0</code>, tells the command to include unconfirmed transactions:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ getreceivedbyaddress bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc 0
 </code></pre>
-<p>Send 0.01 BTC to it:</p>
+<p>Now send 0.01 BTC to the new address:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ sendtoaddress bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc 0.01
 </code></pre>
-<p>Get transaction details:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ gettransaction &lt;txid&gt;
+<p>The command returns a transaction ID. Mine is <code>81be2e97507d7a274029ec4d5ce9728a54fe6d885aa0f12a13ec6f54eee66c26</code>. Use it to query the transaction result and details:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ gettransaction 81be2e97507d7a274029ec4d5ce9728a54fe6d885aa0f12a13ec6f54eee66c26
+</code></pre>
+<p>The transaction has now been submitted, but the returned status contains <code>&quot;confirmations&quot;: 0</code>, and the block height remains <code>lastprocessedblock: 101</code>. Bitcoin does not produce blocks automatically in regtest mode. The difference is visible when querying the receiving address:</p>
+<pre><code class="bash"># The returned balance is 0.01
+bitcoin-cli -datadir=./ getreceivedbyaddress bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc 0
+# The returned balance is 0
+bitcoin-cli -datadir=./ getreceivedbyaddress bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc 1
+</code></pre>
+<p>As explained above, a final argument of <code>0</code> includes unconfirmed transactions, while <code>1</code> requires one confirmation. The transaction we just sent is still unconfirmed. Mine one more block to confirm it:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
+</code></pre>
+<p>If you query the transaction again, both its confirmation count and the wallet balance will now match expectations.</p>
+<h3 id="4-Inspect-the-Script"><a href="#4-Inspect-the-Script" class="headerlink" title="4. Inspect the Script"></a>4. Inspect the Script</h3><p>The transfer above is a P2WPKH transaction because Bitcoin Core now uses native SegWit addresses by default.</p>
+<p>First, what is P2PKH? The name stands for Pay to Public-Key Hash. A Bitcoin address is derived from a public key, and a P2PKH transaction uses an account address as its recipient. What people often call a legacy Bitcoin address is a P2PKH address, usually beginning with <code>1</code>.</p>
+<p>The native SegWit format is called P2WPKH—Pay to Witness Public-Key Hash. Its distinguishing feature is that signature data are placed in the witness field rather than in each UTXO’s output. To see this, first retrieve the complete encoded transaction using its transaction ID:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getrawtransaction 81be2e97507d7a274029ec4d5ce9728a54fe6d885aa0f12a13ec6f54eee66c26
+</code></pre>
+<p>This returns a long encoded value. Decode it with:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ decoderawtransaction 020000000001018f4e8514038b93d6cc1d4f77b011f4726ba765d338bfdf1e6724d1844bc5d36e0000000000fdffffff0240420f0000000000160014400a517208b473618b98817840328c09a77d6b123eaaf629010000001600147ef4555b42b71e6ebecd687170c92ab64cce35500247304402202417ff3f6959a7d449849ae78fd5272826339cd7096ab02cdd7eccfc7779fb14022077e43ce155259a602b6172261b1d830d30e0de8b06cd6479cac02ea7c6928ff10121020b396a9dfa1655feef066fe03b403d3e4bdee41ef9b26551497c0921acbf6bc196000000
+</code></pre>
+<p>The decoded structure looks like this:</p>
+<pre><code class="json">&#123;
+  // ...
+  &quot;vin&quot;: [
+    &#123;
+      // ...
+      &quot;txinwitness&quot;: [
+        &quot;304402202417ff3f6959a7d449849ae78fd5272826339cd7096ab02cdd7eccfc7779fb14022077e43ce155259a602b6172261b1d830d30e0de8b06cd6479cac02ea7c6928ff101&quot;,
+        &quot;020b396a9dfa1655feef066fe03b403d3e4bdee41ef9b26551497c0921acbf6bc1&quot;
+      ]
+    &#125;
+  ],
+  &quot;vout&quot;: [
+    &#123;
+      &quot;value&quot;: 0.01000000,
+      &quot;scriptPubKey&quot;: &#123;
+        &quot;asm&quot;: &quot;0 400a517208b473618b98817840328c09a77d6b12&quot;,
+        &quot;desc&quot;: &quot;addr(bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc)#nry368tt&quot;,
+        &quot;hex&quot;: &quot;0014400a517208b473618b98817840328c09a77d6b12&quot;,
+        &quot;address&quot;: &quot;bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc&quot;,
+        &quot;type&quot;: &quot;witness_v0_keyhash&quot;
+      &#125;
+    &#125;,
+    &#123;
+      &quot;value&quot;: 49.98998590,
+      &quot;scriptPubKey&quot;: &#123;
+        // ...
+      &#125;
+    &#125;
+  ]
+&#125;
+</code></pre>
+<p>First look at <code>txinwitness</code>, an array with two elements: the signature and the public key. This is the SegWit behavior mentioned above—the signature is stored with the input rather than in an output.</p>
+<p>Next look at <code>scriptPubKey.asm</code>. The ASM form describes the condition that must be satisfied to spend the amount locked by the script. Even an ordinary transfer is a Bitcoin script whose amount is locked under specific conditions. The script shown here has two parts. The first, <code>0</code>, is the <code>OP_0</code> opcode. The second, <code>400a517208b473618b98817840328c09a77d6b12</code>, is the wallet’s key hash; after Bech32 encoding, it becomes the familiar address <code>bcrt1qgq99zusgk3ekrzucs9uyqv5vpxnh66cjtwl6zc</code>.</p>
+<h3 id="5-Debug-with-btcdeb"><a href="#5-Debug-with-btcdeb" class="headerlink" title="5. Debug with btcdeb"></a>5. Debug with btcdeb</h3><p>What exactly does the <code>OP_0</code> opcode do? Opcodes are central to Bitcoin Script, and the <code>btcdeb</code> tool lets us debug and observe them. btcdeb does not offer a one-command installer; follow its <a href="https://github.com/bitcoin-core/btcdeb?tab=readme-ov-file#installation">official installation instructions</a> to download and compile it. Verify the installation:</p>
+<pre><code class="bash">btcdeb --version
+</code></pre>
+<p><code>OP_0</code> simply pushes an empty value onto the stack. Start a debugging session with:</p>
+<pre><code class="bash">btcdeb OP_0
+</code></pre>
+<p>The initial output is:</p>
+<pre><code class="bash">script  |  stack
+--------+--------
+0       |
+#0000 0
+</code></pre>
+<p>The <code>script</code> column contains the pending operation <code>0</code>, which is <code>OP_0</code> with the prefix omitted. <code>#0000 0</code> indicates that the current stack value is empty. Enter <code>step</code> to execute the opcode:</p>
+<pre><code class="bash">step
+        &lt;&gt; PUSH stack
+</code></pre>
+<p>The empty value has now been pushed onto the stack. For a more illustrative example, run:</p>
+<pre><code class="bash">btcdeb &#39;[OP_2 OP_3 OP_ADD]&#39;
+</code></pre>
+<p>Enter <code>step</code>, pressing Return after each step until execution finishes. Initially, three opcodes—<code>OP_2</code>, <code>OP_3</code>, and <code>OP_ADD</code>—are waiting to run:</p>
+<pre><code class="bash">script  |  stack
+--------+--------
+2       |
+3       |
+OP_ADD  |
+#0000 2
+</code></pre>
+<p>The first step executes <code>OP_2</code>, pushing 2 onto the stack. Two opcodes remain:</p>
+<pre><code class="bash">step
+        &lt;&gt; PUSH stack 02
+
+btcdeb&gt; script  |  stack
+--------+--------
+3       |      02
+OP_ADD  |
+#0001 3
+</code></pre>
+<p>The second step executes <code>OP_3</code>, pushing 3 onto the stack:</p>
+<pre><code class="bash">        &lt;&gt; PUSH stack 03
+
+btcdeb&gt; script  |  stack
+--------+--------
+OP_ADD  |      03
+        |      02
+#0002 OP_ADD
+</code></pre>
+<p>The third step executes <code>OP_ADD</code>. It pops two numbers, adds them, and pushes the result, 5, back onto the stack:</p>
+<pre><code class="bash">        &lt;&gt; POP  stack
+        &lt;&gt; POP  stack
+        &lt;&gt; PUSH stack 05
+btcdeb&gt; script  |  stack
+--------+--------
+        |      05
+</code></pre>
+<p>btcdeb’s command-line output is not especially intuitive, so the complete output is included and separated into steps despite its length. Every opcode corresponds to behavior defined by Bitcoin Core: arithmetic operations such as addition and subtraction, more complex operations, and combinations of simple opcodes that implement richer functionality. Bitcoin Script is stack-based, so all of its behavior takes place within the stack; there is no dynamic memory allocation.</p>
+<h3 id="6-Write-Bitcoin-Script-1"><a href="#6-Write-Bitcoin-Script-1" class="headerlink" title="6. Write Bitcoin Script (1)"></a>6. Write Bitcoin Script (1)</h3><p>After trying addition in btcdeb, we can put script code into an actual Bitcoin transaction and execute it on-chain. This is the script in its raw opcode form. It is deliberately insecure and self-validating: anyone can spend the funds locked in it. Spending merely causes the arithmetic expression to execute on-chain.</p>
+<pre><code>[OP_2 OP_3 OP_ADD OP_5 OP_EQUAL]
+</code></pre>
+<p>First convert each opcode to hexadecimal. This can be done manually or in code. The <a href="https://wiki.bitcoinsv.io/index.php/Opcodes_used_in_Bitcoin_Script">Bitcoin Script opcode documentation</a> lists the supported opcodes and their hexadecimal encodings. For this script:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Opcode</th>
+<th align="center">Hex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">OP_2</td>
+<td align="center">52</td>
+</tr>
+<tr>
+<td align="center">OP_3</td>
+<td align="center">53</td>
+</tr>
+<tr>
+<td align="center">OP_ADD</td>
+<td align="center">93</td>
+</tr>
+<tr>
+<td align="center">OP_5</td>
+<td align="center">55</td>
+</tr>
+<tr>
+<td align="center">OP_EQUAL</td>
+<td align="center">87</td>
+</tr>
+</tbody></table>
+<p>Concatenating them in order gives this hexadecimal script:</p>
+<pre><code>5253935587
+</code></pre>
+<p>Next generate a P2SH address. P2SH stands for Pay to Script Hash: funds are paid to, or locked in, a script hash. It functions as the address of the on-chain script:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ decodescript 5253935587
+</code></pre>
+<p>The output contains a <code>p2sh-segwit</code> field whose value is <code>2NAzGPjCcg8DiykVTKLJRYbU2fejCEbdPbX</code>. Pass that P2SH address to <code>getdescriptorinfo</code> to obtain the descriptor checksum required when constructing the transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ getdescriptorinfo &quot;addr(2NAzGPjCcg8DiykVTKLJRYbU2fejCEbdPbX)&quot;
+</code></pre>
+<p>The returned descriptor is <code>addr(2NAzGPjCcg8DiykVTKLJRYbU2fejCEbdPbX)#s260u65e</code>, which we will use below.</p>
+<p>There is one complication: a P2SH script can only be imported into a watch-only wallet, so create a new wallet with private keys disabled:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ createwallet &quot;arith-watch&quot; true true &quot;&quot; true
+</code></pre>
+<p>Import the P2SH script into the new wallet. The import succeeded only if the command returns <code>&quot;success&quot;: true</code>:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=arith-watch importdescriptors &#39;[&#123;&quot;desc&quot;:&quot;addr(2NAzGPjCcg8DiykVTKLJRYbU2fejCEbdPbX)#s260u65e&quot;,&quot;timestamp&quot;:&quot;now&quot;,&quot;label&quot;:&quot;arith-2+3=5&quot;&#125;]&#39;
+</code></pre>
+<p>We now have the P2SH address and have imported the script into a wallet. Send 0.01 BTC from the <code>learn-script</code> wallet to the script:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=learn-script sendtoaddress 2NAzGPjCcg8DiykVTKLJRYbU2fejCEbdPbX 0.01
 </code></pre>
 <p>Mine one block to confirm the transaction:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
 </code></pre>
-<h3 id="4-Inspect-the-Script"><a href="#4-Inspect-the-Script" class="headerlink" title="4. Inspect the Script"></a>4. Inspect the Script</h3><p>Use <code>getrawtransaction</code> and <code>decoderawtransaction</code> to view the transaction script:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ getrawtransaction &lt;txid&gt;
-bitcoin-cli -datadir=./ decoderawtransaction &lt;hex&gt;
-</code></pre>
-<p>You’ll see <code>txinwitness</code> (signature and pubkey) and <code>scriptPubKey</code> (locking script). <code>OP_0</code> in the script means an empty push (used in SegWit).</p>
-<h3 id="5-Debug-with-btcdeb"><a href="#5-Debug-with-btcdeb" class="headerlink" title="5. Debug with btcdeb"></a>5. Debug with btcdeb</h3><p>Use <code>btcdeb</code> to debug opcodes. Example:</p>
-<pre><code class="bash">btcdeb OP_0
-</code></pre>
-<p>And for a simple calculation:</p>
-<pre><code class="bash">btcdeb &#39;[OP_2 OP_3 OP_ADD]&#39;
-</code></pre>
-<p>Use <code>step</code> to execute each operation and watch the stack.</p>
-<h3 id="6-Write-Bitcoin-Script-1"><a href="#6-Write-Bitcoin-Script-1" class="headerlink" title="6. Write Bitcoin Script (1)"></a>6. Write Bitcoin Script (1)</h3><p>Write this simple script (insecure, for demo only):</p>
-<pre><code>[OP_2 OP_3 OP_ADD OP_5 OP_EQUAL]
-</code></pre>
-<p>Convert to hex: <code>5253935587</code></p>
-<p>Generate P2SH address:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ decodescript 5253935587
-</code></pre>
-<p>Get descriptor:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ getdescriptorinfo &quot;addr(&lt;p2sh-address&gt;)&quot;
-</code></pre>
-<p>Create a watch-only wallet:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ createwallet &quot;arith-watch&quot; true true &quot;&quot; true
-</code></pre>
-<p>Import the script:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=arith-watch importdescriptors &#39;[&#123;&quot;desc&quot;:&quot;addr(&lt;p2sh-address&gt;)#&lt;checksum&gt;&quot;,&quot;timestamp&quot;:&quot;now&quot;,&quot;label&quot;:&quot;arith-2+3=5&quot;&#125;]&#39;
-</code></pre>
-<p>Send BTC to the script address:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=learn-script sendtoaddress &lt;p2sh-address&gt; 0.01
-</code></pre>
-<p>Mine a block to confirm:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your-address&gt;
-</code></pre>
-<h3 id="7-Write-Bitcoin-Script-2"><a href="#7-Write-Bitcoin-Script-2" class="headerlink" title="7. Write Bitcoin Script (2)"></a>7. Write Bitcoin Script (2)</h3><p>Create a new address:</p>
+<p>The script is now on-chain and has a balance.</p>
+<h3 id="7-Write-Bitcoin-Script-2"><a href="#7-Write-Bitcoin-Script-2" class="headerlink" title="7. Write Bitcoin Script (2)"></a>7. Write Bitcoin Script (2)</h3><p>Anyone can currently spend the money at this script address. During the spend, the network evaluates <code>2 + 3</code> and checks whether the result is <code>5</code>. We will now construct a transaction that spends the funds deposited into the script. First prepare a receiving address:</p>
 <pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=learn-script getnewaddress
 </code></pre>
-<p>Use <code>createrawtransaction</code>, <code>fundrawtransaction</code>, <code>signrawtransactionwithwallet</code>, and <code>sendrawtransaction</code> to construct and broadcast a transaction spending from the script.</p>
-<p>Mine another block to confirm:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 &lt;your-address&gt;
+<p>My new address is <code>bcrt1q0n2x7030x59j5ql9pp6mw0tps74ag0znrdp45r</code>. Use it to construct a transaction. The <code>txid</code> in <code>inputs</code> is the ID of the transaction that funded the P2SH address:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -named createrawtransaction \
+  inputs=&#39;[&#123;&quot;txid&quot;:&quot;b952acd06a4f7edd7b2d5da0d509d01dfbb8e49fa15123d9cd5d3d23f944cdc2&quot;,&quot;vout&quot;:0&#125;]&#39; \
+  outputs=&#39;&#123;&quot;bcrt1q0n2x7030x59j5ql9pp6mw0tps74ag0znrdp45r&quot;:0.009&#125;&#39;
 </code></pre>
-<p>Check if the UTXO is spent:</p>
-<pre><code class="bash">bitcoin-cli -datadir=./ gettxout &lt;txid&gt; 0
+<p>Add automatic change handling to the raw transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=learn-script \
+  fundrawtransaction 0200000001c2cd44f9233d5dcdd92351a19fe4b8fb1dd009d5a05d2d7bdd7e4f6ad0ac52b90000000000fdffffff01a0bb0d00000000001600147cd46f3e2f350b2a03e50875b73d6187abd43c5300000000
+</code></pre>
+<p>The critical step is signing the funded transaction with the wallet. You must sign the transaction returned after change has been added. Without that step, the node treats the change as a fee, which exceeds its default fee limit and causes the next command to fail:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ -rpcwallet=learn-script \
+  signrawtransactionwithwallet 0200000001c2cd44f9233d5dcdd92351a19fe4b8fb1dd009d5a05d2d7bdd7e4f6ad0ac52b90000000000fdffffff02a0bb0d00000000001600147cd46f3e2f350b2a03e50875b73d6187abd43c5360a0d92901000000160014a3e136e24d5a8db14f15016b99fb21ea4b0b69da00000000
+</code></pre>
+<p>Finally, broadcast the signed transaction:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ sendrawtransaction 02000000000101c2cd44f9233d5dcdd92351a19fe4b8fb1dd009d5a05d2d7bdd7e4f6ad0ac52b90000000017160014c2d5ade24c1d0b9f27f651a71c3fe49d23d0ae13fdffffff02a0bb0d00000000001600147cd46f3e2f350b2a03e50875b73d6187abd43c5360a0d92901000000160014a3e136e24d5a8db14f15016b99fb21ea4b0b69da024730440220406a51d43ade05b240fcf2d14b58c90f31ebc705ab262189949355cac54d0431022051b592c570ef960a35e8509766e903ba836e3bcd1fb3c5cc211f0ff3442283550121021ff283ca8c9ecb45c8e19eacb7e8ae6fcb27d8addd38011d633e396487db44e300000000
+</code></pre>
+<p>Mine another block to confirm it:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ generatetoaddress 1 bcrt1q6c8d9vw62rdee72xcqx3d97w8qh8mfg8ky8zjw
+</code></pre>
+<p>Check the transaction state to verify that the output has been spent. An empty result means it is spent. The transaction ID below is the earlier transaction in which the wallet sent 0.01 BTC to the script:</p>
+<pre><code class="bash">bitcoin-cli -datadir=./ gettxout b952acd06a4f7edd7b2d5da0d509d01dfbb8e49fa15123d9cd5d3d23f944cdc2 0
 </code></pre>
 <h3 id="8-Troubleshooting"><a href="#8-Troubleshooting" class="headerlink" title="8. Troubleshooting"></a>8. Troubleshooting</h3><p>Environment used:</p>
 <pre><code class="text">OS: MacOS

@@ -271,4 +271,25 @@ func main() {
 
 Let's analyze the program's execution result. First, `beginning` is printed; then `defer` is encountered and not printed yet; `middle` is printed before `defer`; encountering `panic`, the program will terminate, printing `defer` and `panic`.
 
-Note that `defer` is executed before the program ends, not
+Note that `defer` executes before the program exits, not merely after the surrounding statements. The distinction matters here: `panic` causes the current program to terminate, so the deferred function runs before the panic finishes unwinding, not afterward. The output is:
+
+```Go
+beginning
+middle
+defer
+panic: panic
+
+goroutine 1 [running]:
+main.main()
+	D:/go/src/awesomeProject/main.go:12 +0x7f
+```
+
+### Other Features
+
+Go has many other language features and provides a large collection of practical packages. It is a language worth trying. Goroutines and channels are important enough to deserve a separate discussion later.
+
+### References
+
+- *Go Programming*
+
+- [Go by Example](https://gobyexample.com/)

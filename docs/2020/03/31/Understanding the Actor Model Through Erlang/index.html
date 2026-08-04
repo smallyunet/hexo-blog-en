@@ -128,7 +128,201 @@ function action(val) &#123;
 </tbody></table>
 <p>Initially, I tried rendering this data using Echarts for better comparison, but the resulting line chart was not user-friendly.</p>
 <p>Overall, Erlang is the slowest, possibly due to its age and lack of optimization. Elixir might perform better. Comparatively, Java is faster than Erlang, and Go is faster than Java, which seems expected. Java’s time consumption is one-third of Erlang’s, and Go’s is half of Java’s.</p>
-<p>The most surprising finding is that Akka’s actor speed is faster than Go’s goroutines. Before 1,000 interactions, Akka is slower than Erlang. At the 10K scale, it surpasses Erlang, at 100K, it surpasses Java, and at 1M, it surpasses</p>
+<p>The most surprising finding is that Akka’s actors are even faster than Go’s goroutines. Below 1,000 interactions, Akka is slower than Erlang. At the 10K scale it overtakes Erlang; at 100K it overtakes Java; and at 1M it overtakes Go and remains in the lead. This is an astonishing result. Although both implementations run on the JVM, Akka takes only about one-third as long as the Java version. Communication between Java threads may indeed introduce substantial overhead.</p>
+<p>It is unfortunate that I did not test Elixir. Why Akka is so fast, whether that speed is related to the Actor model, and how strong that relationship is all require further investigation.</p>
+<p>(The End)</p>
+<h3 id="Akka"><a href="#Akka" class="headerlink" title="Akka"></a>Akka</h3><p>The Akka program used in the benchmark is based on Akka’s official Hello World example. The Actor model is readily visible, especially in the <code>!</code> operator and the <code>receive</code> method.</p>
+<pre><code class="Scala">import akka.actor.typed.ActorRef
+import akka.actor.typed.ActorSystem
+import akka.actor.typed.Behavior
+import akka.actor.typed.scaladsl.Behaviors
+import GreeterMain.SayHello
+</code></pre>
+<p>These are the imports. If you use an editor such as VS Code, they are important. As in the Erlang program, there is a <code>Greeter</code> that sends messages, a <code>GreeterBot</code> that receives and replies to them, and a main method.</p>
+<pre><code class="Scala">object Greeter &#123;
+  final case class Greet(whom: String, replyTo: ActorRef[Greeted])
+  final case class Greeted(whom: String, from: ActorRef[Greet])
+
+  def apply(): Behavior[Greet] =
+    Behaviors.receive &#123; (context, message) =&gt;
+      message.replyTo ! Greeted(message.whom, context.self)
+      Behaviors.same
+    &#125;
+&#125;
+</code></pre>
+<p>This is the message-sending <code>Greeter</code>. Calling <code>Greeter</code> as a function automatically executes the code in <code>apply</code>. The <code>apply</code> method uses <code>receive</code>, which, like Erlang’s <code>receive</code>, waits until the actor receives a message. <code>replyTo</code> is the GreeterBot’s equivalent of a PID. After Greeter receives a message, it sends a reply to GreeterBot.</p>
+<pre><code class="Scala">object GreeterBot &#123;
+  var startTime = System.currentTimeMillis()
+
+  def apply(max: Int) = &#123;
+    bot(0, max)
+  &#125;
+
+  private def bot(greetingCounter: Int, max: Int): Behavior[Greeter.Greeted] =
+    Behaviors.receive &#123; (context, message) =&gt;
+      val n = greetingCounter + 1
+      context.log.info(&quot;&#123;&#125;&quot;, n)
+      if (n &gt;= max) &#123;
+        context.log.info(&quot;The End | &#123;&#125;&quot;, System.currentTimeMillis() - startTime)
+        Behaviors.stopped
+      &#125; else &#123;
+        message.from ! Greeter.Greet(message.whom, context.self)
+        bot(n, max)
+      &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>This is <code>GreeterBot</code>. Compared with Erlang’s concise code, Scala’s lengthy type declarations can feel cumbersome. After receiving a message from Greeter, GreeterBot checks whether <code>n</code> has reached <code>max</code>. If enough iterations have run, it stops; otherwise it recursively calls itself.</p>
+<pre><code class="Scala">object GreeterMain &#123;
+
+  final case class SayHello(name: String)
+
+  def apply(): Behavior[SayHello] =
+    Behaviors.setup &#123; context =&gt;
+      val greeter = context.spawn(Greeter(), &quot;greeter&quot;)
+
+      Behaviors.receiveMessage &#123; message =&gt;
+        val replyTo = context.spawn(GreeterBot(max = 10), message.name)
+        greeter ! Greeter.Greet(message.name, replyTo)
+        Behaviors.same
+      &#125;
+    &#125;
+&#125;
+
+object AkkaQuickstart extends App &#123;
+  val greeterMain = ActorSystem(GreeterMain(), &quot;AkkaQuickStart&quot;)
+  greeterMain ! SayHello(&quot;Charles&quot;)
+&#125;
+</code></pre>
+<p>Finally, this is the main method, which may also look rather long. A class extending <code>App</code> can be run as the main class. It registers <code>GreeterMain</code> with the Actor system and executes <code>GreeterMain.apply</code>. GreeterMain spawns two processes, behaving similarly to the Erlang program.</p>
+<h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><p>The Go program is much more concise. Here is its header:</p>
+<pre><code class="Go">package main
+
+import(
+  &quot;fmt&quot;
+  &quot;time&quot;
+)
+
+var maxCount = 100000000
+var startTime = time.Now().UnixNano() / 1e6
+</code></pre>
+<p>It defines two variables: the number of iterations and the program’s start time.</p>
+<pre><code class="Go">func main() &#123;
+  ch := make(chan bool)
+  exit := make(chan bool)
+
+  go func() &#123;
+    for i := 0; i &lt; maxCount; i++ &#123;
+      fmt.Println(i)
+      &lt;- ch
+      ch &lt;- true
+    &#125;
+  &#125;()
+
+  go func() &#123;
+    defer func() &#123;
+      timeUsed := time.Now().UnixNano() / 1e6 - startTime
+      fmt.Println(&quot;The End | &quot;, timeUsed)
+      close(ch)
+      close(exit)
+    &#125;()
+    for i := 0; i &lt; maxCount; i++ &#123;
+      ch &lt;- true
+      &lt;- ch
+    &#125;
+  &#125;()
+
+  &lt;- exit
+&#125;
+</code></pre>
+<p>The two goroutines alternate between reading from and writing to a channel. The Go program looks much cleaner; the Scala version is visually exhausting by comparison.</p>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p>Java is no less verbose than Scala.</p>
+<pre><code class="Java">public class Test&#123;
+    public static void main(String[] args) &#123;
+        Object lock = new Object();
+        Thread sender = new Sender(lock);
+        Thread receiver = new Receiver(lock);
+        sender.start();
+        receiver.start();
+    &#125;
+&#125;
+</code></pre>
+<p>The main method starts two threads that share a lock.</p>
+<pre><code class="Java">class Message &#123;
+    static long MAX_COUNT = 100000000;
+    static String status = new String(&quot;init&quot;);
+    static long count = 0;
+    static long startTime = 0;
+    public static void send() &#123;
+        System.out.println(count);
+        status = &quot;sent&quot;;
+        count++;
+        if (count == 1) &#123;
+            startTime = System.currentTimeMillis();
+        &#125;
+        if (count &gt;= MAX_COUNT) &#123;
+            status = &quot;stop&quot;;
+            long time = System.currentTimeMillis() - startTime;
+            System.out.println(&quot;The End | &quot; + time);
+        &#125;
+    &#125;
+    public static void receive() &#123;
+        status = &quot;received&quot;;
+    &#125;
+    public static String getStatus() &#123;
+        return status;
+    &#125;
+&#125;
+</code></pre>
+<p><code>Message</code> is the shared resource that stores the message state. It also performs a few auxiliary actions when the state changes, printing the required logs.</p>
+<pre><code class="Java">class Sender extends Thread &#123;
+    Object lock = null;
+    public Sender(Object lock) &#123;
+        this.lock = lock;
+    &#125;
+    @Override
+    public void run() &#123;
+        while (!Message.getStatus().equals(&quot;stop&quot;)) &#123;
+            synchronized (lock) &#123;
+                if (Message.getStatus().equals(&quot;init&quot;)
+                  || Message.getStatus().equals(&quot;received&quot;)) &#123;
+                    Message.send();
+                    lock.notify();
+                    try &#123;
+                        lock.wait();
+                    &#125; catch (Exception e) &#123;
+                        e.printStackTrace();
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+class Receiver extends Thread &#123;
+    Object lock = null;
+    public Receiver(Object lock) &#123;
+        this.lock = lock;
+    &#125;
+    @Override
+    public void run() &#123;
+        while (!Message.getStatus().equals(&quot;stop&quot;)) &#123;
+            synchronized (lock) &#123;
+                if (Message.getStatus().equals(&quot;sent&quot;)) &#123;
+                    Message.receive();
+                    lock.notify();
+                    try &#123;
+                        lock.wait();
+                    &#125; catch (Exception e) &#123;
+                        e.printStackTrace();
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p><code>Sender</code> and <code>Receiver</code> are similar. Sender sends a message and then waits for Receiver’s response. Receiver continually checks in a loop whether a message has arrived. When it has, Receiver replies, wakes Sender to tell it that the message is ready to process, and then waits for Sender’s next response.</p>
 </div></div></body><!-- Defer non-critical scripts for better performance--><script defer src="/js/jquery.min.js?v=v1.2"></script><script defer src="/js/highlight.min.js?v=v1.2"></script><script defer src="/js/main.js?v=v1.2"></script><script defer src="/js/lightbox.js?v=v1.2"></script><script defer src="/js/bootstrap.min.js?v=v1.2"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5JRBZ6P1W3"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

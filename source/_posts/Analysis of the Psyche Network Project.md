@@ -42,7 +42,7 @@ For the decentralized part, Psyche Network chose Solana as the smart contract pl
 
 Under the decentralized directory in the codebase, there are several Solana contracts responsible for creating training tasks, calculating each Client node’s reward, and distributing those rewards.
 
-Psyche Network is currently in the testnet stage, and all on-chain transactions occur on Solana’s Devnet. You can see the contract address in the `declare_id!()` statements in the source files. For example, the coordinator contract's address is `HR8RN2TP9E9zsi2kjhvPbirJWA1R6L6ruf4xNNGpjU5Y`, which shows frequent transactions on [the blockchain explorer](https://solscan.io/account/HR8RN2TP9E9zsi2kjhvPbirJWA1R6L6ruf4xNNGpjU5Y?cluster=devnet).
+At the time this article was written, Psyche Network was still in its testnet stage, with all on-chain transactions taking place on Solana's Devnet. The contract addresses can be found in the source files' `declare_id!()` statements. For example, the coordinator contract address was `HR8RN2TP9E9zsi2kjhvPbirJWA1R6L6ruf4xNNGpjU5Y`, which showed frequent transactions on [the blockchain explorer](https://solscan.io/account/HR8RN2TP9E9zsi2kjhvPbirJWA1R6L6ruf4xNNGpjU5Y?cluster=devnet).
 
 As for reward calculation, because there is a centralized Coordinator, the process is simple: the Coordinator validates the result from a Client, and if valid, initiates an on-chain transaction to credit the Client. The relevant code is in [these two lines](https://github.com/PsycheFoundation/psyche/blob/main/architectures/decentralized/solana-coordinator/programs/solana-coordinator/src/instance_state.rs#L146-L149):
 

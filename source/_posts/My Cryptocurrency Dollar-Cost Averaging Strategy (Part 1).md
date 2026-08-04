@@ -21,10 +21,10 @@ I want to practice the DCA investment method, which involves addressing several 
 2. Should I buy [BOX](https://b.watch/)? Rumor has it that Li's books must be read, his classes can be attended, but you should never buy the coins.
 3. What method should be used for DCA? Binance's DCA feature is sufficient, with zero fees (remember to occasionally withdraw to a wallet).
 4. What is the frequency of DCA? Daily, because prices fluctuate rapidly. If the frequency is too low, the cycle becomes too long.
-5. What is the duration of the DCA? I have currently planned to DCA for one year.
+5. How long will the DCA plan run? At the time of writing, I planned to continue it for one year.
 6. What are the targets for DCA?
 
-I did not blindly follow the selection and proportion of targets in Li Xiaolai's BOX. Initially, Li Xiaolai's BOX had a high proportion of EOS, which proved to be a failure, so EOS is no longer included in the BOX. Currently, the latest situation is that BTC accounts for 92% of the BOX's composition. Additionally, XIN has always been a component of BOX, showing that personal biases can influence decisions, as most of us probably don't even know what XIN is, while Li Xiaolai has consistently chosen this coin for years.
+I did not blindly copy the assets or allocations in Li Xiaolai's BOX. Early on, BOX assigned a large share to EOS; that proved unsuccessful, and EOS was later removed. At the time this article was written, BTC accounted for 92% of BOX. XIN, meanwhile, had always remained a component, illustrating how personal preferences can shape a portfolio: most people probably did not even know what XIN was, yet Li Xiaolai had continued to select it for years.
 
 The targets and allocation proportions I chose are:
 
@@ -45,7 +45,7 @@ The targets and allocation proportions I chose are:
 
 (Updated on 2024.09.26)
 
-You can view this collection of coins in this public [Watchlist](https://coinmarketcap.com/watchlist/66d339a5c316be09d04b7b16/), which links to the CoinMarketCap website. You will notice that nearly all of the coins have a market cap ranking within the top 100, following the fourth principle from [Some Small Tips for Crypto Investing](/2024/05/04/Small Tips for Cryptocurrency Investment/).
+You can view this collection of coins in this public [Watchlist](https://coinmarketcap.com/watchlist/66d339a5c316be09d04b7b16/), which links to the CoinMarketCap website. You will notice that nearly all of the coins have a market cap ranking within the top 100, following the fourth principle from [Some Small Tips for Crypto Investing](</2024/05/04/Small Tips for Cryptocurrency Investment/>).
 
 In my DCA portfolio, BTC is always the top choice, making up 50% of the total allocation. Additionally, five PoW coins make up 20% of the portfolio, meaning PoW coins collectively account for 70%. Most PoW coins have a capped supply.
 

@@ -67,4 +67,24 @@ In the Libra protocol, validator nodes V verify the root hash a of data D. For e
 
 <img src="d.png" width="70%" style="box-shadow: 0 0 0px #fff;">
 
-In the diagram, data D = {0:s0, 1:s1, 2:s2, 3:s3}. Suppose f is a
+In the diagram, data D = {0:s0, 1:s1, 2:s2, 3:s3}. Suppose f is a function that retrieves the third item, h2, so the expected result is f(D) = h2. Here h2 is r, the proof data are π = [h3, h4], and the root hash is a = H(h4||h5) = H(h4 || H(H(2 || r) || h3)). The validator executes Verify(a, f, r, π) to verify the computation.
+
+### Consensus Protocol
+
+Libra chose Byzantine fault-tolerant consensus, implementing a variant of HotStuff called LibraBFT, or LBFT. LBFT's primary purpose is to keep submitted blocks in one sequence—in other words, to avoid forks. Every three proposals form a round of operation. For each proposal, validators vote to elect the leader for the next round, and the collected votes form a quorum certificate (QC). The first block of a round is recorded as `preferred_round`. When the next block is written, it verifies the QC of `preferred_round`: the first, second, and third blocks following it all validate against that preferred round, while the fourth becomes the `preferred_round` of the next cycle.
+
+<img src="e.png" width="50%" style="box-shadow: 0 0 0px #fff;">
+
+In the diagram, k is the `preferred_round`. If a fork appears at k and 2f + 1 validators vote for k, k+1 is appended after k and k+2 follows, while the competing branch to the left of k becomes invalid. Suppose the leader for k+3 then times out. k+4 becomes the new leader and writes after the preferred round k, creating a new fork. If k+4 receives 2f+1 votes, k+5 is appended after k+4 according to the rules.
+
+After the fork at k+4, suppose the timed-out k+3 is elected leader again and resubmits. Validators check the QC for k+3's preferred round, k. The check passes, so k+3 is written after k+2, which still complies with the rules. The next leader, k+6, actually has k+4 as its preferred round. When it attempts to submit after k+3, the QC does not match, so k and the following k+1, k+2, and k+3 are removed, and the branch after k+4 becomes the main chain.
+
+LBFT is essentially an implementation of chained HotStuff and contains little fundamental innovation. The Libra team mainly made a design choice among existing consensus protocols. Whether choosing BFT was good or bad remained controversial and required time to evaluate. LBFT was a transitional approach for Libra's move from a consortium chain toward a public chain, expected to support at least 100 nodes and probably no more than about 1,000. Like HotStuff, LBFT tolerates at most one-third dishonest nodes.
+
+### Conclusion
+
+At the time of writing, the Libra protocol was still at an early stage. Its performance was not spectacular: it supported about 1,000 transactions per second, with a confirmation time of roughly ten seconds per submission. Many design decisions balanced performance. For example, consensus ran once every three proposals, and voting within a round did not have to wait, reducing network latency between clients and validators. With parallelism and sharding in mind, the sparse Merkle tree allowed account identity data to be verified across databases and supported parallel updates.
+
+Libra assembled its system from many mature technologies: memory-safe Rust for the core implementation, easily verifiable Merkle trees for its data structures, and chained HotStuff for consensus. Move was one of Libra's biggest technical highlights, enforcing digital-asset safety at the language level. Move itself is a bytecode language and difficult to read, so it provided the Move intermediate representation, or IR, for writing transaction scripts and smart contracts. As an experiment in financial innovation, Libra proposed a vision of a world currency built on blockchain. Its social significance may have been much greater than its technical novelty. The Libra Association then had 16 member organizations spanning payments, telecommunications, blockchain, and venture capital, and had attracted worldwide attention.
+
+Libra was expected to launch in the first half of 2020. We would have to wait and see.

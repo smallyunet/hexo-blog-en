@@ -1,5 +1,5 @@
 ---
-title: Why the Private Key Calculation of Ethereum is Irreversible
+title: Why Ethereum Private Keys Cannot Be Derived from Addresses
 tags: Blockchain
 date: 2023-02-20 23:42:24
 draft_date: 2023-02-18 17:12:04

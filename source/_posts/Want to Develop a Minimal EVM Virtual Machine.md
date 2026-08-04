@@ -1,5 +1,5 @@
 ---
-title: Want to Develop a Minimal EVM Virtual Machine
+title: An Attempt to Build a Minimal EVM Virtual Machine
 date: 2025-05-11 01:15:07
 tags:
 - Plan
@@ -21,18 +21,6 @@ Why choose this direction? Let’s analyze the technical modules of an Ethereum 
 Overall, I lean toward doing something engineering-focused rather than academic, yet still technically challenging. It should be meaningful both for personal technical growth and for the potential outcomes. If this minimal EVM is successfully developed, it can lead to a series of follow-up achievements, and many valuable products can be built on top of it.
 
 The conversion from Solidity to bytecode is compiler expert territory. What I aim to do is execute the bytecode — starting with the simplest operations like addition and jump, then move on to gas calculation, context switching, and ultimately be able to execute all historical Ethereum transactions.
-
-<br>
-
-### v0.0.2 (2025.06.09)
-
-This version adds the ability to run runtime bytecode, meaning you can first deploy a contract and then call the deployed contract's functions with specific parameters. For example:
-
-```
-go run ./cmd/echoevm -bin ./build/Add.bin -function 'add(uint256,uint256)' -args "3,5"
-```
-
-This command executes the bytecode from the `./build/Add.bin` file and calls the [add function](https://github.com/smallyunet/echoevm/blob/v0.0.2/test/contracts/Add.sol#L7), passing in the arguments 3 and 5. After the program completes, it will return the computation result, which is 8.
 
 <br>
 
@@ -108,4 +96,36 @@ make test-advanced
 
 All tests pass. However, echoevm still can’t execute Ethereum mainnet block 10 000 000, indicating the missing opcodes aren’t part of Solidity’s core syntax—they must come from elsewhere.
 
+<br>
 
+### v0.0.6 (2025-11-27)
+
+This [minor release](https://github.com/smallyunet/echoevm/releases/tag/v0.0.6) adds two commands. The `debug` command displays bytecode execution step by step:
+
+```bash
+~/work/github/echoevm > ./bin/echoevm run --debug 60016002
+PC    OP              GAS        STACK (Top)
+------------------------------------------------------------
+0002  PUSH1           0          0x1
+0004  PUSH1           0          0x2
+Return: 0x
+```
+
+The `repl` command works like Bitcoin's `btcdeb`, allowing opcodes or bytecode to be entered and executed interactively:
+
+```bash
+~/work/github/echoevm > ./bin/echoevm repl
+EchoEVM REPL
+Type opcodes (e.g., 'PUSH1 01 ADD') or hex (e.g., '600101'). Type 'exit' to quit.
+>  PUSH1 10
+Stack [1]:
+  0000: 0x10
+> PUSH1 20
+Stack [2]:
+  0001: 0x20
+  0000: 0x10
+> ADD
+Stack [1]:
+  0000: 0x30
+> exit
+```

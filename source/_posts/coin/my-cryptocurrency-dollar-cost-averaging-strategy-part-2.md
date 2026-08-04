@@ -5,7 +5,7 @@ draft_date: 2025-07-30 18:46:21
 tags: Investment
 ---
 
-Previous context: [My Cryptocurrency Dollar-Cost Averaging Strategy (Part 1)](/2024/08/28/My Cryptocurrency Dollar-Cost Averaging Strategy (Part 1)/)
+Previous context: [My Cryptocurrency Dollar-Cost Averaging Strategy (Part 1)](</2024/08/28/My Cryptocurrency Dollar-Cost Averaging Strategy (Part 1)/>)
 
 ### The new DCA strategy
 

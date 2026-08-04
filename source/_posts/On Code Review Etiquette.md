@@ -123,3 +123,7 @@ So maybe out of mental inertia, I rarely care about overly basic programming que
 There’s a memorable chapter in the book “[Rework](https://www.joecotellese.com/posts/rework-book-summary/)” titled “Hire great writers.” The point was not about publishing articles or writing reports at work — but that good writers often have a clear and logical way of expressing problems, which is very helpful at work.
 
 Back to tech — today, writing technical articles is quite common. If someone has a strong understanding of lock usage, they could write a solid piece explaining different types of locks and the best use cases. Share it on various platforms, gain thousands of followers, and if the insights keep coming, maybe even publish a book or open source it as a free e-book... FYI... don’t take it too seriously.
+
+### Addendum (2025-12-13)
+
+Why are some people willing—and even eager—to throw their weight around only inside their own little territory? It is a strange phenomenon. I do not care about your territory at all; I can leave whenever I want.

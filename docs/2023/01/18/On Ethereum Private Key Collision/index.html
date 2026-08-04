@@ -9,97 +9,84 @@
 <p>You can also check account-related <a href="https://etherscan.io/address/0x00000006A3D4DA3A559829B1730603CAeE97cC3D">transaction records</a> on Ethereum explorers based on this address.</p>
 <h3 id="Private-Key-Collision"><a href="#Private-Key-Collision" class="headerlink" title="Private Key Collision"></a>Private Key Collision</h3><p>Since a private key is just a string, is it possible to randomly generate a string such that the corresponding account address happens to have money in it? With the private key, you can control all assets in the account. There are many accounts on Ethereum with substantial balances. What if you happened to generate a private key corresponding to one of these accounts? You’d instantly become rich.</p>
 <p>Of course, the randomly generated string must be a 64-character hexadecimal string. To avoid any collision prevention mechanisms in the Ethereum SDK, we can generate it straightforwardly, like this:</p>
-<pre><code>```javascript
-let s = &quot;0123456789abcdef&quot;;
+<pre><code class="javascript">let s = &quot;0123456789abcdef&quot;;
 let hex = &quot;0x&quot;;
 for (let i = 0; i &lt; 64; i++) &#123;
   hex += s[Math.floor(Math.random() * 16)];
 &#125;
 </code></pre>
-<pre><code>
-This method is straightforward, generating a 64-character string through random concatenation. Although Ethereum doesn&#39;t have collision prevention mechanisms.
-
-### Collision Probability
-
-Let&#39;s calculate the probability of randomly generating a private key that collides with an existing account. If there&#39;s an address, how likely is it to randomly generate the private key for that address?
-
-In hexadecimal, each character has a 1/16 chance of matching a target private key character. For a 64-character string, the probability is (1/16)&lt;sup&gt;64&lt;/sup&gt;.
+<p>This is straightforward: it randomly assembles a 64-character string. It is the sort of thing that appears every day in easy LeetCode problems. In practice, Ethereum does not have any collision-prevention mechanism.</p>
+<h3 id="Collision-Probability"><a href="#Collision-Probability" class="headerlink" title="Collision Probability"></a>Collision Probability</h3><p>Let’s calculate the probability of randomly generating a private key that collides with an existing account. If there’s an address, how likely is it to randomly generate the private key for that address?</p>
+<p>In hexadecimal, each character has a 1&#x2F;16 chance of matching a target private key character. For a 64-character string, the probability is (1&#x2F;16)<sup>64</sup>.</p>
+<pre><code>p = (1/16)^64
+  = 1 / 16^64
+  = 1 / 115792089237316195423570985008687907853269984665640564039457584007913129639936
 </code></pre>
-<p>p &#x3D; (1&#x2F;16)^64
-  &#x3D; 1 &#x2F; 16^64
-  &#x3D; 1 &#x2F; 115792089237316195423570985008687907853269984665640564039457584007913129639936</p>
-<pre><code>
-Rounding off and considering just the order of magnitude:
+<p>Rounding off and considering just the order of magnitude:</p>
+<pre><code>p = 1 / 115792089237316195423570985008687907853269984665640564039457584007913129639936
+  = 1 / 100000000000000000000000000000000000000000000000000000000000000000000000000000
+  = 1 / 10^77
 </code></pre>
-<p>p &#x3D; 1 &#x2F; 115792089237316195423570985008687907853269984665640564039457584007913129639936
-  &#x3D; 1 &#x2F; 100000000000000000000000000000000000000000000000000000000000000000000000000000
-  &#x3D; 1 &#x2F; 10^77</p>
-<pre><code>
-This is an extremely low probability. The lowest winning rate for the Chinese lottery, &quot;Daletou,&quot; is one in ten million, or 1/10^8. The probability of an Ethereum private key collision being a specific account is equivalent to winning the lottery ten times in a row. It&#39;s almost impossible.
-
-However, lottery winning has a speed limit, such as requiring a day to announce the result. Cryptocurrency private keys don&#39;t have such a limit. Can increasing the speed of random private key generation improve the collision probability?
-
-Currently, the [hash rate](https://www.blockchain.com/explorer/charts/hash-rate) of the entire Bitcoin network is 270M TH/s. Bitcoin mining involves continuous hashing until a string with a certain number of leading zeros is found. Thus, Bitcoin&#39;s hash rate can describe the private key generation rate. After [unit conversion](https://en.bitcoinwiki.org/wiki/Hashrate):
+<p>This is an extremely low probability. The lowest winning rate for the Chinese lottery, “Daletou,” is one in ten million, or 1&#x2F;10^8. The probability of an Ethereum private key collision being a specific account is equivalent to winning the lottery ten times in a row. It’s almost impossible.</p>
+<p>However, lottery winning has a speed limit, such as requiring a day to announce the result. Cryptocurrency private keys don’t have such a limit. Can increasing the speed of random private key generation improve the collision probability?</p>
+<p>At the time this article was written, the <a href="https://www.blockchain.com/explorer/charts/hash-rate">hash rate</a> of the Bitcoin network was 270M TH&#x2F;s. Bitcoin mining involves continuous hashing until a value with a required number of leading zeros is found, so the network hash rate can be used here as a rough upper-bound analogy for private-key generation speed. After <a href="https://en.bitcoinwiki.org/wiki/Hashrate">unit conversion</a>:</p>
+<pre><code>r = 270M TH/s
+  = 270000000 TH/s
+  = 270000000000 GH/s
+  = 270000000000000 MH/s
+  = 270000000000000000 kH/s
+  = 270000000000000000000 /s
+  = 100000000000000000000 /s
+  = 10^20
 </code></pre>
-<p>r &#x3D; 270M TH&#x2F;s
-  &#x3D; 270000000 TH&#x2F;s
-  &#x3D; 270000000000 GH&#x2F;s
-  &#x3D; 270000000000000 MH&#x2F;s
-  &#x3D; 270000000000000000 kH&#x2F;s
-  &#x3D; 270000000000000000000 &#x2F;s
-  &#x3D; 100000000000000000000 &#x2F;s
-  &#x3D; 10^20</p>
-<pre><code>
-This result is rounded to the nearest order of magnitude. If you had the global Bitcoin mining power to perform Ethereum private key collisions, the per-second probability would be:
+<p>This result is rounded to the nearest order of magnitude. If you had the global Bitcoin mining power to perform Ethereum private key collisions, the per-second probability would be:</p>
+<pre><code>ps = p * r
+   = 1 / 10^57
+   = 1 / 1000000000000000000000000000000000000000000000000000000000
 </code></pre>
-<p>ps &#x3D; p * r
-   &#x3D; 1 &#x2F; 10^57
-   &#x3D; 1 &#x2F; 1000000000000000000000000000000000000000000000000000000000</p>
-<pre><code>
-This is still a remote probability. What if the collision attempt continues for one year?
+<p>This is still a remote probability. What if the collision attempt continues for one year?</p>
+<pre><code>py = ps * 60 * 60 * 24 * 365
+   = ps * 31536000
+   = ps * 10000000
+   = ps * 10^7
+   = 1 / 10^50
+   = 1 / 100000000000000000000000000000000000000000000000000
 </code></pre>
-<p>py &#x3D; ps * 60 * 60 * 24 * 365
-   &#x3D; ps * 31536000
-   &#x3D; ps * 10000000
-   &#x3D; ps * 10^7
-   &#x3D; 1 &#x2F; 10^50
-   &#x3D; 1 &#x2F; 100000000000000000000000000000000000000000000000000</p>
-<pre><code>
-What about 100 million years of continuous operation?
+<p>What about 100 million years of continuous operation?</p>
+<pre><code>pb = py * 100000000
+   = py * 10^8
+   = 1 / 10^42
+   = 1 / 1000000000000000000000000000000000000000000
 </code></pre>
-<p>pb &#x3D; py * 100000000
-   &#x3D; py * 10^8
-   &#x3D; 1 &#x2F; 10^42
-   &#x3D; 1 &#x2F; 1000000000000000000000000000000000000000000</p>
-<pre><code>
-As shown, time increases the probability only slightly. Computing power may increase exponentially, like the speed improvements of Apple&#39;s M series chips over Intel chips. However, this is still insignificant compared to the order of magnitude with 70 zeros.
-
-Even with the computing power of 100 million Earths&#39; worth of Bitcoin miners running for 100 million years, you&#39;d only reduce a few zeros from the likelihood of collision success.
-
-### Giving It a Try
-
-Despite the improbability, I still want to try.
-
-I wrote a script, [eth-collision/eth-collision-random](https://github.com/eth-collision/eth-collision-random), which randomly generates private keys and checks the account balance on [etherscan.io](https://etherscan.io) for addresses derived from these keys. If the balance is greater than zero, it logs the private key. Due to Etherscan&#39;s API call rate limit, the script checks 20 addresses per second, attempting 1.72 million addresses per day.
-
-This speed isn&#39;t fast enough. Is there a better way? Most third-party services have API rate limits. To query without restrictions, you&#39;d need to run your own Ethereum node. The minimum hardware requirements for an Ethereum node are a 4-core CPU, 16GB of RAM, and a 1TB hard drive. Such a server costs at least $300 per month on [Vultr](https://www.vultr.com/). It&#39;s expensive. After setting up the node, you&#39;d need to write a program to collect addresses with balances from transaction data in each block, which takes a long time.
-
-I noticed that [this page](https://etherscan.io/accounts/1?ps=100) provides a list of Ethereum addresses with the highest balances, 100 per page, for a total of 100 pages. I wrote a crawler, [eth-collision/eth-address-top-list](https://github.com/eth-collision/eth-address-top-list.git), to fetch data from this page, giving me a list of the top 10,000 Ethereum addresses by balance.
-
-With these 10,000 addresses, the program can run faster without API rate limits or needing a full node. I used Golang to write a program, [eth-collision/eth-collision-match-address](https://github.com/eth-collision/eth-collision-match-address.git), starting 100 goroutines to speed up private key generation. The program loads the 10,000 addresses into a map and checks if the randomly generated account is in the target list. A JavaScript for-loop can max out the CPU, but intuitively, Golang feels faster.
-
-By the way, remember to add a mutex to the map in Golang because maps aren&#39;t concurrency-safe. Adding locks reduces speed. To solve the lock issue, since there are only 10,000 addresses, not much memory is needed, so instantiate multiple maps, one for each goroutine. This ensures the efficiency of private key generation and verification.
-
-Are 10,000 addresses too few? How many Ethereum addresses are there? According to Etherscan [statistics](https://etherscan.io/chart/address), there are currently about 230M, approximately 200 million addresses.
-
-I found a repository, [eth-collision/Wallet-private-key-collision-brute-force-tool](https://github.com/eth-collision/Wallet-private-key-collision-brute-force-tool), providing a OneDrive download link for a file containing 180 million account addresses with transaction records on the chain. The compressed file is 4.4GB, and after decompression, it&#39;s about 16GB in pkl format, which I converted to a txt file using Python.
-
-With this many account addresses, the question becomes how to use the data.
-
-First, load all data into a map. This amount of data in memory would require at least 16GB, necessitating a 24GB server. The cheapest suitable server on Vultr costs nearly $150 per month. Furthermore, Golang&#39;s query efficiency with such a large data set and the need for locking are concerns.
-
-Are there better solutions? MySQL can&#39;t handle billion-level data queries efficiently. In a previous project, the simplest query in a
+<p>As shown, time increases the probability only slightly. Computing power may increase exponentially, like the speed improvements of Apple’s M series chips over Intel chips. However, this is still insignificant compared to the order of magnitude with 70 zeros.</p>
+<p>Even with the computing power of 100 million Earths’ worth of Bitcoin miners running for 100 million years, you’d only reduce a few zeros from the likelihood of collision success.</p>
+<h3 id="Giving-It-a-Try"><a href="#Giving-It-a-Try" class="headerlink" title="Giving It a Try"></a>Giving It a Try</h3><p>Despite the improbability, I still want to try.</p>
+<p>I wrote a script, <a href="https://github.com/eth-collision/eth-collision-random">eth-collision&#x2F;eth-collision-random</a>, which randomly generates private keys and checks the account balance on <a href="https://etherscan.io/">etherscan.io</a> for addresses derived from these keys. If the balance is greater than zero, it logs the private key. Due to Etherscan’s API call rate limit, the script checks 20 addresses per second, attempting 1.72 million addresses per day.</p>
+<p>This speed isn’t fast enough. Is there a better way? Most third-party services have API rate limits. To query without restrictions, you’d need to run your own Ethereum node. The minimum hardware requirements for an Ethereum node are a 4-core CPU, 16GB of RAM, and a 1TB hard drive. Such a server costs at least $300 per month on <a href="https://www.vultr.com/">Vultr</a>. It’s expensive. After setting up the node, you’d need to write a program to collect addresses with balances from transaction data in each block, which takes a long time.</p>
+<p>I noticed that <a href="https://etherscan.io/accounts/1?ps=100">this page</a> provides a list of Ethereum addresses with the highest balances, 100 per page, for a total of 100 pages. I wrote a crawler, <a href="https://github.com/eth-collision/eth-address-top-list.git">eth-collision&#x2F;eth-address-top-list</a>, to fetch data from this page, giving me a list of the top 10,000 Ethereum addresses by balance.</p>
+<p>With these 10,000 addresses, the program can run faster without API rate limits or needing a full node. I used Golang to write a program, <a href="https://github.com/eth-collision/eth-collision-match-address.git">eth-collision&#x2F;eth-collision-match-address</a>, starting 100 goroutines to speed up private key generation. The program loads the 10,000 addresses into a map and checks if the randomly generated account is in the target list. A JavaScript for-loop can max out the CPU, but intuitively, Golang feels faster.</p>
+<p>By the way, remember to add a mutex to the map in Golang because maps aren’t concurrency-safe. Adding locks reduces speed. To solve the lock issue, since there are only 10,000 addresses, not much memory is needed, so instantiate multiple maps, one for each goroutine. This ensures the efficiency of private key generation and verification.</p>
+<p>Are 10,000 addresses too few? How many Ethereum addresses were there? According to Etherscan <a href="https://etherscan.io/chart/address">statistics</a>, there were about 230 million at the time of writing—roughly 200 million for an order-of-magnitude estimate.</p>
+<p>I found a repository, <a href="https://github.com/eth-collision/Wallet-private-key-collision-brute-force-tool">eth-collision&#x2F;Wallet-private-key-collision-brute-force-tool</a>, providing a OneDrive download link for a file containing 180 million account addresses with transaction records on the chain. The compressed file is 4.4GB, and after decompression, it’s about 16GB in pkl format, which I converted to a txt file using Python.</p>
+<p>With this many account addresses, the question becomes how to use the data.</p>
+<p>First, load all data into a map. This amount of data in memory would require at least 16GB, necessitating a 24GB server. The cheapest suitable server on Vultr costs nearly $150 per month. Furthermore, Golang’s query efficiency with such a large data set and the need for locking are concerns.</p>
+<p>Are there better solutions? MySQL cannot efficiently support queries over hundreds of millions of rows. In a previous project, even the simplest single query over more than 100 million records took over ten seconds. Here we need thousands of lookups per second. What about Redis? Its lookup performance should be sufficient, but it still loads all data into memory. According to the Redis <a href="https://redis.io/docs/getting-started/faq/">FAQ</a>, one million keys require 85 MB of memory. Scaling that up:</p>
+<pre><code>1M   -&gt; 85M
+180M -&gt; 180 * 85M
+     = 15300M
+     = 15G
 </code></pre>
+<p>A 16 GB Redis instance on Vultr is very expensive—far more than a server—at about $480 per month. Heavier databases such as Elasticsearch or a more specialized system such as HBase would require setting up the database, importing the data, and processing it, making the overall workflow rather cumbersome. The server cost would not necessarily be lower either.</p>
+<p>Later I came across Bloom filters, which happen to fit this use case. I tried one configured for 200 million entries with a false-positive rate of one in a billion. After loading 180 million addresses, the exported <a href="https://github.com/eth-collision/eth-address-all">binary file</a> occupied only 1 GB on disk and required only 1 GB of memory when loaded.</p>
+<p>That is a fairly good solution. I ran the collision program on servers: a two-core, 4 GB instance costing $30 per month could test 60 million addresses per hour, while an eight-core, 16 GB instance costing RMB 600 per month could test 160 million per hour.</p>
+<p>Of course, no server is good enough. Even all the computing power on Earth would not be enough.</p>
+<h3 id="Vanity-Addresses"><a href="#Vanity-Addresses" class="headerlink" title="Vanity Addresses"></a>Vanity Addresses</h3><p>Ethereum also has vanity addresses. For example, <code>0x00000006A3D4DA3A559829B1730603CAeE97cC3D</code> contains six leading zeros. See <a href="https://www.theblockbeats.info/news/33808?from=telegram">this article</a> for more about vanity addresses.</p>
+<p>I wrote <a href="https://github.com/eth-collision/eth-collision-find-address">eth-collision&#x2F;eth-collision-find-address</a> to search for them. Finding an address with six leading zeros is generally easy and takes only a few minutes on a MacBook Air M1. Seven leading zeros may take half an hour. Eight can take a day or two.</p>
+<p>An address with ten leading zeros is extremely rare. Vanity addresses are of little practical use, of course: once you know the private key, the account is yours, and nobody else would want it from you.</p>
+<h3 id="Manual-Online-Collision"><a href="#Manual-Online-Collision" class="headerlink" title="Manual Online Collision"></a>Manual Online Collision</h3><p>This webpage lets you experiment with private-key collisions manually. It can derive a public key from a private key, generate random key pairs, and link directly to Etherscan to check the corresponding account balance.</p>
+<p>Website: <a href="http://eag.smallyu.net/">http://eag.smallyu.net</a></p>
+<p>Source: <a href="https://github.com/smallyunet/eth-address-generator">smallyunet&#x2F;eth-address-generator</a></p>
+<p>The page is implemented entirely in the browser, works offline, and introduces no security risk.</p>
 </div></div></body><!-- Defer non-critical scripts for better performance--><script defer src="/js/jquery.min.js?v=v1.2"></script><script defer src="/js/highlight.min.js?v=v1.2"></script><script defer src="/js/main.js?v=v1.2"></script><script defer src="/js/lightbox.js?v=v1.2"></script><script defer src="/js/bootstrap.min.js?v=v1.2"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5JRBZ6P1W3"></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());

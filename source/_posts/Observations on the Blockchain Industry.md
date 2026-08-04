@@ -36,7 +36,7 @@ By the way, Liangxi is of low quality, Ma Yilong is uneducated, and KOLs are all
 
 The rise of NFTs was quite sudden, but now the hype has died down. I read an article that said there are two blockchain scenarios: one is migrating from Web 2 to Web 3, which isn't innovation but chain transformation, and the other is native to Web 3. Initially, it was thought that NFTs could serve as on-chain proof of art, but it didn't take off. Instead, blue-chip NFTs succeeded by creating original works on-chain and peripherals off-chain. Currently, NFTs still have more investment attributes, relying on brand and rarity.
 
-Various Fi projects ultimately fall under Finance, such as SocialFi, GameFi, and DeFi. There are currently no reliable scenarios that work. The biggest Web 3.0 and metaverse are still conceptual stages. If it doesn't work abroad, it definitely won't work domestically due to a natural resistance to Fi. In this context, you might feel hopeless.
+Various “Fi” projects ultimately fall under finance, including SocialFi, GameFi, and DeFi. At the time of writing, none had found a reliably successful use case. Even the broader ideas of Web 3.0 and the metaverse were still largely conceptual. If these models could not succeed overseas, they were even less likely to work domestically, where there was a natural resistance to “Fi.” In that environment, it was easy to feel hopeless.
 
 There are chat rooms and email services based on ENS, but who uses them? There are small games that combine on-chain assets, but neither players nor project teams make money. So what do they do?
 
@@ -66,7 +66,7 @@ Following previous thought patterns, distributed storage aims to either replace 
 
 Firstly, layer 2 is still within the Finance scope. Ethereum plans to promote layer 2 to enhance the mainnet's performance and distribute computational pressure.
 
-Currently, layer 2 lacks a true leader. Each layer 2 project is isolated, unable to interact with one another, posing a significant user experience problem. Users need to choose a layer 2 platform, so only small projects are placed on layer 2. Large contracts on layer 1 are unlikely to move to layer 2.
+At the time of writing, Layer 2 had no clear leader. The projects were isolated and could not interoperate, creating a significant user-experience problem. Users had to choose a particular Layer 2 platform, so mainly smaller projects deployed there; large contracts on Layer 1 were unlikely to migrate.
 
 Layer 2's technical infrastructure is incomplete. zk is not yet feasible, op and arb are relatively usable but quite centralized, and interactions with layer 1 are slow. During this year's Arbitrum Odyssey, the sudden increase in users caused gas fees to reach three times the mainnet, which became a famous issue, and the problem was hard to fix.
 
@@ -78,7 +78,6 @@ Ethereum has many blueprints for layer and sharding, but as someone said, "Ether
 
 ### Others
 
-DID has been around for years, but no project has truly succeeded. Currently, it is still believed that MetaMask or wallets are the entry point to Web 3. If DID is to take off, it might require a major market shake-up.
+DID had existed for years, but no project had truly succeeded. At the time of writing, MetaMask and other wallets were still widely regarded as the gateway to Web3. DID might require a major market shift before it could take off.
 
 Solana's price dropped significantly during the FTX incident. Solana's feature is its PoH consensus, but after several outages, it has lost much of its appeal.
-
