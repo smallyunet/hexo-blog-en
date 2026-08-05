@@ -1,0 +1,76 @@
+<!-- Stable asset version (for cache busting without full-site churn)--><!DOCTYPE html><html lang="en"><head><title>How PySonar2 Helps AI Save Tokens</title><meta http-equiv="content-type" content="text/html; charset=utf-8"><!-- Mobile viewport: include viewport-fit=cover to allow CSS safe-area usage on full-screen devices--><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"><!-- iOS Safari / PWA status bar style (use default so text stays legible on light background)--><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><!-- SEO basics--><meta name="description"><!-- Open Graph & Twitter--><link rel="canonical" href="https://en.smallyu.net/2026/08/03/How PySonar2 Helps AI Save Tokens/"><meta property="og:title" content="How PySonar2 Helps AI Save Tokens"><meta property="og:type" content="article"><meta property="og:url" content="https://en.smallyu.net/2026/08/03/How PySonar2 Helps AI Save Tokens/"><meta property="og:site_name" content="smallyu‘s Blog"><meta name="twitter:card" content="summary_large_image"><!-- Browser UI color--><meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1115"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><!-- stylesheets--><!-- Use a stable, configurable asset version to prevent full-site churn on every build.--><!-- Set `asset_version` in theme _config.yml when you actually change CSS/JS.--><link rel="stylesheet" href="/css/xcode.min.css?v=v1.2"><link rel="stylesheet" href="/css/post.css?v=v1.2"><!-- unified typography overrides for both home and post pages--><link rel="stylesheet" href="/css/typography.css?v=v1.2"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="smallyu‘s Blog" type="application/atom+xml">
+</head><body><div><div class="inner"><h1>How PySonar2 Helps AI Save Tokens</h1><div class="time">2026-08-03</div><div class="title-margin"></div><h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Today I want to share a “major” discovery: <a href="https://github.com/yinwang0/pysonar2">PySonar2</a> can greatly reduce the tokens AI consumes when modifying Python projects.</p>
+<p>This is the benchmark result produced by ChatGPT:</p>
+<img src="1.png" width="80%">
+
+<p>Here is the benchmark task definition:</p>
+<img src="2.png" width="55%">
+
+<p>There were two tasks:</p>
+<img src="3.png" width="100%">
+
+<p>In summary, the benchmark used a large Python project created for testing and defined tasks in two directions. One crossed multiple directories and files; the other had a clear target and required no cross-file definitions. Each was executed with and without the Skill.</p>
+<p>As shown, using the Skill improved speed slightly and reduced token consumption directly by 30%!</p>
+<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h3><p>The Skill mentioned above is a Skill conforming to the AI Skills specification and wrapping the PySonar2 source. You can tell ChatGPT directly:</p>
+<blockquote>
+<p>Install this skill in my user-level directory: <a href="https://github.com/smallyunet/pysonar2">https://github.com/smallyunet/pysonar2</a></p>
+</blockquote>
+<p>That is enough.</p>
+<p>This PySonar2 repository is a fork. The original was Yin Wang’s project from thirteen years ago and had become somewhat “outdated” in engineering and features, so I added a little modern engineering packaging. PySonar2’s core lexical analysis and type inference, of course, are not outdated.</p>
+<p>Besides the AI Skill, I published PySonar2 as a VS Code extension. After installing it and opening Python code in VS Code, hovering over code displays PySonar2’s inferred types:</p>
+<ul>
+<li>Extension: <a href="https://marketplace.visualstudio.com/items?itemName=smallyu.pysonar2-code-intelligence">PySonar2 Code Intelligence</a></li>
+</ul>
+<h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h3><p>Why can PySonar2 help AI save tokens?</p>
+<p>If you are a programmer who frequently asks AI to write code, you will see it use <code>rg</code> extensively. For every task, it reads all kinds of source files before continuing with modifications. PySonar2 can provide semantic content derived from AST analysis:</p>
+<pre><code class="json">&#123;
+  &quot;symbol&quot;: &quot;User&quot;,
+  &quot;definitions&quot;: [
+    &#123;&quot;file&quot;: &quot;models.py&quot;, &quot;startLine&quot;: 12&#125;
+  ],
+  &quot;references&quot;: [
+    &#123;&quot;file&quot;: &quot;service.py&quot;, &quot;startLine&quot;: 48&#125;,
+    &#123;&quot;file&quot;: &quot;tests/test_service.py&quot;, &quot;startLine&quot;: 31&#125;
+  ],
+  &quot;affectedFiles&quot;: [
+    &quot;models.py&quot;,
+    &quot;service.py&quot;,
+    &quot;tests/test_service.py&quot;
+  ]
+&#125;
+</code></pre>
+<p>It summarizes where every variable is defined, where it comes from, and which source files relate to it, all in one file. It is equivalent to building a local index that AI reads directly instead of rereading all the code every time.</p>
+<p>Every current AI tool has two limitations:</p>
+<ol>
+<li>AI usage consumes tokens, and tokens are money. Saving tokens saves money.</li>
+<li>Every Transformer-based AI model has a context limit. An index saves context space.</li>
+</ol>
+<h3 id="Comparison"><a href="#Comparison" class="headerlink" title="Comparison"></a>Comparison</h3><p>Does PySonar2 still have any unique value today? Yes:</p>
+<img src="4.png" width="90%">
+
+<p>Many similar projects claiming to save tokens use keyword matching or even embedding matching, which is not on the same level as PySonar2’s semantic analysis.</p>
+<p>Still, thirteen years have passed without academic-theory updates, so PySonar2 cannot remain at the world’s frontier. But because it is open source, lightweight, and logically clear, it may have unique advantages and potential for Agent integration:</p>
+<img src="5.png" width="90%">
+
+<h3 id="Inspiration"><a href="#Inspiration" class="headerlink" title="Inspiration"></a>Inspiration</h3><h4 id="1-Python-Is-Only-the-Beginning"><a href="#1-Python-Is-Only-the-Beginning" class="headerlink" title="1. Python Is Only the Beginning"></a>1. Python Is Only the Beginning</h4><p>If PySonar2 can save AI large amounts of tokens on Python projects, what about other languages? Could JavaScript use the same idea? What about more scripting languages? The idea is no longer limited to PySonar2 itself.</p>
+<h4 id="2-Helping-AI-Save-Tokens"><a href="#2-Helping-AI-Save-Tokens" class="headerlink" title="2. Helping AI Save Tokens"></a>2. Helping AI Save Tokens</h4><p>More than making this old project useful again, I care about another question: which coding tools remain valuable in the AI era?</p>
+<p>Humans no longer need to write or even read code. Yet PySonar2 plays an enormous role here, saving AI tokens and giving me a different kind of hope:</p>
+<ol>
+<li>Helping AI save tokens is a good direction for tools.</li>
+</ol>
+<p>(At the same time, I am optimizing another project, <a href="https://smallyu.net/2025/05/11/%E6%83%B3%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%9C%80%E5%B0%8FEVM%E8%99%9A%E6%8B%9F%E6%9C%BA/">EchoEVM</a>. Using EchoEVM’s interpreter foundation, AI writing Solidity scripts can see bytecode-level execution. Such a debugging tool is not useful to humans, but is extremely useful to AI: humans cannot understand bytecode, while AI can.)</p>
+<ol start="2">
+<li>Fundamental principles do not become outdated in the AI era.</li>
+</ol>
+<p>As a tool with academic-grade principles, PySonar2 still provides value today when humans no longer need to write code. It saves AI tokens and saves users money. That is an efficiency tool in the truest sense.</p>
+<h3 id="Related-Reading"><a href="#Related-Reading" class="headerlink" title="Related Reading"></a>Related Reading</h3><p>If you do not know PySonar2’s background, here are several related articles:</p>
+<ul>
+<li><a href="https://smallyunet.github.io/yinwang-blog/blog-cn_2013_10_06_sourcegraph_20140513.html">PySonar’s Second User</a></li>
+<li><a href="https://smallyunet.github.io/yinwang-blog/blog-cn_2013_10_29_pysonar2_20161011.html">PySonar2 Is Open Source</a></li>
+<li><a href="https://www.yinwang.org/posts/pysonar2-sg">PySonar2 Integration with Sourcegraph Is Complete</a></li>
+<li><a href="https://smallyunet.github.io/yinwang-blog/blog-cn_2013_06_21_pysonar-slides_20130725.html">How PySonar Works</a></li>
+</ul>
+</div></div></body><!-- Defer non-critical scripts for better performance--><script defer src="/js/jquery.min.js?v=v1.2"></script><script defer src="/js/highlight.min.js?v=v1.2"></script><script defer src="/js/main.js?v=v1.2"></script><script defer src="/js/lightbox.js?v=v1.2"></script><script defer src="/js/bootstrap.min.js?v=v1.2"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5JRBZ6P1W3"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5JRBZ6P1W3');</script></html>
