@@ -129,3 +129,11 @@ Stack [1]:
   0000: 0x30
 > exit
 ```
+
+<br>
+
+### v0.0.44 (2026.08.09)
+
+The project is still being explored and optimized. The current direction is to help AI trace and analyze specific opcode changes during Solidity contract execution. The latest [benchmark results](https://github.com/smallyunet/echoevm/blob/main/benchmarks/trace-value-v2/README.md) show that, compared with broad opcode analysis, using EchoEVM as an analysis tool not only improves accuracy by 20%, allowing AI to answer questions precisely about a contract's execution and diagnose problems, but also reduces token consumption by nearly 40%.
+
+There are, of course, still major limitations. For example, EchoEVM does not yet fully support the semantics of Ethereum's latest Osaka consensus upgrade or KZG opcodes. Its AI use cases are also limited to diagnosing and fixing complex problems rather than the development stage. EchoEVM still has many shortcomings, and the exploration continues...

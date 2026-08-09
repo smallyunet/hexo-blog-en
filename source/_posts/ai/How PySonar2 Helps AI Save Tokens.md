@@ -111,3 +111,9 @@ If you do not know PySonar2's background, here are several related articles:
 - [PySonar2 Is Open Source](https://smallyunet.github.io/yinwang-blog/blog-cn_2013_10_29_pysonar2_20161011.html)
 - [PySonar2 Integration with Sourcegraph Is Complete](https://www.yinwang.org/posts/pysonar2-sg)
 - [How PySonar Works](https://smallyunet.github.io/yinwang-blog/blog-cn_2013_06_21_pysonar-slides_20130725.html)
+
+### Update (2026.08.09)
+
+One clarification: the original article's claim of a 40% reduction in token consumption applies only to certain tasks involving extensive cross-file work, overlapping variable names, and unclear semantics. After broader testing, the latest [benchmark results](https://github.com/smallyunet/pysonar2/blob/main/docs/agent-skill-benchmark.md) show that forcing the use of PySonar2 actually increases both token consumption and completion time for many general-purpose tasks. However, thanks to PySonar2's precise semantic analysis, runs using it achieved 100% accuracy in the benchmark. At present, the clearest benefit PySonar2 offers AI is semantic-level factual evidence.
+
+To further test whether building a semantic index first and then using that index while modifying code could improve efficiency and save tokens, I later created a separate project called [code-engram](https://github.com/smallyunet/code-engram). It currently focuses on TypeScript and also integrates PySonar2. Its only positive benchmark result so far is a 60% reduction in token consumption for rename tasks in large projects. For small projects and other general-purpose tasks, however, token consumption increases instead. This is similar to the results from the standalone PySonar2 repository, so code-engram remains an ongoing exploration as well...
