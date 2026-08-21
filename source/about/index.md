@@ -6,5 +6,6 @@ type: about
 
 If you're interested in any topic, feel free to reach out to me:
 
-- Email: [hello@smallyu.net](mailto:hello@smallyu.net)
+- Email: [dev.wangyu@gmail.com](mailto:dev.wangyu@gmail.com)
 - TG: [https://t.me/smallyutg](https://t.me/smallyutg)
+- LinkedIn: [yuwang0](https://www.linkedin.com/in/yuwang0/)
