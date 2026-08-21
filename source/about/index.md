@@ -7,3 +7,4 @@ type: about
 If you're interested in any topic, feel free to reach out to me:
 
 - Email: [hello@smallyu.net](mailto:hello@smallyu.net)
+- TG: [https://t.me/smallyutg](https://t.me/smallyutg)
